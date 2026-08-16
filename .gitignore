@@ -1,0 +1,14 @@
+# Secrets / local env
+.env*
+.vercel
+
+# macOS
+.DS_Store
+
+# Open Design internal state
+.file-versions/
+.od-skills/
+.sisyphus/
+
+# Open Design artifact sidecars (metadata, not source)
+*.html.artifact.json

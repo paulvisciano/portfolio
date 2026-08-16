@@ -1,0 +1,1584 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paul Visciano — Digital Designer &amp; Developer</title>
+  <meta name="description" content="Paul Visciano — Independent designer and engineer crafting minimal, functional experiences. Mobile platforms, sovereign AI, and spatial storytelling.">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://paulvisciano.vercel.app/">
+  <meta property="og:title" content="Paul Visciano — Digital Designer &amp; Developer">
+  <meta property="og:description" content="Independent designer and engineer crafting minimal, functional experiences. Mobile platforms, sovereign AI, and spatial storytelling.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="676">
+  <meta property="og:image:alt" content="Where is Paul — track your life story across space and time on an interactive 3D globe">
+  <meta property="og:site_name" content="Paul Visciano">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://paulvisciano.vercel.app/">
+  <meta name="twitter:title" content="Paul Visciano — Digital Designer &amp; Developer">
+  <meta name="twitter:description" content="Independent designer and engineer crafting minimal, functional experiences. Mobile platforms, sovereign AI, and spatial storytelling.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://paulvisciano.vercel.app/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='48' fill='%23f5f5f5' text-anchor='middle'%3EPV%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev">
+  <style>
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 300 600; font-display: swap; src: url(/fonts/fraunces-latin.woff2) format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 600; font-display: swap; src: url(/fonts/inter-latin.woff2) format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/jetbrains-mono-latin-400.woff2) format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/jetbrains-mono-latin-500.woff2) format('woff2'); }
+  </style>
+  <style>
+    :root {
+      --bg:         oklch(8% 0.002 260);
+      --bg-card:    oklch(12% 0.003 260);
+      --bg-card-h:  oklch(16% 0.004 260);
+      --surface:    oklch(14% 0.003 260);
+      --fg:         oklch(96% 0.002 260);
+      --fg-bright:  oklch(99% 0 0);
+      --muted:      oklch(58% 0.004 260);
+      --faint:      oklch(60% 0.003 260);
+      --border:     oklch(28% 0.003 260);
+      --border-hi:  oklch(50% 0.004 260);
+      --accent:     oklch(96% 0.002 260);
+
+      --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+      --font-body:    'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+      --fs-mega:  clamp(48px, 8vw, 88px);
+      --fs-h1:    clamp(36px, 5vw, 56px);
+      --fs-h2:    clamp(24px, 3vw, 36px);
+      --fs-h3:    18px;
+      --fs-lead:  17px;
+      --fs-body:  15px;
+      --fs-meta:  12px;
+      --fs-micro: 11px;
+
+      --gap-xs: 8px;
+      --gap-sm: 12px;
+      --gap-md: 20px;
+      --gap-lg: 32px;
+      --gap-xl: 56px;
+      --gap-2xl: 96px;
+      --container: 960px;
+      --gutter: 32px;
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-snap-type: y proximity; scrollbar-width: none; -ms-overflow-style: none; overflow-x: hidden; }
+    html::-webkit-scrollbar { display: none; width: 0; }
+    body { scroll-snap-type: y proximity; scrollbar-width: none; overflow-x: hidden; }
+    body::-webkit-scrollbar { display: none; width: 0; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    p { text-wrap: pretty; margin: 0; }
+    h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+    .container { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+    .section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-block: clamp(48px, 10vh, 96px); scroll-snap-align: start; scroll-snap-stop: always; }
+    .stack { display: flex; flex-direction: column; }
+    .stack > * + * { margin-top: var(--gap-md); }
+    .row { display: flex; align-items: center; gap: var(--gap-md); }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-md); }
+
+    h1 { font-family: var(--font-display); font-size: var(--fs-mega); line-height: 1; letter-spacing: -0.03em; font-weight: 400; }
+    h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.15; letter-spacing: -0.02em; font-weight: 400; }
+    h3 { font-family: var(--font-body); font-size: var(--fs-h3); font-weight: 500; letter-spacing: -0.005em; }
+    .lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--muted); max-width: 48ch; }
+    .eyebrow {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+      margin: 0 0 var(--gap-md);
+    }
+    .meta { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--muted); }
+    .num  { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+    .hr { border: 0; border-top: 1px solid var(--border); margin: 0; }
+    .hr-thin { border: 0; border-top: 1px solid var(--border); width: 48px; margin: 0; }
+
+    .mobile-nav { display: none; }
+
+    /* ─── nav ──────────────────────────────────────────────────────── */
+    .topnav {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 100;
+      width: 1px; background: var(--border);
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .topnav-inner {
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 20px; padding: 0 16px 0 0;
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+      white-space: nowrap;
+    }
+    .logo {
+      position: fixed; top: 20px; left: 24px; z-index: 101;
+      font-family: var(--font-display); font-size: 14px; font-weight: 400;
+      letter-spacing: 0.02em; color: var(--faint);
+      margin: 0;
+    }
+    .topnav nav { display: flex; flex-direction: column; gap: 14px; }
+    .topnav nav a {
+      font-family: var(--font-mono); font-size: 13px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--faint); transition: color 0.2s;
+      display: flex; align-items: center; gap: 10px; flex-direction: row-reverse;
+    }
+    .topnav nav a::before {
+      content: ''; width: 8px; height: 1px; background: var(--faint);
+      transition: width 0.2s, background 0.2s;
+    }
+    .topnav nav a:hover { color: var(--fg); }
+    .topnav nav a:hover::before { width: 16px; background: var(--fg); }
+    .topnav nav a.active { color: var(--fg); }
+    .topnav nav a.active::before { width: 16px; background: var(--fg); }
+    .nav-cta {
+      position: fixed; bottom: 24px; right: 24px; z-index: 101;
+      font-family: var(--font-mono); font-size: 13px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--fg); display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border: 1px solid var(--border-hi); border-radius: 100px;
+      background: oklch(14% 0.003 260 / 0.8); backdrop-filter: blur(12px) saturate(1.3);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .nav-cta:hover { color: var(--fg-bright); border-color: var(--fg); background: oklch(18% 0.004 260 / 0.9); }
+    @media (max-width: 720px) {
+      .topnav { display: none; }
+      .mobile-nav {
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+        display: flex; justify-content: space-around; align-items: center;
+        background: oklch(10% 0.003 260 / 0.92); backdrop-filter: blur(16px) saturate(1.4);
+        border-top: 1px solid var(--border);
+        padding: 16px 0 calc(16px + env(safe-area-inset-bottom));
+      }
+      .mobile-nav a {
+        font-family: var(--font-mono); font-size: 11px;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--faint); transition: color 0.2s;
+        padding: 14px 16px; white-space: nowrap;
+      }
+      .mobile-nav a.active { color: var(--fg); }
+      .mobile-nav a:hover { color: var(--muted); }
+      .nav-cta { top: 16px; right: 16px; bottom: auto; font-size: 11px; padding: 8px 16px; }
+    }
+
+    /* ─── hero ─────────────────────────────────────────────────────── */
+    .hero { text-align: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ''; position: absolute; inset: -50%; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(circle at 30% 40%, oklch(16% 0.015 260 / 0.5), transparent 50%),
+        radial-gradient(circle at 70% 60%, oklch(14% 0.01 280 / 0.4), transparent 50%);
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(5%, -3%) scale(1.1); }
+      100% { transform: translate(-3%, 4%) scale(1.05); }
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero .greeting {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: var(--gap-md);
+      min-height: 1.8em; display: flex; align-items: center; justify-content: center;
+    }
+    .hero h1 { color: var(--fg-bright); margin-bottom: var(--gap-md); }
+    .hero .hr-thin { margin-inline: auto; margin-bottom: var(--gap-md); }
+    .hero .lead { margin-inline: auto; margin-bottom: var(--gap-lg); }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); font-size: 16px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--fg); transition: color 0.2s;
+    }
+    .hero-cta::after { content: '→'; transition: transform 0.2s; }
+    .hero-cta:hover { color: var(--muted); }
+    .hero-cta:hover::after { transform: translateX(4px); }
+
+    /* ─── featured projects ────────────────────────────────────────── */
+    .projects-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: var(--gap-lg); gap: var(--gap-md);
+    }
+    .projects-head .label {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg);
+    }
+    .projects-head .view-all {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+      transition: color 0.2s;
+    }
+    .projects-head .view-all:hover { color: var(--fg); }
+
+    .project-grid {
+      display: flex; gap: var(--gap-md);
+      overflow-x: auto; overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px; margin: 0 calc(var(--gutter) * -1);
+      padding-inline: var(--gutter);
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .project-grid::-webkit-scrollbar { display: none; }
+    .project-card {
+      flex: 0 0 min(900px, 96vw); scroll-snap-align: center;
+    }
+    @media (max-width: 760px) {
+      .project-card { flex-basis: 92vw; }
+    }
+
+    .project-card {
+      display: flex; flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: visible;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .project-card:hover {
+      background: var(--bg-card-h);
+      border-color: var(--border-hi);
+      box-shadow: 0 12px 40px oklch(0% 0 0 / 0.4);
+    }
+    .project-card .img-wrap {
+      aspect-ratio: 16 / 9; overflow: hidden; position: relative;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .project-card .img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.85) saturate(0.9);
+      transition: transform 0.5s ease, filter 0.4s, opacity 0.6s ease;
+    }
+    .project-card .img-wrap picture {
+      display: block;
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .project-card .img-wrap picture:first-of-type {
+      position: relative;
+    }
+    .project-card .img-wrap picture.img-active {
+      opacity: 1;
+    }
+    .project-card:hover .img-wrap img {
+      transform: scale(1.04);
+      filter: brightness(1) saturate(1);
+    }
+    .project-card .img-wrap video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+    }
+    .project-card:hover .img-wrap video.video-active { opacity: 1; }
+    .project-card .img-wrap video.video-active { opacity: 1; }
+    .project-card:hover .img-wrap img { opacity: 0; }
+    .project-card.video-playing .img-wrap img { opacity: 0; }
+
+    .card-unmute {
+      position: absolute; top: 12px; right: 12px; z-index: 5;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 100px;
+      background: oklch(14% 0.003 260 / 0.85); backdrop-filter: blur(8px) saturate(1.3);
+      border: 1px solid var(--border); color: var(--fg);
+      cursor: pointer; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease, border-color 0.2s, color 0.2s;
+    }
+    .project-card.video-playing .card-unmute { opacity: 1; pointer-events: auto; }
+    .card-unmute:hover { border-color: var(--border-hi); color: var(--fg-bright); }
+    .card-unmute:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .card-unmute.unmuted { opacity: 0; pointer-events: none; }
+
+    .clip-indicator {
+      position: absolute; bottom: 12px; left: 12px; z-index: 3;
+      display: flex; gap: 6px; opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .project-card:hover .clip-indicator { opacity: 1; }
+    .clip-indicator span {
+      width: 24px; height: 3px; border-radius: 2px;
+      background: oklch(40% 0.003 260 / 0.6);
+      transition: background 0.3s ease;
+    }
+    .clip-indicator span.clip-active { background: var(--fg); }
+
+    .project-card .card-body { padding: 20px 22px 22px; }
+    .project-card h2 {
+      font-family: var(--font-display); font-size: 20px; font-weight: 500;
+      letter-spacing: -0.01em; color: var(--fg-bright); margin-bottom: 6px;
+    }
+    .project-card .card-label {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.08em; color: var(--muted);
+    }
+    .project-card .card-desc {
+      font-family: var(--font-display); font-size: var(--fs-body); font-weight: 300;
+      letter-spacing: -0.005em; line-height: 1.7; color: var(--fg);
+      margin-top: 12px;
+      overflow: hidden;
+      max-height: 999px;
+      transition: max-height 0.35s ease, opacity 0.25s ease;
+      opacity: 1;
+    }
+    .card-desc-wrap { margin-top: 12px; }
+    .card-desc-wrap + .card-repo { margin-top: 14px; }
+    .card-desc-toggle {
+      display: none;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.06em; color: var(--muted);
+      background: none; border: none; padding: 0; cursor: pointer;
+      margin-top: 6px; transition: color 0.2s;
+    }
+    .card-desc-toggle:hover { color: var(--fg); }
+    .card-desc-toggle:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .card-desc-toggle .arrow { display: inline-block; margin-left: 4px; transition: transform 0.3s ease; }
+    @media (max-width: 760px) {
+      .card-desc-toggle { display: inline-block; }
+      .card-desc-wrap .card-desc {
+        max-height: 4.5em; opacity: 0.85;
+      }
+      .card-desc-wrap.expanded .card-desc {
+        max-height: 999px; opacity: 1;
+      }
+      .card-desc-wrap.expanded .card-desc-toggle .arrow { transform: rotate(180deg); }
+      .project-card .card-desc { margin-top: 0; }
+      .project-card .card-desc + .card-repo { margin-top: 14px; }
+    }
+    .card-link { font-size: 0.7em; color: var(--muted); transition: color 0.2s; }
+    .project-card:hover .card-link { color: var(--fg); }
+    .card-repo {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+      letter-spacing: 0.04em; color: var(--muted);
+      padding: 3px 10px; border: 1px solid var(--border); border-radius: 100px;
+      background: oklch(12% 0.003 260 / 0.5); text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      margin-top: 10px; cursor: pointer;
+    }
+    .card-repo:hover { color: var(--fg); border-color: var(--border-hi); background: oklch(16% 0.004 260 / 0.8); }
+
+    .live-badge {
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 100px;
+      background: oklch(14% 0.003 260 / 0.85); backdrop-filter: blur(8px) saturate(1.3);
+      border: 1px solid oklch(40% 0.12 145 / 0.5);
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: oklch(75% 0.15 145);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .project-card.video-playing .live-badge { opacity: 1; }
+
+    .video-dim-overlay {
+      position: fixed; inset: 0; z-index: 90;
+      background: oklch(4% 0.002 260 / 0);
+      pointer-events: none;
+      transition: background 0.5s ease;
+    }
+    .video-dim-overlay.active { background: oklch(4% 0.002 260 / 0.82); }
+    .project-card.video-playing { z-index: 91; }
+    .live-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: oklch(70% 0.18 145);
+      box-shadow: 0 0 6px oklch(70% 0.18 145 / 0.8);
+    }
+
+    .card-tooltip {
+      position: absolute; bottom: 12px; right: 12px; z-index: 2;
+      padding: 6px 12px; border-radius: 100px;
+      background: oklch(14% 0.003 260 / 0.9); backdrop-filter: blur(8px) saturate(1.3);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.06em; color: var(--fg);
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none; white-space: nowrap;
+    }
+    .project-card:hover .card-tooltip { opacity: 1; transform: translateY(0); }
+
+    .pagination { display: none; }
+
+    .project-breadcrumbs {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin-top: var(--gap-lg);
+      flex-wrap: wrap; row-gap: 8px;
+    }
+    .project-breadcrumbs .crumb {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.06em; color: var(--faint);
+      cursor: pointer; padding: 4px 0;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .project-breadcrumbs .crumb:hover { color: var(--muted); }
+    .project-breadcrumbs .crumb.active { color: var(--fg); }
+    .project-breadcrumbs .crumb.active:hover { color: var(--fg-bright); }
+    .project-breadcrumbs .sep {
+      color: var(--faint); font-family: var(--font-mono);
+      font-size: var(--fs-micro); margin: 0 8px; opacity: 0.5;
+    }
+
+    .carousel-arrow {
+      position: absolute; z-index: 10; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: oklch(14% 0.003 260 / 0.85); backdrop-filter: blur(12px) saturate(1.3);
+      border: 1px solid var(--border); color: var(--fg);
+      font-family: var(--font-mono); font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; transition: opacity 0.25s, background 0.2s, border-color 0.2s;
+    }
+    .carousel-arrow:hover { background: oklch(20% 0.004 260 / 0.9); border-color: var(--border-hi); }
+    .carousel-arrow:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .carousel-arrow-prev { left: 80px; }
+    .carousel-arrow-next { right: 128px; }
+    #work:hover .carousel-arrow { opacity: 1; }
+    @media (max-width: 760px) {
+      .carousel-arrow { width: 40px; height: 40px; font-size: 16px; }
+      .carousel-arrow-prev { left: 12px; }
+      .carousel-arrow-next { right: 12px; }
+    }
+
+    /* ─── about ────────────────────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr;
+      gap: var(--gap-xl); align-items: start;
+    }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+    .about-label {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    }
+    .about-text p { color: var(--fg); font-size: 17px; line-height: 1.8; font-family: var(--font-display); font-weight: 300; letter-spacing: -0.005em; }
+    .about-text p + p { margin-top: var(--gap-md); }
+    .about-text { text-align: center; }
+
+    .about-scroll {
+      max-height: 400px; overflow-y: auto; overflow-x: hidden;
+      padding-right: 12px; text-align: center;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+    }
+    .about-scroll::-webkit-scrollbar { width: 4px; }
+    .about-scroll::-webkit-scrollbar-track { background: transparent; }
+    .about-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .about-portrait {
+      position: relative; width: 100%; max-width: 320px;
+      aspect-ratio: 3 / 4; overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+    .about-portrait img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.85) contrast(1.05) saturate(0.9);
+      -webkit-mask-image: radial-gradient(ellipse 105% 105% at 50% 45%, #000 50%, transparent 90%);
+      mask-image: radial-gradient(ellipse 105% 105% at 50% 45%, #000 50%, transparent 90%);
+      transition: opacity 1.8s ease;
+    }
+    .about-portrait .portrait-video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 1.8s ease;
+      filter: brightness(0.85) contrast(1.05) saturate(0.9);
+      -webkit-mask-image: radial-gradient(ellipse 105% 105% at 50% 45%, #000 50%, transparent 90%);
+      mask-image: radial-gradient(ellipse 105% 105% at 50% 45%, #000 50%, transparent 90%);
+    }
+    .about-portrait.video-active .portrait-video { opacity: 1; }
+    .about-portrait.video-active img { opacity: 0; }
+    .portrait-unmute {
+      position: absolute; bottom: 12px; right: 12px; z-index: 3;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 11px; border-radius: 100px;
+      background: oklch(14% 0.003 260 / 0.85); backdrop-filter: blur(8px) saturate(1.3);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg);
+      cursor: pointer; display: none;
+      animation: umFadeIn 0.4s ease;
+    }
+    .about-portrait.video-active .portrait-unmute.is-muted { display: inline-flex; }
+    @keyframes umFadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .portrait-unmute:hover { border-color: var(--border-hi); background: oklch(18% 0.004 260 / 0.9); color: var(--fg-bright); }
+    .portrait-unmute:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .portrait-unmute .um-icon { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; }
+
+    /* hover-only video controls */
+    .portrait-controls {
+      position: absolute; bottom: 12px; left: 12px; z-index: 4;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 11px; border-radius: 100px;
+      background: oklch(14% 0.003 260 / 0.85); backdrop-filter: blur(8px) saturate(1.3);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .about-portrait:hover .portrait-controls,
+    .about-portrait:focus-within .portrait-controls { opacity: 1; pointer-events: auto; }
+    .portrait-controls:hover { border-color: var(--border-hi); background: oklch(18% 0.004 260 / 0.9); color: var(--fg-bright); }
+    .portrait-controls button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      background: none; border: none; color: inherit; cursor: pointer;
+      font: inherit; letter-spacing: inherit; text-transform: inherit;
+      padding: 0; -webkit-appearance: none; appearance: none;
+    }
+    .portrait-controls button:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; border-radius: 100px; }
+    .portrait-controls .pc-icon { display: inline-flex; width: 12px; height: 12px; }
+    .about-portrait::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to bottom, transparent 45%, var(--bg) 100%);
+    }
+    @media (max-width: 760px) {
+      .about-portrait { max-width: 240px; margin-inline: auto; }
+    }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap-md); margin-top: var(--gap-lg);
+    }
+    @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+    .stat { border-top: 1px solid var(--border); padding-top: 16px; }
+    .stat .num {
+      font-family: var(--font-display); font-size: 32px; font-weight: 400;
+      color: var(--fg-bright); letter-spacing: -0.02em; line-height: 1;
+    }
+    .stat .stat-label {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.06em; color: var(--muted); margin-top: 8px;
+    }
+
+    .timeline { margin-top: var(--gap-lg); }
+    .tl-row {
+      display: grid; grid-template-columns: 140px 1fr;
+      gap: var(--gap-lg); padding: 18px 0;
+      border-top: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .tl-row .meta { color: var(--muted); font-size: 12px; letter-spacing: 0.04em; }
+    .tl-row h3 { font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--fg); }
+    .tl-row p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    @media (max-width: 640px) { .tl-row { grid-template-columns: 1fr; gap: 4px; } }
+
+    /* ─── expertise ────────────────────────────────────────────────── */
+    .expertise-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: var(--gap-lg); margin-top: var(--gap-lg);
+    }
+    @media (max-width: 640px) { .expertise-grid { grid-template-columns: 1fr; } }
+    .expertise-group {
+      border-top: 1px solid var(--border); padding-top: 18px;
+    }
+    .expertise-group h3 {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 12px;
+    }
+    .expertise-group .items {
+      display: flex; flex-wrap: wrap; gap: 8px 14px;
+      font-size: 15px; color: var(--fg); line-height: 1.5;
+    }
+    .expertise-group .items span { white-space: nowrap; }
+
+    /* ─── contact ──────────────────────────────────────────────────── */
+    .contact-inner { text-align: center; max-width: 480px; margin-inline: auto; }
+    .contact-inner .lead { margin-inline: auto; margin-bottom: var(--gap-lg); }
+    .contact-form { display: flex; flex-direction: column; gap: var(--gap-md); text-align: left; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-family: var(--font-mono); font-size: var(--fs-micro);
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    }
+    .input, .textarea {
+      width: 100%; padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--fg); font: inherit; font-size: 15px;
+      transition: border-color 0.2s;
+    }
+    .input:focus, .textarea:focus {
+      outline: none; border-color: var(--border-hi);
+    }
+    .textarea { min-height: 100px; resize: vertical; }
+    .submit-btn {
+      align-self: center; margin-top: var(--gap-sm);
+      font-family: var(--font-mono); font-size: 12px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--fg); background: transparent;
+      border: 1px solid var(--border);
+      padding: 10px 24px; border-radius: var(--radius);
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .submit-btn::after { content: '→'; transition: transform 0.2s; }
+    .submit-btn:hover { border-color: var(--fg); }
+    .submit-btn:hover::after { transform: translateX(3px); }
+    .submit-btn:disabled { opacity: 0.4; }
+    .form-confirm {
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--muted); text-align: center;
+    }
+
+    /* ─── footer ───────────────────────────────────────────────────── */
+    .pagefoot {
+      padding-block: var(--gap-xl);
+      border-top: 1px solid var(--border);
+    }
+    .pagefoot .row-between { flex-wrap: wrap; }
+    .footer-bio { font-family: var(--font-display); font-size: 16px; font-weight: 500; color: var(--fg-bright); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+    .footer-links a {
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--fg); }
+    .footer-right { text-align: right; }
+    @media (max-width: 640px) { .footer-right { text-align: left; } }
+
+    /* ─── focus ────────────────────────────────────────────────────── */
+    a:focus-visible, button:focus-visible {
+      outline: 1px solid var(--fg); outline-offset: 3px;
+    }
+    .input:focus-visible, .textarea:focus-visible { outline: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ─── mobile optimization ─────────────────────────────────────── */
+    @media (max-width: 760px) {
+      :root {
+        --gutter: 20px;
+        --gap-md: 16px;
+        --gap-lg: 24px;
+        --gap-xl: 40px;
+        --gap-2xl: 64px;
+      }
+      html, body { scroll-snap-type: none; }
+      .section { min-height: auto; scroll-snap-align: none; scroll-snap-stop: normal; padding-block: clamp(32px, 6vh, 48px); }
+      .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      .hero .container { width: 100%; max-width: 100%; padding-inline: var(--gutter); }
+      .hero h1 { font-size: clamp(36px, 11vw, 52px); }
+      .hero .lead { font-size: 15px; max-width: 90%; }
+      .hero-cta { font-size: 14px; }
+      .projects-head { margin-bottom: var(--gap-md); }
+      .projects-head .label { font-size: 10px; }
+      .project-grid { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+      .project-card { flex-basis: calc(100vw - 2 * var(--gutter) - var(--gap-md)); scroll-snap-align: center; scroll-snap-stop: always; }
+      .project-card .img-wrap { aspect-ratio: 4 / 3; }
+      .project-card .card-body { padding: 16px 18px 18px; }
+      .project-card h2 { font-size: 18px; }
+      .project-breadcrumbs {
+        display: flex; flex-wrap: nowrap; justify-content: flex-start;
+        gap: 8px; margin-bottom: 70px; padding-bottom: 12px;
+        overflow-x: auto; overflow-y: hidden;
+        scrollbar-width: none; -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+        width: 100%; box-sizing: border-box;
+        padding-left: 0; padding-right: 0;
+      }
+      .project-breadcrumbs::-webkit-scrollbar { display: none; }
+      .project-breadcrumbs .crumb {
+        font-size: 10px; white-space: nowrap;
+        padding: 6px 12px; border: 1px solid var(--border); border-radius: 100px;
+        background: oklch(12% 0.003 260 / 0.6);
+      }
+      .project-breadcrumbs .crumb.active { border-color: var(--border-hi); background: oklch(16% 0.004 260 / 0.8); }
+      .project-breadcrumbs .sep { display: none; }
+      .carousel-arrow { display: none; }
+      .carousel-arrow-prev { left: 8px; }
+      .carousel-arrow-next { right: 8px; }
+      .project-card .img-wrap video.video-active { opacity: 1; }
+      .project-card.video-playing .img-wrap img { opacity: 0; }
+      .project-card .clip-indicator { opacity: 1; }
+      .project-card .card-unmute { opacity: 1; pointer-events: auto; }
+      .about-text p { font-size: 16px; }
+      .stat .num { font-size: 26px; }
+      .contact-inner { max-width: 100%; }
+      .contact-form { gap: 14px; }
+      .footer-links { gap: 14px; }
+      .footer-links a { font-size: 10px; }
+      .nav-cta { top: 16px; right: 16px; bottom: auto; font-size: 11px; padding: 8px 16px; }
+      .video-dim-overlay.active { background: transparent; }
+    }
+    @media (max-width: 420px) {
+      :root { --gutter: 16px; }
+      .hero h1 { font-size: 38px; }
+      .hero .lead { font-size: 14px; }
+      .project-card { flex-basis: calc(100vw - 2 * var(--gutter) - var(--gap-md)); }
+      .project-breadcrumbs .sep { display: none; }
+      .project-breadcrumbs .crumb { font-size: 9px; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat .num { font-size: 22px; }
+      .footer-links { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-dim-overlay" id="video-dim"></div>
+
+  <span class="logo">PV</span>
+
+   <header class="topnav" data-od-id="topnav">
+     <div class="topnav-inner">
+       <nav>
+        <a href="#home">Home</a>
+         <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+       </nav>
+     </div>
+   </header>
+   <a class="nav-cta" href="#contact" data-od-id="nav-cta">Connect <span style="font-size: 1.4em; line-height: 0;">↗</span></a>
+
+   <nav class="mobile-nav" data-od-id="mobile-nav">
+     <a href="#home">Home</a>
+     <a href="#work">Work</a>
+     <a href="#about">About</a>
+     <a href="#contact">Contact</a>
+   </nav>
+
+  <main>
+
+    <!-- ═══ HERO ═══════════════════════════════════════════════════════ -->
+    <section class="section hero" data-od-id="hero" id="home">
+      <div class="container">
+        <p class="greeting" data-od-id="greeting">Hello, I'm</p>
+        <h1>Paul Visciano</h1>
+        <hr class="hr-thin">
+        <p class="lead">Sci-Fi is reality — minimalist design for every surface, mobile, desktop, and augmented reality.</p>
+        <a class="hero-cta" href="#work">View work</a>
+      </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- ═══ FEATURED PROJECTS ═════════════════════════════════════════ -->
+    <section class="section" data-od-id="work" id="work">
+      <div class="container">
+        <div class="projects-head">
+          <span class="label">Body of Work</span>
+        </div>
+
+        <div class="project-grid">
+        </div>
+
+        <nav class="project-breadcrumbs" data-od-id="project-breadcrumbs" aria-label="Projects"></nav>
+      </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- ═══ ABOUT ════════════════════════════════════════════════════ -->
+    <section class="section" data-od-id="about" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <p class="about-label">About</p>
+            <div class="about-portrait" data-od-id="portrait">
+              <picture>
+                <source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/narration-poster.webp">
+                <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/narration-poster.jpg" alt="Paul Visciano" width="784" height="1168" loading="lazy">
+              </picture>
+              <video class="portrait-video" src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/narration.mp4" muted playsinline preload="metadata" aria-hidden="true"></video>
+              <button class="portrait-unmute" data-od-id="portrait-unmute" type="button" aria-label="Unmute narration" aria-pressed="false">
+                <span class="um-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                </span>
+                <span class="um-label">Unmute</span>
+              </button>
+              <div class="portrait-controls" data-od-id="portrait-controls">
+                <button class="pc-replay" type="button" aria-label="Replay narration">
+                  <span class="pc-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></span>
+                  <span>Replay</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="about-text" id="about-text" data-od-id="about-text">
+        <div class="about-scroll" id="about-scroll">
+            <p>Now I design and build the full stack myself — web, mobile, and XR — using AI as a collaborator. Across a range of projects, the goal is the same: turn science-fiction ideas into real products, and push web technologies past their usual limits.</p>
+            <p>Underneath it all is a longer bet. Sovereignty. Memory you own. Models you run. Tools that answer to you — not rented, not watched, public only when you choose.</p>
+            <p>Before going independent, I was a Principal Engineer at OutSystems — design systems, shared UI, the patterns teams reuse so enterprise software doesn't reinvent itself on every project. That work crossed into Stencil.js, the open-source compiler from the Ionic team that turns TypeScript and JSX into real web components. I partnered with Apple to implement features they requested for their internal design system, built on Stencil, and contributed to the project directly.</p>
+            <p>Before that, more than a decade at Paylocity on Core Mobile — the app employees open to clock in, request time off, and check a paycheck. Paylocity serves roughly 44,000 companies and more than six million people on the platform. We rebuilt it more than once, through Ionic and Xamarin, so other teams could ship without fighting the stack.</p>
+        </div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat" data-od-id="stat-tenure">
+            <div class="num">11<span style="font-size:0.5em;opacity:0.5;">yrs</span></div>
+            <p class="stat-label">Core Mobile at Paylocity</p>
+          </div>
+          <div class="stat" data-od-id="stat-stars">
+            <div class="num">269<span style="font-size:0.5em;opacity:0.5;">★</span></div>
+            <p class="stat-label">Open source stars</p>
+          </div>
+          <div class="stat" data-od-id="stat-countries">
+            <div class="num">27</div>
+            <p class="stat-label">Countries traveled</p>
+          </div>
+          <div class="stat" data-od-id="stat-onboarded">
+            <div class="num">170<span style="font-size:0.5em;opacity:0.5;">+</span></div>
+            <p class="stat-label">Developers onboarded</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row" data-od-id="timeline-present">
+            <span class="meta">2026 — NOW</span>
+            <div><h3>Independent Designer & Engineer · Self-employed</h3><p>Building sovereign AI systems, spatial storytelling, and selective client work after leaving OutSystems in March 2026.</p></div>
+          </div>
+          <div class="tl-row" data-od-id="timeline-outsystems">
+            <span class="meta">2024 — 2026</span>
+            <div><h3>Principal Engineer · OutSystems</h3><p>Worked on the OutSystems design system and helped Apple implement features for their internal design system built on Stencil.js, contributing directly to the open source project.</p></div>
+          </div>
+          <div class="tl-row" data-od-id="timeline-paylocity">
+            <span class="meta">2014 — 2025</span>
+            <div><h3>Software Engineer, Core Mobile · Paylocity</h3><p>A decade on the team that built Paylocity Mobile — Ionic, Xamarin, and the Web API underneath.</p></div>
+          </div>
+          <div class="tl-row" data-od-id="timeline-simple">
+            <span class="meta">2012 — 2014</span>
+            <div><h3>Engineer · Simple Productions &amp; United Stationers</h3><p>WinForms to MVC, WPF tools, and the first shipping apps under my own studio.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- ═══ CONTACT ═══════════════════════════════════════════════════ -->
+    <section class="section" data-od-id="contact" id="contact">
+      <div class="container">
+        <div class="contact-inner">
+          <p class="greeting" style="font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--gap-md);">Contact</p>
+          <h2 style="margin-bottom: var(--gap-md);">Let's build the future together.</h2>
+          <p class="lead">Got a bold idea or a wild experiment? Let's make it real.</p>
+          <form class="contact-form" id="contact-form">
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input class="input" id="cf-name" type="text" placeholder="Your name" required="">
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input class="input" id="cf-email" type="email" placeholder="you@domain.com" required="">
+            </div>
+            <div class="field">
+              <label for="cf-msg">Message</label>
+              <textarea class="textarea" id="cf-msg" placeholder="Let's build something extraordinary." required=""></textarea>
+            </div>
+            <button class="submit-btn" type="submit">Send the note</button>
+            <span class="form-confirm" hidden="">Thanks — I'll write back soon.</span>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pagefoot" data-od-id="footer">
+    <div class="container">
+      <div data-od-id="expertise" id="expertise" style="margin-bottom: var(--gap-xl);">
+        <p class="about-label" style="margin-bottom: var(--gap-lg);">Expertise · The tools I reach for, and the ones I built.</p>
+        <div class="expertise-grid">
+          <div class="expertise-group" data-od-id="exp-mobile">
+            <h3>Mobile Platforms</h3>
+            <div class="items"><span>Ionic</span><span>Xamarin.Forms</span><span>Cordova</span><span>iOS</span><span>Android</span><span>Angular</span></div>
+          </div>
+          <div class="expertise-group" data-od-id="exp-languages">
+            <h3>Languages</h3>
+            <div class="items"><span>TypeScript</span><span>JavaScript</span><span>C#</span></div>
+          </div>
+          <div class="expertise-group" data-od-id="exp-product">
+            <h3>Product Surfaces</h3>
+            <div class="items"><span>React</span><span>Stencil</span><span>Web Components</span><span>ASP.NET</span><span>MVVM</span></div>
+          </div>
+          <div class="expertise-group" data-od-id="exp-systems">
+            <h3>Systems &amp; AI</h3>
+            <div class="items"><span>LightRAG</span><span>Local LLMs</span><span>Knowledge graphs</span><span>CI / CD</span><span>Sovereign stacks</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row-between">
+        <div>
+          <span class="footer-bio">Paul Visciano</span>
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/paul-visciano-09379220/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/paulvisciano" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://github.com/paulpatarinski" target="_blank" rel="noopener">Archive ↗</a>
+            <a href="https://paulvisciano.github.io/" target="_blank" rel="noopener">Where is Paul? ↗</a>
+          </div>
+        </div>
+        <div class="footer-right">
+          <span class="meta" style="color: var(--faint);">English · Bulgarian · Spanish · German</span>
+          <p style="color: var(--muted); font-size: 12px; margin-top: 8px;">© 2026 Paul Visciano. Clearwater, Florida.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Global flag: has the user interacted with the page yet? */
+    window.__userInteracted = false;
+    ['click', 'touchstart', 'keydown'].forEach(function (evt) {
+      document.addEventListener(evt, function () { window.__userInteracted = true; }, { capture: true, once: true });
+    });
+
+    (function () {
+      var projects = [
+        { id: 'project-urban-runner', title: 'Where is Paul?', label: 'Track your life story across space & time · 27 countries · 53+ moments', desc: 'A reimagining of personal history as a living, spatial record of a life deliberately lived — a luminous Earth where cities, crossings, and hard-won stays rise as glowing markers, and time itself becomes navigable. Moments appear as blog posts, swipeable cards, videos, and AI-generated comic-book sequences drawn from real photographs and lived scenes, some carrying QR codes that open onto the actual places they depict. The people who shaped the journey are present too, each with a short video in which they speak for themselves. A deliberate trail of adventure, curiosity, and human connection left to inspire the future generation — proof that a full, challenging, far-reaching life is possible, and that the map, the stories, the places, and the voices still remain for them to continue.', img: 'where-is-paul', alt: 'Where is Paul — track your life story across space and time on an interactive 3D globe', url: 'https://paulvisciano.github.io/moments/da-nang/2026-02-07/heaven-on-earth/', repo: 'https://github.com/paulvisciano/paulvisciano.github.io', videos: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/where-is-paul-tablet.mp4', 'https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/who-is-paul-apple-vision-2.mp4'], videosPortrait: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul-portrait.mp4', 'https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/who-is-paul-apple-vision-2-portrait.mp4'] },
+        { id: 'project-knowledge-graph', title: 'Knowledge Graph', label: 'Spatial AI · Time as Dimension · Voice + Photos · Local LLM', desc: 'A reimagining of AI interaction — not a chat window, but a living spatial intelligence. Knowledge, memories, and media float as luminous elements across a navigable time dimension, with ambient conversation and voice input, running privately on your own machine.', images: ['knowledge-graph-1', 'knowledge-graph-2'], alt: 'Knowledge Graph — a private visual memory palace on a Three.js time-layered canvas, with local LLM, voice input, and photo ingestion', url: 'https://github.com/paulvisciano/knowledge-graph', videos: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4'], videosPortrait: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video-portrait.mp4'] },
+        { id: 'project-paylocity', title: 'Paylocity Mobile', label: 'Mobile · Ionic · Xamarin', img: 'mobile', alt: 'Paylocity Mobile', url: '' },
+        { id: 'project-musical-cubes', title: 'Musical Cubes', label: 'Product · TypeScript', img: 'musical-cubes', alt: 'Musical Cubes', url: 'https://github.com/paulvisciano/musical-cubes' },
+        { id: 'project-xamarin-plugins', title: 'Xamarin Plugins', label: 'Open source · C# · 269★', img: 'plugins', alt: 'Xamarin Plugins', url: 'https://github.com/paulpatarinski/Xamarin.Forms.Plugins' },
+        { id: 'project-chicago-vball', title: 'Chicago VBall', label: 'Mobile · Android · C#', img: 'volleyball', alt: 'Chicago VBall', url: '' },
+        { id: 'project-wash-car', title: 'Should I Wash My Car', label: 'Mobile · C# · 35★', img: 'wash-car', alt: 'Should I Wash My Car', url: '' }
+      ];
+
+      var grid = document.querySelector('.project-grid');
+      if (!grid) return;
+
+      var isPortrait = window.matchMedia('(max-width: 760px)').matches;
+      grid.innerHTML = projects.map(function (item) {
+        var vids = item.videos || (item.video ? [item.video] : []);
+        var vidsPortrait = item.videosPortrait || [];
+        var imgs = item.images || (item.img ? [item.img] : []);
+        var videoHTML = vids.map(function (v, i) {
+          var portraitSrc = vidsPortrait[i] || '';
+          var usePortrait = isPortrait && portraitSrc;
+          var src = usePortrait ? portraitSrc : v;
+          return '<video src="' + src + '" muted playsinline preload="metadata"' +
+            (portraitSrc ? ' data-src-landscape="' + v + '" data-src-portrait="' + portraitSrc + '"' : '') +
+            (i === 0 ? ' class="video-active"' : '') + '></video>';
+        }).join('');
+        var imageHTML = imgs.map(function (img, i) {
+          return '<picture data-img-index="' + i + '"' + (i === 0 ? ' class="img-active"' : '') + '>' +
+            '<source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + img + '.webp?v=4">' +
+            '<img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + img + '.jpg?v=4" alt="' + item.alt + '" width="1200" height="676" loading="lazy" />' +
+            '</picture>';
+        }).join('');
+        var imgClipCount = imgs.length > 1 ? imgs.length : 0;
+        var vidClipCount = vids.length > 1 ? vids.length : 0;
+        var clipCount = vidClipCount || imgClipCount;
+        var hasClips = clipCount > 1;
+        var indicatorHTML = hasClips
+          ? '<div class="clip-indicator">' + Array.from({ length: clipCount }, function (_, i) {
+              return '<span' + (i === 0 ? ' class="clip-active"' : '') + '></span>';
+            }).join('') + '</div>'
+          : '';
+        var card = '<article class="project-card" data-od-id="' + item.id + '"' +
+          (item.url ? ' data-url="' + item.url + '" style="cursor:pointer"' : '') + '>' +
+          '<div class="img-wrap">' +
+          '<picture><source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + item.img + '.webp"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + item.img + '.jpg" alt="' + item.alt + '" width="1200" height="676" loading="lazy" /></picture>' +
+          videoHTML + indicatorHTML +
+          '<button class="card-unmute" type="button" aria-label="Unmute video" aria-pressed="false">' +
+            '<span class="cu-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></span>' +
+          '</button>' +
+          (item.url ? '<span class="card-tooltip">Click to visit live site ↗</span>' : '') +
+          '</div>' +
+          '<div class="card-body"><h2>' + item.title + (item.url ? ' <span class="card-link">↗</span>' : '') + '</h2><p class="card-label">' + item.label + '</p>' +
+          (item.desc ? '<div class="card-desc-wrap"><p class="card-desc">' + item.desc + '</p><button class="card-desc-toggle" type="button" aria-expanded="false" aria-controls="desc-' + item.id + '">Read more<span class="arrow">↓</span></button></div>' : '') +
+          (item.repo ? '<a class="card-repo" href="' + item.repo + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">Code ↗</a>' : '') +
+          '</div>' +
+          '</article>';
+        return card;
+      }).join('');
+
+      grid.querySelectorAll('.project-card[data-url]').forEach(function (card) {
+        card.addEventListener('click', function () {
+          window.open(card.getAttribute('data-url'), '_blank', 'noopener');
+        });
+      });
+
+      /* Collapsible description toggles (mobile). Stop propagation so
+         tapping "Read more" doesn't also trigger the card's link click. */
+      grid.querySelectorAll('.card-desc-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var wrap = btn.closest('.card-desc-wrap');
+          if (!wrap) return;
+          var expanded = wrap.classList.toggle('expanded');
+          btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          btn.firstChild.textContent = expanded ? 'Read less' : 'Read more';
+        });
+      });
+
+      /* Autoplay videos on scroll into view (muted unless the user has
+         already interacted with the page). Mute button restarts from
+         the beginning with sound. Cycle clips on end. Dim page on play. */
+      var dimOverlay = document.getElementById('video-dim');
+      var cardMuteIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+      var cardUnmuteIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+
+      grid.querySelectorAll('.project-card').forEach(function (card) {
+        var videos = card.querySelectorAll('video');
+        if (!videos.length) return;
+        var indicators = card.querySelectorAll('.clip-indicator span');
+        var muteBtn = card.querySelector('.card-unmute');
+        var clipIdx = 0;
+        var isInView = false;
+
+        function showClip(i) {
+           videos.forEach(function (v, j) {
+             v.classList.toggle('video-active', j === i);
+             if (j === i) {
+               v.currentTime = 0;
+               v.muted = !window.__userInteracted;
+               var p = v.play();
+               if (p && p.then) p.catch(function () {});
+             } else { v.pause(); }
+           });
+           indicators.forEach(function (s, j) { s.classList.toggle('clip-active', j === i); });
+           clipIdx = i;
+           syncMuteBtn();
+        }
+
+        function syncMuteBtn() {
+          if (!muteBtn) return;
+          var active = videos[clipIdx];
+          if (!active) return;
+          var icon = muteBtn.querySelector('.cu-icon');
+          if (active.muted) {
+            icon.innerHTML = cardMuteIcon;
+            muteBtn.classList.remove('unmuted');
+            muteBtn.setAttribute('aria-pressed', 'false');
+            muteBtn.setAttribute('aria-label', 'Unmute video');
+          } else {
+            icon.innerHTML = cardUnmuteIcon;
+            muteBtn.classList.add('unmuted');
+            muteBtn.setAttribute('aria-pressed', 'true');
+            muteBtn.setAttribute('aria-label', 'Mute video');
+          }
+        }
+
+        /* when a video ends, advance to the next one (multi-video),
+           or hide it so poster images resurface (single-video) */
+        videos.forEach(function (v, i) {
+          v.addEventListener('ended', function () {
+            if (isInView && videos.length > 1) {
+              showClip((i + 1) % videos.length);
+            } else {
+              v.classList.remove('video-active');
+            }
+          });
+          v.addEventListener('play', function () { card.classList.add('video-playing'); if (dimOverlay) dimOverlay.classList.add('active'); });
+          v.addEventListener('pause', function () { card.classList.remove('video-playing'); if (dimOverlay) dimOverlay.classList.remove('active'); });
+        });
+
+        /* Mute button: unmute → restart from beginning with sound.
+           If already unmuted, toggle back to muted. */
+        if (muteBtn) {
+          muteBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var active = videos[clipIdx];
+            if (!active) return;
+            if (active.muted) {
+              window.__userInteracted = true;
+              active.muted = false;
+              active.currentTime = 0;
+              var p = active.play();
+              if (p && p.then) p.catch(function () {
+                active.muted = true;
+                active.play().catch(function () {});
+              });
+            } else {
+              active.muted = true;
+            }
+            syncMuteBtn();
+          });
+        }
+
+        /* IntersectionObserver: autoplay on scroll into view (all screens) */
+        var videoObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              isInView = true;
+              showClip(0);
+            } else {
+              isInView = false;
+              card.classList.remove('video-playing');
+              if (dimOverlay) dimOverlay.classList.remove('active');
+              videos.forEach(function (v) { v.pause(); });
+            }
+          });
+        }, { threshold: 0.6 });
+        videoObserver.observe(card);
+      });
+
+      /* Image cycling for cards with multiple pictures.
+         Works alongside video: pauses when video plays, resumes when it stops. */
+      grid.querySelectorAll('.project-card').forEach(function (card) {
+        var pictures = card.querySelectorAll('.img-wrap picture');
+        if (pictures.length < 2) return;
+        var videos = card.querySelectorAll('video');
+        var indicators = card.querySelectorAll('.clip-indicator span');
+        var picIdx = 0;
+        var picTimer = null;
+        var picInView = false;
+
+        function showPic(i) {
+          pictures.forEach(function (p, j) {
+            p.classList.toggle('img-active', j === i);
+          });
+          indicators.forEach(function (s, j) {
+            s.classList.toggle('clip-active', j === i);
+          });
+          picIdx = i;
+        }
+
+        function startCycling() {
+          if (picTimer) return;
+          if (card.classList.contains('video-playing')) return;
+          picTimer = setInterval(function () {
+            showPic((picIdx + 1) % pictures.length);
+          }, 3500);
+        }
+        function stopCycling() {
+          if (picTimer) { clearInterval(picTimer); picTimer = null; }
+        }
+
+        var picObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              picInView = true;
+              showPic(0);
+              startCycling();
+            } else {
+              picInView = false;
+              stopCycling();
+            }
+          });
+        }, { threshold: 0.6 });
+        picObserver.observe(card);
+
+        if (videos.length) {
+          var mo = new MutationObserver(function () {
+            if (card.classList.contains('video-playing')) {
+              stopCycling();
+            } else if (picInView) {
+              showPic(0);
+              startCycling();
+            }
+          });
+          mo.observe(card, { attributes: true, attributeFilter: ['class'] });
+        }
+      });
+
+      /* Swap video sources between landscape and portrait when crossing the mobile breakpoint */
+      var portraitMQ = window.matchMedia('(max-width: 760px)');
+      var currentPortrait = portraitMQ.matches;
+      portraitMQ.addEventListener('change', function (e) {
+        var nowPortrait = e.matches;
+        if (nowPortrait === currentPortrait) return;
+        currentPortrait = nowPortrait;
+        grid.querySelectorAll('video[data-src-portrait]').forEach(function (v) {
+          var wasPlaying = !v.paused && !v.ended;
+          var t = v.currentTime;
+          v.src = nowPortrait ? v.getAttribute('data-src-portrait') : v.getAttribute('data-src-landscape');
+          v.load();
+          v.currentTime = t;
+          if (wasPlaying) v.play().catch(function () {});
+        });
+      });
+
+      var breadcrumbs = document.querySelector('[data-od-id="project-breadcrumbs"]');
+      if (breadcrumbs) {
+        breadcrumbs.innerHTML = projects.map(function (item, i) {
+          return '<span class="crumb" data-idx="' + i + '">' + item.title + '</span>' +
+            (i < projects.length - 1 ? '<span class="sep">/</span>' : '');
+        }).join('');
+
+        var crumbs = breadcrumbs.querySelectorAll('.crumb');
+
+        function activeIndex() {
+          var gridRect = grid.getBoundingClientRect();
+          var center = gridRect.left + gridRect.width / 2;
+          var best = 0, bestDist = Infinity;
+          var cards = grid.querySelectorAll('.project-card');
+          cards.forEach(function (card, i) {
+            var cardRect = card.getBoundingClientRect();
+            var cardCenter = cardRect.left + cardRect.width / 2;
+            var dist = Math.abs(cardCenter - center);
+            if (dist < bestDist) { bestDist = dist; best = i; }
+          });
+          return best;
+        }
+
+        var lastIdx = -1;
+        function updateCrumbs() {
+          var idx = activeIndex();
+          if (idx === lastIdx) return;
+          lastIdx = idx;
+          crumbs.forEach(function (c, i) { c.classList.toggle('active', i === idx); });
+          /* scroll the active crumb into view in the breadcrumb nav */
+          var breadcrumbs = document.querySelector('[data-od-id="project-breadcrumbs"]');
+          if (breadcrumbs && crumbs[idx]) {
+            var crumbRect = crumbs[idx].getBoundingClientRect();
+            var navRect = breadcrumbs.getBoundingClientRect();
+            var offset = crumbRect.left + crumbRect.width / 2 - (navRect.left + navRect.width / 2);
+            breadcrumbs.scrollTo({
+              left: breadcrumbs.scrollLeft + offset,
+              behavior: 'smooth'
+            });
+          }
+        }
+
+        /* Debounce scroll so we run once after scrolling settles (catches post-snap position) */
+        var scrollTimer;
+        function onScroll() {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(updateCrumbs, 80);
+        }
+        grid.addEventListener('scroll', onScroll, { passive: true });
+        /* scrollend fires after snap settles in supporting browsers */
+        if ('onscrollend' in window) {
+          grid.addEventListener('scrollend', updateCrumbs, { passive: true });
+        }
+        window.addEventListener('resize', function () { lastIdx = -1; updateCrumbs(); });
+
+        /* On mobile, iOS Safari's scroll-snap animation after touchend doesn't
+           emit scroll events. Poll position after touch ends to catch the
+           post-snap settled position. */
+        var pollTimer;
+        function pollAfterTouch() {
+          clearInterval(pollTimer);
+          var ticks = 0;
+          pollTimer = setInterval(function () {
+            updateCrumbs();
+            if (++ticks > 15) clearInterval(pollTimer);
+          }, 60);
+        }
+        grid.addEventListener('touchend', pollAfterTouch, { passive: true });
+        grid.addEventListener('touchcancel', pollAfterTouch, { passive: true });
+
+        crumbs.forEach(function (crumb, i) {
+          crumb.addEventListener('click', function () {
+            var cards = grid.querySelectorAll('.project-card');
+            if (!cards[i]) return;
+            var cardRect = cards[i].getBoundingClientRect();
+            var gridRect = grid.getBoundingClientRect();
+            var offset = cardRect.left + cardRect.width / 2 - (gridRect.left + gridRect.width / 2);
+            grid.scrollTo({
+              left: grid.scrollLeft + offset,
+              behavior: 'smooth'
+            });
+          });
+        });
+
+        updateCrumbs();
+
+        /* ── arrow navigation ── */
+        var cards = grid.querySelectorAll('.project-card');
+
+        function scrollToCard(i) {
+          if (!cards[i]) return;
+          var cardRect = cards[i].getBoundingClientRect();
+          var gridRect = grid.getBoundingClientRect();
+          var offset = cardRect.left + cardRect.width / 2 - (gridRect.left + gridRect.width / 2);
+          grid.scrollTo({
+            left: grid.scrollLeft + offset,
+            behavior: 'smooth'
+          });
+        }
+
+        var arrowPrev = document.createElement('button');
+        arrowPrev.className = 'carousel-arrow carousel-arrow-prev';
+        arrowPrev.setAttribute('aria-label', 'Previous project');
+        arrowPrev.innerHTML = '←';
+
+        var arrowNext = document.createElement('button');
+        arrowNext.className = 'carousel-arrow carousel-arrow-next';
+        arrowNext.setAttribute('aria-label', 'Next project');
+        arrowNext.innerHTML = '→';
+
+        var workSection = document.getElementById('work');
+        if (workSection) {
+          workSection.style.position = 'relative';
+          workSection.appendChild(arrowPrev);
+          workSection.appendChild(arrowNext);
+        }
+
+        arrowPrev.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var idx = activeIndex();
+          scrollToCard(idx === 0 ? cards.length - 1 : idx - 1);
+        });
+
+        arrowNext.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var idx = activeIndex();
+          scrollToCard((idx + 1) % cards.length);
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var navLinks = document.querySelectorAll('.topnav nav a, .mobile-nav a');
+      var sections = [];
+      navLinks.forEach(function (link) {
+        var id = link.getAttribute('href').replace('#', '');
+        var sec = document.getElementById(id);
+        if (sec) sections.push({ link: link, el: sec });
+      });
+
+      function updateActive() {
+        var scrollY = window.scrollY + window.innerHeight * 0.35;
+        var activeId = null;
+        sections.forEach(function (s) {
+          if (s.el.offsetTop <= scrollY) activeId = s.el.id;
+        });
+        navLinks.forEach(function (l) {
+          var href = l.getAttribute('href').replace('#', '');
+          l.classList.toggle('active', href === activeId);
+        });
+      }
+
+      window.addEventListener('scroll', updateActive, { passive: true });
+      window.addEventListener('resize', updateActive);
+      updateActive();
+    })();
+  </script>
+  <script>
+    (function () {
+      var greetings = ['Hello, I\'m', 'Здравей, аз съм', 'Hola, soy', 'Hallo, ich bin'];
+      var el = document.querySelector('[data-od-id="greeting"]');
+      if (!el) return;
+      var gi = 0;
+      var ci = 0;
+      var typing = true;
+      el.textContent = '';
+
+      function tick() {
+        var current = greetings[gi];
+        if (typing) {
+          ci++;
+          el.textContent = current.substring(0, ci);
+          if (ci >= current.length) {
+            typing = false;
+            setTimeout(tick, 2500);
+            return;
+          }
+          setTimeout(tick, 80);
+        } else {
+          ci--;
+          el.textContent = current.substring(0, ci);
+          if (ci <= 0) {
+            typing = true;
+            gi = (gi + 1) % greetings.length;
+            setTimeout(tick, 300);
+            return;
+          }
+          setTimeout(tick, 40);
+        }
+      }
+      tick();
+    })();
+  </script>
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('cf-name').value.trim();
+        var email = document.getElementById('cf-email').value.trim();
+        var msg = document.getElementById('cf-msg').value.trim();
+        var subject = 'Portfolio contact — ' + (name || 'New message');
+        var body = 'From: ' + name + ' <' + email + '>\n\n' + msg;
+        window.location.href = 'mailto:paulvisciano.dev@gmail.com?subject=' +
+          encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        form.querySelector('.form-confirm').hidden = false;
+        form.querySelector('button').disabled = true;
+      });
+    })();
+  </script>
+  <script>
+    /* Portrait narration video: autoplay muted on scroll into view.
+       If the user has already interacted with the page, play unmuted.
+       Unmute button restarts from the beginning with sound. */
+    (function () {
+      var portrait = document.querySelector('.about-portrait[data-od-id="portrait"]');
+      var video = portrait ? portrait.querySelector('.portrait-video') : null;
+      if (!portrait || !video) return;
+
+      var unmuteBtn = portrait.querySelector('[data-od-id="portrait-unmute"]');
+      var controls = portrait.querySelector('[data-od-id="portrait-controls"]');
+      var replayBtn = controls ? controls.querySelector('.pc-replay') : null;
+      var muteIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+      var unmuteIcon = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+
+      var started = false;
+      var playedOnce = false;
+
+      function showUnmuteBtn() {
+        if (!unmuteBtn) return;
+        var icon = unmuteBtn.querySelector('.um-icon');
+        var label = unmuteBtn.querySelector('.um-label');
+        icon.innerHTML = muteIcon;
+        label.textContent = 'Unmute';
+        unmuteBtn.setAttribute('aria-pressed', 'false');
+        unmuteBtn.setAttribute('aria-label', 'Unmute narration');
+        unmuteBtn.classList.add('is-muted');
+      }
+
+      function hideUnmuteBtn() {
+        if (!unmuteBtn) return;
+        unmuteBtn.classList.remove('is-muted');
+      }
+
+      function setMuted(muted) {
+        video.muted = muted;
+        /* sync unmute button */
+        if (unmuteBtn) {
+          var icon = unmuteBtn.querySelector('.um-icon');
+          var label = unmuteBtn.querySelector('.um-label');
+          if (muted) {
+            icon.innerHTML = muteIcon;
+            label.textContent = 'Unmute';
+            unmuteBtn.setAttribute('aria-pressed', 'false');
+            unmuteBtn.classList.add('is-muted');
+          } else {
+            icon.innerHTML = unmuteIcon;
+            label.textContent = 'Tap to mute';
+            unmuteBtn.setAttribute('aria-pressed', 'true');
+            unmuteBtn.classList.remove('is-muted');
+          }
+        }
+      }
+
+      /* Unmute + restart from beginning with sound. */
+      function unmuteAndRestart() {
+        window.__userInteracted = true;
+        playedOnce = false;
+        started = true;
+        video.currentTime = 0;
+        video.muted = false;
+        setMuted(false);
+        portrait.classList.add('video-active');
+        video.play().catch(function () {});
+      }
+
+      video.addEventListener('ended', function () {
+        playedOnce = true;
+        started = false;
+        portrait.classList.remove('video-active');
+      });
+
+      function startTransition() {
+        if (started || playedOnce) return;
+        started = true;
+        video.currentTime = 0;
+
+        /* If the user has interacted with the page, play unmuted.
+           Otherwise play muted and show the unmute button. */
+        if (window.__userInteracted) {
+          video.muted = false;
+          setMuted(false);
+        } else {
+          video.muted = true;
+          setMuted(true);
+        }
+        portrait.classList.add('video-active');
+        video.play().catch(function () {});
+      }
+
+      function stopTransition() {
+        started = false;
+        video.pause();
+        video.muted = true;
+        portrait.classList.remove('video-active');
+        hideUnmuteBtn();
+      }
+
+      /* Replay button: restart from the top with audio on. */
+      if (replayBtn) {
+        replayBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          unmuteAndRestart();
+        });
+      }
+
+      /* Unmute button: restart from beginning with sound. */
+      if (unmuteBtn) {
+        unmuteBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          unmuteAndRestart();
+        });
+      }
+
+      /* Autoplay on scroll into view, pause when leaving. */
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            startTransition();
+          } else {
+            stopTransition();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(portrait);
+
+      /* Desktop: hover resumes if paused (no autoplay-on-hover needed
+         since IntersectionObserver handles it). Mobile: tap toggles. */
+      var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (canHover) {
+        portrait.addEventListener('mouseenter', function () {
+          if (playedOnce) return;
+          if (started && video.paused) {
+            portrait.classList.add('video-active');
+            video.play().catch(function () {});
+          }
+        });
+        portrait.addEventListener('mouseleave', function () {
+          if (!started) return;
+          video.pause();
+        });
+      } else {
+        portrait.addEventListener('click', function (e) {
+          if (e.target.closest('.portrait-controls') || e.target.closest('.portrait-unmute')) return;
+          if (playedOnce) return;
+          if (!started) {
+            startTransition();
+          } else if (video.paused) {
+            portrait.classList.add('video-active');
+            video.play().catch(function () {});
+          } else {
+            video.pause();
+          }
+        });
+      }
+    })();
+  </script>
+
+</body></html>
