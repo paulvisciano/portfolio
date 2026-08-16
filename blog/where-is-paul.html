@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Where is Paul? — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A living spatial record of a life — interactive 3D globe, timeline, and stories across space and time.">
+  <meta name="description" content="A living spatial record of a life — globe, timeline, and stories that turn real moments into something navigable.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Where is Paul?">
-  <meta property="og:description" content="A living spatial record of a life — interactive 3D globe, timeline, and stories across space and time.">
+  <meta property="og:description" content="A living spatial record of a life — globe, timeline, and stories that turn real moments into something navigable.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <link rel="canonical" href="https://paulvisciano.vercel.app/blog/where-is-paul.html">
   <style>
@@ -41,23 +41,34 @@ li{margin:0.35rem 0}
 .more a{display:block;text-decoration:none;padding:0.4rem 0;color:rgba(255,255,255,0.7)}
 .more a:hover{color:#fff}
 footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;color:rgba(255,255,255,0.35)}
+.lang-switch{position:fixed;top:14px;right:16px;z-index:110;display:flex;align-items:center;gap:0.1rem;padding:0.25rem;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:8px}
+.lang-switch button{appearance:none;border:1px solid transparent;background:transparent;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.45rem;border-radius:4px;cursor:pointer;line-height:1;transition:color .15s,border-color .15s,background .15s}
+.lang-switch button:hover{color:#fff}
+.lang-switch button.active{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
+@media(max-width:720px){.lang-switch{top:12px;right:auto;left:12px}}
   </style>
 </head>
 <body>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="bg" aria-pressed="false">BG</button>
+    <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    <button type="button" data-lang="de" aria-pressed="false">DE</button>
+  </div>
   <div class="top">
     <div class="top-inner">
       <a class="brand" href="../index.html">Paul Visciano</a>
       <nav>
-        <a href="../index.html#blog">Blogs</a>
+        <a href="../index.html#blog" data-i18n="nav_blog">Blogs</a>
         &nbsp;·&nbsp;
-        <a href="../index.html#work">Work</a>
+        <a href="../index.html#work" data-i18n="nav_work">Work</a>
       </nav>
     </div>
   </div>
   <article>
     <p class="meta">Sci-Fi Labs · August 2026 · Spatial life map</p>
-    <h1>Where is Paul?</h1>
-    <p class="deck">Personal history as an environment you move through — not a feed you scroll.</p>
+    <h1 data-i18n="blog_title_wip">Where is Paul?</h1>
+    <p class="deck" data-i18n="blog_desc_wip">Personal history as an environment you move through — not a feed you scroll.</p>
 
     <div class="hero-media">
       <video controls playsinline preload="metadata" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
@@ -91,7 +102,7 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
     </div>
     
     <div class="more">
-      <h3>More from Sci-Fi Labs</h3>
+      <h3 data-i18n="more_from">More from Sci-Fi Labs</h3>
       <a href="grok-bot.html">Grok Bot →</a>
       <a href="where-is-paul.html">Where is Paul? →</a>
       <a href="knowledge-graph.html">Knowledge Graph →</a>
@@ -101,5 +112,12 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
   <footer>
     Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
   </footer>
+
+  <script src="/i18n-en.js"></script>
+  <script src="/i18n-bg.js"></script>
+  <script src="/i18n-es.js"></script>
+  <script src="/i18n-de.js"></script>
+  <script src="/i18n-core.js"></script>
+
 </body>
 </html>
