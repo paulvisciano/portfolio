@@ -46,6 +46,7 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
 .lang-switch button:hover{color:#fff}
 .lang-switch button.active{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
 @media(max-width:720px){.lang-switch{top:12px;right:auto;left:12px}}
+[data-lang-block][hidden]{display:none !important}
   </style>
 </head>
 <body>
@@ -66,7 +67,7 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
     </div>
   </div>
   <article>
-    <p class="meta">Sci-Fi Labs · August 2026 · 3D music instruments</p>
+    <p class="meta" data-i18n="blog_meta_mc">Sci-Fi Labs · August 2026 · 3D music instruments</p>
     <h1 data-i18n="blog_title_mc">Musical Cubes</h1>
     <p class="deck" data-i18n="blog_desc_mc">Stop operating a DAW. Start turning an instrument.</p>
 
@@ -75,6 +76,7 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
         <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes-landscape.mp4" type="video/mp4">
       </video>
     </div>
+    <div data-lang-block="en">
     <p><strong>Musical Cubes</strong> is an interactive music production app where tracks live as rotating 3D cubes. Each face is an instrument stem — piano, keys, brass, vocal, bass, guitar, drums — that you can play, loop, and sync in real time.</p>
     <p>It was extracted from an earlier experiment, Musical Realms, and refined into a standalone instrument UI. The goal is simple: making sound should feel tactile and visual, not like managing a timeline.</p>
     <h2>How it works</h2>
@@ -92,6 +94,64 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
     </div>
     <h2>Why it belongs in Sci-Fi Labs</h2>
     <p>Where is Paul? puts a <em>life</em> in space. Knowledge Graph puts <em>memory</em> in space. Musical Cubes puts <em>sound</em> in space. Same thesis: environments you move through, products that hold up on every surface.</p>
+    </div>
+    <div data-lang-block="bg" hidden>
+    <p><strong>Musical Cubes</strong> е интерактивно приложение за музикална продукция, в което траковете живеят като въртящи се 3D кубове. Всяка страна е инструмент — пиано, клавиши, духови, вокал, бас, китара, барабани — който можеш да свириш, лупваш и синхронизираш в реално време.</p>
+    <p>Извлечено е от по-ранен експеримент, Musical Realms, и е прецизирано като самостоятелен инструмент. Целта е проста: създаването на звук да се усеща тактилно и визуално, а не като управление на времева линия.</p>
+    <h2>Как работи</h2>
+    <ul>
+      <li><strong>3D куб инструменти</strong> — въртиш, за да сменяш стъмове; всяка страна има своя вълна за свирене, луп и скраб</li>
+      <li><strong>Синхрон между страните</strong> — стъмовете споделят playhead, за да са в ритъм; отключи страна за независим луп</li>
+      <li><strong>Откриване на тракове</strong> — пусни WAV пакети в папка; build скрипт ги регистрира автоматично</li>
+      <li><strong>Крос-платформа</strong> — един Ionic + Capacitor код като уеб приложение, PWA и нативно iOS/Android</li>
+    </ul>
+    <div class="callout">Sci-Fi приложение: пространствена интеракция първо — уеб и мобилно днес, имeрсивните среди като естествена следваща повърхност.</div>
+    <div class="hero-media">
+      <video controls playsinline preload="metadata">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes.mp4" type="video/mp4">
+      </video>
+    </div>
+    <h2>Защо принадлежи на Sci-Fi Labs</h2>
+    <p>Where is Paul? поставя <em>живота</em> в пространство. Knowledge Graph поставя <em>паметта</em> в пространство. Musical Cubes поставя <em>звука</em> в пространство. Същата теза: среди, през които се движиш, продукти, които издържат на всяка повърхност.</p>
+    </div>
+    <div data-lang-block="es" hidden>
+    <p><strong>Musical Cubes</strong> es una app interactiva de producción musical donde las pistas viven como cubos 3D que giran. Cada cara es un stem de instrumento — piano, teclas, metales, voz, bajo, guitarra, batería — que puedes tocar, loopear y sincronizar en tiempo real.</p>
+    <p>Se extrajo de un experimento anterior, Musical Realms, y se refinó como interfaz de instrumento independiente. El objetivo es simple: hacer sonido debe sentirse táctil y visual, no como gestionar una línea de tiempo.</p>
+    <h2>Cómo funciona</h2>
+    <ul>
+      <li><strong>Instrumentos en cubo 3D</strong> — gira para cambiar stems; cada cara tiene su forma de onda para tocar, loopear y scrubear</li>
+      <li><strong>Sincronía entre caras</strong> — los stems comparten un playhead para que las capas se mantengan a tiempo; desbloquea una cara para un loop independiente</li>
+      <li><strong>Descubrimiento de pistas</strong> — suelta paquetes WAV en una carpeta; un script de build los registra automáticamente</li>
+      <li><strong>Multiplataforma</strong> — un solo código Ionic + Capacitor como web app, PWA y nativo iOS/Android</li>
+    </ul>
+    <div class="callout">Una app Sci-Fi: interacción espacial primero — web y móvil hoy, entornos inmersivos como la siguiente superficie natural.</div>
+    <div class="hero-media">
+      <video controls playsinline preload="metadata">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes.mp4" type="video/mp4">
+      </video>
+    </div>
+    <h2>Por qué pertenece a Sci-Fi Labs</h2>
+    <p>Where is Paul? pone una <em>vida</em> en el espacio. Knowledge Graph pone la <em>memoria</em> en el espacio. Musical Cubes pone el <em>sonido</em> en el espacio. Misma tesis: entornos por los que te mueves, productos que se sostienen en cada superficie.</p>
+    </div>
+    <div data-lang-block="de" hidden>
+    <p><strong>Musical Cubes</strong> ist eine interaktive Musikproduktions-App, in der Tracks als rotierende 3D-Würfel leben. Jede Seite ist ein Instrument-Stem — Piano, Keys, Blech, Gesang, Bass, Gitarre, Drums — den du spielen, loopen und in Echtzeit synchronisieren kannst.</p>
+    <p>Es wurde aus einem früheren Experiment, Musical Realms, extrahiert und zu einer eigenständigen Instrument-UI verfeinert. Das Ziel ist einfach: Sound machen soll sich taktil und visuell anfühlen, nicht wie das Verwalten einer Timeline.</p>
+    <h2>So funktioniert es</h2>
+    <ul>
+      <li><strong>3D-Würfel-Instrumente</strong> — drehen, um Stems zu wechseln; jede Seite hat ihre eigene Waveform zum Spielen, Loopen und Scrubben</li>
+      <li><strong>Sync über Seiten</strong> — Stems teilen einen Playhead, damit Layer im Takt bleiben; eine Seite freischalten für einen unabhängigen Loop</li>
+      <li><strong>Track-Entdeckung</strong> — WAV-Packs in einen Ordner legen; ein Build-Skript registriert sie automatisch</li>
+      <li><strong>Plattformübergreifend</strong> — eine Ionic + Capacitor Codebasis als Web-App, PWA und natives iOS/Android</li>
+    </ul>
+    <div class="callout">Eine Sci-Fi-App: räumliche Interaktion zuerst — Web und Mobile heute, immersive Umgebungen als natürliche nächste Oberfläche.</div>
+    <div class="hero-media">
+      <video controls playsinline preload="metadata">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes.mp4" type="video/mp4">
+      </video>
+    </div>
+    <h2>Warum es zu Sci-Fi Labs gehört</h2>
+    <p>Where is Paul? setzt ein <em>Leben</em> in den Raum. Knowledge Graph setzt <em>Erinnerung</em> in den Raum. Musical Cubes setzt <em>Klang</em> in den Raum. Dieselbe These: Umgebungen, durch die du dich bewegst, Produkte, die auf jeder Oberfläche standhalten.</p>
+    </div>
     <div class="links">
       <a href="https://musical-cubes.vercel.app">Live demo</a>
       <a href="https://github.com/paulvisciano/musical-cubes">GitHub</a>
