@@ -3,7 +3,10 @@
   "alias": ["paulvisciano.vercel.app"],
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+    {
+      "source": "/",
+      "destination": "https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/index.html"
+    }
   ],
   "headers": [
     {
@@ -12,15 +15,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/((?!.*\\.(?:html|txt|json)$).*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
