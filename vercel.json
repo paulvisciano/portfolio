@@ -3,7 +3,7 @@
   "alias": ["paulvisciano.vercel.app"],
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/portfolio-landing-v2.html" }
+    { "source": "/", "destination": "/index.html" }
   ],
   "headers": [
     {
