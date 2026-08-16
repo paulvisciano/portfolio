@@ -51,6 +51,13 @@
       var val = t(lang, key);
       if (val != null) el.setAttribute('placeholder', val);
     });
+    // Full blog body blocks (one per language)
+    document.querySelectorAll('[data-lang-block]').forEach(function (el) {
+      var show = el.getAttribute('data-lang-block') === lang;
+      el.hidden = !show;
+      if (show) el.removeAttribute('hidden');
+      else el.setAttribute('hidden', '');
+    });
   }
 
   function bindSwitcher() {
