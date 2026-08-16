@@ -685,6 +685,14 @@
       }
       html, body { scroll-snap-type: none; }
       .section { min-height: auto; scroll-snap-align: none; scroll-snap-stop: normal; padding-block: clamp(32px, 6vh, 48px); }
+      /* .section is a column flexbox, so .container is a flex item whose
+         default min-width:auto prevents it from shrinking below its
+         content's min-content width. On mobile this made wide children
+         (e.g. the horizontal project carousel) blow the container out to
+         --container (960px) even in a 390px viewport, leaving the grid
+         nearly unscrollable and cutting off cards after the 2nd. Force
+         the container to honour the viewport on small screens. */
+      .section > .container { width: 100%; max-width: 100%; min-width: 0; }
       .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
       .hero .container { width: 100%; max-width: 100%; padding-inline: var(--gutter); }
       .hero h1 { font-size: clamp(36px, 11vw, 52px); }
@@ -692,8 +700,8 @@
       .hero-cta { font-size: 14px; }
       .projects-head { margin-bottom: var(--gap-md); }
       .projects-head .label { font-size: 10px; }
-      .project-grid { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
-      .project-card { flex-basis: calc(100vw - 2 * var(--gutter) - var(--gap-md)); scroll-snap-align: center; scroll-snap-stop: always; }
+      .project-grid { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; overflow-y: hidden; }
+      .project-card { flex-basis: calc(100vw - 2 * var(--gutter) - var(--gap-md)); scroll-snap-align: center; }
       .project-card .img-wrap { aspect-ratio: 4 / 3; }
       .project-card .card-body { padding: 16px 18px 18px; }
       .project-card h2 { font-size: 18px; }
@@ -741,6 +749,20 @@
       .stat .num { font-size: 22px; }
       .footer-links { gap: 10px; }
     }
+
+    /* Blog section */
+    .blog-intro{margin:0.75rem 0 0;max-width:36rem;color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.55;font-weight:300}
+    .blog-grid{display:grid;grid-template-columns:1fr;gap:1.75rem;margin-top:2.5rem}
+    @media(min-width:900px){.blog-grid{grid-template-columns:repeat(3,1fr);gap:1.5rem}}
+    .blog-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.02);transition:border-color .25s ease, transform .25s ease}
+    .blog-card:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-2px)}
+    .blog-card-media{aspect-ratio:16/10;overflow:hidden;background:#111}
+    .blog-card-media img,.blog-card-media video{width:100%;height:100%;object-fit:cover;display:block}
+    .blog-card-body{padding:1.15rem 1.2rem 1.35rem;display:flex;flex-direction:column;gap:0.45rem;flex:1}
+    .blog-tag{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+    .blog-card h3{margin:0;font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1.35rem;letter-spacing:-0.01em}
+    .blog-card-body p{margin:0;color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.55;font-weight:300;flex:1}
+    .blog-read{margin-top:0.6rem;font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;color:rgba(255,255,255,0.75)}
   </style>
 </head>
 <body>
@@ -750,22 +772,24 @@
 
    <header class="topnav" data-od-id="topnav">
      <div class="topnav-inner">
-       <nav>
-        <a href="#home">Home</a>
-         <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-       </nav>
-     </div>
-   </header>
-   <a class="nav-cta" href="#contact" data-od-id="nav-cta">Connect <span style="font-size: 1.4em; line-height: 0;">↗</span></a>
+        <nav>
+         <a href="#home">Home</a>
+          <a href="#work">Work</a>
+         <a href="#blog">Blogs</a>
+         <a href="#about">About</a>
+         <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <a class="nav-cta" href="#contact" data-od-id="nav-cta">Connect <span style="font-size: 1.4em; line-height: 0;">↗</span></a>
 
-   <nav class="mobile-nav" data-od-id="mobile-nav">
-     <a href="#home">Home</a>
-     <a href="#work">Work</a>
-     <a href="#about">About</a>
-     <a href="#contact">Contact</a>
-   </nav>
+    <nav class="mobile-nav" data-od-id="mobile-nav">
+      <a href="#home">Home</a>
+      <a href="#work">Work</a>
+      <a href="#blog">Blogs</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
   <main>
 
@@ -793,6 +817,55 @@
         </div>
 
         <nav class="project-breadcrumbs" data-od-id="project-breadcrumbs" aria-label="Projects"></nav>
+      </div>
+    </section>
+
+    <hr class="hr">
+
+    <!-- ═══ BLOGS ═════════════════════════════════════════════════════ -->
+    <section class="section" id="blog" data-od-id="blog">
+      <div class="container">
+        <div class="projects-head">
+          <span class="label">Blogs</span>
+          <p class="blog-intro">Field notes from Sci-Fi Labs — how spatial apps for web, mobile, and XR take shape.</p>
+        </div>
+        <div class="blog-grid">
+          <a class="blog-card" href="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/where-is-paul.html">
+            <div class="blog-card-media">
+              <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg" alt="Where is Paul — interactive 3D globe" width="1200" height="676" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Sci-Fi app · Spatial life map</span>
+              <h3>Where is Paul?</h3>
+              <p>A living spatial record of a life — globe, timeline, and stories that turn real moments into something navigable.</p>
+              <span class="blog-read">Read article →</span>
+            </div>
+          </a>
+          <a class="blog-card" href="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/knowledge-graph.html">
+            <div class="blog-card-media">
+              <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface" width="1200" height="800" loading="lazy">
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Sci-Fi app · Sovereign memory</span>
+              <h3>Knowledge Graph</h3>
+              <p>AI without the chat window — a private spatial canvas for memory, running entirely on hardware you own.</p>
+              <span class="blog-read">Read article →</span>
+            </div>
+          </a>
+          <a class="blog-card" href="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/musical-cubes.html">
+            <div class="blog-card-media">
+              <video muted playsinline loop autoplay preload="metadata" poster="" aria-label="Musical Cubes demo">
+                <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes-landscape.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="blog-card-body">
+              <span class="blog-tag">Sci-Fi app · 3D music</span>
+              <h3>Musical Cubes</h3>
+              <p>Music production as something you turn — rotating 3D instruments on web, PWA, and native mobile.</p>
+              <span class="blog-read">Read article →</span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -957,12 +1030,8 @@
     (function () {
       var projects = [
         { id: 'project-urban-runner', title: 'Where is Paul?', label: 'Track your life story across space & time · 27 countries · 53+ moments', desc: 'A reimagining of personal history as a living, spatial record of a life deliberately lived — a luminous Earth where cities, crossings, and hard-won stays rise as glowing markers, and time itself becomes navigable. Moments appear as blog posts, swipeable cards, videos, and AI-generated comic-book sequences drawn from real photographs and lived scenes, some carrying QR codes that open onto the actual places they depict. The people who shaped the journey are present too, each with a short video in which they speak for themselves. A deliberate trail of adventure, curiosity, and human connection left to inspire the future generation — proof that a full, challenging, far-reaching life is possible, and that the map, the stories, the places, and the voices still remain for them to continue.', img: 'where-is-paul', alt: 'Where is Paul — track your life story across space and time on an interactive 3D globe', url: 'https://paulvisciano.github.io/moments/da-nang/2026-02-07/heaven-on-earth/', repo: 'https://github.com/paulvisciano/paulvisciano.github.io', videos: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/where-is-paul-tablet.mp4', 'https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/who-is-paul-apple-vision-2.mp4'], videosPortrait: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul-portrait.mp4', 'https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/who-is-paul-apple-vision-2-portrait.mp4'] },
-        { id: 'project-knowledge-graph', title: 'Knowledge Graph', label: 'Spatial AI · Time as Dimension · Voice + Photos · Local LLM', desc: 'A reimagining of AI interaction — not a chat window, but a living spatial intelligence. Knowledge, memories, and media float as luminous elements across a navigable time dimension, with ambient conversation and voice input, running privately on your own machine.', images: ['knowledge-graph-1', 'knowledge-graph-2'], alt: 'Knowledge Graph — a private visual memory palace on a Three.js time-layered canvas, with local LLM, voice input, and photo ingestion', url: 'https://github.com/paulvisciano/knowledge-graph', videos: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4'], videosPortrait: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video-portrait.mp4'] },
-        { id: 'project-paylocity', title: 'Paylocity Mobile', label: 'Mobile · Ionic · Xamarin', img: 'mobile', alt: 'Paylocity Mobile', url: '' },
-        { id: 'project-musical-cubes', title: 'Musical Cubes', label: 'Product · TypeScript', img: 'musical-cubes', alt: 'Musical Cubes', url: 'https://github.com/paulvisciano/musical-cubes' },
-        { id: 'project-xamarin-plugins', title: 'Xamarin Plugins', label: 'Open source · C# · 269★', img: 'plugins', alt: 'Xamarin Plugins', url: 'https://github.com/paulpatarinski/Xamarin.Forms.Plugins' },
-        { id: 'project-chicago-vball', title: 'Chicago VBall', label: 'Mobile · Android · C#', img: 'volleyball', alt: 'Chicago VBall', url: '' },
-        { id: 'project-wash-car', title: 'Should I Wash My Car', label: 'Mobile · C# · 35★', img: 'wash-car', alt: 'Should I Wash My Car', url: '' }
+        { id: 'project-knowledge-graph', title: 'Knowledge Graph', label: 'Spatial AI · Time as Dimension · Voice + Photos · Local LLM', desc: 'A private spatial interface for memory and knowledge. Conversations, photos, and voice notes live as floating elements on an infinite canvas of time — scroll to move through days and months, speak to query or add. Everything runs locally on your own machine. Not a chat window, but a living personal command space where your data stays sovereign.', images: ['knowledge-graph-1', 'knowledge-graph-2'], alt: 'Knowledge Graph — a private visual memory palace on a Three.js time-layered canvas, with local LLM, voice input, and photo ingestion', url: 'https://github.com/paulvisciano/knowledge-graph', videos: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4'], videosPortrait: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video-portrait.mp4'] },
+        { id: 'project-musical-cubes', title: 'Musical Cubes', label: 'Music Production · React · Ionic · Capacitor', desc: 'An interactive music production app where tracks live as rotating 3D cubes — each face is an instrument stem you can play, loop, and sync in real time. Rotate a cube to switch between piano, keys, brass, vocal, bass, and guitar. Each face has its own waveform you can scrub, and all stems share a playhead so layered instruments stay in time. Built cross-platform as a PWA and native mobile app with haptics, so making music feels like playing with sound, not operating software.', img: 'musical-cubes', alt: 'Musical Cubes — interactive 3D cube instruments for music production, built with React, Ionic, and Swiper', url: 'https://musical-cubes.vercel.app', repo: 'https://github.com/paulvisciano/musical-cubes', videos: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes-landscape.mp4'], videosPortrait: ['https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/musical-cubes.mp4'] },
       ];
 
       var grid = document.querySelector('.project-grid');
@@ -999,7 +1068,7 @@
         var card = '<article class="project-card" data-od-id="' + item.id + '"' +
           (item.url ? ' data-url="' + item.url + '" style="cursor:pointer"' : '') + '>' +
           '<div class="img-wrap">' +
-          '<picture><source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + item.img + '.webp"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + item.img + '.jpg" alt="' + item.alt + '" width="1200" height="676" loading="lazy" /></picture>' +
+          '<picture class="img-active"><source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + imgs[0] + '.webp"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + imgs[0] + '.jpg" alt="' + item.alt + '" width="1200" height="676" loading="lazy" /></picture>' +
           videoHTML + indicatorHTML +
           '<button class="card-unmute" type="button" aria-label="Unmute video" aria-pressed="false">' +
             '<span class="cu-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></span>' +

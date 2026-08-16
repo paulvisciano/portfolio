@@ -12,3 +12,6 @@
 
 # Open Design artifact sidecars (metadata, not source)
 *.html.artifact.json
+
+# Downloaded archives
+*.zip

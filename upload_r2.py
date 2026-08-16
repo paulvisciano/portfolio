@@ -23,7 +23,7 @@ REGION = "auto"
 SERVICE = "s3"
 ENDPOINT = f"https://{ACCOUNT_ID}.r2.cloudflarestorage.com"
 
-def sigv4_put(key: str, body: bytes, content_type: str, endpoint: str):
+def sigv4_put(key: str, body: bytes, content_type: str, endpoint: str, cache_control: str = "public, max-age=31536000, immutable"):
     now = datetime.datetime.now(datetime.timezone.utc)
     amz_date = now.strftime("%Y%m%dT%H%M%SZ")
     date_stamp = now.strftime("%Y%m%d")
@@ -75,6 +75,7 @@ def sigv4_put(key: str, body: bytes, content_type: str, endpoint: str):
             "Host": host,
             "x-amz-content-sha256": payload_hash,
             "x-amz-date": amz_date,
+            "Cache-Control": cache_control,
         },
     )
     try:
@@ -86,20 +87,23 @@ def sigv4_put(key: str, body: bytes, content_type: str, endpoint: str):
         print(e.read().decode("utf-8", errors="replace"))
         raise
 
-def main():
-    src = Path(__file__).parent / "assets" / "knowledge-graph-1.jpg"
+def upload_file(filename: str, content_type: str):
+    src = Path(__file__).parent / "assets" / filename
     body = src.read_bytes()
-    content_type = "image/jpeg"
-    key = "knowledge-graph-1.jpg"
-
+    key = filename
     print(f"Uploading {src.name} ({len(body):,} bytes) -> {BUCKET}/{key}")
     resp = sigv4_put(key, body, content_type, ENDPOINT)
     print(f"HTTP {resp.status} {resp.reason}")
     public_url = f"{PUBLIC_BASE}/{key}"
     print(f"Public URL: {public_url}")
-    v = urllib.request.Request(public_url, method="HEAD")
-    vr = urllib.request.urlopen(v, timeout=30)
-    print(f"Verify HEAD: HTTP {vr.status}, Content-Length={vr.headers.get('Content-Length')}, Content-Type={vr.headers.get('Content-Type')}")
+    return public_url
+
+def main():
+    upload_file("musical-cubes.jpg", "image/jpeg")
+    upload_file("musical-cubes.webp", "image/webp")
+    upload_file("musical-cubes.mp4", "video/mp4")
+    upload_file("musical-cubes-landscape.mp4", "video/mp4")
+    print("Done.")
 
 if __name__ == "__main__":
     main()
