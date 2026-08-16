@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "alias": ["paulvisciano.vercel.app"],
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/portfolio-landing-v2.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
