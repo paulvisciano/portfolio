@@ -46,23 +46,34 @@ th,td{text-align:left;padding:0.5rem 0.6rem;border-bottom:1px solid rgba(255,255
 th{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:500}
 a.ext{color:rgba(255,255,255,0.9);text-decoration:underline;text-underline-offset:3px}
 a.ext:hover{color:#fff}
+.lang-switch{position:fixed;top:14px;right:16px;z-index:110;display:flex;align-items:center;gap:0.1rem;padding:0.25rem;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:8px}
+.lang-switch button{appearance:none;border:1px solid transparent;background:transparent;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.3rem 0.45rem;border-radius:4px;cursor:pointer;line-height:1;transition:color .15s,border-color .15s,background .15s}
+.lang-switch button:hover{color:#fff}
+.lang-switch button.active{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
+@media(max-width:720px){.lang-switch{top:12px;right:auto;left:12px}}
   </style>
 </head>
 <body>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="bg" aria-pressed="false">BG</button>
+    <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    <button type="button" data-lang="de" aria-pressed="false">DE</button>
+  </div>
   <div class="top">
     <div class="top-inner">
       <a class="brand" href="/">Paul Visciano</a>
       <nav>
-        <a href="/#blog">Blogs</a>
+        <a href="/#blog" data-i18n="nav_blog">Blogs</a>
         &nbsp;·&nbsp;
-        <a href="/#work">Work</a>
+        <a href="/#work" data-i18n="nav_work">Work</a>
       </nav>
     </div>
   </div>
   <article>
     <p class="meta">Sci-Fi Labs · August 2026 · Local models</p>
-    <h1>Bonsai on a 16GB Laptop</h1>
-    <p class="deck">27B-class reasoning for Knowledge Graph — without the cloud, without a workstation.</p>
+    <h1 data-i18n="blog_title_bonsai">Bonsai on a 16GB Laptop</h1>
+    <p class="deck" data-i18n="blog_desc_bonsai">27B-class reasoning for Knowledge Graph — without the cloud, without a workstation.</p>
 
     <div class="hero-media">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg" alt="Laptop with holographic bonsai neural network — local AI on constrained hardware" width="1200" height="800">
@@ -99,17 +110,10 @@ a.ext:hover{color:#fff}
     <p>That is the difference between “local AI” as marketing and local AI as something you can actually open every day.</p>
 
     <h2>How it fits Knowledge Graph</h2>
-    <p>Knowledge Graph is not a chat window with a side panel. It is a spatial memory system: time as a dimension, entities and relationships extracted from photos and voice, a canvas you navigate instead of a thread you scroll. The model has to support structured tool use, long context, and repeated calls without round-tripping to a remote API.</p>
-    <p>Bonsai’s design matches that profile:</p>
-    <ul>
-      <li><strong>Footprint</strong> — 27B-class capability inside a few gigabytes of weights</li>
-      <li><strong>Context</strong> — up to 262K tokens for long personal histories and multi-document work</li>
-      <li><strong>Tools</strong> — native function-calling paths for graph operations and retrieval</li>
-      <li><strong>Privacy</strong> — inference never leaves the machine; the sovereignty thesis holds</li>
-    </ul>
-    <p>Smaller Bonsai sizes (8B at ~1.15&nbsp;GB, 4B, 1.7B) remain useful for lighter machines or background tasks. The 27B variants are what make the “full” local experience feel plausible on hardware people already own.</p>
+    <p>Knowledge Graph is not a chat window with a model behind it. It is a spatial interface: time as a dimension, floating notes and photos, voice in and out, everything running locally. The model is the quiet engine under that surface — reasoning over the graph, answering in context, never shipping private memory to a remote endpoint.</p>
+    <p>Bonsai makes that architecture honest on hardware people already own. No cloud fallback required for the core loop. Sovereignty stops being a slogan and becomes a loadable binary.</p>
 
-    <h2>Official sources</h2>
+    <h2>Getting started</h2>
     <ul>
       <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a> — company and product home</li>
       <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a> — launch post and rationale</li>
@@ -118,8 +122,6 @@ a.ext:hover{color:#fff}
       <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a> — GGUF and MLX weights</li>
     </ul>
 
-    <div class="callout">Sovereignty is not a slogan if the model does not fit. Bonsai is the reason Knowledge Graph can insist on running on a 16GB laptop — and mean it.</div>
-
     <div class="links">
       <a href="/blog/knowledge-graph.html">Knowledge Graph article</a>
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
@@ -127,7 +129,7 @@ a.ext:hover{color:#fff}
     </div>
 
     <div class="more">
-      <h3>More from Sci-Fi Labs</h3>
+      <h3 data-i18n="more_from">More from Sci-Fi Labs</h3>
       <a href="/blog/knowledge-graph.html">Knowledge Graph →</a>
       <a href="/blog/where-is-paul.html">Where is Paul? →</a>
       <a href="/blog/musical-cubes.html">Musical Cubes →</a>
@@ -137,5 +139,12 @@ a.ext:hover{color:#fff}
   <footer>
     Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="/" style="color:inherit">paulvisciano.vercel.app</a>
   </footer>
+
+  <script src="/i18n-en.js"></script>
+  <script src="/i18n-bg.js"></script>
+  <script src="/i18n-es.js"></script>
+  <script src="/i18n-de.js"></script>
+  <script src="/i18n-core.js"></script>
+
 </body>
 </html>
