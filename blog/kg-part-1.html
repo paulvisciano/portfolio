@@ -1,1 +1,161 @@
-SEE_LOCAL
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knowledge Graph, Part 1: The canvas and the stack — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Leaving the force graph, joining the infinite-canvas tradition, and building a local stack where time is the axis you travel.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Knowledge Graph, Part 1: The canvas and the stack">
+  <meta property="og:description" content="Leaving the force graph, joining the infinite-canvas tradition, and building a local stack where time is the axis you travel.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-1.html">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0a0a0a;color:rgba(255,255,255,0.88);font-family:Inter,system-ui,sans-serif;font-weight:300;line-height:1.72;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(10,10,10,0.75);border-bottom:1px solid rgba(255,255,255,0.06)}
+.top-inner{max-width:720px;margin:0 auto;padding:0.9rem 1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.top a{text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.top a:hover{color:#fff}
+.brand{font-family:Fraunces,Georgia,serif;font-size:0.95rem;letter-spacing:0.02em;color:#fff !important;text-transform:none}
+article{max-width:720px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.75rem}
+.series{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(125,211,252,0.75);margin-bottom:0.5rem}
+h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(1.85rem,4vw,2.55rem);line-height:1.15;letter-spacing:-0.02em;margin:0 0 1rem}
+.deck{font-size:1.12rem;color:rgba(255,255,255,0.62);margin:0 0 1.75rem;line-height:1.55}
+.hero-media,.fig{margin:1.5rem 0 1.75rem;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#111}
+.hero-media img,.hero-media video,.fig img,.fig video{display:block;width:100%;height:auto}
+.fig-cap{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.04em;color:rgba(255,255,255,0.4);padding:0.65rem 0.85rem;border-top:1px solid rgba(255,255,255,0.06);line-height:1.45}
+h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1.35rem;margin:2.35rem 0 0.9rem;letter-spacing:-0.01em}
+p{margin:0 0 1.15rem}
+ul{margin:0 0 1.25rem;padding-left:1.15rem}
+li{margin:0 0 0.5rem}
+.callout{margin:1.5rem 0;padding:1rem 1.15rem;border-left:2px solid rgba(125,211,252,0.55);background:rgba(125,211,252,0.06);border-radius:0 8px 8px 0;color:rgba(255,255,255,0.78);font-size:0.98rem}
+.lib-list{list-style:none;padding:0;margin:0 0 1.5rem}
+.lib-list li{margin:0 0 0.55rem;padding:0.55rem 0.75rem;border:1px solid rgba(255,255,255,0.07);border-radius:8px;background:rgba(255,255,255,0.02)}
+.lib-list a{color:rgba(125,211,252,0.9);text-decoration:none;font-weight:500}
+.lib-list a:hover{text-decoration:underline}
+.lib-list span{display:block;font-size:0.88rem;color:rgba(255,255,255,0.55);margin-top:0.2rem}
+.series-nav{display:grid;gap:0.65rem;margin:2.5rem 0 1.5rem;padding:1.15rem;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.02)}
+.series-nav a{text-decoration:none;font-size:0.92rem;color:rgba(255,255,255,0.7)}
+.series-nav a:hover{color:#fff}
+.series-nav .current{color:rgba(125,211,252,0.95)}
+.series-nav span{display:block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.15rem}
+.links{display:flex;flex-wrap:wrap;gap:1rem;margin:2rem 0 1.5rem}
+.links a{font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.55);border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:0.15rem}
+.links a:hover{color:#fff}
+.more{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08)}
+.more h3{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1rem;margin:0 0 0.75rem;color:rgba(255,255,255,0.5)}
+.more a{display:block;text-decoration:none;font-size:0.95rem;margin:0.35rem 0;color:rgba(255,255,255,0.7)}
+.more a:hover{color:#fff}
+footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.78rem;color:rgba(255,255,255,0.35)}
+code{font-family:'JetBrains Mono',monospace;font-size:0.86em;background:rgba(255,255,255,0.06);padding:0.1em 0.35em;border-radius:4px}
+.pipeline{margin:1.5rem 0 1.75rem;padding:1.15rem;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.02)}
+.pipeline-title{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(125,211,252,0.75);margin:0 0 1rem}
+.pipeline-flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0.45rem;justify-content:flex-start}
+.pipe-step{flex:1 1 110px;min-width:100px;max-width:160px;padding:0.7rem 0.65rem;border-radius:10px;border:1px solid rgba(125,211,252,0.25);background:linear-gradient(160deg,rgba(125,211,252,0.08),rgba(255,255,255,0.02));text-align:center}
+.pipe-step .n{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;color:rgba(125,211,252,0.7);margin-bottom:0.25rem}
+.pipe-step .t{font-size:0.82rem;font-weight:500;color:#fff;line-height:1.25;margin-bottom:0.2rem}
+.pipe-step .d{font-size:0.72rem;color:rgba(255,255,255,0.45);line-height:1.35}
+.pipe-arrow{display:flex;align-items:center;justify-content:center;color:rgba(125,211,252,0.55);font-size:1rem;flex:0 0 auto;padding:0 0.1rem}
+@media (max-width:560px){.pipe-arrow{display:none}.pipeline-flow{flex-direction:column}.pipe-step{max-width:none}}
+.lib-chips{display:flex;flex-wrap:wrap;gap:0.45rem;margin:0.85rem 0 0}
+.lib-chips a{font-size:0.72rem;letter-spacing:0.02em;text-decoration:none;color:rgba(125,211,252,0.9);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:0.28rem 0.65rem;background:rgba(255,255,255,0.03)}
+.lib-chips a:hover{border-color:rgba(125,211,252,0.4);color:#fff}
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <article>
+    <p class="series">Knowledge Graph · Field notes · Part 1 of 3</p>
+    <p class="meta">July 2026 · From force-graph to spatial memory</p>
+    <h1>Knowledge Graph, Part 1: The canvas and the stack</h1>
+    <p class="deck">Leaving the force graph, joining the infinite-canvas tradition, and building a local stack where time is the axis you travel.</p>
+    <p>For a long time the product looked like a graph problem. Nodes, edges, a force layout that rearranged itself when something new arrived. It was honest engineering — and the wrong metaphor for memory.</p>
+    <p>Memory is not a network diagram you inspect. It is a place you move through. That was the change in direction: stop drawing a graph and start building a surface with no edges, where time itself is the axis you travel.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph on tablet" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">The spatial surface — photos and conversations as planes on an unbounded canvas of time.</figcaption></figure>
+    <h2>Why infinite canvas</h2>
+    <p>The idea is not original. GitHub’s <a href="https://github.com/topics/infinite-canvas" style="color:rgba(125,211,252,0.9)">infinite-canvas</a> topic collects tools that treat the workspace as unbounded: note apps, whiteboards, node editors, even terminal boards. Projects like <a href="https://github.com/flxzt/rnote" style="color:rgba(125,211,252,0.9)">rnote</a>, <a href="https://github.com/mbrlabs/Lorien" style="color:rgba(125,211,252,0.9)">Lorien</a>, <a href="https://github.com/leaferjs/leafer-ui" style="color:rgba(125,211,252,0.9)">leafer-ui</a>, and research canvases such as <a href="https://github.com/DeadWaveWave/opencove" style="color:rgba(125,211,252,0.9)">opencove</a> share a common bet — pan and zoom beat lists when the content is spatial or long-lived.</p>
+    <p>Knowledge Graph borrows that bet and bends it toward personal memory. The canvas is not for drawing; it is for living data. Photos, voice notes, and conversations become floating elements. Scroll is no longer “show me more rows.” It is “move me through months.”</p>
+    <div class="callout">The decisive commit deleted the force-graph path entirely — thousands of lines of 3d-force-graph and d3 force/zoom code. CanvasView became the only surface. No dual mode. One direction.</div>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial / AR view" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">Same spatial language pushed toward XR — time and memory as a place, not a feed.</figcaption></figure>
+    <h2>Time has to be honest</h2>
+    <p>An infinite canvas of time fails the moment dates are wrong. Upload timestamps lied. Camera EXIF did not. Bulk date endpoints, typed columns for when a photo was taken, and layout that preferred EXIF over ingest time turned random planes into a chronological filmstrip.</p>
+    <p>Month buckets were spaced on purpose. Each period became a distinct depth layer so you had to travel to reach it — not glance at a stack that already showed everything. Portrait shots rendered as landscape until height tags were fixed; without correct aspect ratio the spatial metaphor felt broken, even when the data was right.</p>
+    <h2>What EXIF actually is — and who keeps it</h2>
+    <p>EXIF (Exchangeable Image File Format) is the metadata block embedded inside many photo files. It is not the picture. It is the camera’s own log of when, where, and how the shot was made: capture timestamp, GPS latitude and longitude if location was on, camera make and model, lens, aperture, shutter, ISO, orientation. That record is extremely useful for organizing memory — and extremely useful for anyone who wants to know where you were and when.</p>
+    <p>Social platforms, messaging apps, and cloud photo services routinely read it. Then they often strip it from the copies you and your contacts can keep.</p>
+    <p>Send a photo through WhatsApp and most EXIF, including GPS, is removed before the image reaches the recipient. The stated reason is privacy: your friends should not automatically get your exact location. In practice the service has already had access to the file. You and the person you sent it to no longer have the coordinates; the platform did. Send the same photo to yourself and the metadata is still gone. The channel that moves the file is the channel that erases the log.</p>
+    <p>Google Photos keeps the rich record in its cloud view — you can open a photo and see the map pin and the camera’s date. Download the same file through ordinary export paths and much of that EXIF is frequently reduced or missing. The interface still shows the data because Google already extracted and stored it server-side. The file you walk away with is often cleaned. The privacy narrative is that location is stripped to keep you safe; the operational reality is that the service retains the insight while the local copy you control is impoverished.</p>
+    <div class="callout">The pattern is consistent: platforms read the metadata, use what they need, then remove it from the files that leave their ecosystem — under the banner of privacy — while the structured record stays with them.</div>
+    <p>For a private spatial memory system that data is exactly what you want. Real capture time (not upload time) so the canvas can place the photo in the correct time layer. GPS so the graph can attach place, and so a local model can reason about where you were. Camera and technical details that help disambiguate or describe the shot. If every path that moves a photo through a cloud or messaging service erases EXIF, the only reliable source of truth is a path that never goes through those services.</p>
+    <p>The workaround is simple and physical: copy photos directly from the phone to the computer over USB-C (or any direct file transfer that does not pass through WhatsApp, Google Photos export, or similar). The original files stay intact. The camera’s EXIF is still inside the JPEG. From there the Knowledge Graph pipeline can read date, location, and the rest locally, feed them into the graph, and keep the time and place axes honest without depending on a platform’s sanitized view of your life.</p>
+    <h2>Full quality, on hardware you own</h2>
+    <p>Another consequence of running on localhost is that the photos and the rest of the content can stay in their original quality. There is no social-network compression pipeline, no Google Photos “storage saver,” no monthly ceiling that forces you to delete last year’s albums so this year’s will fit. You buy an external drive when you need more space. You decide whether to compress, archive, or keep the raw files. The interface can display the originals because the bytes live on the same machine as the canvas.</p>
+    <p>The usual arrangement is the inverse. Services push you to upload the high-quality originals into the cloud. They keep those files. You are handed limits, aggressive compression on the free tier, and periodic pressure to clean up or pay. Old photos disappear from your view while the platform retains what it already ingested. You are always running out of storage; they are not.</p>
+    <div class="callout">Localhost flips the asymmetry. The Knowledge Graph does not rent you a degraded copy of your own life. The files remain yours — full resolution, full metadata, full control over deletion.</div>
+    <figure class="fig"><video controls playsinline preload="metadata"><source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4" type="video/mp4"></video><figcaption class="fig-cap">Moving through time on the canvas — full-quality originals on local disk, not a compressed cloud proxy.</figcaption></figure>
+    <h2>Optimizations that made the direction real</h2>
+    <p>Direction without performance is a demo. Image understanding was split into two phases: a fast path for EXIF, faces, and entities so a node could appear immediately, and a deferred VLM path into LightRAG that could batch overnight. Inputs were resized before encoding; payload size fell by roughly fifty times while descriptions stayed useful.</p>
+    <p>Docker limits were cut to measured usage. A single <code>start-all.sh</code> brought up containers and host Metal servers. Whisper left the container so it could use the GPU. Thumbnails stopped killing the API under the first-load burst of concurrent RAW JPEGs.</p>
+    <p>Then the model changed. Gemma gave way to Bonsai-27B in 1-bit form. Stock llama.cpp could not load the packed weights; the PrismML fork with custom Metal kernels became required. Disk footprint dropped. Vision stayed local via mmproj. The core loop no longer needed a cloud API.</p>
+    <h2>How a photo or message becomes a node</h2>
+    <p>Instead of a flat library list, here is the path a single capture takes — from the phone, through local extraction, into the graph, onto the canvas.</p>
+    <div class="pipeline">
+      <p class="pipeline-title">Ingest → extract → graph → canvas</p>
+      <div class="pipeline-flow">
+        <div class="pipe-step"><div class="n">01</div><div class="t">Source</div><div class="d">Photo via USB-C or voice via mic — originals, full EXIF</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">02</div><div class="t">API / jobs</div><div class="d">FastAPI queues work; SSE reports progress</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">03</div><div class="t">Extract</div><div class="d">EXIF, faces, Whisper transcript, local VLM description</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">04</div><div class="t">Graph</div><div class="d">LightRAG + Postgres / pgvector store entities & relations</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">05</div><div class="t">Canvas</div><div class="d">Three.js planes on a time axis — SvelteKit surface</div></div>
+      </div>
+      <div class="lib-chips">
+        <a href="https://github.com/mrdoob/three.js">three.js</a>
+        <a href="https://github.com/sveltejs/kit">SvelteKit</a>
+        <a href="https://github.com/HKUDS/LightRAG">LightRAG</a>
+        <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>
+        <a href="https://github.com/PrismML-Eng/llama.cpp">PrismML fork</a>
+        <a href="https://github.com/ggml-org/whisper.cpp">whisper.cpp</a>
+        <a href="https://github.com/tiangolo/fastapi">FastAPI</a>
+        <a href="https://github.com/postgres/postgres">PostgreSQL</a>
+        <a href="https://github.com/Rezi/svelte-gestures">svelte-gestures</a>
+      </div>
+    </div>
+    <p>By the end of this phase the skeleton was honest: a private graph, a spatial canvas, models that never left the machine. What was still missing was the feeling of living inside it — voice that worked on a phone, chat that belonged on the same surface as the photos, and a queue that survived refresh.</p>
+    <h2>Like a hardware wallet for your life</h2>
+    <p>Choosing to own the data and the hardware is the same trade crypto makes with a physical wallet. Self-custody means responsibility. Keep an encrypted external drive for sensitive material. Export what you can from WhatsApp, Facebook, Instagram, banks, and health apps — then ingest it into a graph you control. That corpus becomes fuel for a local model that actually knows your context, without renting that knowledge back to a platform.</p>
+    <p>Data is currency. AI companies understand this: they train on it, profile with it, and monetize the prediction. Most people still hand it over for free — and often pay a subscription for the privilege. Dating preferences, psychological state from chatbots, intellectual property in prompts and uploads — all of it leaves the building. The Knowledge Graph is the opposite bet: keep the value, feed your own AI, and if a company wants access, they should pay for it.</p>
+    <p>That argument continues in a separate field note: <a href="reclaim-your-data.html" style="color:rgba(125,211,252,0.9)">Reclaim your data →</a></p>
+    <div class="series-nav"><a href="kg-part-1.html" class="current"><span>Part 1</span>The canvas and the stack</a><a href="kg-part-2.html"><span>Part 2</span>Voice, mobile, and the queue</a><a href="kg-part-3.html"><span>Part 3</span>A living interface</a></div>
+    <div class="links">
+      <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
+      <a href="knowledge-graph.html">Project overview</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="musical-cubes.html">Musical Cubes →</a>
+      <a href="grok-bot.html">Grok Bot →</a>
+      <a href="bonsai.html">Bonsai →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+  </footer>
+</body>
+</html>
