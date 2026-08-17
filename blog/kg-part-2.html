@@ -88,7 +88,7 @@
     <p>Other agent memory designs show the same struggle from a different angle. <strong>OpenClaw</strong>-style systems lean on files and daily notes; recall often depends on the agent deciding to search, and compaction can drop the thread. <strong>Hermes</strong>-style agents bound prompt memory and push history into searchable stores so facts do not have to live only in the context window. Both still depend on judgment: what gets written, what gets retrieved, what survives the next session. Knowledge Graph’s bet is structural — a spatial graph with time, not a longer chat log — so “what happened last Tuesday” is navigation and retrieval, not hoping the agent remembered to take a note.</p>
 
     <h2>Chat on the canvas</h2>
-    <p>A separate chat window fought the spatial metaphor. Moving conversation onto the same surface as photos and notes kept one mental model: memory is a place you travel through, and talk is just another plane in that place. The transcript of a voice turn lands as a node in time, not a sidebar that forgets the room it is in.</p>
+    <p>A separate chat window broke the idea that memory is a place. Conversation belongs on the same surface as photos and notes — one space you move through, not a sidebar that forgets where you are. When you speak, the transcript becomes another node in time on that canvas, sitting with the day it belongs to.</p>
 
     <h2>Multi-client survival on 16GB</h2>
     <p>Long sessions, overlapping capture, and GPU contention meant a watchdog had to own model lifecycle: load, idle timeout, and reclaim. Without it, the 16GB machine felt like a shared lab resource that could lock under load — one client’s Whisper session starving the canvas for everyone else.</p>
