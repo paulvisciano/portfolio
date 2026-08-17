@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>They can pull the plug — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Anthropic cut OpenClaw off Claude subscriptions. Overnight, personal agents and small businesses that depended on that model stopped working. That is the cost of a stack you do not own.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="They can pull the plug">
+  <meta property="og:description" content="Anthropic cut OpenClaw off Claude subscriptions. Overnight, personal agents and small businesses that depended on that model stopped working. That is the cost of a stack you do not own.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/they-can-pull-the-plug-hero.jpg">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/they-can-pull-the-plug.html">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <article>
+    <p class="series">Sci-Fi Labs · Essay</p>
+    <h1>They can pull the plug</h1>
+    <p class="deck">Anthropic stopped letting Claude subscriptions power third-party agents like OpenClaw. For thousands of people the agent that ran their inbox, calendar, and workflows simply stopped. The lesson is not about one company. It is about what happens when your entire setup lives on someone else’s switch.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/they-can-pull-the-plug-hero.jpg" alt="A cloud cable cut by a corporate hand while a small local model core stays lit on the desk" width="1176" height="784" loading="eager"><figcaption class="fig-cap">When the remote model goes dark, only what runs on your hardware keeps working.</figcaption></figure>
+
+    <h2>The subscription stopped covering the agent</h2>
+    <p>On April 3, 2026, Anthropic emailed Claude subscribers: starting the next day, subscription limits would no longer cover “third-party harnesses including OpenClaw.” If you wanted to keep using OpenClaw with Claude, you would pay separately — pay-as-you-go or extra-usage bundles — outside the flat monthly plan.<sup><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">1</a></sup></p>
+    <p>OpenClaw is an open-source personal agent that runs on your machine and talks to the chat apps you already use. It had become the way a large cohort of people wired Claude into real work: clearing inboxes, driving calendars, chaining tools, running multi-step tasks while they slept. Estimates put more than a hundred thousand instances in the wild around the cutoff. For heavy agent users, moving from a subscription ceiling to metered API rates could mean cost jumps measured in tens of times the previous monthly bill.<sup><a class="ext" href="https://thenextweb.com/news/anthropic-openclaw-claude-subscription-ban-cost" target="_blank" rel="noopener">2</a></sup></p>
+    <p>OpenClaw’s creator, Peter Steinberger, said he and others had tried to push back and only managed to delay the change by a week. Days later his own Claude account was suspended for “suspicious” activity, then reinstated after the post went viral. His line was blunt: it was going to be harder to keep OpenClaw working with Anthropic models.<sup><a class="ext" href="https://techcrunch.com/2026/04/10/anthropic-temporarily-banned-openclaws-creator-from-accessing-claude/" target="_blank" rel="noopener">3</a></sup></p>
+
+    <h2>Why it felt like a ban</h2>
+    <p>Technically the models were still available. Practically, the deal that made OpenClaw usable for ordinary subscribers was gone. Subscription OAuth had been the easy path. API keys and extra-usage bundles were the hard path — higher cost, more friction, more accounting. For many people the agent simply stopped being viable overnight.</p>
+    <p>Anthropic already ships its own agent surfaces — Claude Code, Cowork, and the rest of the first-party stack. OpenClaw is not Anthropic’s product. It is a competitor for the agent layer even when it calls Anthropic’s models underneath. Whether the stated reason is infrastructure load, terms of service, or product strategy, the effect is the same: the company that owns the model decides which tools are allowed to sit on top of it, and on what commercial terms.<sup><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">1</a></sup></p>
+    <p>Earlier waves had already banned or rate-limited users who pointed flat-rate Claude (and Gemini) OAuth credentials at OpenClaw because agent workloads chew tokens at a scale that looks like abuse to a consumer plan. The April change made the policy explicit and permanent for third-party harnesses.<sup><a class="ext" href="https://www.pcworld.com/article/3068842/whats-behind-the-openclaw-ban-wave.html" target="_blank" rel="noopener">4</a></sup></p>
+
+    <h2>Imagine you are running a business on it</h2>
+    <p>Picture a solo operator or a small team that built daily operations around an OpenClaw agent: inbound email triage, research briefs, calendar negotiation, draft replies, status updates into Slack. The agent is not a toy. It is the workflow. Friday the subscription still covers it. Saturday the same agent either fails or starts burning API credits at a rate that kills the unit economics.</p>
+    <p>There is no negotiation window that matters. There is no alternate Claude endpoint you control. There is only the provider’s terms, the provider’s pricing, and the provider’s product roadmap — including its own agent that competes with the tool you chose. Your business did not get a board seat. It got a dependency.</p>
+    <p>That is the wake-up call. Not “Anthropic is uniquely evil.” Every frontier lab can do a version of this. Token prices can spike. Rate limits can tighten. A competitor product can be favored. A usage pattern can be reclassified. A founder of a popular harness can get a suspension email. Your calendar and your clients do not care which clause in the terms of service caused the outage. They only care that the work stopped.</p>
+
+    <div class="callout">If your agent only works while a remote company is happy with the arrangement, you do not have an agent. You have a lease.</div>
+
+    <h2>What running your own actually buys</h2>
+    <p>A local model does not solve every problem. Quality still varies. Hardware still costs money. You still have to operate the stack. What it does solve is the single remote kill switch.</p>
+    <ul>
+      <li><strong>Pricing.</strong> API token rates are not a law of nature. They are a product decision. Local inference has a fixed cost of electricity and silicon. No surprise invoice when the agent has a busy week.</li>
+      <li><strong>Access.</strong> No one can revoke your weights because you used them with the wrong harness. The file is on your disk. The runtime is on your machine.</li>
+      <li><strong>Tooling freedom.</strong> You choose the agent framework — OpenClaw, something you wrote, something the community maintains — without asking the model vendor whether that combination is still blessed.</li>
+      <li><strong>Continuity.</strong> When the cloud path changes terms on a Friday, the local path keeps running Monday. Businesses that cannot absorb a multi-day outage need that property.</li>
+    </ul>
+    <p>This is the same structural argument as in <a href="too-dangerous-for-you.html">Too dangerous for you</a> and <a href="who-owns-the-answer.html">Who owns the answer?</a>: capability that only exists behind someone else’s API is capability they can shape, price, or withdraw. OpenClaw made that visible to a large group of people who thought they had built a personal operating system and discovered they had built a thin client.</p>
+
+    <h2>The honest trade</h2>
+    <p>Cloud frontier models are still stronger at many tasks. Paying for them is often rational. The mistake is treating the cloud path as the only path and wiring critical work to it with no fallback.</p>
+    <p>Run a local model for the agent that has to keep working. Use the frontier API where the quality gap matters and the failure mode is acceptable. Keep the harness — OpenClaw or otherwise — under your control so switching the model underneath is a config change, not a product rewrite.</p>
+    <p>Anthropic’s OpenClaw cutoff was not the end of personal agents. It was a reminder that personal only counts if the stack still runs when the vendor changes its mind. The people who felt that reminder hardest were the ones who had already handed the switch to someone else.</p>
+
+    <h2>Sources</h2>
+    <ol class="sources">
+      <li><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">The Verge — Anthropic essentially bans OpenClaw from Claude by making subscribers pay extra</a> (3 Apr 2026)</li>
+      <li><a class="ext" href="https://thenextweb.com/news/anthropic-openclaw-claude-subscription-ban-cost" target="_blank" rel="noopener">TNW — Anthropic blocks OpenClaw from Claude subscriptions in cost crackdown</a></li>
+      <li><a class="ext" href="https://techcrunch.com/2026/04/10/anthropic-temporarily-banned-openclaws-creator-from-accessing-claude/" target="_blank" rel="noopener">TechCrunch — Anthropic temporarily banned OpenClaw’s creator from accessing Claude</a> (10 Apr 2026)</li>
+      <li><a class="ext" href="https://www.pcworld.com/article/3068842/whats-behind-the-openclaw-ban-wave.html" target="_blank" rel="noopener">PCWorld — What’s behind the OpenClaw ban wave</a></li>
+    </ol>
+    <div class="links">
+      <a href="too-dangerous-for-you.html">Too dangerous for you</a>
+      <a href="utility-vs-personal-ai.html">Utility vs Personal AI</a>
+      <a href="who-owns-the-answer.html">Who owns the answer?</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="too-dangerous-for-you.html">Too dangerous for you →</a>
+      <a href="reclaim-your-data.html">Reclaim your data →</a>
+      <a href="kg-part-1.html">Knowledge Graph · Part 1 →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+  </footer>
+</body>
+</html>
