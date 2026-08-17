@@ -1,1 +1,115 @@
-PLACEHOLDER_BATCH1B
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knowledge Graph, Part 3: A living interface — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Knowledge Graph, Part 3: A living interface">
+  <meta property="og:description" content="Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-3.html">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0a0a0a;color:rgba(255,255,255,0.92);font-family:Inter,system-ui,sans-serif;font-size:1.125rem;font-weight:400;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(10,10,10,0.75);border-bottom:1px solid rgba(255,255,255,0.06)}
+.top-inner{max-width:42rem;margin:0 auto;padding:0.95rem 1.35rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.top a{text-decoration:none;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.top a:hover{color:#fff}
+.brand{font-family:Fraunces,Georgia,serif;font-size:1.05rem;letter-spacing:0.02em;color:#fff !important;text-transform:none}
+article{max-width:42rem;margin:0 auto;padding:2.75rem 1.35rem 4.5rem}
+.meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.85rem}
+.series{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(125,211,252,0.8);margin-bottom:0.55rem}
+h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(2.15rem,4.5vw,2.9rem);line-height:1.18;letter-spacing:-0.02em;margin:0 0 1.15rem}
+.deck{font-size:1.28rem;color:rgba(255,255,255,0.72);margin:0 0 2rem;line-height:1.65}
+.hero-media,.fig{margin:1.5rem 0 1.75rem;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#111}
+.hero-media img,.hero-media video,.fig img,.fig video{display:block;width:100%;height:auto}
+.fig-cap{font-family:'JetBrains Mono',monospace;font-size:0.78rem;letter-spacing:0.03em;color:rgba(255,255,255,0.48);padding:0.75rem 0.95rem;border-top:1px solid rgba(255,255,255,0.06);line-height:1.55}
+h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1.55rem;line-height:1.3;margin:2.75rem 0 1rem;letter-spacing:-0.01em}
+p{margin:0 0 1.4rem}
+.callout{margin:1.75rem 0;padding:1.15rem 1.3rem;border-left:2px solid rgba(125,211,252,0.55);background:rgba(125,211,252,0.06);border-radius:0 8px 8px 0;color:rgba(255,255,255,0.88);font-size:1.05rem;line-height:1.7}
+.lib-list{list-style:none;padding:0;margin:0 0 1.5rem}
+.lib-list li{margin:0 0 0.55rem;padding:0.55rem 0.75rem;border:1px solid rgba(255,255,255,0.07);border-radius:8px;background:rgba(255,255,255,0.02)}
+.lib-list a{color:rgba(125,211,252,0.9);text-decoration:none;font-weight:500}
+.lib-list a:hover{text-decoration:underline}
+.lib-list span{display:block;font-size:0.88rem;color:rgba(255,255,255,0.55);margin-top:0.2rem}
+.series-nav{display:grid;gap:0.65rem;margin:2.5rem 0 1.5rem;padding:1.15rem;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.02)}
+.series-nav a{text-decoration:none;font-size:0.92rem;color:rgba(255,255,255,0.7)}
+.series-nav a:hover{color:#fff}
+.series-nav .current{color:rgba(125,211,252,0.95)}
+.series-nav span{display:block;font-family:'JetBrains Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.2rem}
+.links{display:flex;flex-wrap:wrap;gap:1rem;margin:2rem 0 1.5rem}
+.links a{font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.55);border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:0.15rem}
+.links a:hover{color:#fff}
+.more{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08)}
+.more h3{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1.1rem;margin:0 0 0.85rem;color:rgba(255,255,255,0.55)}
+.more a{display:block;text-decoration:none;font-size:1.05rem;margin:0.4rem 0;color:rgba(255,255,255,0.75)}
+.more a:hover{color:#fff}
+footer{max-width:42rem;margin:0 auto;padding:0 1.35rem 3rem;font-size:0.9rem;color:rgba(255,255,255,0.4)}
+code{font-family:'JetBrains Mono',monospace;font-size:0.86em;background:rgba(255,255,255,0.06);padding:0.1em 0.35em;border-radius:4px}
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <article>
+    <p class="series">Knowledge Graph · Field notes · Part 3 of 3</p>
+    <p class="meta">August 2026 · From working system to clear vision</p>
+    <h1>Knowledge Graph, Part 3: A living interface</h1>
+    <p class="deck">Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface.</p>
+    <p>With the stack stable and voice online, the commits change character. Extraction, design tokens, docks, query quality — and a public story that finally matched the private ambition.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial view" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">The living interface: glassy panels, time as dimension, ambient presence instead of a chat window.</figcaption></figure>
+    <h2>From monolith to something you can change</h2>
+    <p>The main page had grown past three thousand lines. ChatPanel became its own component; the page became a thin orchestrator. Open Design HTML prototypes tracked CanvasView, NodeOverlay, ProcessingDock, NavDrawer so visual work could move without fighting the full app.</p>
+    <p>oklch semantic tokens replaced ad-hoc hex. Message bubbles, thinking blocks, tool summaries, and stream cursors shared one language. ProcessingDock moved to the bottom-right, learned to poll the API, hide finished work, and offer reprocess on failure. Photo nodes stopped jumping time buckets: creation waited until EXIF arrived. The timeline became navigation, not a filter — Today and Yesterday as first-class buckets.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Tablet surface" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">Component extraction and design tokens made the surface coherent — the same story on every chrome element.</figcaption></figure>
+    <h2>Why the graph answers better</h2>
+    <p>Direction is wasted if asking “what did I do last week” returns a shallow summary. Date queries stopped relying on slow LLM keyword extraction; NLP shortcuts and post-filters kept same-day photos and notes together. Notes got their own plane kind so diary text was not misrouted as photos. MCP tools could save and query; the model was instructed to actually call tools when it claimed to, and to avoid save-language during retrieval. Q1 quant loops were fought with penalties, caps, and sampler experiments.</p>
+    <p>None of that is glamorous. All of it is why the spatial metaphor earns trust: the place you travel through contains real days, not marketing placeholders.</p>
+    <div class="callout">Sovereignty is not a tagline. Models run on Metal. Graph, Postgres, and Whisper stay on hardware you control. Capture metadata — the EXIF log of when and where — is read from files that never passed through a messaging app or cloud export that strips it. Photos stay in original quality on disks you own; there is no cloud storage ceiling forcing you to delete last year so this year will fit. Public surfaces are chosen, not default.</div>
+    <figure class="fig"><video controls playsinline preload="metadata"><source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4" type="video/mp4"></video><figcaption class="fig-cap">From ingest to answer to time travel — the optimizations serve one story: memory as a place.</figcaption></figure>
+    <h2>Inspiration, closed loop</h2>
+    <p>The infinite-canvas tradition on GitHub — from handwritten notes to agent workspaces — proved that unbounded surfaces can carry serious work. Knowledge Graph takes that tradition into sovereign memory: not a collaborative whiteboard, but a private palace where time is the primary dimension and the AI is ambient rather than a modal chat box.</p>
+    <p>August closed with portfolio images, an AR still, README vision language, and the Sci-Fi Labs frame shared with Where is Paul? and Musical Cubes. The product direction is explicit: glassy panels, hierarchical expansion, ambient presence — first on web and local machines, with the same spatial grammar meant for XR.</p>
+    <h2>Major libraries, end to end</h2>
+    <ul class="lib-list">
+      <li><a href="https://github.com/mrdoob/three.js">three.js</a><span>Infinite canvas renderer and node planes</span></li>
+      <li><a href="https://github.com/sveltejs/kit">SvelteKit</a> · <a href="https://github.com/sveltejs/svelte">Svelte 5</a><span>UI shell, reactive stores, component extraction</span></li>
+      <li><a href="https://github.com/HKUDS/LightRAG">LightRAG</a><span>Knowledge graph extraction and retrieval (patched fork)</span></li>
+      <li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> · <a href="https://github.com/PrismML-Eng/llama.cpp">PrismML-Eng/llama.cpp</a><span>Local LLM + vision; 1-bit Bonsai Metal kernels</span></li>
+      <li><a href="https://github.com/ggml-org/whisper.cpp">whisper.cpp</a><span>Local speech-to-text</span></li>
+      <li><a href="https://github.com/tiangolo/fastapi">FastAPI</a><span>API, jobs, SSE</span></li>
+      <li><a href="https://github.com/postgres/postgres">PostgreSQL</a> · pgvector<span>Data plane and embeddings</span></li>
+      <li><a href="https://github.com/modelcontextprotocol/python-sdk">MCP Python SDK</a> · <a href="https://github.com/modelcontextprotocol/typescript-sdk">TypeScript SDK</a><span>Model tools to read/write the graph</span></li>
+      <li><a href="https://github.com/Rezi/svelte-gestures">svelte-gestures</a><span>Touch pan, pinch, swipe</span></li>
+      <li><a href="https://github.com/topics/infinite-canvas">github.com/topics/infinite-canvas</a><span>The broader design tradition this surface joins</span></li>
+    </ul>
+    <p>The Git log is not a release note. It is a record of choosing local over convenient, spatial over list, and persistence over demo — and of optimizing until that choice felt natural in the hand. Knowledge Graph is still a living system. These three parts are the path that made the change of direction legible: a canvas of time, a voice that works offline, and an interface that treats memory as a place you move through.</p>
+    <div class="series-nav"><a href="kg-part-1.html"><span>Part 1</span>The canvas and the stack</a><a href="kg-part-2.html"><span>Part 2</span>Voice, mobile, and the queue</a><a href="kg-part-3.html" class="current"><span>Part 3</span>A living interface</a></div>
+    <div class="links">
+      <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
+      <a href="knowledge-graph.html">Project overview</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="musical-cubes.html">Musical Cubes →</a>
+      <a href="grok-bot.html">Grok Bot →</a>
+      <a href="bonsai.html">Bonsai →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+  </footer>
+</body>
+</html>
