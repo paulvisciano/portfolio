@@ -45,6 +45,18 @@
       </div>
     </div>
     <p>Whisper does the transcription. That text is posted to the local model. The model may call into LightRAG (or the graph tools) to pull extra context from photos, notes, and prior days. It thinks that through, then a separate service turns the reply into audio. Each step is a different binary, a different weight file, and a different claim on the same shared pool.</p>
+
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-2-pipeline.jpg" alt="One spoken question through Knowledge Graph — five stages from mic to voice reply" width="1176" height="784" loading="lazy"><figcaption class="fig-cap">One question, five specialists — still on your laptop, still offline.</figcaption></figure>
+    <h2>A walkthrough anyone can follow</h2>
+    <p>Imagine you are on a plane with no Wi‑Fi. You open Knowledge Graph and say:</p>
+    <p><em>“Where did we eat in Lisbon?”</em></p>
+    <p><strong>1. You speak.</strong> The phone or laptop mic records a few seconds of audio. Nothing has been “understood” yet — it is just sound.</p>
+    <p><strong>2. Whisper listens.</strong> A speech model on your machine turns that sound into text: <code>Where did we eat in Lisbon?</code> If you mumbled, paused a long time, or mixed languages, this is the step that can get messy. Bigger Whisper models hear better and use more of your 16GB.</p>
+    <p><strong>3. LightRAG searches your life.</strong> The system does not answer from generic internet knowledge. It looks in <em>your</em> graph — Lisbon trip photos, a note that said “pasteis and grilled fish near the water,” a conversation node from that week. LightRAG is the librarian: it finds the related pieces instead of dumping your whole archive into the model.</p>
+    <p><strong>4. The local model thinks.</strong> The written question plus those retrieved pieces go to a language model running on the same machine. It drafts an answer such as: you ate near the riverfront the evening after the castle photos; the note mentioned grilled fish. No cloud API. If the network is off, this step still runs.</p>
+    <p><strong>5. Voice answers.</strong> A separate text-to-speech service turns that reply into audio so you hear the answer, not only read it. The transcript can also land on the canvas as a node in time — the conversation becomes part of the place, not a disposable chat bubble.</p>
+    <p>To you it felt like one continuous reply. Internally it was five tools handing work to each other, each taking a turn with limited shared memory, then getting out of the way for the next job.</p>
+
     <div class="callout">If any stage silently needs the internet, the whole turn fails the sovereignty test. Offline is not a feature flag — it is the definition of “local.”</div>
 
     <h2>Whisper: sizes, RAM, and the hard parts of speech</h2>
