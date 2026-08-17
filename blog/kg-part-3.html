@@ -3,15 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Knowledge Graph, Part 3: A living interface — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface that still works offline.">
+  <title>KG · A living interface — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Component extraction, design tokens, timeline as dimension, and the Sci-Fi Labs frame.">
   <meta name="theme-color" content="#0a0a0a">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Knowledge Graph, Part 3: A living interface">
-  <meta property="og:description" content="Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface that still works offline.">
-  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-3-hero.jpg">
-  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-3.html">
   <link rel="stylesheet" href="blog.css">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-3.html">
 </head>
 <body>
   <header class="top">
@@ -21,37 +17,19 @@
     </div>
   </header>
   <article>
-    <p class="series">Knowledge Graph · Field notes · Part 3 of 3</p>
-    <h1>Knowledge Graph, Part 3: A living interface</h1>
-    <p class="deck">Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface — still inside a 16GB shared-memory budget, still offline.</p>
-    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-3-hero.jpg" alt="Knowledge Graph Part 3 — a living interface" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">The living interface: glassy panels, time as dimension, ambient presence instead of a chat window.</figcaption></figure>
-    <p>Parts 1 and 2 made the canvas real and the queue survivable under a hard ceiling: the entire stack in about 16GB of shared memory, with offline as the proof the model is actually local. Part 3 is where the surface became intentional — component extraction, semantic tokens, and graph answers that keep same-day photos and notes together so the place you travel through earns trust.</p>
-    <h2>Design tokens and chrome</h2>
-    <p>oklch semantic tokens replaced ad-hoc hex. Message bubbles, thinking blocks, tool summaries, and stream cursors shared one language. ProcessingDock moved to the bottom-right, learned to poll the API, hide finished work, and offer reprocess on failure. Photo nodes stopped jumping time buckets: creation waited until EXIF arrived.</p>
-    <h2>Why the graph answers better</h2>
-    <p>Direction is wasted if asking “what did I do last week” returns a shallow summary. Date queries stopped relying on slow LLM keyword extraction; NLP shortcuts and post-filters kept same-day media together. Notes got their own plane kind. MCP tools could save and query; the model was instructed to actually call tools when it claimed to.</p>
-    <div class="callout">Sovereignty is not a tagline. The models run on your own chip, not a rented one. The memory graph, the database, and the speech recognizer stay on hardware you control — still inside the same ~16GB shared-memory budget that defined Parts 1 and 2. The ultimate test is offline: unplug the network and the system still reasons from local weights. Photos stay in original quality on disks you own.</div>
-    <h2>Sci-Fi Labs frame</h2>
-    <p>Knowledge Graph sits with Where is Paul? and Musical Cubes under one thesis: spatial products for web, mobile, and XR. Memory as a place is the product constraint — not a feature list bolted onto a chat window, not a stack that only works when you rent more RAM in the cloud, and not an “AI” that dies the moment the network drops.</p>
-    <div class="series-nav">
-      <a href="kg-part-1.html"><span>Part 1</span>The canvas and the stack</a>
-      <a href="kg-part-2.html"><span>Part 2</span>Voice, mobile, and the queue</a>
-      <a href="kg-part-3.html" class="current"><span>Part 3</span>A living interface</a>
-    </div>
+    <p class="series">Series · 3 of 3</p>
+    <h1>KG · A living interface</h1>
+    <p class="deck">Component extraction, design tokens, timeline as dimension, and the Sci-Fi Labs frame.</p>
+    <p>Part 3 of the Knowledge Graph field notes.</p>
     <div class="links">
-      <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
-      <a href="knowledge-graph.html">Project overview</a>
+      <a href="kg-part-2.html">Part 2</a>
+      <a href="knowledge-graph.html">Knowledge Graph</a>
       <a href="../index.html#blog">All blogs</a>
-    </div>
-    <div class="more">
-      <h3>More from Sci-Fi Labs</h3>
-      <a href="where-is-paul.html">Where is Paul? →</a>
-      <a href="musical-cubes.html">Musical Cubes →</a>
-      <a href="reclaim-your-data.html">Reclaim your data →</a>
     </div>
   </article>
   <footer>
-    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+    Sci-Fi Labs · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
   </footer>
+<script src="analytics.js" defer></script>
 </body>
 </html>
