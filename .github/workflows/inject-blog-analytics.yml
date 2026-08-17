@@ -1,0 +1,46 @@
+name: Inject blog analytics
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/inject-blog-analytics.yml'
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure analytics.js and inject into blog HTML
+        run: |
+          set -e
+          mkdir -p blog
+          cat > blog/analytics.js << 'EOF'
+          /* Vercel Web Analytics */
+          (function () {
+            var s = document.createElement('script');
+            s.defer = true;
+            s.src = '/_vercel/insights/script.js';
+            document.head.appendChild(s);
+          })();
+          EOF
+          for f in blog/*.html; do
+            [ -f "$f" ] || continue
+            if ! grep -qE 'analytics\.js|_vercel/insights' "$f"; then
+              sed -i 's|</body>|<script src="analytics.js" defer></script>\n</body>|' "$f"
+              echo "injected: $f"
+            else
+              echo "skip: $f"
+            fi
+          done
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Inject Vercel Analytics into remaining blog pages"
+            git push
+          fi
