@@ -1,1 +1,97 @@
-PLACEHOLDER_WILL_FAIL
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reclaim your data — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Data is currency. AI companies already know it. A local knowledge graph is how you stop giving it away — and build an AI that works for you, not on you.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Reclaim your data">
+  <meta property="og:description" content="Data is currency. AI companies already know it. A local knowledge graph is how you stop giving it away — and build an AI that works for you, not on you.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/reclaim-your-data.html">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0a0a0a;color:rgba(255,255,255,0.88);font-family:Inter,system-ui,sans-serif;font-weight:300;line-height:1.72;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(10,10,10,0.75);border-bottom:1px solid rgba(255,255,255,0.06)}
+.top-inner{max-width:720px;margin:0 auto;padding:0.9rem 1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.top a{text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.top a:hover{color:#fff}
+.brand{font-family:Fraunces,Georgia,serif;font-size:0.95rem;letter-spacing:0.02em;color:#fff !important;text-transform:none}
+article{max-width:720px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.75rem}
+.series{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(125,211,252,0.75);margin-bottom:0.5rem}
+h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(1.85rem,4vw,2.55rem);line-height:1.15;letter-spacing:-0.02em;margin:0 0 1rem}
+.deck{font-size:1.12rem;color:rgba(255,255,255,0.62);margin:0 0 1.75rem;line-height:1.55}
+.hero-media,.fig{margin:1.5rem 0 1.75rem;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:#111}
+.hero-media img,.hero-media video,.fig img,.fig video{display:block;width:100%;height:auto}
+.fig-cap{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.04em;color:rgba(255,255,255,0.4);padding:0.65rem 0.85rem;border-top:1px solid rgba(255,255,255,0.06);line-height:1.45}
+h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1.35rem;margin:2.35rem 0 0.9rem;letter-spacing:-0.01em}
+p{margin:0 0 1.15rem}
+ul{margin:0 0 1.25rem;padding-left:1.15rem}
+li{margin:0 0 0.5rem}
+.callout{margin:1.5rem 0;padding:1rem 1.15rem;border-left:2px solid rgba(125,211,252,0.55);background:rgba(125,211,252,0.06);border-radius:0 8px 8px 0;color:rgba(255,255,255,0.78);font-size:0.98rem}
+.links{display:flex;flex-wrap:wrap;gap:1rem;margin:2rem 0 1.5rem}
+.links a{font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,0.55);border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:0.15rem}
+.links a:hover{color:#fff}
+.more{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08)}
+.more h3{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1rem;margin:0 0 0.75rem;color:rgba(255,255,255,0.5)}
+.more a{display:block;text-decoration:none;font-size:0.95rem;margin:0.35rem 0;color:rgba(255,255,255,0.7)}
+.more a:hover{color:#fff}
+footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.78rem;color:rgba(255,255,255,0.35)}
+code{font-family:'JetBrains Mono',monospace;font-size:0.86em;background:rgba(255,255,255,0.06);padding:0.1em 0.35em;border-radius:4px}
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <article>
+    <p class="series">Sci-Fi Labs · Field note</p>
+    <p class="meta">August 2026 · Data as currency</p>
+    <h1>Reclaim your data</h1>
+    <p class="deck">AI companies treat your life as training fuel and product inventory. A local knowledge graph is a path to keep the value — and to build an AI that knows you without selling you.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Spatial knowledge surface" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">A private surface for memory — not a free feed into someone else’s model.</figcaption></figure>
+    <h2>Data is currency</h2>
+    <p>In the AI era, personal data is not a byproduct. It is the asset. Models improve when they see more of how people live, write, buy, move, and feel. Platforms improve when they can predict what you will click next. Advertisers pay for those predictions. The companies building foundation models and consumer chat products understand this clearly. Most users still do not — or act as if they do not.</p>
+    <p>People give the asset away for free. Worse: they often pay a monthly fee for the app that harvests it. Dating preferences go into matching systems. Psychological state goes into chatbot logs. Work product and intellectual property go into prompt histories. Health hunches, bank friction, food orders, workout streaks — all of it leaves the device and becomes someone else’s corpus. The return is convenience and a chat window. The cost is permanent leverage against you.</p>
+    <div class="callout">They know the data is valuable. That is why they build products around collecting it. Paying for the product does not mean you own the residual value of what you put in.</div>
+    <h2>Self-custody is the hardware-wallet move</h2>
+    <p>Crypto already taught a generation the difference between “your coins on an exchange” and “your keys on a device you hold.” The same logic applies to life data. Leaving everything in Google Photos, WhatsApp, Instagram, and a dozen AI chat apps is the exchange model: easy, until it is not, and never truly yours.</p>
+    <p>Owning the hardware and the files means responsibility. Encrypt an external drive. Move sensitive material onto it. Export archives from the platforms that will give them to you — messaging, social, banking, health — and treat those exports as the start of a private corpus, not as clutter. Then process what matters into a local knowledge graph so the structure is queryable, not just a folder of zips.</p>
+    <p>That is not maximal paranoia. It is the minimum stance if you believe the next decade of AI will be defined by who holds the context about individual human lives.</p>
+    <h2>What you actually want from AI</h2>
+    <p>You do want a system that has seen your medical timeline, your bank patterns, your food preferences, your exercise history, and the notes you wrote at 1 a.m. An assistant that knows you better than a generic model can is useful. The mistake is assuming the only way to get that is to pour the same material into a corporation whose business model is to extract surplus from attention, prediction, and lock-in.</p>
+    <p>Those companies exist to make profit. Your profile is inventory. Your anxiety is a retention signal. Your intellectual property is training signal unless a contract says otherwise — and consumer terms rarely say otherwise in your favor.</p>
+    <p>A local stack flips the default. The model runs on Metal on your machine. The graph and the originals live on disks you control. You decide what is ingested, what is deleted, and what never leaves the room. If an AI company wants that corpus, the honest arrangement is compensation — not a free upload button wrapped in a friendly UI.</p>
+    <h2>The Knowledge Graph as a reclaiming journey</h2>
+    <p>The <a href="kg-part-1.html" style="color:rgba(125,211,252,0.9)">Knowledge Graph series</a> is not only a product diary. It is a concrete path for that reclaiming: direct USB transfer so EXIF and full-quality files survive; local Whisper and vision so speech and photos never need a cloud API; a spatial canvas so memory is navigable without a feed algorithm; a job queue so multi-device use still stays on your network.</p>
+    <p>Export, encrypt, ingest, query. Repeat until the private graph is denser than any profile a platform holds on you. Then the AI that helps you is trained on permissioned context — yours — instead of on the industrial byproduct of a billion other people’s unpaid labor plus your own.</p>
+    <div class="callout">Keep the value. Feed your own model. If they want the data, they can pay for it. Otherwise it stays home.</div>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph on tablet" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">Localhost: full-quality memory on hardware you own.</figcaption></figure>
+    <div class="links">
+      <a href="kg-part-1.html">KG series · Part 1</a>
+      <a href="knowledge-graph.html">Project overview</a>
+      <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="kg-part-1.html">Knowledge Graph · Part 1 →</a>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="musical-cubes.html">Musical Cubes →</a>
+      <a href="bonsai.html">Bonsai →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+  </footer>
+</body>
+</html>
