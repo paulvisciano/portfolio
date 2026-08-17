@@ -20,16 +20,20 @@
     <button type="button" data-lang="es" aria-pressed="false">ES</button>
     <button type="button" data-lang="de" aria-pressed="false">DE</button>
   </div>
-  <header class="top">
+  <div class="top">
     <div class="top-inner">
       <a class="brand" href="../index.html">Paul Visciano</a>
-      <a href="../index.html#blog">Blogs</a>
+      <nav>
+        <a href="../index.html#blog" data-i18n="nav_blog">Blogs</a>
+        &nbsp;·&nbsp;
+        <a href="../index.html#work" data-i18n="nav_work">Work</a>
+      </nav>
     </div>
-  </header>
+  </div>
   <article>
-    <p class="meta">Sci-Fi Labs · August 2026 · Agent systems</p>
-    <h1>Grok Bot</h1>
-    <p class="deck">xAI’s early beta: AI teammates that sign into your tools, work in parallel, and return finished work.</p>
+    <p class="meta" data-i18n="blog_meta_grok">Sci-Fi Labs · August 2026 · Agent systems</p>
+    <h1 data-i18n="blog_title_grok">Grok Bot</h1>
+    <p class="deck" data-i18n="blog_desc_grok">xAI’s early beta: AI teammates that sign into your tools, work in parallel, and return finished work.</p>
     <div class="hero-media">
       <img src="https://pbs.twimg.com/amplify_video_thumb/2087221157787525120/img/n9OrR6nUrxVZL4oY.jpg" alt="Grok Bot" width="1280" height="720">
     </div>
@@ -45,12 +49,48 @@
     <h2>Why it matters for Sci-Fi Labs</h2>
     <p>Sovereign stacks and spatial products still need agents that can act. The open question is how much of that action stays on hardware you control versus services you rent. Grok Bot is a useful reference point for the “finished work, not just finished sentences” bar.</p>
     </div>
+    <div data-lang-block="bg" hidden>
+    <p><strong>Grok Bot</strong> е бележка за агентни системи, които не спират на отговор в чат — влизат в инструментите ти, работят паралелно и връщат завършена работа.</p>
+    <div class="callout">Интересната повърхност не е по-умна кутия за completion. Това са екипни партньори, които ползват същите приложения като теб.</div>
+    <h2>Какво се открои</h2>
+    <ul>
+      <li>Агенти, които се автентикират в реални инструменти, вместо само да ги описват</li>
+      <li>Паралелна работа, която връща артефакти, не само проза</li>
+      <li>Бета, която вече се усещаше като продуктова посока, не играчка</li>
+    </ul>
+    <h2>Защо има значение за Sci-Fi Labs</h2>
+    <p>Суверенните стекове и пространствените продукти все още се нуждаят от агенти, които могат да действат. Отвореният въпрос е колко от това действие остава на хардуер, който контролираш, срещу услуги, които наемаш.</p>
+    </div>
+    <div data-lang-block="es" hidden>
+    <p><strong>Grok Bot</strong> es una nota de campo sobre sistemas de agentes que no se detienen en una respuesta de chat: inician sesión en tus herramientas, trabajan en paralelo y devuelven trabajo terminado.</p>
+    <div class="callout">La superficie interesante no es una caja de completion más inteligente. Son compañeros de equipo que operan las mismas apps que tú.</div>
+    <h2>Qué destacó</h2>
+    <ul>
+      <li>Agentes que se autentican en herramientas reales en lugar de solo describirlas</li>
+      <li>Trabajo en paralelo que devuelve artefactos, no solo prosa</li>
+      <li>Una beta que ya se sentía como dirección de producto, no un juguete</li>
+    </ul>
+    <h2>Por qué importa para Sci-Fi Labs</h2>
+    <p>Los stacks soberanos y los productos espaciales siguen necesitando agentes que puedan actuar. La pregunta abierta es cuánta de esa acción permanece en hardware que controlas frente a servicios que alquilas.</p>
+    </div>
+    <div data-lang-block="de" hidden>
+    <p><strong>Grok Bot</strong> ist eine Feldnotiz zu Agentensystemen, die nicht bei einer Chat-Antwort stehen bleiben — sie melden sich in deinen Tools an, arbeiten parallel und liefern fertige Arbeit zurück.</p>
+    <div class="callout">Die interessante Oberfläche ist keine klügere Completion-Box. Es sind Teamkollegen, die dieselben Apps bedienen wie du.</div>
+    <h2>Was auffiel</h2>
+    <ul>
+      <li>Agenten, die sich in echte Tools authentifizieren, statt sie nur zu beschreiben</li>
+      <li>Parallele Arbeit, die Artefakte zurückgibt, nicht nur Prosa</li>
+      <li>Eine Beta, die sich bereits wie eine Produktrichtung anfühlte, nicht wie ein Spielzeug</li>
+    </ul>
+    <h2>Warum es für Sci-Fi Labs zählt</h2>
+    <p>Souveräne Stacks und räumliche Produkte brauchen weiterhin Agenten, die handeln können. Die offene Frage ist, wie viel dieser Handlung auf Hardware bleibt, die du kontrollierst, versus Dienste, die du mietest.</p>
+    </div>
     <div class="links">
       <a href="../index.html#blog">All blogs</a>
       <a href="knowledge-graph.html">Knowledge Graph</a>
     </div>
     <div class="more">
-      <h3>More from Sci-Fi Labs</h3>
+      <h3 data-i18n="more_from">More from Sci-Fi Labs</h3>
       <a href="bonsai.html">Bonsai →</a>
       <a href="reclaim-your-data.html">Reclaim your data →</a>
       <a href="where-is-paul.html">Where is Paul? →</a>
