@@ -25,21 +25,37 @@
     <h1>Knowledge Graph, Part 1: The canvas and the stack</h1>
     <p class="deck">Cut over to an infinite canvas, make time a depth axis, and run the whole stack on 16GB of shared memory — models that never leave the machine.</p>
     <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg" alt="Knowledge Graph Part 1 — infinite canvas, time as depth" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">Time as depth — photos and notes as planes you travel through, not a chat log.</figcaption></figure>
-    <p>Knowledge Graph started as a bet that memory should be a place, not a thread. The first solid version of that bet was a Three.js infinite canvas with time as a navigable dimension, local models for vision and speech, and a pipeline that kept originals on hardware you own.</p>
+    <p>Knowledge Graph started as a bet that memory should be a place, not a thread. The first solid version of that bet was a 3D infinite canvas with time as a navigable dimension, local models for vision and speech, and a pipeline that kept originals on hardware you own.</p>
+    <p>The deeper motivation came from watching the first wave of agent projects. OpenClaw was the first publicly viral agent that could actually <em>do</em> things on your computer — a genuine leap in utility. Hermes and others chased the same frontier. But somewhere along the way the conversation shifted to multi-agent orchestration, swarms talking to each other, elaborate tool chains — and the most basic expectation quietly fell behind: the agent remembering your day, your people, the thing you mentioned last Tuesday. Memory, the thing a personal assistant is supposedly for, got treated as a solved problem while everyone worked on the complicated one. Knowledge Graph is the bet that memory is the complicated one — and that it is the one worth getting right first.</p>
+    <p>That bet pulls in two threads that the rest of this series keeps circling back to. There is the tension between an agent built for <em>utility</em> and one built to be <em>personal</em> — they look like the same product and they are not, and I wrote about that split separately in <a href="utility-vs-personal-ai.html">Utility vs Personal AI</a>. And there is the fact that the moment you start bolting on API keys — one per service, one per model, one per integration — you have handed your data to yet another company, and the “AI on your machine” story stops being true. That one became its own piece: <a href="who-has-your-data.html">Who has your data?</a>.</p>
     <h2>Why a canvas</h2>
     <p>Lists and chat windows flatten life into sequence. A spatial surface lets the same day hold photos, notes, and later conversations without forcing them into a single scroll order. Zoom out for months; zoom in for an afternoon. The camera is the primary navigation, not a sidebar of folders.</p>
     <h2>Local by default — on 16GB shared</h2>
-    <p>Models run on Metal. Whisper, vision, embeddings, the graph, Postgres, and the canvas all share one machine. There is no obligatory cloud ingest to make the product work — cloud is optional, not the path of least resistance.</p>
+    <p>Models run on the laptop’s own chip — no cloud involved. Speech recognition, vision, the memory index, the database, and the canvas all share one machine. There is no obligatory cloud ingest to make the product work — cloud is optional, not the path of least resistance.</p>
     <p>The ultimate test for sovereignty is offline. Airplane mode. No Wi‑Fi. No fallback API. If the assistant still answers from weights on disk and data on disk, it is a local model in fact — not a thin client dressed up as “AI on your machine.” Anything that silently phones home when the cable is unplugged has already failed the test.</p>
-    <p>The hard constraint is not “local in theory.” It is running the <em>entire</em> stack in about 16GB of shared memory: unified CPU and GPU memory on the same laptop, with the OS, browser, and app already taking their cut. LLM weights, Whisper, vision, and the live canvas compete for the same pool. That budget is why quantization, idle reclaim, and careful load order are product decisions — not optimization trivia.</p>
-    <div class="callout">One of the main challenges of this series is that sovereignty has a hard ceiling: the whole stack has to fit and stay usable in 16GB of shared memory — and keep working with the internet unplugged. If it only works when a vendor’s API is up, it is not a private memory system.</div>
+    <p>Why 16GB, specifically? Because that is the machine this is built on — not a hypothetical target spec. The dev box is a 14‑inch MacBook Pro with an Apple M2 Pro: a 10‑core CPU (6 performance, 4 efficiency), a 16‑core GPU, and 16GB of unified memory — meaning the processor and the graphics share one pool of memory, there is no separate graphics memory to spill into. That is the entire budget, and the operating system, the browser, the database, and the live canvas are already in it when the first model loads.</p>
+    <p>This is the part of the local‑AI story that most write‑ups quietly skip. The demos that get shared are almost always run on rented A100s or a workstation that cost more than a used car. Large orgs have the money to blow on GPUs — a frontier‑class rig is a line item, not a sacrifice. Most people do not. The <a class="ext" href="https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam" target="_blank" rel="noopener">Steam Hardware Survey</a> is one of the few public windows into the machines real users actually own, and the RAM split tells the story plainly:</p>
+    <table>
+      <thead>
+        <tr><th>System RAM</th><th>All platforms</th><th>macOS only</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>8 GB</td><td>~8% (and growing — RAM prices are forcing downgrades)</td><td>~2%</td></tr>
+        <tr><td>16 GB</td><td>~41% — the single most common configuration</td><td>~43.6% — the plurality on Mac</td></tr>
+        <tr><td>32 GB</td><td>~37% (slipping as kits stay expensive)</td><td>~32%</td></tr>
+        <tr><td>64 GB+</td><td>under 5%</td><td>under 3%</td></tr>
+      </tbody>
+    </table>
+    <p>In other words, for nearly half the people reading this, 16GB is not a floor they are trying to climb above — it is the ceiling they are living under. If a local stack only runs on a $4,000 box most of them will never buy, then “local AI” is a hobby for the few, not a tool for the many.</p>
+    <p>That pool is the hard constraint — not “local in theory” but local in fact. The main model, the speech recognizer, the vision model, and the live canvas all compete for whatever is left once the operating system, the browser, and the database have taken theirs, which is why the stack leans on compressed models, reclaims memory the moment a tool is idle, and is careful about what loads first. Those are product decisions in this stack, not optimization trivia.</p>
+    <div class="callout">One of the main challenges of this series is that sovereignty has a hard ceiling: the whole stack has to fit and stay usable in 16GB of shared memory — the memory most users actually have, not the memory a demo bench wishes they had — and keep working with the internet unplugged. If it only works when a vendor’s API is up, it is not a private memory system.</div>
     <h2>The pipeline</h2>
     <div class="pipeline">
       <p class="pipeline-title">Ingest path</p>
       <div class="pipeline-flow">
         <div class="pipe-step"><div class="n">01</div><div class="t">Capture</div><div class="d">Photos, voice, notes on device</div></div>
         <div class="pipe-arrow">→</div>
-        <div class="pipe-step"><div class="n">02</div><div class="t">Local extract</div><div class="d">Whisper, vision, EXIF, graph</div></div>
+        <div class="pipe-step"><div class="n">02</div><div class="t">Local extract</div><div class="d">Speech, vision, photo data, graph</div></div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step"><div class="n">03</div><div class="t">Canvas</div><div class="d">Planes in time, queryable memory</div></div>
       </div>
