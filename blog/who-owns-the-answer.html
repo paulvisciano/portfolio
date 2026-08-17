@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Who owns the answer? — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="We used to Google something and read a page of results. Now we ask a model and get one answer. The model is owned by someone, and that someone shapes what you believe.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Who owns the answer?">
+  <meta property="og:description" content="We used to Google something and read a page of results. Now we ask a model and get one answer. The model is owned by someone, and that someone shapes what you believe.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/reclaim-hero.jpg">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/who-owns-the-answer.html">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <article>
+    <p class="series">Knowledge Graph · Companion essay</p>
+    <h1>Who owns the answer?</h1>
+    <p class="deck">We used to Google something and read a page of results. Now we ask a model and get one answer. The model is owned by someone, and that someone shapes what you believe.</p>
+    <h2>The model you talk to is owned by someone</h2>
+    <p>There is a question the agent world is not honest about: <em>which country owns the model you are talking to?</em> The default assumption is that “the cloud” is a neutral place. It is not. The model is a piece of software, the software has a home, and the home has a government.</p>
+    <p>On the U.S. side, the models you are likely to use route your prompts to OpenAI (Microsoft is its largest backer), Anthropic (Amazon is its largest backer), Google (Gemini), or xAI (Elon Musk). Your prompts sit on U.S. infrastructure, subject to U.S. legal process — a <a class="ext" href="https://www.aclu.org/documents/section-702-surveillance" target="_blank" rel="noopener">Section 702</a> query, a national security letter, a subpoena — and the model provider is legally allowed to be asked about it. On the Chinese side, if you reach for a cheaper or faster model, you are increasingly routing through providers whose parent companies are answerable to Beijing: DeepSeek is run out of Hangzhou, Qwen is Alibaba, GLM/Zhipu is backed by the state-linked Zhongguancun fund, Moonshot/Kimi is Moonshot AI. The prompts, the transcripts, and the indexed memory of your files land on infrastructure inside a country where the <a class="ext" href="https://www.reuters.com/world/china/china-issues-new-data-security-rules-2025-09-30/" target="_blank" rel="noopener">data security law and the PIPL</a> give the state broad access to data held by domestic companies.</p>
+    <p>The point is not that one side is clean and the other is dirty. Both have surveillance regimes; both have legal mechanisms to compel disclosure. The point is that “I am talking to my local agent” stops being a meaningful claim the moment your prompt leaves the laptop and lands on a server whose government you did not choose. The country the model lives in is part of who has your data — and part of who shapes the answer you get back.</p>
+    <h2>From a page of results to one answer</h2>
+    <p>There is a quieter change hiding under the jurisdiction question, and it matters more. We are moving from a culture where you Google something to a culture where you ask a model, and the difference is not just speed. It is who decides what you see.</p>
+    <p>When you Google something, you get a page of results. A list of links, a few snippets, maybe a “People also ask” box. Google ranks them — and that ranking is already a decision, shaped by Google’s algorithm and Google’s ad business — but you see the list. You can click the first result and leave, or you can scroll, open three tabs, read the Wikipedia version and the news version and the blog version, and form an opinion from more than one source. The menu is curated, but it is still a menu, and you pick from it.</p>
+    <p>When you ask a model, you get one answer. No list. No tabs. No “here are ten sources, choose.” The model reads you a paragraph and tells you what is true. You can ask a follow-up, but the follow-up is still one voice answering — the same model, the same training data, the same guardrails, the same owner. The alternative source is not on the screen because the model did not put it there.</p>
+    <p>That is a shift in power, and it is easy to miss because it feels like the same thing — you type a question, you get an answer. But Google was a starting point. The model is presented as an ending point. Search gives you a map and lets you walk; a model hands you a route and tells you you have arrived.</p>
+    <h2>Who decides what the answer is</h2>
+    <p>The answer a model gives you is not pulled from the air. It is built from choices made by the company that owns the model: which training data went in, which was left out, how the model was taught to behave, which questions it was taught to refuse, which framings it was taught to prefer. All of that sits between you and the answer, and almost none of it is visible to you. You see the paragraph. You do not see the decisions that produced it.</p>
+    <p>This is where the ownership question and the opinion question meet. If the model is your source of truth, and the model is owned by one company in one country, then that company and that country have a lever on what you believe — not by censoring the answer, but by being the only one giving it. A list of ten results still leaves you a reader. A single answer makes you a recipient. Multiply that by every question you ask a model this week — what is happening in Taiwan, which candidate is ahead, whether the new drug is safe, what your kid’s teacher meant by that note — and the shape of the influence becomes clear. It is not one answer. It is the whole set of answers, and the set is shaped by someone you did not elect.</p>
+    <div class="callout">The old problem was that the search engine ranked the results. The new problem is that the model is the result — and whoever owns the model owns the only result you see.</div>
+    <h2>Why local is part of the answer, not the whole answer</h2>
+    <p>Running a model on your own machine, from a file you own, fixes the country half of this. No prompt leaves, no foreign server sees it, no government can subpoena it. That is real, and it is a reason the Knowledge Graph stack is built the way it is — <a href="kg-part-1.html">the whole stack runs offline</a>, and the model is a file on your disk.</p>
+    <p>But local alone does not fix the opinion half. A local model still gives you one answer, and that answer is still shaped by the training data and the teaching — choices made by whoever built the model, even if you run it yourself. Local removes the country lever. It does not remove the editorial one. For that, the only honest answer is the one we already learned with search: never treat one source as the source, even when it speaks confidently in one voice. Read more than one. The model is a starting point, not an ending point, and the moment you forget that, someone else is choosing what you believe.</p>
+    <div class="links">
+      <a href="who-has-your-data.html">Who has your data?</a>
+      <a href="reclaim-your-data.html">Reclaim your data</a>
+      <a href="utility-vs-personal-ai.html">Utility vs Personal AI</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="musical-cubes.html">Musical Cubes →</a>
+      <a href="who-has-your-data.html">Who has your data? →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+  </footer>
+</body>
+</html>
