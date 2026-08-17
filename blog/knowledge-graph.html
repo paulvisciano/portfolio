@@ -46,6 +46,7 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
 .lang-switch button:hover{color:#fff}
 .lang-switch button.active{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
 @media(max-width:720px){.lang-switch{top:12px;right:auto;left:12px}}
+[data-lang-block][hidden]{display:none !important}
   </style>
 </head>
 <body>
@@ -66,13 +67,14 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
     </div>
   </div>
   <article>
-    <p class="meta">Sci-Fi Labs · August 2026 · Sovereign memory</p>
+    <p class="meta" data-i18n="blog_meta_kg">Sci-Fi Labs · August 2026 · Sovereign memory</p>
     <h1 data-i18n="blog_title_kg">Knowledge Graph</h1>
     <p class="deck" data-i18n="blog_desc_kg">Not a chatbot. A memory palace you explore — on hardware you own.</p>
 
     <div class="hero-media">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface" width="1792" height="1008">
     </div>
+    <div data-lang-block="en">
     <p><strong>Knowledge Graph</strong> is a private spatial interface for memory and knowledge. Conversations, photos, and voice notes live as floating elements on an infinite canvas of time. Scroll to move through days and months. Speak to query or add. Everything runs locally on your own machine.</p>
     <div class="callout">Sovereignty first: memory you own, models you run, tools that answer to you — public only by choice.</div>
     <h2>What it is</h2>
@@ -94,6 +96,76 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
       </video>
     </div>
     <p>A Sci-Fi app in the strict sense: the interface you were told belonged to movies, running on a machine that never has to phone home.</p>
+    </div>
+    <div data-lang-block="bg" hidden>
+    <p><strong>Knowledge Graph</strong> е частен пространствен интерфейс за памет и знание. Разговори, снимки и гласови бележки живеят като плаващи елементи върху безкрайно платно от време. Скролваш, за да се движиш през дни и месеци. Говориш, за да питаш или добавяш. Всичко работи локално на твоята машина.</p>
+    <div class="callout">Суверенитет първо: памет, която притежаваш, модели, които управляваш, инструменти, които ти отговарят — публични само по избор.</div>
+    <h2>Какво е</h2>
+    <ul>
+      <li><strong>Пространствен UI</strong> — Three.js безкрайно платно със слоеве време; pan, zoom и скрол през паметта</li>
+      <li><strong>Локален интелект</strong> — LLM на устройството, зрение, Whisper, embeddings и reranking на Apple Silicon</li>
+      <li><strong>Жив граф</strong> — обекти и връзки, извлечени от разговори, снимки и глас</li>
+      <li><strong>Богати изображения</strong> — EXIF, обратен geocoding, лица и локални визуални описания стават възли в графа</li>
+      <li><strong>Глас на първо място</strong> — речта влиза в същия цикъл на знание, напълно офлайн</li>
+    </ul>
+    <div class="hero-media">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial / AR view" width="1792" height="1008">
+    </div>
+    <h2>Посока</h2>
+    <p>Дългосрочната повърхност е кинематографична и локална: стъклени панели вместо балони, йерархично разгръщане на свързано знание, време като навигируемо измерение, амбиентно присъствие вместо транзакционен чат. Проектирано за уеб и локална употреба сега — със същия пространствен език, предназначен да се разшири в XR.</p>
+    <div class="hero-media">
+      <video controls playsinline preload="metadata">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p>Sci-Fi приложение в строгия смисъл: интерфейсът, за който ти казваха, че принадлежи на филмите, работи на машина, която никога не трябва да се обажда вкъщи.</p>
+    </div>
+    <div data-lang-block="es" hidden>
+    <p><strong>Knowledge Graph</strong> es una interfaz espacial privada para memoria y conocimiento. Conversaciones, fotos y notas de voz viven como elementos flotantes en un lienzo infinito de tiempo. Desplázate para moverte por días y meses. Habla para consultar o añadir. Todo corre en local en tu propia máquina.</p>
+    <div class="callout">Soberanía primero: memoria que posees, modelos que ejecutas, herramientas que te responden — públicas solo por elección.</div>
+    <h2>Qué es</h2>
+    <ul>
+      <li><strong>UI espacial</strong> — lienzo infinito Three.js con capas de tiempo; pan, zoom y scroll a través de la memoria</li>
+      <li><strong>Inteligencia local</strong> — LLM en dispositivo, visión, Whisper, embeddings y reranking en Apple Silicon</li>
+      <li><strong>Grafo vivo</strong> — entidades y relaciones extraídas de conversaciones, fotos y voz</li>
+      <li><strong>Imágenes ricas</strong> — EXIF, geocodificación inversa, rostros y descripciones de visión local se convierten en nodos del grafo</li>
+      <li><strong>Voz primero</strong> — el habla entra en el mismo bucle de conocimiento, totalmente offline</li>
+    </ul>
+    <div class="hero-media">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial / AR view" width="1792" height="1008">
+    </div>
+    <h2>Dirección</h2>
+    <p>La superficie a largo plazo es cinematográfica y local: paneles de cristal en lugar de burbujas, expansión jerárquica del conocimiento relacionado, el tiempo como dimensión navegable, presencia ambiental en lugar de chat transaccional. Diseñado para web y uso local ahora — con el mismo lenguaje espacial pensado para extenderse a XR.</p>
+    <div class="hero-media">
+      <video controls playsinline preload="metadata">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p>Una app Sci-Fi en sentido estricto: la interfaz que te dijeron que pertenecía a las películas, corriendo en una máquina que nunca tiene que llamar a casa.</p>
+    </div>
+    <div data-lang-block="de" hidden>
+    <p><strong>Knowledge Graph</strong> ist eine private räumliche Oberfläche für Erinnerung und Wissen. Gespräche, Fotos und Sprachnotizen leben als schwebende Elemente auf einer unendlichen Zeit-Leinwand. Scrollen, um durch Tage und Monate zu gehen. Sprechen, um abzufragen oder hinzuzufügen. Alles läuft lokal auf deiner eigenen Maschine.</p>
+    <div class="callout">Souveränität zuerst: Erinnerung, die dir gehört, Modelle, die du betreibst, Werkzeuge, die dir antworten — öffentlich nur nach Wahl.</div>
+    <h2>Was es ist</h2>
+    <ul>
+      <li><strong>Räumliche UI</strong> — unendliche Three.js-Leinwand mit Zeitschichten; pan, zoom und scroll durch Erinnerung</li>
+      <li><strong>Lokale Intelligenz</strong> — On-Device-LLM, Vision, Whisper, Embeddings und Reranking auf Apple Silicon</li>
+      <li><strong>Lebender Graph</strong> — Entitäten und Beziehungen aus Gesprächen, Fotos und Stimme extrahiert</li>
+      <li><strong>Reiche Bilder</strong> — EXIF, Reverse Geocoding, Gesichter und lokale Vision-Beschreibungen werden Graph-Knoten</li>
+      <li><strong>Voice-first</strong> — Sprache tritt in dieselbe Wissensschleife ein, vollständig offline</li>
+    </ul>
+    <div class="hero-media">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial / AR view" width="1792" height="1008">
+    </div>
+    <h2>Richtung</h2>
+    <p>Die langfristige Oberfläche ist filmisch und lokal: glasige Panels statt Bubbles, hierarchische Erweiterung verwandten Wissens, Zeit als navigierbare Dimension, ambient Presence statt transaktionalem Chat. Für Web und lokalen Einsatz jetzt designed — mit derselben räumlichen Sprache, die sich in XR erweitern soll.</p>
+    <div class="hero-media">
+      <video controls playsinline preload="metadata">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p>Eine Sci-Fi-App im engen Sinn: die Oberfläche, von der man sagte, sie gehöre in Filme, läuft auf einer Maschine, die nie nach Hause telefonieren muss.</p>
+    </div>
     <div class="links">
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
       <a href="../index.html#work">Back to work</a>
