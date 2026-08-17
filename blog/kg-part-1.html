@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knowledge Graph, Part 1: The canvas and the stack — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory.">
+  <meta name="description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory, offline.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Knowledge Graph, Part 1: The canvas and the stack">
-  <meta property="og:description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory.">
+  <meta property="og:description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory, offline.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-1.html">
   <link rel="stylesheet" href="blog.css">
@@ -31,8 +31,9 @@
     <p>Lists and chat windows flatten life into sequence. A spatial surface lets the same day hold photos, notes, and later conversations without forcing them into a single scroll order. Zoom out for months; zoom in for an afternoon. The camera is the primary navigation, not a sidebar of folders.</p>
     <h2>Local by default — on 16GB shared</h2>
     <p>Models run on Metal. Whisper, vision, embeddings, the graph, Postgres, and the canvas all share one machine. There is no obligatory cloud ingest to make the product work — cloud is optional, not the path of least resistance.</p>
+    <p>The ultimate test for sovereignty is offline. Airplane mode. No Wi‑Fi. No fallback API. If the assistant still answers from weights on disk and data on disk, it is a local model in fact — not a thin client dressed up as “AI on your machine.” Anything that silently phones home when the cable is unplugged has already failed the test.</p>
     <p>The hard constraint is not “local in theory.” It is running the <em>entire</em> stack in about 16GB of shared memory: unified CPU and GPU memory on the same laptop, with the OS, browser, and app already taking their cut. LLM weights, Whisper, vision, and the live canvas compete for the same pool. That budget is why quantization, idle reclaim, and careful load order are product decisions — not optimization trivia.</p>
-    <div class="callout">One of the main challenges of this series is that sovereignty has a hard ceiling: the whole stack has to fit and stay usable in 16GB of shared memory. If it only works when a vendor’s API is up, it is not a private memory system.</div>
+    <div class="callout">One of the main challenges of this series is that sovereignty has a hard ceiling: the whole stack has to fit and stay usable in 16GB of shared memory — and keep working with the internet unplugged. If it only works when a vendor’s API is up, it is not a private memory system.</div>
     <h2>The pipeline</h2>
     <div class="pipeline">
       <p class="pipeline-title">Ingest path</p>
