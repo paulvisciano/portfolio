@@ -1,4 +1,4 @@
-/* Vercel Web Analytics - load on all blog pages */
+/* Vercel Web Analytics */
 (function () {
   var s = document.createElement('script');
   s.defer = true;
