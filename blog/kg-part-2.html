@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knowledge Graph, Part 2: Voice, mobile, and the queue — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Why voice needed a GPU watchdog, why chat had to live on the canvas, and the optimizations that made multi-client local AI survivable.">
+  <meta name="description" content="Why voice needed a GPU watchdog, why chat had to live on the canvas, and the optimizations that made multi-client local AI survivable on 16GB shared memory.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Knowledge Graph, Part 2: Voice, mobile, and the queue">
-  <meta property="og:description" content="Why voice needed a GPU watchdog, why chat had to live on the canvas, and the optimizations that made multi-client local AI survivable.">
+  <meta property="og:description" content="Why voice needed a GPU watchdog, why chat had to live on the canvas, and the optimizations that made multi-client local AI survivable on 16GB shared memory.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-2-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-2.html">
   <link rel="stylesheet" href="blog.css">
@@ -24,21 +24,21 @@
     <p class="series">Knowledge Graph · Field notes · Part 2 of 3</p>
     <p class="meta">Late July – early August 2026 · Contact with reality</p>
     <h1>Knowledge Graph, Part 2: Voice, mobile, and the queue</h1>
-    <p class="deck">Why voice needed a GPU watchdog, why chat had to live on the canvas, and the optimizations that made multi-client local AI survivable.</p>
+    <p class="deck">Why voice needed a GPU watchdog, why chat had to live on the canvas, and the optimizations that made multi-client local AI survivable on 16GB shared memory.</p>
     <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-2-hero.jpg" alt="Knowledge Graph Part 2 — voice, mobile, and the queue" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">The surface after chat and voice moved onto the canvas — not a sidebar bolted on.</figcaption></figure>
-    <p>Part 1 left a working canvas and a local stack. Part 2 is what happened when phones, microphones, and concurrent clients hit that stack at once — and what had to change so multi-client local AI stayed usable without abandoning sovereignty.</p>
+    <p>Part 1 left a working canvas under a hard ceiling: the entire stack in about 16GB of shared memory. Part 2 is what happened when phones, microphones, and concurrent clients hit that budget at once — and what had to change so multi-client local AI stayed usable without abandoning the constraint.</p>
     <h2>Voice as a first-class input</h2>
-    <p>Whisper on-device is only the start. Long sessions, overlapping capture, and GPU contention meant a watchdog had to own model lifecycle: load, idle timeout, and reclaim. Without it, the machine felt like a shared lab resource that could lock under load.</p>
+    <p>Whisper on-device is only the start. Long sessions, overlapping capture, and GPU contention meant a watchdog had to own model lifecycle: load, idle timeout, and reclaim. Without it, the 16GB machine felt like a shared lab resource that could lock under load — one client’s Whisper session starving the canvas for everyone else.</p>
     <h2>Chat on the canvas</h2>
     <p>A separate chat window fought the spatial metaphor. Moving conversation onto the same surface as photos and notes kept one mental model: memory is a place you travel through, and talk is just another plane in that place.</p>
-    <div class="callout">The queue is invisible when it works — jobs for vision, speech, and graph extract land, complete, and free the GPU for the next client.</div>
+    <div class="callout">The queue is invisible when it works — jobs for vision, speech, and graph extract land, complete, and free scarce Metal memory for the next client.</div>
     <h2>Multi-client survival</h2>
     <ul>
-      <li>Job queue with clear ownership of Metal resources</li>
+      <li>Job queue with clear ownership of Metal resources inside the 16GB budget</li>
       <li>API paths that tolerate tablet + phone at the same time</li>
       <li>Processing UI that reports progress without blocking navigation</li>
     </ul>
-    <p>Part 3 is where the surface became intentional: design tokens, component extraction, and better answers from the graph so the place you travel through actually earns trust.</p>
+    <p>Part 3 is where the surface became intentional: design tokens, component extraction, and better answers from the graph so the place you travel through actually earns trust — still on the same machine.</p>
     <div class="series-nav">
       <a href="kg-part-1.html"><span>Part 1</span>The canvas and the stack</a>
       <a href="kg-part-2.html" class="current"><span>Part 2</span>Voice, mobile, and the queue</a>
