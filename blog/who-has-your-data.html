@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Who has your data? — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="OpenClaw started with one key. Its wizard still asks for one — but the full feature set can hand your data to a dozen companies. Every API key you paste is a pipe, and the math of privacy is unforgiving once you count them.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Who has your data?">
+  <meta property="og:description" content="OpenClaw started with one key. Its wizard still asks for one — but the full feature set can hand your data to a dozen companies. Every API key you paste is a pipe, and the math of privacy is unforgiving once you count them.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/reclaim-hero.jpg">
+  <link rel="canonical" href="https://paulvisciano.vercel.app/blog/who-has-your-data.html">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <article>
+    <p class="series">Knowledge Graph · Companion essay</p>
+    <h1>Who has your data?</h1>
+    <p class="deck">OpenClaw started with one key. Its wizard still asks for just one to get going — but the moment you want memory, search, voice, vision, or a messaging channel, the count climbs fast. Every API key you paste is a pipe to a different company, and the math of privacy is unforgiving once you count them.</p>
+    <p>OpenClaw is the easiest way to watch this happen, because OpenClaw is where it actually happened. The project started as Clawdbot — a personal weekend build that could read files, run shell commands, and called one model, Claude, to do anything more interesting than <code>ls</code>. One key, one company, one pipe. The pitch was clean: the agent runs on your machine, it does things on your machine, and the only thing leaving the laptop is the prompt you typed and the reply that came back.</p>
+    <p>That is not what the setup screen looks like anymore. The wizard itself still only requires one key to start — the model key — but it then offers optional steps for web search and messaging channels, and the moment you say yes to any of them the prompts appear. Beyond the wizard, the fully-configured product can ask for a memory key to index your files, a web fetch key to read pages, a speech key for voice, a vision key for images. The messaging step alone offers ten channels: Slack, Discord, Telegram, WhatsApp, iMessage, Microsoft Teams, Feishu, QQ Bot, Signal, and Google Chat, each wanting its own bot token or login. The single door Clawdbot opened turned into a hallway of doors, and the onboarding flow treats every one of them as a reasonable install step.</p>
+    <p>Each key is a contract, and the contract is not just “let the agent call the API.” It is “let the provider see the traffic that flows through the API.” Your prompts, your transcripts, your images, your schedule, your friends’ phone numbers — whatever the key unlocks — now crosses a wire you do not control and lands on infrastructure you do not own. This is the part nobody puts on the landing page, so it is worth walking it key by key.</p>
+    <h2>You are already doing this</h2>
+    <p>Before we count the agent keys, it is worth admitting what the count is competing with. You are already giving your data to all of these companies, every day, for free:</p>
+    <ul>
+      <li><strong>WhatsApp → Meta → Mark Zuckerberg.</strong> Every message, every contact, every group you are in, every photo you send, every location you share. WhatsApp’s metadata has fed Facebook’s ad systems for years; the <a class="ext" href="https://noyb.eu/en/whatsapp-getting-ads-using-personal-data-instagram-and-facebook" target="_blank" rel="noopener">same data now informs ads on Instagram and Facebook</a> through Accounts Center. You are not Meta’s customer. You are the inventory.</li>
+      <li><strong>Instagram, same.</strong> Who you look at, how long you look, what you save, what you almost buy. Meta holds nearly all of it and sells predictions about you to whoever bids.</li>
+      <li><strong>Google is reading your email and listening to your phone.</strong> Gmail scans message content to shape ad and product profiles; Google Assistant and Android voice recognition ship your spoken queries to Google servers for transcription. Search, Maps, and Android hand them your location continuously.</li>
+      <li><strong>Apple is listening too.</strong> Siri voice requests are sent to Apple for processing; the company’s own contractors have <a class="ext" href="https://www.theguardian.com/technology/2019/jul/26/apple-contractors-listen-to-your-siri-recordings" target="_blank" rel="noopener">listened to recordings to grade the transcripts</a>, and the legal fight over whether Siri accidentally recorded you is still live.</li>
+      <li><strong>Amazon is listening.</strong> Every “Alexa” wake word — and a lot of near-misses — ships audio to AWS for processing. The recordings stay on Amazon’s servers unless you dig into settings to delete them.</li>
+      <li><strong>The government is tracking where you go.</strong> In the U.S., cell-site location data and license-plate readers mean your movements are reconstructable without a warrant in most states. <a class="ext" href="https://www.ftc.gov/news-events/news/press-releases/2024/01/ftc-bans-inmarket-america-selling-precise-location-data" target="_blank" rel="noopener">The FTC has formally found</a> that major brokers sold precise location data that tracked people to sensitive places — clinics, places of worship, homes.</li>
+    </ul>
+    <p>The point is not that the agent keys are the first doors to open. The point is that they are the <em>next</em> ones, and you are opening them inside a life that is already being recorded by a dozen other companies you cannot easily leave. Each new key does not create the privacy problem. It adds another line to a ledger that was already long — and hands a piece of your life to one more company that has no reason to delete it.</p>
+    <h2>Count the keys</h2>
+    <p>Privacy is not a switch; it is a ledger. The honest way to read a product’s privacy posture is to count the keys it can ask for and ask, for each one, what flows across it and who is on the other end. Here is that ledger for a present-day OpenClaw install — the wizard only forces the first row, but every row below it is one settings screen away:</p>
+    <table>
+      <thead>
+        <tr><th>Key you paste</th><th>What you are actually sending</th><th>Who ends up with it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>OPENAI_API_KEY</code> / <code>ANTHROPIC_API_KEY</code> / <code>XAI_API_KEY</code> / <code>GEMINI_API_KEY</code></td><td>“Summarize my sister’s divorce email”, the contents of that email, the reply, and every follow-up</td><td>OpenAI (U.S., Microsoft-backed), Anthropic (U.S., Amazon-backed), xAI (U.S., Elon Musk), or Google (U.S.)</td></tr>
+        <tr><td><code>OPENAI_API_KEY</code> / <code>VOYAGE_API_KEY</code> (memory)</td><td>Every chunk of your notes, files, and conversations the agent indexes for memory — your diary, your tax notes, your health queries</td><td>OpenAI or Voyage AI (U.S.)</td></tr>
+        <tr><td><code>BRAVE_API_KEY</code> / <code>TAVILY_API_KEY</code> / <code>EXA_API_KEY</code></td><td>“how do I hide assets from my ex”, every web query the agent runs on your behalf, plus your intent</td><td>Brave (U.S.), Tavily (U.S.), or Exa (U.S.)</td></tr>
+        <tr><td><code>FIRECRAWL_API_KEY</code></td><td>Every URL you ask it to read, and the full text of the pages fetched — your bank statements, your medical portal, your lawyer’s site</td><td>Firecrawl (U.S.)</td></tr>
+        <tr><td><code>DEEPGRAM_API_KEY</code> / <code>ELEVENLABS_API_KEY</code></td><td>Raw audio of your voice, the transcribed text, and the replies spoken back — the way you sound, what you said at 2 a.m.</td><td>Deepgram (U.S.) or ElevenLabs (U.S.)</td></tr>
+        <tr><td><code>GEMINI_API_KEY</code> / <code>XAI_API_KEY</code> / <code>OPENAI_API_KEY</code> (vision)</td><td>Every image you ask the agent to see — the photo of your passport, the screenshot of your medical results, your kid’s face</td><td>Google, xAI, or OpenAI</td></tr>
+        <tr><td>Slack / Discord / Telegram / WhatsApp / iMessage / Teams bot token</td><td>Your messages, your contacts, the channels you read and write</td><td>Slack (U.S., Salesforce), Discord (U.S.), Telegram (UAE/Russia-adjacent), Meta (U.S.), Apple (U.S.), or Microsoft (U.S.)</td></tr>
+      </tbody>
+    </table>
+    <p>Seven capabilities, each with its own key — and depending on which provider you pick for each, that is potentially a dozen different companies holding your data. The wizard only forces the first one; the rest are optional, but they are all one settings screen away, and the product does not work the same without them. None of them individually betrayed you. But the union of those datasets, held across a dozen houses you do not live in, is a more complete portrait of your life than any one of them could build alone — and you handed every piece over yourself, one paste at a time. Say goodbye to your privacy. It left through the doors you opened to make the agent convenient.</p>
+    <h2>U.S. vs Chinese — the model you talk to is owned by someone</h2>
+    <p>There is a second question hiding inside the ledger that the agent world is not honest about: <em>which country owns the model you are talking to?</em> The default assumption is that “the cloud” is a neutral place. It is not. The model is a piece of software, and the software has a home jurisdiction, and the jurisdiction has a government.</p>
+    <p>On the U.S. side, the model keys you are likely to paste route your prompts to OpenAI (Microsoft is its largest backer), Anthropic (Amazon is its largest backer), Google (Gemini), or xAI (Elon Musk). Your prompts sit on U.S. infrastructure, subject to U.S. legal process — a <a class="ext" href="https://www.aclu.org/documents/section-702-surveillance" target="_blank" rel="noopener">Section 702</a> query, a national security letter, a subpoena — and the model provider is legally allowed to be asked about it. On the Chinese side, if you reach for a cheaper or faster model, you are increasingly routing through providers whose parent companies are answerable to Beijing: DeepSeek is run out of Hangzhou, Qwen is Alibaba, GLM/Zhipu is backed by the state-linked Zhongguancun fund, Moonshot/Kimi is Moonshot AI. The prompts, the transcripts, and the indexed memory of your files land on infrastructure inside a jurisdiction where the <a class="ext" href="https://www.reuters.com/world/china/china-issues-new-data-security-rules-2025-09-30/" target="_blank" rel="noopener">data security law and the PIPL</a> give the state broad access to data held by domestic companies.</p>
+    <p>The point is not that one side is clean and the other is dirty. Both jurisdictions have surveillance regimes; both have legal mechanisms to compel disclosure. The point is that “I am talking to my local agent” stops being a meaningful claim the moment your prompt leaves the laptop and lands on a server whose government you did not choose. The country the model lives in is part of who has your data.</p>
+    <p>The punchline is that it did not used to be this many doors. Clawdbot shipped with one key because it did one thing — talk to a model. Every key since then was added to give the agent a feature: memory that works, search that works, voice that works, channels that work. The features are real. So is the cost. Each key you add to unlock a capability also opens a pipe to a new company — and a new jurisdiction — and the pipe stays open whether or not you are using the feature that day.</p>
+    <div class="callout">An agent that can ask for a key for every capability is not a local agent. It is a remote one with a local UI — and by OpenClaw’s present-day key count, it is a dozen remotes, in two countries, wearing one.</div>
+    <h2>Why local-by-default inverts this</h2>
+    <p>The Knowledge Graph stack is built on a different default: if a capability can run on the machine, it runs on the machine. Speech recognition runs on your own chip. Vision runs on your own chip. The memory index runs on your own chip. The graph and the database live on your own disk. No key leaves the laptop to do any of that work, because there is no API to call — the model is a file on your disk, the storage is a file you own.</p>
+    <p>The practical ceiling for that default is the 16GB of shared memory most laptops actually have, which is why <a href="kg-part-1.html">Part 1</a> spends its first real section on the budget. Local is not free. It costs memory, it costs careful sequencing of what loads first, it costs the discipline to not reach for an API the moment a task gets hard. The payoff is that the keys column in the table above stays empty by default — not because the provider refused to give you one, but because there was no reason to ask.</p>
+    <h2>The honest position on keys</h2>
+    <p>This is not a religion. There are capabilities you will want that genuinely do not run on a 16GB laptop yet, and for those a key is a reasonable trade — eyes open, one capability at a time, never as the default path. The position worth defending is narrower and more useful:</p>
+    <ul>
+      <li><strong>Default to local.</strong> If the model fits, it runs here. The key is the exception, not the install step. Clawdbot shipped with one key because it did one thing; OpenClaw grew seven capabilities, each with its own key, and the count only stays at one if you refuse every optional step. Default-local keeps the count at zero until you actually need a capability that does not fit on the machine.</li>
+      <li><strong>One key, one capability, one company.</strong> Never bundle. The moment a product can ask for a dozen keys across as many companies to unlock its full feature set, it is a cloud product with a local costume — and the costume is thin.</li>
+      <li><strong>Count the ledger, not the promises.</strong> Privacy is not what the privacy policy says. It is the set of pipes your data actually flows through. Read the table, not the marketing.</li>
+    </ul>
+    <p>The Knowledge Graph series is, among other things, an attempt to build a personal agent that does not require you to sign away the personal layer to make it work. <a href="utility-vs-personal-ai.html">The split between utility and personal AI</a> matters here too: a utility agent reading your shell is one exposure profile, a personal agent reading your relationships is a much heavier one, and the keys you paste decide which one you actually bought.</p>
+    <p>Reclaiming your data is not a single act. It is the refusal, repeated every time a settings screen appears, to open a new door you do not need. <a href="reclaim-your-data.html">The longer argument for that refusal is here.</a></p>
+    <div class="links">
+      <a href="kg-part-1.html">KG series · Part 1</a>
+      <a href="utility-vs-personal-ai.html">Utility vs Personal AI</a>
+      <a href="reclaim-your-data.html">Reclaim your data</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="musical-cubes.html">Musical Cubes →</a>
+      <a href="reclaim-your-data.html">Reclaim your data →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.vercel.app</a>
+  </footer>
+</body>
+</html>
