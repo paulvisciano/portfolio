@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knowledge Graph, Part 1: The canvas and the stack — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Cut over to an infinite canvas, make time a depth axis, and run models that never leave the machine.">
+  <meta name="description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Knowledge Graph, Part 1: The canvas and the stack">
-  <meta property="og:description" content="Cut over to an infinite canvas, make time a depth axis, and run models that never leave the machine.">
+  <meta property="og:description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.vercel.app/blog/kg-part-1.html">
   <link rel="stylesheet" href="blog.css">
@@ -24,14 +24,15 @@
     <p class="series">Knowledge Graph · Field notes · Part 1 of 3</p>
     <p class="meta">July 2026 · The canvas and the stack</p>
     <h1>Knowledge Graph, Part 1: The canvas and the stack</h1>
-    <p class="deck">Cut over to an infinite canvas, make time a depth axis, and run models that never leave the machine.</p>
+    <p class="deck">Cut over to an infinite canvas, make time a depth axis, and run the whole stack on 16GB of shared memory — models that never leave the machine.</p>
     <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg" alt="Knowledge Graph Part 1 — infinite canvas, time as depth" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">Time as depth — photos and notes as planes you travel through, not a chat log.</figcaption></figure>
     <p>Knowledge Graph started as a bet that memory should be a place, not a thread. The first solid version of that bet was a Three.js infinite canvas with time as a navigable dimension, local models for vision and speech, and a pipeline that kept originals on hardware you own.</p>
     <h2>Why a canvas</h2>
-    <p>Lists and chat windows flatten life into sequence. A spatial surface lets the same day hold photos, notes, and later conversations without forcing them into a single scroll order. Zoom out for months; zoom in for a afternoon. The camera is the primary navigation, not a sidebar of folders.</p>
-    <h2>Local by default</h2>
-    <p>Models run on Metal. Whisper, vision, embeddings, and the graph stay on the machine. USB transfer preserves EXIF. There is no obligatory cloud ingest to make the product work — cloud is optional, not the path of least resistance.</p>
-    <div class="callout">Sovereignty is the product constraint: if it only works when a vendor’s API is up, it is not a private memory system.</div>
+    <p>Lists and chat windows flatten life into sequence. A spatial surface lets the same day hold photos, notes, and later conversations without forcing them into a single scroll order. Zoom out for months; zoom in for an afternoon. The camera is the primary navigation, not a sidebar of folders.</p>
+    <h2>Local by default — on 16GB shared</h2>
+    <p>Models run on Metal. Whisper, vision, embeddings, the graph, Postgres, and the canvas all share one machine. There is no obligatory cloud ingest to make the product work — cloud is optional, not the path of least resistance.</p>
+    <p>The hard constraint is not “local in theory.” It is running the <em>entire</em> stack in about 16GB of shared memory: unified CPU and GPU memory on the same laptop, with the OS, browser, and app already taking their cut. LLM weights, Whisper, vision, and the live canvas compete for the same pool. That budget is why quantization, idle reclaim, and careful load order are product decisions — not optimization trivia.</p>
+    <div class="callout">One of the main challenges of this series is that sovereignty has a hard ceiling: the whole stack has to fit and stay usable in 16GB of shared memory. If it only works when a vendor’s API is up, it is not a private memory system.</div>
     <h2>The pipeline</h2>
     <div class="pipeline">
       <p class="pipeline-title">Ingest path</p>
@@ -43,15 +44,7 @@
         <div class="pipe-step"><div class="n">03</div><div class="t">Canvas</div><div class="d">Planes in time, queryable memory</div></div>
       </div>
     </div>
-    <h2>Stack at the cutover</h2>
-    <ul class="lib-list">
-      <li><a href="https://github.com/mrdoob/three.js">three.js</a><span>Infinite canvas and node planes</span></li>
-      <li><a href="https://github.com/sveltejs/kit">SvelteKit</a><span>UI shell and reactive state</span></li>
-      <li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> · Whisper<span>Local LLM and speech</span></li>
-      <li><a href="https://github.com/HKUDS/LightRAG">LightRAG</a><span>Graph extraction and retrieval</span></li>
-      <li><a href="https://github.com/tiangolo/fastapi">FastAPI</a> · Postgres<span>API and data plane</span></li>
-    </ul>
-    <p>Part 2 picks up where contact with phones, microphones, and concurrent clients forced the architecture to grow up — without abandoning the local constraint.</p>
+    <p>Part 2 picks up where phones, microphones, and concurrent clients hit that 16GB budget at once — and what had to change so multi-client local AI stayed usable without abandoning the constraint.</p>
     <div class="series-nav">
       <a href="kg-part-1.html" class="current"><span>Part 1</span>The canvas and the stack</a>
       <a href="kg-part-2.html"><span>Part 2</span>Voice, mobile, and the queue</a>
