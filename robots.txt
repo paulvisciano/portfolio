@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paulvisciano.vercel.app/sitemap.xml
+Sitemap: https://paulvisciano.com/sitemap.xml
