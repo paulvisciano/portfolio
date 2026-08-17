@@ -7,37 +7,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://paulvisciano.com/blog/they-can-pull-the-plug</loc>
+    <loc>https://paulvisciano.com/blog/bonsai</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://paulvisciano.com/blog/too-dangerous-for-you</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://paulvisciano.com/blog/utility-vs-personal-ai</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://paulvisciano.com/blog/who-has-your-data</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://paulvisciano.com/blog/who-owns-the-answer</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://paulvisciano.com/blog/reclaim-your-data</loc>
+    <loc>https://paulvisciano.com/blog/grok-bot</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -61,19 +37,37 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://paulvisciano.com/blog/bonsai</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://paulvisciano.com/blog/grok-bot</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://paulvisciano.com/blog/knowledge-graph</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/musical-cubes</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/reclaim-your-data</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/they-can-pull-the-plug</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/too-dangerous-for-you</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/utility-vs-personal-ai</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -85,7 +79,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://paulvisciano.com/blog/musical-cubes</loc>
+    <loc>https://paulvisciano.com/blog/who-has-your-data</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/who-owns-the-answer</loc>
     <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
