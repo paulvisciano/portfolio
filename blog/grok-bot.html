@@ -46,6 +46,7 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
 .lang-switch button:hover{color:#fff}
 .lang-switch button.active{color:#fff;border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.06)}
 @media(max-width:720px){.lang-switch{top:12px;right:auto;left:12px}}
+[data-lang-block][hidden]{display:none !important}
   </style>
 </head>
 <body>
@@ -66,20 +67,17 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
     </div>
   </div>
   <article>
-    <p class="meta">Sci-Fi Labs · August 2026 · Agent systems</p>
+    <p class="meta" data-i18n="blog_meta_grok">Sci-Fi Labs · August 2026 · Agent systems</p>
     <h1 data-i18n="blog_title_grok">Grok Bot</h1>
     <p class="deck" data-i18n="blog_desc_grok">Not a chatbot. A teammate with its own computer — that signs in, works, and comes back with the finished thing.</p>
 
     <div class="hero-media">
       <img src="https://pbs.twimg.com/amplify_video_thumb/2087221157787525120/img/n9OrR6nUrxVZL4oY.jpg" alt="Grok Bot — AI teammates that do real work" width="1280" height="720">
     </div>
-
+    <div data-lang-block="en">
     <p>On August 11, 2026, xAI opened the early beta of <strong>Grok Bot</strong> — branded simply as “a new kind of colleague.” The pitch is blunt: bots are AI teammates you give real work to. They sign into your tools, use them the way you would, and return finished results.</p>
-
     <p>That is a different product category than Grok the conversational model. Grok answers. Grok Bot <em>executes</em>. It runs on its own virtual machine, keeps context across sessions, and can collaborate with other bots you spin up for specialized roles.</p>
-
     <div class="callout">Chatbots need parameters to sound smart. Agents need deep reinforcement learning to finish multi-step work without falling apart halfway through.</div>
-
     <h2>What it actually does</h2>
     <ul>
       <li><strong>Tool-native work</strong> — sign in once; the bot operates inside the same apps and sites you already use, including tools without clean APIs</li>
@@ -87,21 +85,15 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
       <li><strong>Taught routines</strong> — demonstrate a workflow once; the bot saves it and reuses it on schedule or on demand</li>
       <li><strong>Always on</strong> — work continues when your laptop is closed; desktop and iOS clients are the primary surfaces in beta</li>
     </ul>
-
     <p>Early reports already read less like demos and more like desk coverage: calendar triage and restaurant reservations while walking through a parking lot; small “teams” of specialized bots for web design, short-form content, scripts, and an orchestrator that keeps them aligned.</p>
-
     <h2>Who can use it</h2>
     <p>Access is gated in the early beta. Public messaging points to <strong>SuperGrok Heavy</strong> and eligible <strong>Cursor Ultra / Teams Premium</strong> subscribers, with downloads from <a href="https://x.ai/bot">x.ai/bot</a>. Elon Musk said the beta will widen after basic early issues are fixed — timed alongside the Grok 4.6 release window.</p>
-
     <p>That exclusivity is temporary product hygiene, not the interesting part. The interesting part is the shift: from “talk to a model” to “assign work to a system that already has a computer.”</p>
-
     <h2>Why it matters for Sci-Fi Labs</h2>
     <p>The longer bet at Sci-Fi Labs is sovereignty and spatial products — memory you own, models you run, tools that answer to you. Grok Bot is not a local, sovereign stack. It is a commercial agent product with cloud-side compute and plan gating.</p>
     <p>Still, it sharpens the same design question every spatial app has to answer: what does the interface look like when the AI stops being a chat window and starts being a colleague?</p>
     <p>Knowledge Graph was built as a private spatial canvas for memory — local models, infinite time layers, no rented chat UI. Grok Bot is the inverse surface: commercial agents operating your existing tool stack at industrial scale. Both reject the bubble transcript as the only form of collaboration. One keeps the data home. The other keeps the work moving when you are not at the keyboard.</p>
-
     <div class="callout">Science fiction always had the briefing room full of specialists. The new part is that the specialists can be software — and they can still talk to each other.</div>
-
     <h2>What to watch</h2>
     <p>Three signals matter more than the launch post:</p>
     <ul>
@@ -109,9 +101,95 @@ footer{max-width:720px;margin:0 auto;padding:0 1.25rem 3rem;font-size:0.8rem;col
       <li><strong>How teams of bots coordinate</strong> — orchestration without turning into a prompt spaghetti of competing agents</li>
       <li><strong>Where the beta widens</strong> — who gets access next, and whether agentic behavior becomes table stakes for frontier models rather than a premium SKU</li>
     </ul>
-
     <p>Grok Bot is early. It is also a clear marker that the industry is moving past “better answers” and into “finished work.” For builders who already treat AI as a collaborator rather than a novelty, that is the only direction that makes sense.</p>
-
+    </div>
+    <div data-lang-block="bg" hidden>
+    <p>На 11 август 2026 г. xAI отвори ранния бета на <strong>Grok Bot</strong> — брандиран просто като „нов вид колега“. Предложението е директно: ботовете са AI съотборници, на които даваш реална работа. Влизат в твоите инструменти, ползват ги както би ги ползвал ти и връщат готови резултати.</p>
+    <p>Това е различна продуктова категория от Grok като разговорен модел. Grok отговаря. Grok Bot <em>изпълнява</em>. Работи на собствена виртуална машина, пази контекст между сесиите и може да си сътрудничи с други ботове, които пускаш за специализирани роли.</p>
+    <div class="callout">Чатботовете имат нужда от параметри, за да звучат умно. Агентите имат нужда от deep reinforcement learning, за да довършват многостъпкова работа, без да се разпаднат по средата.</div>
+    <h2>Какво реално прави</h2>
+    <ul>
+      <li><strong>Работа нативно в инструменти</strong> — влизаш веднъж; ботът работи в същите приложения и сайтове, които вече ползваш, включително без чисти API</li>
+      <li><strong>Паралелни съотборници</strong> — пускаш няколко бота наведнъж (outbound продажби, research, писане, оркестрация) и предаваш работа между тях в нишки</li>
+      <li><strong>Научени рутини</strong> — демонстрираш workflow веднъж; ботът го запазва и го ползва по график или при поискване</li>
+      <li><strong>Винаги включен</strong> — работата продължава, когато лаптопът е затворен; desktop и iOS клиентите са основните повърхности в бета</li>
+    </ul>
+    <p>Ранните доклади вече звучат по-малко като демота и повече като покритие на бюро: triage на календар и резервации на ресторанти, докато ходиш през паркинг; малки „екипи“ от специализирани ботове за уеб дизайн, short-form съдържание, скриптове и оркестратор, който ги държи подравнени.</p>
+    <h2>Кой може да го ползва</h2>
+    <p>Достъпът в ранния бета е ограничен. Публичните съобщения сочат към <strong>SuperGrok Heavy</strong> и допустими абонати на <strong>Cursor Ultra / Teams Premium</strong>, с изтегляния от <a href="https://x.ai/bot">x.ai/bot</a>. Илон Мъск каза, че бетата ще се разшири след като се оправят основните ранни проблеми — във времевия прозорец около Grok 4.6.</p>
+    <p>Тази изключителност е временна продуктова хигиена, не интересната част. Интересната част е смяната: от „говори с модел“ към „възложи работа на система, която вече има компютър“.</p>
+    <h2>Защо има значение за Sci-Fi Labs</h2>
+    <p>По-дългият залог в Sci-Fi Labs е суверенитет и пространствени продукти — памет, която притежаваш, модели, които управляваш, инструменти, които ти отговарят. Grok Bot не е локален, суверенен стек. Той е търговски агентен продукт с compute в облака и gating по план.</p>
+    <p>Все пак изостря същия дизайн въпрос, на който всяко пространствено приложение трябва да отговори: как изглежда интерфейсът, когато AI спре да е чат прозорец и започне да е колега?</p>
+    <p>Knowledge Graph е построен като частно пространствено платно за памет — локални модели, безкрайни слоеве време, без наемен чат UI. Grok Bot е обратната повърхност: търговски агенти, които оперират съществуващия ти tool stack в индустриален мащаб. И двете отхвърлят bubble транскрипта като единствена форма на сътрудничество. Едното държи данните вкъщи. Другото държи работата в движение, когато не си на клавиатурата.</p>
+    <div class="callout">Научната фантастика винаги е имала briefing room, пълен със специалисти. Новото е, че специалистите могат да са софтуер — и все още могат да си говорят помежду си.</div>
+    <h2>Какво да следим</h2>
+    <p>Три сигнала имат значение повече от launch поста:</p>
+    <ul>
+      <li><strong>Надеждност на дълги workflow-и</strong> — дали многочасови задачи завършват чисто без babysitting</li>
+      <li><strong>Как се координират екипи от ботове</strong> — оркестрация без да се превърне в prompt spaghetti от конкуриращи се агенти</li>
+      <li><strong>Къде се разширява бетата</strong> — кой получава достъп следващ, и дали агентното поведение става table stakes за frontier модели, а не premium SKU</li>
+    </ul>
+    <p>Grok Bot е ранен. Той е и ясен маркер, че индустрията минава отвъд „по-добри отговори“ към „готова работа“. За билдъри, които вече третират AI като сътрудник, а не като новина, това е единствената посока, която има смисъл.</p>
+    </div>
+    <div data-lang-block="es" hidden>
+    <p>El 11 de agosto de 2026, xAI abrió la beta temprana de <strong>Grok Bot</strong> — presentada simplemente como “un nuevo tipo de colega.” El pitch es directo: los bots son compañeros de IA a los que das trabajo real. Entran en tus herramientas, las usan como lo harías tú y devuelven resultados terminados.</p>
+    <p>Esa es una categoría de producto distinta de Grok el modelo conversacional. Grok responde. Grok Bot <em>ejecuta</em>. Corre en su propia máquina virtual, mantiene contexto entre sesiones y puede colaborar con otros bots que lanzas para roles especializados.</p>
+    <div class="callout">Los chatbots necesitan parámetros para sonar inteligentes. Los agentes necesitan deep reinforcement learning para terminar trabajo de varios pasos sin desmoronarse a mitad de camino.</div>
+    <h2>Qué hace de verdad</h2>
+    <ul>
+      <li><strong>Trabajo nativo en herramientas</strong> — inicia sesión una vez; el bot opera dentro de las mismas apps y sitios que ya usas, incluidas herramientas sin APIs limpias</li>
+      <li><strong>Compañeros en paralelo</strong> — ejecuta varios bots a la vez (outbound de ventas, research, escritura, orquestación) y pasa trabajo entre ellos en hilos</li>
+      <li><strong>Rutinas enseñadas</strong> — demuestras un workflow una vez; el bot lo guarda y lo reutiliza con horario o bajo demanda</li>
+      <li><strong>Siempre activo</strong> — el trabajo continúa cuando cierras el portátil; clientes de escritorio e iOS son las superficies principales en beta</li>
+    </ul>
+    <p>Los primeros reportes ya suenan menos a demos y más a cobertura de escritorio: triage de calendario y reservas de restaurante mientras caminas por un parking; pequeños “equipos” de bots especializados en diseño web, contenido short-form, scripts y un orquestador que los mantiene alineados.</p>
+    <h2>Quién puede usarlo</h2>
+    <p>El acceso está restringido en la beta temprana. Los mensajes públicos apuntan a <strong>SuperGrok Heavy</strong> y suscriptores elegibles de <strong>Cursor Ultra / Teams Premium</strong>, con descargas desde <a href="https://x.ai/bot">x.ai/bot</a>. Elon Musk dijo que la beta se ampliará cuando se arreglen los problemas tempranos básicos — alineado con la ventana de lanzamiento de Grok 4.6.</p>
+    <p>Esa exclusividad es higiene de producto temporal, no la parte interesante. Lo interesante es el cambio: de “hablar con un modelo” a “asignar trabajo a un sistema que ya tiene un ordenador.”</p>
+    <h2>Por qué importa para Sci-Fi Labs</h2>
+    <p>La apuesta más larga en Sci-Fi Labs es soberanía y productos espaciales — memoria que posees, modelos que ejecutas, herramientas que te responden. Grok Bot no es un stack local y soberano. Es un producto de agentes comercial con compute en la nube y gating por plan.</p>
+    <p>Aun así, afila la misma pregunta de diseño que toda app espacial debe responder: ¿cómo se ve la interfaz cuando la IA deja de ser una ventana de chat y empieza a ser un colega?</p>
+    <p>Knowledge Graph se construyó como un lienzo espacial privado para la memoria — modelos locales, capas de tiempo infinitas, sin UI de chat alquilada. Grok Bot es la superficie inversa: agentes comerciales operando tu stack de herramientas existente a escala industrial. Ambos rechazan el transcript de burbujas como única forma de colaboración. Uno mantiene los datos en casa. El otro mantiene el trabajo en movimiento cuando no estás en el teclado.</p>
+    <div class="callout">La ciencia ficción siempre tuvo la sala de briefing llena de especialistas. Lo nuevo es que los especialistas pueden ser software — y aún pueden hablar entre ellos.</div>
+    <h2>Qué vigilar</h2>
+    <p>Tres señales importan más que el post de lanzamiento:</p>
+    <ul>
+      <li><strong>Fiabilidad de workflows largos</strong> — si trabajos de varias horas terminan limpios sin vigilancia constante</li>
+      <li><strong>Cómo se coordinan equipos de bots</strong> — orquestación sin convertirse en un spaghetti de prompts de agentes en competencia</li>
+      <li><strong>Dónde se amplía la beta</strong> — quién obtiene acceso después, y si el comportamiento agéntico se convierte en table stakes para modelos frontier en lugar de un SKU premium</li>
+    </ul>
+    <p>Grok Bot es temprano. También es un marcador claro de que la industria pasa de “mejores respuestas” a “trabajo terminado.” Para builders que ya tratan la IA como colaboradora y no como novedad, esa es la única dirección que tiene sentido.</p>
+    </div>
+    <div data-lang-block="de" hidden>
+    <p>Am 11. August 2026 eröffnete xAI die Early Beta von <strong>Grok Bot</strong> — schlicht als „eine neue Art von Kollege“ positioniert. Das Pitch ist klar: Bots sind KI-Teamkollegen, denen du echte Arbeit gibst. Sie melden sich in deinen Tools an, nutzen sie so, wie du es würdest, und liefern fertige Ergebnisse zurück.</p>
+    <p>Das ist eine andere Produktkategorie als Grok das Gesprächsmodell. Grok antwortet. Grok Bot <em>führt aus</em>. Es läuft auf einer eigenen virtuellen Maschine, hält Kontext über Sessions und kann mit anderen Bots zusammenarbeiten, die du für spezialisierte Rollen startest.</p>
+    <div class="callout">Chatbots brauchen Parameter, um klug zu klingen. Agenten brauchen Deep Reinforcement Learning, um mehrstufige Arbeit zu beenden, ohne auf halbem Weg auseinanderzufallen.</div>
+    <h2>Was es tatsächlich tut</h2>
+    <ul>
+      <li><strong>Tool-native Arbeit</strong> — einmal anmelden; der Bot arbeitet in denselben Apps und Sites, die du schon nutzt, auch ohne saubere APIs</li>
+      <li><strong>Parallele Teamkollegen</strong> — mehrere Bots gleichzeitig (Sales-Outbound, Research, Schreiben, Orchestrierung) und Arbeit zwischen ihnen in Threads weitergeben</li>
+      <li><strong>Gelernte Routinen</strong> — Workflow einmal demonstrieren; der Bot speichert ihn und nutzt ihn planmäßig oder auf Abruf</li>
+      <li><strong>Immer an</strong> — Arbeit läuft weiter, wenn der Laptop zu ist; Desktop- und iOS-Clients sind die primären Oberflächen in der Beta</li>
+    </ul>
+    <p>Frühe Berichte klingen schon weniger nach Demos und mehr nach Schreibtisch-Abdeckung: Kalender-Triage und Restaurantreservierungen beim Gehen über den Parkplatz; kleine „Teams“ spezialisierter Bots für Webdesign, Short-Form-Content, Scripts und ein Orchestrator, der sie ausgerichtet hält.</p>
+    <h2>Wer es nutzen kann</h2>
+    <p>Der Zugang ist in der Early Beta begrenzt. Öffentliche Messaging zeigt auf <strong>SuperGrok Heavy</strong> und berechtigte <strong>Cursor Ultra / Teams Premium</strong>-Abonnenten, Downloads unter <a href="https://x.ai/bot">x.ai/bot</a>. Elon Musk sagte, die Beta werde erweitert, sobald grundlegende Early-Issues behoben sind — im Zeitfenster um den Grok-4.6-Release.</p>
+    <p>Diese Exklusivität ist vorübergehende Produkthygiene, nicht der interessante Teil. Interessant ist der Shift: von „mit einem Modell sprechen“ zu „Arbeit an ein System vergeben, das bereits einen Computer hat.“</p>
+    <h2>Warum es für Sci-Fi Labs zählt</h2>
+    <p>Die längere Wette bei Sci-Fi Labs ist Souveränität und räumliche Produkte — Erinnerung, die dir gehört, Modelle, die du betreibst, Werkzeuge, die dir antworten. Grok Bot ist kein lokaler, souveräner Stack. Es ist ein kommerzielles Agentenprodukt mit Cloud-Compute und Plan-Gating.</p>
+    <p>Dennoch schärft es dieselbe Designfrage, die jede räumliche App beantworten muss: wie sieht die Oberfläche aus, wenn KI aufhört, ein Chatfenster zu sein, und anfängt, ein Kollege zu sein?</p>
+    <p>Knowledge Graph wurde als private räumliche Leinwand für Erinnerung gebaut — lokale Modelle, unendliche Zeitschichten, keine gemietete Chat-UI. Grok Bot ist die inverse Oberfläche: kommerzielle Agenten, die deinen bestehenden Tool-Stack im industriellen Maßstab betreiben. Beide lehnen das Bubble-Transkript als einzige Form der Zusammenarbeit ab. Eines hält die Daten zu Hause. Das andere hält die Arbeit in Bewegung, wenn du nicht an der Tastatur bist.</p>
+    <div class="callout">Science-Fiction hatte immer den Briefing-Raum voller Spezialisten. Neu ist, dass die Spezialisten Software sein können — und trotzdem miteinander sprechen können.</div>
+    <h2>Worauf achten</h2>
+    <p>Drei Signale zählen mehr als der Launch-Post:</p>
+    <ul>
+      <li><strong>Zuverlässigkeit langer Workflows</strong> — ob mehrstündige Jobs sauber ohne Babysitting enden</li>
+      <li><strong>Wie Bot-Teams koordinieren</strong> — Orchestrierung, ohne zu Prompt-Spaghetti konkurrierender Agenten zu werden</li>
+      <li><strong>Wohin die Beta sich weitet</strong> — wer als Nächstes Zugang bekommt, und ob agentisches Verhalten Table Stakes für Frontier-Modelle wird statt eines Premium-SKU</li>
+    </ul>
+    <p>Grok Bot ist early. Es ist auch ein klares Signal, dass die Branche von „besseren Antworten“ zu „fertiger Arbeit“ übergeht. Für Builder, die KI schon als Kollaborateur statt als Neuheit behandeln, ist das die einzige Richtung, die Sinn ergibt.</p>
+    </div>
     <div class="links">
       <a href="https://x.ai/bot">x.ai/bot</a>
       <a href="https://x.com/bot">@bot on X</a>
