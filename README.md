@@ -23,7 +23,7 @@ Thesis: **make science fiction real**, and ship it across every surface.
 |---|---|---|
 | **Where is Paul?** | Spatial life map — 3D globe, timeline, stories | [Live](https://paulvisciano.github.io/) · [Blog](/blog/where-is-paul.html) |
 | **Knowledge Graph** | Sovereign memory space — local AI, infinite canvas | [Repo](https://github.com/paulvisciano/knowledge-graph) · [Blog](/blog/knowledge-graph.html) |
-| **Musical Cubes** | Music production in 3D — rotating cube instruments | [Live](https://musical-cubes.vercel.app) · [Repo](https://github.com/paulvisciano/musical-cubes) · [Blog](/blog/musical-cubes.html) |
+| **Musical Cubes** | Music production in 3D — rotating cube instruments | [Live](https://paulvisciano.com/apps/musical-cubes) · [Repo](https://github.com/paulvisciano/musical-cubes) · [Blog](/blog/musical-cubes.html) |
 
 ## Stack
 
