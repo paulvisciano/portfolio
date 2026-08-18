@@ -597,3 +597,40 @@ window.__userInteracted = false;
     });
   }
 })();
+
+(function () {
+  var scroll = document.querySelector('.blog-scroll');
+  if (!scroll) return;
+  var grid = scroll.querySelector('.blog-grid');
+  var prev = scroll.querySelector('.blog-arrow-prev');
+  var next = scroll.querySelector('.blog-arrow-next');
+  if (!grid || !prev || !next) return;
+
+  var cardW = function () {
+    var card = grid.querySelector('.blog-card');
+    var gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : grid.clientWidth * 0.85;
+  };
+
+  var update = function () {
+    var maxScroll = grid.scrollWidth - grid.clientWidth;
+    var atStart = grid.scrollLeft <= 2;
+    var atEnd = grid.scrollLeft >= maxScroll - 2;
+    prev.classList.toggle('is-visible', !atStart);
+    next.classList.toggle('is-visible', !atEnd);
+  };
+
+  prev.addEventListener('click', function () {
+    grid.scrollBy({ left: -cardW() * 2, behavior: 'smooth' });
+  });
+  next.addEventListener('click', function () {
+    grid.scrollBy({ left: cardW() * 2, behavior: 'smooth' });
+  });
+
+  grid.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (window.ResizeObserver) {
+    new ResizeObserver(update).observe(grid);
+  }
+  update();
+})();
