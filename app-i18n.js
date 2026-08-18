@@ -12,7 +12,8 @@
   var map = {
     'project-urban-runner': { label: 'proj_wip_label', desc: 'proj_wip_desc' },
     'project-knowledge-graph': { label: 'proj_kg_label', desc: 'proj_kg_desc' },
-    'project-musical-cubes': { label: 'proj_mc_label', desc: 'proj_mc_desc' }
+    'project-musical-cubes': { label: 'proj_mc_label', desc: 'proj_mc_desc' },
+    'project-neuro-graph': { label: 'proj_ng_label', desc: 'proj_ng_desc' }
   };
   function refresh() {
     document.querySelectorAll('.project-card[data-od-id]').forEach(function (card) {
