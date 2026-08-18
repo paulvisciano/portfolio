@@ -3,6 +3,12 @@
   "alias": ["paulvisciano.vercel.app"],
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/apps/musical-cubes", "destination": "https://musical-cubes.vercel.app/" },
+    { "source": "/apps/musical-cubes/", "destination": "https://musical-cubes.vercel.app/" },
+    { "source": "/apps/musical-cubes/:path*", "destination": "https://musical-cubes.vercel.app/:path*" },
+    { "source": "/apps/neuro-graph", "destination": "https://neuro-graph-sage.vercel.app/" },
+    { "source": "/apps/neuro-graph/", "destination": "https://neuro-graph-sage.vercel.app/" },
+    { "source": "/apps/neuro-graph/:path*", "destination": "https://neuro-graph-sage.vercel.app/:path*" },
     { "source": "/", "destination": "/index.html" }
   ],
   "headers": [
