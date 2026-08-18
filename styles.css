@@ -718,6 +718,10 @@ background: oklch(12% 0.003 260 / 0.6);
 .blog-arrow:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 .blog-arrow-prev { left: 4px; }
 .blog-arrow-next { right: 4px; }
+@media (min-width: 1024px) {
+	.blog-arrow-prev { left: calc(-1 * var(--gutter) - 22px); }
+	.blog-arrow-next { right: calc(-1 * var(--gutter) - 22px); }
+}
 @media (max-width: 760px) {
 	.blog-arrow { width: 36px; height: 36px; }
 	.blog-arrow-prev { left: 2px; }
