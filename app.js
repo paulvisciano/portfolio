@@ -15,6 +15,18 @@ window.__userInteracted = false;
   var grid = document.querySelector('.project-grid');
   if (!grid) return;
 
+  /* Cache-bust version. Bump when any R2 image is replaced. */
+  var IMG_VERSIONS = {
+    'neuro-graph-1': 5,
+    'where-is-paul': 5,
+    'knowledge-graph-1': 5,
+    'knowledge-graph-2': 5,
+    'musical-cubes': 5
+  };
+  function imgV(name) {
+    return 'v=' + (IMG_VERSIONS[name] || 5);
+  }
+
   var isPortrait = window.matchMedia('(max-width: 760px)').matches;
   grid.innerHTML = projects.map(function (item) {
     var vids = item.videos || (item.video ? [item.video] : []);
@@ -29,9 +41,10 @@ window.__userInteracted = false;
         (i === 0 ? ' class="video-active"' : '') + '></video>';
     }).join('');
     var imageHTML = imgs.map(function (img, i) {
+      var v = imgV(img);
       return '<picture data-img-index="' + i + '"' + (i === 0 ? ' class="img-active"' : '') + '>' +
-        '<source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + img + '.webp?v=4">' +
-        '<img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + img + '.jpg?v=4" alt="' + item.alt + '" width="1200" height="676" loading="lazy" />' +
+        '<source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + img + '.webp?' + v + '">' +
+        '<img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + img + '.jpg?' + v + '" alt="' + item.alt + '" width="1200" height="676" loading="lazy" />' +
         '</picture>';
     }).join('');
     var imgClipCount = imgs.length > 1 ? imgs.length : 0;
@@ -46,7 +59,7 @@ window.__userInteracted = false;
     var card = '<article class="project-card" data-od-id="' + item.id + '"' +
       (item.url ? ' data-url="' + item.url + '" style="cursor:pointer"' : '') + '>' +
       '<div class="img-wrap">' +
-      '<picture class="img-active"><source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + imgs[0] + '.webp"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + imgs[0] + '.jpg" alt="' + item.alt + '" width="1200" height="676" loading="lazy" /></picture>' +
+      '<picture class="img-active"><source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + imgs[0] + '.webp?' + imgV(imgs[0]) + '"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/' + imgs[0] + '.jpg?' + imgV(imgs[0]) + '" alt="' + item.alt + '" width="1200" height="676" loading="lazy" /></picture>' +
       videoHTML + indicatorHTML +
       '<button class="card-unmute" type="button" aria-label="Unmute video" aria-pressed="false">' +
         '<span class="cu-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></span>' +
