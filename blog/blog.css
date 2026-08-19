@@ -88,3 +88,15 @@ a.ext:hover{color:var(--fg-bright);border-bottom-color:var(--border-hi)}
 table{width:100%;border-collapse:collapse;margin:0 0 1.5rem;font-size:1rem}
 th,td{text-align:left;padding:0.6rem 0.7rem;border-bottom:1px solid var(--border);color:var(--fg);line-height:1.55}
 th{font-family:var(--font-mono);font-size:var(--fs-meta);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+aside.ref{margin:1.6rem 0;padding:0.95rem 1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-card);font-size:0.96rem;line-height:1.6}
+aside.ref .ref-tag{display:inline-block;font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.14em;text-transform:uppercase;color:oklch(72% 0.08 230);margin-bottom:0.55rem}
+aside.ref .ref-body{margin:0;color:var(--fg)}
+aside.ref .ref-body p{margin:0 0 0.5rem}
+aside.ref blockquote{margin:0 0 0.55rem;padding:0 0 0 0.85rem;border-left:2px solid oklch(72% 0.08 230 / 0.45);color:oklch(92% 0.002 260);font-style:italic}
+aside.ref blockquote p{margin:0;font-size:0.97rem;line-height:1.55}
+aside.ref .ref-meta{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.04em;color:var(--muted)}
+aside.ref .ref-meta a{color:oklch(72% 0.08 230);text-decoration:none;border-bottom:1px solid oklch(72% 0.08 230 / 0.25)}
+aside.ref .ref-meta a:hover{color:var(--fg-bright);border-bottom-color:var(--border-hi)}
+aside.ref .ref-title{font-family:var(--font-display);font-size:1.02rem;font-weight:400;color:var(--fg-bright);margin:0 0 0.2rem}
+aside.ref .ref-source{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.06em;color:var(--muted);margin:0.5rem 0 0}
