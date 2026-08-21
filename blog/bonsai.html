@@ -42,51 +42,158 @@
     </div>
     <div data-lang-block="en">
     <p><strong>Bonsai</strong> is the local-model path that keeps <a href="knowledge-graph.html">Knowledge Graph</a> honest: reasoning that fits in memory on a machine you own, without renting a frontier API for every turn. PrismML’s 1-bit quantization makes 27B-class reasoning practical on a 16GB laptop.</p>
-    <div class="callout">1-bit quantization is not a demo trick — it is how a 27B-class model becomes a daily tool on a 16GB laptop.</div>
-    <h2>Why local weight matters</h2>
-    <p>If the graph and the originals stay on disk, the assistant that reads them should too. Cloud LLMs force a second privacy boundary and a recurring cost. Bonsai-class models close that gap: enough quality for tool use and long context, small enough to share the machine with Whisper and the canvas.</p>
-    <h2>What changed in practice</h2>
+    <p>A full-precision 27B model wants on the order of 54&nbsp;GB just for weights. Even aggressive conventional quantizations still land in the mid-teens of gigabytes — too large for a typical 16&nbsp;GB machine once the OS, the spatial UI, embeddings, and KV cache take their share. Without a different approach, local 27B-class intelligence on consumer hardware is a non-starter.</p>
+    <div class="callout">Bonsai is what makes the constraint honest instead of aspirational.</div>
+    <h2>What Bonsai is</h2>
+    <p><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Bonsai</a> is a family of open-weight models from <a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>. Instead of shipping 16-bit weights, Bonsai models use end-to-end <strong>1-bit</strong> ({−1, +1}) or <strong>ternary</strong> ({−1, 0, +1}) weights across embeddings, attention, MLPs, and the LM head. The practical result is a 14× reduction versus FP16 for the same architecture class.</p>
+    <p>The flagship <strong>Bonsai 27B</strong> is based on Qwen3.6 27B. It keeps multi-step reasoning, tool calling, vision input, and a 262K-token context — while fitting where full-precision models cannot:</p>
+    <table>
+      <thead>
+        <tr><th>Variant</th><th>Weights</th><th>Best for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1-bit Bonsai 27B</td><td>~3.9 GB</td><td>Tight memory, phones, lean laptops</td></tr>
+        <tr><td>Ternary Bonsai 27B</td><td>~5.9 GB</td><td>Everyday laptops, higher quality retention</td></tr>
+      </tbody>
+    </table>
+    <p>PrismML reports the ternary build retaining roughly 95% of the full-precision baseline across their benchmark suite, and the 1-bit build around 90% — enough to stay useful for real agentic loops, not just toy demos. Both ship under Apache 2.0.</p>
+    <h2>Why a 16GB laptop suddenly works</h2>
+    <p>On a 16&nbsp;GB machine the budget is unforgiving. The OS and browser (or native shell) already claim several gigabytes. Knowledge Graph also needs room for:</p>
     <ul>
-      <li>Metal-backed inference that survives real multi-hour sessions</li>
-      <li>Room left for vision, embeddings, and the job queue</li>
-      <li>No obligatory “send the note to the vendor” step to get an answer</li>
+      <li>The spatial canvas and Three.js scene</li>
+      <li>Local embeddings and retrieval over the graph</li>
+      <li>KV cache as conversations and time-layered context grow</li>
+      <li>Optional vision and voice pipelines</li>
     </ul>
-    <p>The field note is less about benchmarks and more about the product constraint: memory you own, models you run, tools that answer to you.</p>
+    <p>A conventional 27B build exhausts that budget before the app has a chance to breathe. Bonsai’s ~4–6&nbsp;GB weight footprint leaves headroom. The model loads. The graph stays responsive. Queries and tool calls stay on-device.</p>
+    <p>That is the difference between “local AI” as marketing and local AI as something you can actually open every day.</p>
+    <h2>How it fits Knowledge Graph</h2>
+    <p>Knowledge Graph is not a chat window with a model behind it. It is a spatial interface: time as a dimension, floating notes and photos, voice in and out, everything running locally. The model is the quiet engine under that surface — reasoning over the graph, answering in context, never shipping private memory to a remote endpoint.</p>
+    <p>Bonsai makes that architecture honest on hardware people already own. No cloud fallback required for the core loop. Sovereignty stops being a slogan and becomes a loadable binary.</p>
+    <h2>Getting started</h2>
+    <ul>
+      <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a> — company and product home</li>
+      <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a> — launch post and rationale</li>
+      <li><a class="ext" href="https://docs.prismml.com/get-started/introduction" target="_blank" rel="noopener">Bonsai documentation</a> — lineup, formats, and how to run</li>
+      <li><a class="ext" href="https://docs.prismml.com/models/bonsai-27b" target="_blank" rel="noopener">Bonsai 27B model page</a> — specs and artifacts</li>
+      <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a> — GGUF and MLX weights</li>
+    </ul>
     </div>
     <div data-lang-block="bg" hidden>
     <p><strong>Bonsai</strong> е локалният модел път, който държи <a href="knowledge-graph.html">Knowledge Graph</a> честен: разсъждение, което се побира в паметта на машина, която притежаваш, без да наемаш frontier API за всеки ход. 1-bit квантизацията на PrismML прави разсъждение от клас 27B практично на 16GB лаптоп.</p>
-    <div class="callout">1-bit квантизацията не е демо трик — така модел от клас 27B става ежедневен инструмент на 16GB лаптоп.</div>
-    <h2>Защо локалното тегло има значение</h2>
-    <p>Ако графът и оригиналите остават на диска, асистентът, който ги чете, също трябва. Cloud LLM налагат втора граница за поверителност и повтарящ се разход. Моделите от клас Bonsai затварят тази празнина.</p>
-    <h2>Какво се промени на практика</h2>
+    <p>Пълнопрецизен 27B модел иска от порядъка на 54&nbsp;GB само за тегла. Дори агресивни конвенционални квантизации кацат в средата на тийнейджърските гигабайти — твърде много за типична 16&nbsp;GB машина, след като OS, пространственият UI, embeddings и KV cache вземат своя дял. Без различен подход локален 27B-клас интелект на потребителски хардуер е невъзможен старт.</p>
+    <div class="callout">Bonsai е това, което прави ограничението честно, вместо аспиративно.</div>
+    <h2>Какво е Bonsai</h2>
+    <p><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Bonsai</a> е семейство open-weight модели от <a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>. Вместо 16-bit тегла, Bonsai моделите ползват end-to-end <strong>1-bit</strong> ({−1, +1}) или <strong>ternary</strong> ({−1, 0, +1}) тегла през embeddings, attention, MLPs и LM head. Практическият резултат е 14× намаление спрямо FP16 за същия архитектурен клас.</p>
+    <p>Флагманът <strong>Bonsai 27B</strong> е базиран на Qwen3.6 27B. Запазва multi-step reasoning, tool calling, vision input и 262K-token контекст — докато се побира там, където full-precision моделите не могат:</p>
+    <table>
+      <thead>
+        <tr><th>Вариант</th><th>Тегла</th><th>Най-добро за</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1-bit Bonsai 27B</td><td>~3.9 GB</td><td>Стеснена памет, телефони, леки лаптопи</td></tr>
+        <tr><td>Ternary Bonsai 27B</td><td>~5.9 GB</td><td>Ежедневни лаптопи, по-високо запазване на качество</td></tr>
+      </tbody>
+    </table>
+    <p>PrismML докладва, че ternary билдът запазва около 95% от full-precision базовата линия в техния benchmark suite, а 1-bit — около 90% — достатъчно, за да остане полезен за реални agentic цикли, не само toy демота. И двата са под Apache 2.0.</p>
+    <h2>Защо лаптоп с 16GB изведнъж работи</h2>
+    <p>На 16&nbsp;GB машина бюджетът е безмилостен. OS и браузърът (или native shell) вече вземат няколко гигабайта. Knowledge Graph също се нуждае от място за:</p>
     <ul>
-      <li>Metal inference, който издържа реални многочасови сесии</li>
-      <li>Място за vision, embeddings и job queue</li>
-      <li>Без задължителна стъпка „изпрати бележката на доставчика“</li>
+      <li>Пространственото платно и Three.js сцената</li>
+      <li>Локални embeddings и retrieval върху графа</li>
+      <li>KV cache, докато разговорите и time-layered контекстът растат</li>
+      <li>Опционални vision и voice pipeline-и</li>
+    </ul>
+    <p>Конвенционален 27B билд изчерпва този бюджет, преди приложението да има шанс да диша. ~4–6&nbsp;GB отпечатъкът на Bonsai оставя място. Моделът се зарежда. Графът остава responsive. Заявките и tool calls остават on-device.</p>
+    <p>Това е разликата между „local AI“ като маркетинг и local AI като нещо, което реално можеш да отваряш всеки ден.</p>
+    <h2>Как се вписва в Knowledge Graph</h2>
+    <p>Knowledge Graph не е чат прозорец с модел зад него. Той е пространствен интерфейс: време като измерение, плаващи бележки и снимки, глас навътре и навън, всичко локално. Моделът е тихият двигател под тази повърхност — разсъждава върху графа, отговаря в контекст, никога не изпраща частна памет към remote endpoint.</p>
+    <p>Bonsai прави тази архитектура честна на хардуер, който хората вече притежават. Не е нужен cloud fallback за core loop-а. Суверенитетът спира да е слоган и става зареждаем binary.</p>
+    <h2>Как да започнеш</h2>
+    <ul>
+      <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a> — компания и продуктов дом</li>
+      <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a> — launch пост и рационал</li>
+      <li><a class="ext" href="https://docs.prismml.com/get-started/introduction" target="_blank" rel="noopener">Bonsai documentation</a> — линия, формати и как да се пуска</li>
+      <li><a class="ext" href="https://docs.prismml.com/models/bonsai-27b" target="_blank" rel="noopener">Bonsai 27B model page</a> — спецификации и артефакти</li>
+      <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a> — GGUF и MLX тегла</li>
     </ul>
     </div>
     <div data-lang-block="es" hidden>
     <p><strong>Bonsai</strong> es el camino de modelos locales que mantiene honesto a <a href="knowledge-graph.html">Knowledge Graph</a>: razonamiento que cabe en la memoria de una máquina que posees, sin alquilar una API frontier en cada turno. La cuantización 1-bit de PrismML hace práctico el razonamiento de clase 27B en un portátil de 16GB.</p>
-    <div class="callout">La cuantización 1-bit no es un truco de demo: es cómo un modelo de clase 27B se convierte en una herramienta diaria en un portátil de 16GB.</div>
-    <h2>Por qué importa el peso local</h2>
-    <p>Si el grafo y los originales permanecen en disco, el asistente que los lee también debería. Los LLM en la nube imponen un segundo límite de privacidad y un coste recurrente. Los modelos clase Bonsai cierran esa brecha.</p>
-    <h2>Qué cambió en la práctica</h2>
+    <p>Un modelo 27B a precisión completa quiere del orden de 54&nbsp;GB solo en pesos. Incluso cuantizaciones convencionales agresivas siguen cayendo en la franja media de los teens de gigabytes — demasiado para una máquina típica de 16&nbsp;GB una vez que el SO, la UI espacial, los embeddings y el KV cache toman su parte. Sin un enfoque distinto, la inteligencia de clase 27B local en hardware de consumo no arranca.</p>
+    <div class="callout">Bonsai es lo que hace que la restricción sea honesta en lugar de aspiracional.</div>
+    <h2>Qué es Bonsai</h2>
+    <p><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Bonsai</a> es una familia de modelos open-weight de <a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>. En lugar de pesos de 16 bits, los modelos Bonsai usan pesos end-to-end <strong>1-bit</strong> ({−1, +1}) o <strong>ternary</strong> ({−1, 0, +1}) en embeddings, attention, MLPs y la cabeza LM. El resultado práctico es una reducción 14× frente a FP16 para la misma clase de arquitectura.</p>
+    <p>El buque insignia <strong>Bonsai 27B</strong> se basa en Qwen3.6 27B. Conserva razonamiento multi-paso, tool calling, entrada de visión y contexto de 262K tokens — mientras cabe donde los modelos a precisión completa no pueden:</p>
+    <table>
+      <thead>
+        <tr><th>Variante</th><th>Pesos</th><th>Mejor para</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1-bit Bonsai 27B</td><td>~3.9 GB</td><td>Memoria justa, teléfonos, portátiles ligeros</td></tr>
+        <tr><td>Ternary Bonsai 27B</td><td>~5.9 GB</td><td>Portátiles de uso diario, mayor retención de calidad</td></tr>
+      </tbody>
+    </table>
+    <p>PrismML reporta que el build ternary retiene aproximadamente el 95% de la línea base a precisión completa en su suite de benchmarks, y el build 1-bit alrededor del 90% — suficiente para seguir siendo útil en bucles agénticos reales, no solo demos de juguete. Ambos se publican bajo Apache 2.0.</p>
+    <h2>Por qué un portátil de 16GB de repente funciona</h2>
+    <p>En una máquina de 16&nbsp;GB el presupuesto no perdona. El SO y el navegador (o shell nativo) ya reclaman varios gigabytes. Knowledge Graph también necesita espacio para:</p>
     <ul>
-      <li>Inferencia Metal que sobrevive sesiones reales de varias horas</li>
-      <li>Espacio para visión, embeddings y la cola de trabajos</li>
-      <li>Sin el paso obligatorio de “enviar la nota al proveedor”</li>
+      <li>El lienzo espacial y la escena Three.js</li>
+      <li>Embeddings locales y retrieval sobre el grafo</li>
+      <li>KV cache a medida que crecen las conversaciones y el contexto en capas de tiempo</li>
+      <li>Pipelines opcionales de visión y voz</li>
+    </ul>
+    <p>Un build 27B convencional agota ese presupuesto antes de que la app tenga chance de respirar. La huella de pesos de ~4–6&nbsp;GB de Bonsai deja margen. El modelo carga. El grafo se mantiene responsive. Las consultas y tool calls se quedan on-device.</p>
+    <p>Esa es la diferencia entre “local AI” como marketing y local AI como algo que puedes abrir de verdad cada día.</p>
+    <h2>Cómo encaja en Knowledge Graph</h2>
+    <p>Knowledge Graph no es una ventana de chat con un modelo detrás. Es una interfaz espacial: el tiempo como dimensión, notas y fotos flotantes, voz de entrada y salida, todo en local. El modelo es el motor silencioso bajo esa superficie — razona sobre el grafo, responde en contexto, nunca envía memoria privada a un endpoint remoto.</p>
+    <p>Bonsai hace esa arquitectura honesta en hardware que la gente ya posee. No hace falta fallback a la nube para el bucle central. La soberanía deja de ser un eslogan y se convierte en un binario cargable.</p>
+    <h2>Cómo empezar</h2>
+    <ul>
+      <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a> — empresa y hogar del producto</li>
+      <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a> — post de lanzamiento y racional</li>
+      <li><a class="ext" href="https://docs.prismml.com/get-started/introduction" target="_blank" rel="noopener">Bonsai documentation</a> — línea, formatos y cómo ejecutarlo</li>
+      <li><a class="ext" href="https://docs.prismml.com/models/bonsai-27b" target="_blank" rel="noopener">Bonsai 27B model page</a> — specs y artefactos</li>
+      <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a> — pesos GGUF y MLX</li>
     </ul>
     </div>
     <div data-lang-block="de" hidden>
     <p><strong>Bonsai</strong> ist der lokale Modellweg, der <a href="knowledge-graph.html">Knowledge Graph</a> ehrlich hält: Reasoning, das in den Speicher einer Maschine passt, die dir gehört — ohne für jeden Turn eine Frontier-API zu mieten. PrismMLs 1-Bit-Quantisierung macht 27B-Klasse-Reasoning auf einem 16GB-Laptop praktikabel.</p>
-    <div class="callout">1-Bit-Quantisierung ist kein Demo-Trick — so wird ein 27B-Klassen-Modell zum täglichen Werkzeug auf einem 16GB-Laptop.</div>
-    <h2>Warum lokales Gewicht zählt</h2>
-    <p>Wenn Graph und Originale auf der Disk bleiben, sollte der Assistent, der sie liest, es auch. Cloud-LLMs erzwingen eine zweite Privacy-Grenze und laufende Kosten. Bonsai-Klassen-Modelle schließen diese Lücke.</p>
-    <h2>Was sich in der Praxis geändert hat</h2>
+    <p>Ein Full-Precision-27B-Modell will in der Größenordnung von 54&nbsp;GB nur für Gewichte. Selbst aggressive konventionelle Quantisierungen landen noch im mittleren Teen-Bereich der Gigabytes — zu groß für eine typische 16&nbsp;GB-Maschine, sobald OS, räumliche UI, Embeddings und KV-Cache ihren Anteil nehmen. Ohne einen anderen Ansatz ist lokale 27B-Klassen-Intelligenz auf Consumer-Hardware ein Non-Starter.</p>
+    <div class="callout">Bonsai macht die Constraint ehrlich statt aspirational.</div>
+    <h2>Was Bonsai ist</h2>
+    <p><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Bonsai</a> ist eine Familie open-weight Modelle von <a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>. Statt 16-Bit-Gewichten nutzen Bonsai-Modelle End-to-End <strong>1-Bit</strong> ({−1, +1}) oder <strong>ternäre</strong> ({−1, 0, +1}) Gewichte über Embeddings, Attention, MLPs und den LM-Head. Das praktische Ergebnis ist eine 14×-Reduktion gegenüber FP16 für dieselbe Architekturklasse.</p>
+    <p>Das Flaggschiff <strong>Bonsai 27B</strong> basiert auf Qwen3.6 27B. Es behält Multi-Step-Reasoning, Tool Calling, Vision-Input und 262K-Token-Kontext — und passt trotzdem dorthin, wo Full-Precision-Modelle nicht passen:</p>
+    <table>
+      <thead>
+        <tr><th>Variante</th><th>Gewichte</th><th>Am besten für</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1-Bit Bonsai 27B</td><td>~3.9 GB</td><td>Knappes Memory, Phones, schlanke Laptops</td></tr>
+        <tr><td>Ternäres Bonsai 27B</td><td>~5.9 GB</td><td>Alltags-Laptops, höhere Qualitätsretention</td></tr>
+      </tbody>
+    </table>
+    <p>PrismML berichtet, dass der ternäre Build rund 95% der Full-Precision-Baseline über ihre Benchmark-Suite hält und der 1-Bit-Build etwa 90% — genug, um für echte agentische Loops nützlich zu bleiben, nicht nur für Toy-Demos. Beide unter Apache 2.0.</p>
+    <h2>Warum ein 16-GB-Laptop plötzlich funktioniert</h2>
+    <p>Auf einer 16&nbsp;GB-Maschine ist das Budget unerbittlich. OS und Browser (oder native Shell) beanspruchen bereits mehrere Gigabytes. Knowledge Graph braucht außerdem Platz für:</p>
     <ul>
-      <li>Metal-Inference, die echte mehrstündige Sessions übersteht</li>
-      <li>Platz für Vision, Embeddings und die Job-Queue</li>
-      <li>Kein verpflichtender Schritt „Notiz an den Anbieter senden“</li>
+      <li>Die räumliche Canvas und Three.js-Szene</li>
+      <li>Lokale Embeddings und Retrieval über den Graph</li>
+      <li>KV-Cache, wenn Gespräche und zeitgeschichteter Kontext wachsen</li>
+      <li>Optionale Vision- und Voice-Pipelines</li>
+    </ul>
+    <p>Ein konventioneller 27B-Build erschöpft dieses Budget, bevor die App atmen kann. Bonsais ~4–6&nbsp;GB Gewicht-Fußabdruck lässt Spielraum. Das Modell lädt. Der Graph bleibt responsive. Queries und Tool Calls bleiben on-device.</p>
+    <p>Das ist der Unterschied zwischen „local AI“ als Marketing und local AI als etwas, das du wirklich jeden Tag öffnen kannst.</p>
+    <h2>Wie es zu Knowledge Graph passt</h2>
+    <p>Knowledge Graph ist kein Chatfenster mit einem Modell dahinter. Es ist eine räumliche Oberfläche: Zeit als Dimension, schwebende Notizen und Fotos, Stimme rein und raus, alles lokal. Das Modell ist der leise Motor unter dieser Oberfläche — reasoning über den Graph, Antworten im Kontext, private Erinnerung nie an einen Remote-Endpoint.</p>
+    <p>Bonsai macht diese Architektur ehrlich auf Hardware, die Menschen schon besitzen. Kein Cloud-Fallback nötig für den Core-Loop. Souveränität hört auf, Slogan zu sein, und wird ein ladbares Binary.</p>
+    <h2>Einstieg</h2>
+    <ul>
+      <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a> — Firma und Produkt-Home</li>
+      <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a> — Launch-Post und Rationale</li>
+      <li><a class="ext" href="https://docs.prismml.com/get-started/introduction" target="_blank" rel="noopener">Bonsai documentation</a> — Lineup, Formate und wie man es startet</li>
+      <li><a class="ext" href="https://docs.prismml.com/models/bonsai-27b" target="_blank" rel="noopener">Bonsai 27B model page</a> — Specs und Artifacts</li>
+      <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a> — GGUF- und MLX-Gewichte</li>
     </ul>
     </div>
     <div class="links">
