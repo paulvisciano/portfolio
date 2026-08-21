@@ -12,6 +12,7 @@
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/running-local-ai-16gb">
   <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
   <style>
     .chart{margin:1.5rem 0 2rem;padding:1.15rem 1.3rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
     .chart-title{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.16em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:0 0 1rem}
@@ -49,6 +50,9 @@
       <a href="../index.html#blog">Blogs</a>
     </div>
   </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
   <article>
     <p class="series">Knowledge Graph · Field notes</p>
     <h1>Running Local AI on 16 GB MacBook — the real stats</h1>
@@ -57,7 +61,7 @@
     <p>This is the technical companion to the <a href="knowledge-graph.html">Knowledge Graph</a> project page. The project page tells you what it is. This tells you what it costs to run — in memory, in swap, in tokens per second, and in months of tuning. Every number here is live, measured from the actual running system, not from a benchmark script.</p>
     <p>The machine: a 14-inch MacBook Pro with an Apple M2 Pro — 10-core CPU (6 performance, 4 efficiency), 16-core GPU, and 16 GB of unified memory. That means the CPU and GPU share one pool. There is no separate VRAM. Every model that runs on the GPU eats from the same 16 GB the OS, the browser, and the editor are using.</p>
 
-    <h2>The model stack</h2>
+    <h2 id="model-stack">The model stack</h2>
     <p>Every model in the system is a file on disk. No API keys, no remote endpoints, no silent uploads. That constraint is not a limitation to work around; it is the design constraint that forced the architecture.</p>
     <div class="chart">
       <p class="chart-title">Model files on disk</p>
@@ -91,7 +95,7 @@
     <p>The same model serves both roles — chat and vision. Bonsai-27B is built on Qwen3.6-27B, which has a vision tower. In <code>llama.cpp</code> the vision encoder weights ship as a separate file: the base GGUF holds only the language model, and the mmproj file is the projection that maps image pixels into the model's embedding space. One model, two slots — one for interactive chat, one for image processing — and they share the same 16GB pool.</p>
     <p>Embeddings are handled by BGE-M3, a 1024-dimensional multilingual model running on its own <code>llama-server</code> instance. Voice transcription is Whisper, running on <code>whisper-server</code> (from <code>whisper.cpp</code>) on the Metal GPU. Both are separate processes from the LLM so they can load and serve without competing for the same slot.</p>
 
-    <h2>Architecture</h2>
+    <h2 id="architecture">Architecture</h2>
     <p>The stack splits cleanly along a boundary: model servers run on the host (direct Metal access), and the service layer runs in Docker (isolated, composed, restartable). They talk to each other over <code>host.docker.internal</code> — the Docker bridge to the laptop's own loopback.</p>
     <div class="pipeline">
       <p class="pipeline-title">System architecture — everything on one laptop, nothing in the cloud</p>
@@ -122,7 +126,7 @@
     <p>The KG API is a FastAPI app that owns everything that is not LightRAG: image ingestion (EXIF extraction, optional face recognition, VLM image descriptions), chat (streaming SSE to the UI, job queue to the LLM worker), and the settings surface. It talks to LightRAG over HTTP inside the Docker network and to the host <code>llama-servers</code> through the Docker gateway. The API process serves HTTP only — a separate worker process owns all image processing so that a long VLM batch never blocks the website's event loop.</p>
     <p>The worker is the quiet engine of the pipeline. It polls a Postgres jobs table with <code>SELECT FOR UPDATE SKIP LOCKED</code>, claims pending rows, and drives each one through a two-phase pipeline. No Redis, no Celery — Postgres is the queue, and <code>pg_notify</code> is the event bus that the API's SSE endpoints listen on. The architecture is deliberately boring: one database, one queue, one event stream.</p>
 
-    <h2>The image pipeline</h2>
+    <h2 id="image-pipeline">The image pipeline</h2>
     <p>When a photo lands in the system, it does not go straight to the model. It goes through a two-phase pipeline that separates the cheap work from the expensive work, so a batch of 50 photos does not monopolize the GPU for an hour.</p>
     <div class="pipeline">
       <p class="pipeline-title">Two-phase image processing — one photo, four stages, all local</p>
@@ -157,12 +161,12 @@
     <p>Phase 2 is GPU-bound: the VLM. The photo is resized to max 768px (the mmproj caps image tokens at 280, so anything larger is wasted compute) and sent to Bonsai-27B with the vision projection. The model returns a natural-language description of the scene — what is in the photo, the setting, the mood. That description is ingested by LightRAG as text, which extracts its own entities and relations and adds them to the graph. A photo of a dinner in Lisbon becomes nodes for the food, the restaurant, the city — connected to the date, the camera, and each other.</p>
     <p>The split exists because of the 16GB constraint. Phase 1 runs fast and cheap; phase 2 is the bottleneck. Running them separately means a batch upload can complete phase 1 in seconds and then trickle phase 2 through the single VLM slot overnight, while the other LLM slot stays free for chat.</p>
 
-    <h2>The chat and query path</h2>
+    <h2 id="chat-path">The chat and query path</h2>
     <p>When you speak or type a question, the path is different from ingestion. The Nexus UI streams the message to the KG API, which saves it and creates an LLM job. The LLM worker picks up the job, calls the Bonsai-27B server with the chat context, and streams the response back via SSE. If the question needs memory — <em>"what did I do in Lisbon?"</em> — the worker calls LightRAG's query API first. LightRAG embeds the query with BGE-M3, retrieves the top-k entity subgraphs from the Postgres vector store, assembles a context block, and hands it to the LLM as part of the prompt. The model answers from your own data, not from its training set.</p>
     <p>If the question has an audio component — a voice memo — Whisper transcribes it on the host GPU before the text reaches the LLM. The transcription becomes another node on the canvas, timestamped to the moment it was spoken, sitting in the same time layer as the photos and notes from that day.</p>
     <p>The MCP server exposes the graph to external tools. Any agent that speaks the Model Context Protocol can query the graph, save to it, or search it — the same API the internal UI uses, but over a standard interface. The utility agent on your machine can ask the personal agent's memory without the personal agent's data ever leaving the laptop.</p>
 
-    <h2>The graph right now</h2>
+    <h2 id="graph-stats">The graph right now</h2>
     <p>These are not benchmarks from a demo. They are the live numbers from the Postgres database running behind the <a href="knowledge-graph.html">Knowledge Graph</a>, queried while the system was serving the conversation that produced this writing.</p>
     <div class="chart">
       <p class="chart-title">The graph right now — live Postgres counts</p>
@@ -224,7 +228,7 @@
     </div>
     <p>The LLM cache is the quiet win. 862 cached completions mean the model does not re-run extraction on text it has already seen — a big deal when each run costs GPU time on a shared 16GB pool. The entity-to-relation ratio (270 entities, 256 relations) is low by enterprise graph standards but dense for a personal archive: nearly every entity is connected to at least one other, because the source material is one person's life, not a web crawl. Database size: 243 MB — a personal archive, not a data lake.</p>
 
-    <h2>Throughput</h2>
+    <h2 id="throughput">Throughput</h2>
     <p>Measured live with a direct <code>/v1/chat/completions</code> call to the Bonsai-27B server on port 8080:</p>
     <div class="chart">
       <p class="chart-title">Throughput — measured live on port 8080</p>
@@ -248,7 +252,7 @@
     </div>
     <p>Fifteen tokens per second is not fast by cloud standards — a frontier API model will outpace it 10x. But fifteen tokens per second is fast enough for a conversation to feel responsive, and it is coming from a 27B model running entirely on a laptop with no network cable. The prompt eval at 10 tok/s is the real bottleneck: a long context (2,997 tokens in the last chat slot) takes ~5 seconds to process before the first token generates. That is the cost of Q1 quantization — the weights are small, but the computation per weight is higher because the dequantization happens in the kernel. The DRY sampler and XTC (both tuned aggressively in <code>start-llama-servers.sh</code>) exist because at 1-bit, the model paraphrase-loops without them.</p>
 
-    <h2>The claim vs the machine</h2>
+    <h2 id="claim-vs-machine">The claim vs the machine</h2>
     <p>Model vendors publish performance numbers the way car companies publish MPG. The sticker says 42 mpg highway. That number came from a test track — a perfect road, 55 mph, no wind, no cargo, no passengers, no AC. You drive it off the lot and get 28. Nobody lied. The test was real. It was just not your life.</p>
     <p>AI model cards work the same way. PrismML's <a class="ext" href="https://huggingface.co/prism-ml/Bonsai-27B-gguf" target="_blank" rel="noopener">HuggingFace model card</a> opens with a headline: <em>"~44 tok/s on an Apple M5 Pro laptop."</em> The marketing page leads with <em>"87 tok/s on M5 Max."</em> An independent reviewer on a 48 GB M4 Pro measured <a class="ext" href="https://stridenote.net/bonsai-27b-1bit-mac/" target="_blank" rel="noopener">27 tok/s</a> and called the gap "explainable rather than suspicious." Here is what those numbers look like next to the machine that actually runs the Knowledge Graph:</p>
     <div class="chart">
@@ -283,7 +287,7 @@
     <p>That is the number nobody puts on their model card: what happens when the model is not the only thing running. The HuggingFace page says <em>"3.9 GB deployed footprint"</em> and it is correct — the weights are 3.9 GB. But the live system at idle consumes ~3.5 GB of wired GPU just for the weights, plus 1.7 GB for Whisper, 0.4 GB for BGE-M3, and the OS's own 4.5 GB of wired memory — and the moment the model starts generating, wired memory spikes by another 5.8 GB for the KV cache. The deployed footprint is not the deployed cost. The deployed cost is the whole machine breathing between 4.9 GB and 10.7 GB of wired memory, 8.3 to 8.7 GB of swap, and 73 MB free — and the model still answers.</p>
     <p>The benchmark tells you what the model can do in isolation. The machine tells you what it can do in your life. Fifteen tokens per second, under full load, with the fan running, is not a number PrismML will publish. It is the number that matters — the same way the MPG you actually get matters more than the one on the sticker. The sticker is tested on a perfect road. Your road has traffic, cargo, and weather. The model card is tested with one model alone in memory. Your machine has a browser, an editor, a database, and a fan that is working hard. Both numbers are real. Only one of them is yours.</p>
 
-    <h2>16GB, accounted for</h2>
+    <h2 id="budget">16GB, accounted for</h2>
     <p>The memory budget is the hardest constraint and the reason the architecture looks the way it does. On Apple Silicon, the CPU and GPU share one unified memory pool — there is no separate VRAM. Model weights loaded with <code>-ngl 99</code> (all layers on GPU) live in wired memory. But the system has two states, and they look very different.</p>
     <h3>Idle — no active conversation, no image processing</h3>
     <p>This is the machine at rest, with the stack running but nobody talking to the model:</p>
@@ -439,5 +443,6 @@
     Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
   </footer>
 <script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
 </body>
 </html>
