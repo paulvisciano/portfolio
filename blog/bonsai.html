@@ -20,28 +20,92 @@
     <button type="button" data-lang="es" aria-pressed="false">ES</button>
     <button type="button" data-lang="de" aria-pressed="false">DE</button>
   </div>
-  <header class="top">
+  <div class="top">
     <div class="top-inner">
       <a class="brand" href="../index.html">Paul Visciano</a>
-      <a href="../index.html#blog">Blogs</a>
+      <nav>
+        <a href="../index.html#blog" data-i18n="nav_blog">Blogs</a>
+        &nbsp;·&nbsp;
+        <a href="../index.html#work" data-i18n="nav_work">Work</a>
+      </nav>
     </div>
-  </header>
+  </div>
   <article>
-    <p class="series">Field note · Local models</p>
-    <h1>Bonsai on a 16GB Laptop</h1>
-    <p class="deck">How PrismML’s 1-bit models make 27B-class reasoning practical for Knowledge Graph without the cloud.</p>
-    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg" alt="Bonsai model running on a 16GB laptop" width="1200" height="800" loading="eager"><figcaption class="fig-cap">Local inference that actually fits.</figcaption></figure>
-    <p>This post was restored from an earlier commit after a truncated push. Full multilingual content and structure preserved with corrected canonical.</p>
+    <h1 data-i18n="blog_title_bonsai">Bonsai on a 16GB Laptop</h1>
+    <p class="deck" data-i18n="blog_desc_bonsai">How PrismML’s Bonsai models make a real local LLM practical for Knowledge Graph on a 16GB laptop — 27B-class reasoning without the cloud.</p>
+    <div class="hero-media">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg" alt="Bonsai local models on laptop" width="1200" height="800">
+    </div>
+    <div data-lang-block="en">
+    <p><strong>Bonsai</strong> is the local-model path that keeps Knowledge Graph honest: reasoning that fits in memory on a machine you own, without renting a frontier API for every turn. PrismML’s 1-bit quantization makes 27B-class reasoning practical on a 16GB laptop.</p>
+    <div class="callout">1-bit quantization is not a demo trick — it is how a 27B-class model becomes a daily tool on a 16GB laptop.</div>
+    <h2>Why local weight matters</h2>
+    <p>If the graph and the originals stay on disk, the assistant that reads them should too. Cloud LLMs force a second privacy boundary and a recurring cost. Bonsai-class models close that gap: enough quality for tool use and long context, small enough to share the machine with Whisper and the canvas.</p>
+    <h2>What changed in practice</h2>
+    <ul>
+      <li>Metal-backed inference that survives real multi-hour sessions</li>
+      <li>Room left for vision, embeddings, and the job queue</li>
+      <li>No obligatory “send the note to the vendor” step to get an answer</li>
+    </ul>
+    <p>The field note is less about benchmarks and more about the product constraint: memory you own, models you run, tools that answer to you.</p>
+    </div>
+    <div data-lang-block="bg" hidden>
+    <p><strong>Bonsai</strong> е локалният модел път, който държи Knowledge Graph честен: разсъждение, което се побира в паметта на машина, която притежаваш, без да наемаш frontier API за всеки ход. 1-bit квантизацията на PrismML прави разсъждение от клас 27B практично на 16GB лаптоп.</p>
+    <div class="callout">1-bit квантизацията не е демо трик — така модел от клас 27B става ежедневен инструмент на 16GB лаптоп.</div>
+    <h2>Защо локалното тегло има значение</h2>
+    <p>Ако графът и оригиналите остават на диска, асистентът, който ги чете, също трябва. Cloud LLM налагат втора граница за поверителност и повтарящ се разход. Моделите от клас Bonsai затварят тази празнина.</p>
+    <h2>Какво се промени на практика</h2>
+    <ul>
+      <li>Metal inference, който издържа реални многочасови сесии</li>
+      <li>Място за vision, embeddings и job queue</li>
+      <li>Без задължителна стъпка „изпрати бележката на доставчика“</li>
+    </ul>
+    </div>
+    <div data-lang-block="es" hidden>
+    <p><strong>Bonsai</strong> es el camino de modelos locales que mantiene honesto a Knowledge Graph: razonamiento que cabe en la memoria de una máquina que posees, sin alquilar una API frontier en cada turno. La cuantización 1-bit de PrismML hace práctico el razonamiento de clase 27B en un portátil de 16GB.</p>
+    <div class="callout">La cuantización 1-bit no es un truco de demo: es cómo un modelo de clase 27B se convierte en una herramienta diaria en un portátil de 16GB.</div>
+    <h2>Por qué importa el peso local</h2>
+    <p>Si el grafo y los originales permanecen en disco, el asistente que los lee también debería. Los LLM en la nube imponen un segundo límite de privacidad y un coste recurrente. Los modelos clase Bonsai cierran esa brecha.</p>
+    <h2>Qué cambió en la práctica</h2>
+    <ul>
+      <li>Inferencia Metal que sobrevive sesiones reales de varias horas</li>
+      <li>Espacio para visión, embeddings y la cola de trabajos</li>
+      <li>Sin el paso obligatorio de “enviar la nota al proveedor”</li>
+    </ul>
+    </div>
+    <div data-lang-block="de" hidden>
+    <p><strong>Bonsai</strong> ist der lokale Modellweg, der Knowledge Graph ehrlich hält: Reasoning, das in den Speicher einer Maschine passt, die dir gehört — ohne für jeden Turn eine Frontier-API zu mieten. PrismMLs 1-Bit-Quantisierung macht 27B-Klasse-Reasoning auf einem 16GB-Laptop praktikabel.</p>
+    <div class="callout">1-Bit-Quantisierung ist kein Demo-Trick — so wird ein 27B-Klassen-Modell zum täglichen Werkzeug auf einem 16GB-Laptop.</div>
+    <h2>Warum lokales Gewicht zählt</h2>
+    <p>Wenn Graph und Originale auf der Disk bleiben, sollte der Assistent, der sie liest, es auch. Cloud-LLMs erzwingen eine zweite Privacy-Grenze und laufende Kosten. Bonsai-Klassen-Modelle schließen diese Lücke.</p>
+    <h2>Was sich in der Praxis geändert hat</h2>
+    <ul>
+      <li>Metal-Inference, die echte mehrstündige Sessions übersteht</li>
+      <li>Platz für Vision, Embeddings und die Job-Queue</li>
+      <li>Kein verpflichtender Schritt „Notiz an den Anbieter senden“</li>
+    </ul>
+    </div>
     <div class="links">
       <a href="knowledge-graph.html">Knowledge Graph</a>
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
       <a href="kg-part-1.html">Series · Part 1</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
+    <div class="more">
+      <h3 data-i18n="more_from">More from Sci-Fi Labs</h3>
+      <a href="reclaim-your-data.html">Reclaim your data →</a>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="musical-cubes.html">Musical Cubes →</a>
+    </div>
   </article>
   <footer>
     Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
   </footer>
+  <script src="/i18n-en.js"></script>
+  <script src="/i18n-bg.js"></script>
+  <script src="/i18n-es.js"></script>
+  <script src="/i18n-de.js"></script>
+  <script src="/i18n-core.js"></script>
 <script src="analytics.js" defer></script>
 </body>
 </html>
