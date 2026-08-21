@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One prompt. Your own life map. — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Paste one prompt into Grok, drop your Google Maps Takeout, and get a personal Where is [You]? globe and timeline. The same idea behind Where is Paul?, now copy-paste ready.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="One prompt. Your own life map.">
+  <meta property="og:description" content="Paste one prompt into Grok, drop your Google Maps Takeout, and get a personal Where is [You]? globe and timeline.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/one-prompt-life-map">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Sci-Fi Labs · Essay</p>
+    <h1>One prompt. Your own life map.</h1>
+    <p class="deck">Paste this into Grok, drop your Google Maps Takeout, and get a personal Where is [You]? — globe, timeline, markers, the works. The same idea behind Where is Paul?, now copy-paste ready.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg" alt="Where is Paul spatial life map — globe and timeline of real moments" width="1200" height="676" loading="eager"><figcaption class="fig-cap">Where is Paul? is the reference implementation. The prompt below turns the same pattern into something that runs on your data.</figcaption></figure>
+
+    <h2>Your location history is already sitting there</h2>
+    <p>Google Takeout will give you years of Timeline data if you ask for it. Most people never open the file. It sits as a zip of JSON, full of places, timestamps, and the quiet record of where a life actually moved. The usual next step is nothing — or a spreadsheet, or a map that never becomes a product you can return to.</p>
+    <p>Where is Paul? started from the opposite decision: treat that record as first-class material for a spatial app. Globe, timeline, stories, filters. A navigable surface instead of a dump. The live version lives at <a href="/apps/where-is-paul/">paulvisciano.com/apps/where-is-paul</a>. It is the proof that the pattern works.</p>
+    <p>The next step is making the pattern portable. One prompt. Your export. Your name on the title bar.</p>
+
+    <div class="callout">Copy the prompt below. Paste it into Grok. When the app is ready, drop in your Google Maps Timeline export. That is the entire workflow.</div>
+
+    <h2>The prompt</h2>
+    <p>Everything below the line is meant to be copied as-is. Change the name if you want; leave the rest alone on the first run.</p>
+
+    <pre style="background:#111;border:1px solid #333;border-radius:8px;padding:1.25rem;overflow-x:auto;font-size:0.9rem;line-height:1.5;color:#e5e5e5;white-space:pre-wrap;"><code>Build a complete static web app called "Where is [My Name]?" that visualizes personal location history from a Google Maps Timeline export.
+
+Requirements:
+- Interactive 3D globe (Three.js) with markers for places stayed
+- Timeline scrubber that filters the globe by year or month
+- Click a marker to see place name, date range, and a short note
+- Simple tag filters (beach, city, nature, etc.)
+- Dark, minimal, sci-fi aesthetic — clean spatial UI, not a dashboard
+- Accept a Google Maps Timeline / Location History Takeout JSON client-side (file drop or file picker)
+- Parse the export, extract significant stays, cluster nearby points, and auto-populate the globe and timeline
+- Include a "Load sample data" button so the app demos immediately without any file
+- Single page or small set of static files only — no backend, no API keys, deployable anywhere
+
+Make the code clean, commented, and ready to open in a browser. Prefer modern vanilla JS + Three.js. If you need a starter structure, keep it minimal.</code></pre>
+
+    <p>That is the whole ask. Grok builds the app. You feed it the export. The result is a personal life map that runs in the browser.</p>
+
+    <h2>Why this works</h2>
+    <p>The hard parts of a spatial life map are the data model and the interaction model — how stays become markers, how time becomes a filter, how the globe stays readable. Those pieces are now described clearly enough that a single well-structured prompt can produce a working first version. The Google export is the fuel. Everything else is pattern matching against an existing reference (Where is Paul?) and ordinary web technology.</p>
+    <p>You still own the data. The export never has to leave your machine if you run the generated app locally. The published Where is Paul? site is the public demo; the private copy of the same idea, built from your Takeout, is the version that actually belongs to you.</p>
+
+    <div class="callout">Post the prompt on X. Link back here for the full context. The prompt is the product; the essay is the footnote.</div>
+
+    <h2>What to do next</h2>
+    <ol>
+      <li>Copy the prompt above.</li>
+      <li>Paste it into Grok (or any capable coding model).</li>
+      <li>Download your Google Maps Timeline from Takeout if you do not already have it.</li>
+      <li>Drop the JSON into the generated app.</li>
+      <li>Open the result in a browser. Iterate on the UI or data cleaning as needed.</li>
+    </ol>
+    <p>When you want the polished, multi-year, story-linked version of the same idea, the live reference is already running: <a href="/apps/where-is-paul/">Where is Paul?</a></p>
+
+    <div class="links">
+      <a href="/apps/where-is-paul/">Open Where is Paul?</a>
+      <a href="where-is-paul.html">Project note</a>
+      <a href="https://github.com/paulvisciano/where-is-paul">GitHub</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="reclaim-your-data.html">Reclaim your data →</a>
+      <a href="what-are-sci-fi-apps.html">What are Sci-Fi Apps? →</a>
+      <a href="knowledge-graph.html">Knowledge Graph →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
