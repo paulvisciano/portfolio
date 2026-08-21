@@ -12,32 +12,6 @@
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/knowledge-graph">
   <link rel="stylesheet" href="blog.css">
-  <style>
-    .tech-reveal{margin:2.5rem 0;border:none;padding:0}
-    .tech-reveal > summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0.6rem;padding:2.2rem 1.5rem;border:1px solid var(--border);border-radius:14px;background:var(--bg-card);text-align:center;transition:border-color 0.4s ease,background 0.4s ease,box-shadow 0.4s ease;position:relative;overflow:hidden}
-    .tech-reveal > summary::-webkit-details-marker{display:none}
-    .tech-reveal > summary::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0,oklch(72% 0.08 230 / 0.08),transparent 70%);opacity:0;transition:opacity 0.5s ease}
-    .tech-reveal > summary:hover{border-color:oklch(72% 0.08 230 / 0.35);box-shadow:0 0 30px -8px oklch(72% 0.08 230 / 0.12)}
-    .tech-reveal > summary:hover::before{opacity:1}
-    .tech-reveal[open] > summary{border-radius:14px 14px 0 0;border-bottom-color:transparent}
-    .tech-reveal[open] > summary:hover{box-shadow:none}
-    .reveal-icon{font-size:1.6rem;color:oklch(72% 0.08 230);line-height:1;transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),color 0.3s ease}
-    .tech-reveal > summary:hover .reveal-icon{transform:rotate(180deg) scale(1.1);color:oklch(82% 0.10 230)}
-    .tech-reveal[open] > summary .reveal-icon{transform:rotate(180deg)}
-    .reveal-label{font-family:var(--font-display);font-size:1.35rem;font-weight:400;color:var(--fg);letter-spacing:-0.01em}
-    .reveal-hint{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.08em;color:var(--muted)}
-    .tech-reveal-inner{padding:0;border:1px solid var(--border);border-top:none;border-radius:0 0 14px 14px;overflow:hidden}
-    .tech-reveal-inner > *:first-child{padding-top:1.75rem}
-    .tech-reveal-inner > *:last-child{margin-bottom:0}
-    .tech-reveal-inner h2,.tech-reveal-inner h3{padding-left:1.35rem;padding-right:1.35rem}
-    .tech-reveal-inner p,.tech-reveal-inner table,.tech-reveal-inner .pipeline,.tech-reveal-inner .callout{padding-left:1.35rem;padding-right:1.35rem}
-    .tech-reveal-inner table{margin-left:1.35rem;margin-right:1.35rem;width:calc(100% - 2.7rem)}
-    .tech-reveal-inner .callout{margin-left:1.35rem;margin-right:1.35rem;border-radius:0 8px 8px 0}
-    @media(max-width:540px){
-      .tech-reveal-inner table{margin-left:0;margin-right:0;width:100%}
-      .tech-reveal-inner .callout{margin-left:0;margin-right:0}
-    }
-  </style>
 </head>
 <body>
   <header class="top">
@@ -57,9 +31,9 @@
     <h2>What it is</h2>
     <ul>
       <li><strong>Spatial UI</strong> — Three.js infinite canvas with time layers; pan, zoom, and scroll through memory</li>
-      <li><strong>Local intelligence</strong> — on-device LLM, vision, Whisper, embeddings, and reranking on Apple Silicon</li>
+      <li><strong>Local intelligence</strong> — on-device LLM, vision, Whisper, and embeddings on Apple Silicon</li>
       <li><strong>Living graph</strong> — entities and relationships extracted from conversations, photos, and voice</li>
-      <li><strong>Rich images</strong> — EXIF, reverse geocoding, faces, and local vision descriptions become graph nodes</li>
+      <li><strong>Rich images</strong> — EXIF, reverse geocoding, and local vision descriptions become graph nodes</li>
       <li><strong>Voice-first</strong> — speech enters the same knowledge loop, fully offline</li>
     </ul>
     <div class="hero-media">
@@ -73,129 +47,7 @@
       </video>
     </div>
     <p>A Sci-Fi app in the strict sense: the interface you were told belonged to movies, running on a machine that never has to phone home.</p>
-
-    <details class="tech-reveal" id="tech-reveal">
-      <summary>
-        <span class="reveal-icon" aria-hidden="true">◈</span>
-        <span class="reveal-label">Reveal the tech behind the Knowledge Graph</span>
-        <span class="reveal-hint">Models, architecture, pipeline, memory — all of it, on one laptop</span>
-      </summary>
-      <div class="tech-reveal-inner">
-
-    <h2>Let's get technical</h2>
-    <p>Every model in the system is a file on disk. No API keys, no remote endpoints, no silent uploads. The entire stack runs on a 14-inch MacBook Pro with an Apple M2 Pro — 10-core CPU, 16-core GPU, and 16GB of unified memory shared between the processor, the graphics, and every running model. That constraint is not a limitation to work around; it is the design constraint that forced the architecture.</p>
-    <h3>The model stack</h3>
-    <table>
-      <thead>
-        <tr><th>Role</th><th>Model</th><th>File</th><th>Size</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>LLM + Vision</td><td>Bonsai-27B (1-bit Q1_0)</td><td><code>Bonsai-27B-Q1_0.gguf</code></td><td>~3.8 GB</td></tr>
-        <tr><td>Vision projection</td><td>Bonsai-27B mmproj</td><td><code>Bonsai-27B-mmproj-Q8_0.gguf</code></td><td>~629 MB</td></tr>
-        <tr><td>Embedding</td><td>BGE-M3 (Q4_K_M)</td><td><code>bge-m3-Q4_K_M.gguf</code></td><td>~1.1 GB</td></tr>
-        <tr><td>Transcription</td><td>Whisper large-v3-turbo</td><td><code>ggml-large-v3-turbo.bin</code></td><td>~1.5 GB</td></tr>
-      </tbody>
-    </table>
-    <p>Bonsai-27B is a 27B-parameter model compressed with PrismML's 1-bit quantization (<code>Q1_0_g128</code>) — packed weights that are a fraction of the original size with enough reasoning quality for tool use and long context. The catch: the 1-bit Metal kernels do not exist in stock <code>llama.cpp</code>. The project builds the <a class="ext" href="https://github.com/PrismML-Eng/llama.cpp" target="_blank" rel="noopener">PrismML-Eng fork</a> from source to get them. The Homebrew bottle will refuse to load the GGUF.</p>
-    <p>The same model serves both roles — chat and vision. Bonsai-27B is built on Qwen3.6-27B, which has a vision tower. In <code>llama.cpp</code> the vision encoder weights ship as a separate file: the base GGUF holds only the language model, and the mmproj file is the projection that maps image pixels into the model's embedding space. One model, two slots — one for interactive chat, one for image processing — and they share the same 16GB pool.</p>
-    <p>Embeddings are handled by BGE-M3, a 1024-dimensional multilingual model running on its own <code>llama-server</code> instance. Voice transcription is Whisper, running on <code>whisper-server</code> (from <code>whisper.cpp</code>) on the Metal GPU. Both are separate processes from the LLM so they can load and serve without competing for the same slot.</p>
-
-    <h3>Architecture</h3>
-    <p>The stack splits cleanly along a boundary: model servers run on the host (direct Metal access), and the service layer runs in Docker (isolated, composed, restartable). They talk to each other over <code>host.docker.internal</code> — the Docker bridge to the laptop's own loopback.</p>
-    <div class="pipeline">
-      <p class="pipeline-title">System architecture — everything on one laptop, nothing in the cloud</p>
-      <div class="pipe-step" style="flex:1 1 100%;border-color:oklch(72% 0.08 230 / 0.4)">
-        <div class="n">HOST (Metal GPU)</div>
-        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">llama-server :8080 — Bonsai-27B LLM + mmproj vision (2 slots)<br>llama-server :8081 — BGE-M3 embeddings<br>whisper-server :8090 — Whisper large-v3-turbo transcription</div>
-      </div>
-      <div style="text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:var(--fs-micro);padding:0.5rem 0">host.docker.internal ▲ ▼</div>
-      <div class="pipe-step" style="flex:1 1 100%;border-color:oklch(72% 0.12 200 / 0.35)">
-        <div class="n">DOCKER (internal bridge network)</div>
-        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">
-          <strong style="color:var(--fg)">LightRAG</strong> :9621 — entity extraction, graph retrieval, query routing<br>
-          <strong style="color:var(--fg)">Postgres</strong> + pgvector — KV store, vector index (HNSW), doc status<br>
-          <strong style="color:var(--fg)">KG API</strong> :8000 — FastAPI: image pipeline, chat, sync, settings<br>
-          <strong style="color:var(--fg)">Worker</strong> — background image processing (EXIF → faces → VLM → graph)<br>
-          <strong style="color:var(--fg)">LLM Worker</strong> — chat job queue, MCP tool calls<br>
-          <strong style="color:var(--fg)">MCP Server</strong> :9653 — Model Context Protocol bridge<br>
-          <strong style="color:var(--fg)">Nexus UI</strong> :3000 — SvelteKit + Three.js infinite canvas
-        </div>
-      </div>
-      <div style="text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:var(--fs-micro);padding:0.5rem 0">Browser ▲ ▼</div>
-      <div class="pipe-step" style="flex:1 1 100%;border-color:oklch(72% 0.08 230 / 0.2)">
-        <div class="n">CLIENT</div>
-        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">localhost:3000 — the spatial canvas, chat panel, ingestion, voice — all one page</div>
-      </div>
-    </div>
-    <p>LightRAG is the memory engine. It does the entity-and-relation extraction that turns raw text into a queryable graph, and it runs the dual-level retrieval (local entity match + higher-level themes) that makes <em>"what did I do last week"</em> return something more than a keyword search. Its KV store, vector store, and document status all live in Postgres with pgvector and an HNSW index. The graph itself stays in NetworkX — in-process, no separate graph database — because the personal archive is small enough that an in-memory graph is faster than a network round trip.</p>
-    <p>The KG API is a FastAPI app that owns everything that is not LightRAG: image ingestion (EXIF extraction, face recognition, VLM image descriptions), chat (streaming SSE to the UI, job queue to the LLM worker), and the settings surface. It talks to LightRAG over HTTP inside the Docker network and to the host <code>llama-servers</code> through the Docker gateway. The API process serves HTTP only — a separate worker process owns all image processing so that a long VLM batch never blocks the website's event loop.</p>
-    <p>The worker is the quiet engine of the pipeline. It polls a Postgres jobs table with <code>SELECT FOR UPDATE SKIP LOCKED</code>, claims pending rows, and drives each one through a two-phase pipeline. No Redis, no Celery — Postgres is the queue, and <code>pg_notify</code> is the event bus that the API's SSE endpoints listen on. The architecture is deliberately boring: one database, one queue, one event stream.</p>
-
-    <h3>The image pipeline</h3>
-    <p>When a photo lands in the system, it does not go straight to the model. It goes through a two-phase pipeline that separates the cheap work from the expensive work, so a batch of 50 photos does not monopolize the GPU for an hour.</p>
-    <div class="pipeline">
-      <p class="pipeline-title">Two-phase image processing — one photo, five stages, all local</p>
-      <div class="pipeline-flow">
-        <div class="pipe-step">
-          <div class="n">01</div>
-          <div class="t">EXIF</div>
-          <div class="d">Camera, date, GPS → reverse-geocoded place names (offline)</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="n">02</div>
-          <div class="t">Faces</div>
-          <div class="d">DeepFace: MTCNN detect → ArcFace embed → identify known persons</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="n">03</div>
-          <div class="t">Entities</div>
-          <div class="d">EXIF + faces become graph nodes via LightRAG entity/relation API</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="n">04</div>
-          <div class="t">VLM</div>
-          <div class="d">Bonsai-27B + mmproj: image → natural-language description of the scene</div>
-        </div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step">
-          <div class="n">05</div>
-          <div class="t">Graph</div>
-          <div class="d">Visual description ingested by LightRAG → entities, relations, embeddings</div>
-        </div>
-      </div>
-    </div>
-    <p>Phase 1 is CPU-bound: EXIF extraction with ExifRead, reverse geocoding with <code>reverse_geocoder</code> (an offline dataset, no network), and face recognition with DeepFace (MTCNN detection, ArcFace 512-dimensional embeddings, identification against a folder of known faces). The results — camera model, date, location, people detected — become entities and relations in the graph immediately. This phase can run at high concurrency (up to 10 in parallel) because it never touches the LLM.</p>
-    <p>Phase 2 is GPU-bound: the VLM. The photo is resized to max 768px (the mmproj caps image tokens at 280, so anything larger is wasted compute) and sent to Bonsai-27B with the vision projection. The model returns a natural-language description of the scene — what is in the photo, the setting, the mood. That description is ingested by LightRAG as text, which extracts its own entities and relations and adds them to the graph. A photo of a dinner in Lisbon becomes nodes for the food, the restaurant, the city, and the people — connected to the date, the camera, and each other.</p>
-    <p>The split exists because of the 16GB constraint. Phase 1 runs fast and cheap; phase 2 is the bottleneck. Running them separately means a batch upload can complete phase 1 in seconds and then trickle phase 2 through the single VLM slot overnight, while the other LLM slot stays free for chat.</p>
-
-    <h3>The chat and query path</h3>
-    <p>When you speak or type a question, the path is different from ingestion. The Nexus UI streams the message to the KG API, which saves it and creates an LLM job. The LLM worker picks up the job, calls the Bonsai-27B server with the chat context, and streams the response back via SSE. If the question needs memory — <em>"what did I do in Lisbon?"</em> — the worker calls LightRAG's query API first. LightRAG embeds the query with BGE-M3, retrieves the top-k entity subgraphs from the Postgres vector store, assembles a context block, and hands it to the LLM as part of the prompt. The model answers from your own data, not from its training set.</p>
-    <p>If the question has an audio component — a voice memo — Whisper transcribes it on the host GPU before the text reaches the LLM. The transcription becomes another node on the canvas, timestamped to the moment it was spoken, sitting in the same time layer as the photos and notes from that day.</p>
-    <p>The MCP server exposes the graph to external tools. Any agent that speaks the Model Context Protocol can query the graph, save to it, or search it — the same API the internal UI uses, but over a standard interface. The utility agent on your machine can ask the personal agent's memory without the personal agent's data ever leaving the laptop.</p>
-
-    <h3>16GB, accounted for</h3>
-    <p>The memory budget is the hardest constraint and the reason the architecture looks the way it does. Everything shares one pool:</p>
-    <table>
-      <thead>
-        <tr><th>Component</th><th>Where</th><th>Memory</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Bonsai-27B (LLM + VLM, 2 slots)</td><td>Host (Metal)</td><td>~5.5 GB</td></tr>
-        <tr><td>BGE-M3 embeddings</td><td>Host (Metal)</td><td>~1.2 GB</td></tr>
-        <tr><td>Whisper transcription</td><td>Host (Metal)</td><td>~1.0 GB</td></tr>
-        <tr><td>macOS + browser + Docker VM</td><td>Host</td><td>~5–6 GB</td></tr>
-        <tr><td>LightRAG + Postgres + API + UI</td><td>Docker</td><td>~3.3 GB (Docker VM)</td></tr>
-      </tbody>
-    </table>
-    <p>The Docker VM is capped at 1.5 GiB — enough for Postgres, LightRAG, the API, the worker, and the UI to coexist, but tight enough that container memory limits are enforced individually in <code>docker-compose.yml</code>. The LLM is the biggest consumer: two slots of Bonsai-27B plus the mmproj vision weights. Whisper loads and unloads on demand (the worker starts it only when a voice memo needs transcription). BGE-M3 is always resident because every query and every ingestion needs embeddings.</p>
-    <p>That budget is why the reranker was removed. <code>bge-reranker-v2-m3</code> worked, but it added ~600MB of resident GPU memory for a quality bump that did not justify the cost on this machine. The architecture is willing to trade a retrieval refinement for a slot that stays free for chat. On a 32GB box the reranker comes back — it is a config change, not a rewrite.</p>
-    <div class="callout">The constraint is not a footnote. It is the reason the worker is separate from the API, the reason the pipeline is two-phase, the reason the reranker is optional, and the reason the whole stack can run with the network unplugged. If it only works on a $4,000 workstation, it is not a personal memory system — it is a hobby for the few.</div>
-
-      </div>
-    </details>
+    <p>Want the real technical stats — models, architecture, live memory measurements, token throughput, and the difference between idle and active load? There is a full field-notes essay for that: <a href="running-local-ai-16gb.html">Running Local AI on 16 GB MacBook — the real stats</a>.</p>
 
     <div class="links">
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
@@ -214,22 +66,5 @@
     Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
   </footer>
 <script src="analytics.js" defer></script>
-<script>
-  (function(){
-    var d=document.getElementById('tech-reveal');
-    if(!d)return;
-    var label=d.querySelector('.reveal-label');
-    var CLOSED='Reveal the tech behind the Knowledge Graph';
-    var OPEN='Close the technical view';
-    d.addEventListener('toggle',function(){
-      label.textContent=d.open?OPEN:CLOSED;
-      if(d.open){
-        requestAnimationFrame(function(){
-          d.scrollIntoView({behavior:'smooth',block:'start'});
-        });
-      }
-    });
-  })();
-</script>
 </body>
 </html>
