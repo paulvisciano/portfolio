@@ -2,7 +2,7 @@
 
 Personal portfolio for **Paul Visciano** — designer and engineer behind **Sci-Fi Labs**.
 
-**Live:** [paulvisciano.vercel.app](https://paulvisciano.vercel.app)
+**Live:** [paulvisciano.com](https://paulvisciano.com)
 
 ## What this is
 
@@ -42,7 +42,7 @@ npx serve .
 
 ## Deploy
 
-Push to `main`. With the repo linked to Vercel, production updates automatically. `vercel.json` targets the `paulvisciano.vercel.app` alias.
+Push to `main`. With the repo linked to Vercel, production updates automatically. `vercel.json` targets the `paulvisciano.com` alias.
 
 ---
 
