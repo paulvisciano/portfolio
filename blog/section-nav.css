@@ -3,12 +3,12 @@ html{scrollbar-width:none}
 html::-webkit-scrollbar{display:none}
 h2{scroll-margin-top:4.5rem}
 .section-nav{position:fixed;top:50%;right:0;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:0.7rem;padding-right:1rem}
-.section-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);text-decoration:none;display:flex;align-items:center;gap:0.6rem;flex-direction:row-reverse;transition:color 0.2s;white-space:nowrap}
+.section-nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);text-decoration:none;display:flex;align-items:center;gap:0.6rem;flex-direction:row-reverse;transition:color 0.2s;max-width:160px;text-align:right;line-height:1.4}
 .section-nav a::before{content:'';width:10px;height:1px;background:var(--faint);transition:width 0.2s,background 0.2s}
 .section-nav a:hover{color:var(--fg)}
 .section-nav a:hover::before{width:20px;background:var(--fg)}
 .section-nav a.active{color:var(--fg)}
 .section-nav a.active::before{width:20px;background:var(--fg)}
-.section-nav .progress{position:absolute;right:0;top:0;bottom:0;width:1px;background:var(--border);overflow:hidden}
+.section-nav .progress{position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--border);overflow:hidden}
 .section-nav .progress-bar{position:absolute;top:0;left:0;right:0;background:oklch(72% 0.08 230);transition:height 0.15s ease}
 @media(max-width:860px){.section-nav{display:none}}
