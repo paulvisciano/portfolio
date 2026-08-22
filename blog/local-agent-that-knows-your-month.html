@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Local Agent That Can Answer “What Have I Been Up To?” — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="A local agent is only useful when retrieval works. This week Knowledge Graph started returning every photo and note for a date range and flying the spatial canvas to the right time layer — offline, zero API keys.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Local Agent That Can Answer “What Have I Been Up To?”">
+  <meta property="og:description" content="A local agent is only useful when retrieval works. This week Knowledge Graph started returning every photo and note for a date range and flying the spatial canvas to the right time layer — offline, zero API keys.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/local-agent-that-knows-your-month">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Sci-Fi Labs · Essay</p>
+    <h1>The Local Agent That Can Answer “What Have I Been Up To?”</h1>
+    <p class="deck">Cloud agents are convenient because they already have your data. Local agents become useful only when the retrieval layer can actually see the whole month.</p>
+
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Spatial knowledge graph canvas with time layers of photos and notes, camera flying toward a month bucket" width="1168" height="784" loading="eager">
+      <figcaption class="fig-cap">When the agent can fly the canvas to the right month and feed every photo into the answer, the local stack stops being a demo.</figcaption>
+    </figure>
+
+    <p>A local agent is only useful if it can answer the questions you actually care about. For a personal memory system that question is usually some version of “what have I been up to this month?” or “show me last month.”</p>
+
+    <p>Until a few days ago, <a href="knowledge-graph.html">Knowledge Graph</a> still hit the classic retrieval ceiling. Vector search returned a top-k slice. Ask about August and you would get roughly seven photos out of the twenty-three that lived in the graph. The model never saw the full set, so the answer was incomplete even though every file sat on disk.</p>
+
+    <div class="callout">The data was already local. The agent just could not reach all of it.</div>
+
+    <h2>Closing the retrieval gap</h2>
+    <p>This week’s commits closed that gap. The agent now walks the graph for the date range, pulls every Photo entity linked by its real EXIF taken-on relationship, and injects the complete set into the response. Notes travel the same path. Relative language — “this month,” “last month,” a bare month name — is parsed into a proper range instead of being rewritten into a keyword salad by the language model.</p>
+
+    <p>At the same time a new navigate tool was added. When the user mentions a time period the system posts a request; the UI polls, matches the target to a time bucket, and flies the Three.js canvas to that layer. You see the spatial layout of the month, not only a text reply.</p>
+
+    <p>Tool results themselves are no longer dumped as raw JSON. Entities, relationships, and image paths are parsed and rendered inline so the conversation stays readable. The truncation limit that previously cut month-scale context down to 8 000 characters was raised so the model actually receives the data the graph returns.</p>
+
+    <h2>Why this is the agentic difference</h2>
+    <p>Cloud agents feel powerful because the vendor already holds the corpus. You hand the workflow over; the data has already left. A local agent has to earn the same usefulness on hardware you control. That means the retrieval layer, the date logic, the spatial navigation, and the prompt hygiene all have to be good enough that the model can act on a complete view of your own history.</p>
+
+    <p>Knowledge Graph is the test bed for that claim. It is a private spatial memory engine — conversations, photos, and voice notes floating as time layers on an infinite canvas. Inference runs through Llama.cpp. Retrieval uses LightRAG. Voice is local Whisper. The published site is a demo. The real product is the copy that runs on your machine, answers questions about your own life, and never phones home.</p>
+
+    <p>The same principle applies to the rest of the Sci-Fi Labs stack. <a href="where-is-paul.html">Where is Paul?</a> is the public-facing spatial life map — globe, timeline, stories — that can feed moments into the private graph. Both are just websites, so they open in any browser, including Apple Vision Pro and other AR/VR headsets. The data layer stays local by design.</p>
+
+    <h2>Ambient alternatives keep arriving</h2>
+    <p>While the local retrieval work landed, the rest of the industry continued in the opposite direction. Comcast began offering Wi-Fi motion sensing on millions of home gateways. The feature detects movement through signal disruption, stores up to seven days of activity history in the company’s cloud, and can be disclosed under a valid subpoena or warrant. Convenient. Ambient. No longer yours the moment it leaves the house.</p>
+
+    <div class="callout">The choice is not between agents and no agents. It is between agents that keep the data and agents that treat the data as the price of convenience.</div>
+
+    <h2>What “done” looks like</h2>
+    <p>Unplug the network. Ask the agent what you did last month. Watch the canvas fly to the correct bucket and the answer arrive with every photo and note that belongs there. That offline test is still the only proof that matters. Everything else is marketing.</p>
+
+    <div class="links">
+      <a href="knowledge-graph.html">Knowledge Graph</a>
+      <a href="kg-part-1.html">KG series · Part 1</a>
+      <a href="running-local-ai-16gb.html">Running Local AI on 16 GB</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="knowledge-graph.html">Knowledge Graph →</a>
+      <a href="where-is-paul.html">Where is Paul? →</a>
+      <a href="reclaim-your-data.html">Reclaim your data →</a>
+      <a href="surveillance-pricing.html">Surveillance Pricing →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
