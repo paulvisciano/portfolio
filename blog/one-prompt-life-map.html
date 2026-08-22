@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>One prompt. Your own life map. — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Paste one prompt into Grok, drop your Google Maps Timeline export, and get a personal Where is [You]? globe and timeline. Includes a short guide to exporting your data.">
+  <meta name="description" content="Google has been quietly recording where you go for years. Here’s how to take that data back and turn it into your own interactive life map with one simple prompt.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="One prompt. Your own life map.">
-  <meta property="og:description" content="Paste this into Grok, drop your Google Maps Timeline export, and get a personal Where is [You]? — globe, timeline, markers, the works. The same idea behind Where is Paul?, now copy-paste ready.">
+  <meta property="og:description" content="Google has been recording where you go for years. Here’s how to take that data back and make your own interactive life map.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/one-prompt-life-map">
   <link rel="stylesheet" href="blog.css">
@@ -27,66 +27,74 @@
   <article>
     <p class="series">Sci-Fi Labs · Essay</p>
     <h1>One prompt. Your own life map.</h1>
-    <p class="deck">Paste this into Grok, drop your Google Maps Timeline export, and get a personal Where is [You]? — globe, timeline, markers, the works. The same idea behind Where is Paul?, now copy-paste ready.</p>
-    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg" alt="Where is Paul spatial life map — globe and timeline of real moments" width="1200" height="676" loading="eager"><figcaption class="fig-cap">Where is Paul? is the reference implementation. The prompt below turns the same pattern into something that runs on your data.</figcaption></figure>
+    <p class="deck">Google has been quietly recording where you go for years. Most people never realize how much is sitting there. Here’s how to take it back and turn it into something that actually belongs to you.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg" alt="Where is Paul spatial life map — globe and timeline of real moments" width="1200" height="676" loading="eager"><figcaption class="fig-cap">Where is Paul? is the live example. The prompt below lets you build the same kind of map using your own data.</figcaption></figure>
 
-    <h2>Your location history is already sitting there</h2>
-    <p>Google still holds (or once held) years of Timeline data. Most people never open the file. It sits as JSON full of places, timestamps, and the quiet record of where a life actually moved. The usual next step is nothing — or a spreadsheet, or a map that never becomes a product you can return to.</p>
-    <p>Where is Paul? started from the opposite decision: treat that record as first-class material for a spatial app. Globe, timeline, stories, filters. A navigable surface instead of a dump. The live version lives at <a href="/apps/where-is-paul/">paulvisciano.com/apps/where-is-paul</a>. It is the proof that the pattern works.</p>
-    <p>The next step is making the pattern portable. One prompt. Your export. Your name on the title bar.</p>
+    <h2>Google already knows where you’ve been</h2>
+    <p>For a long time, if you used Google Maps or had location services turned on, Google was saving a detailed record of where you went. Not just the big trips. The coffee shops. The routes to work. The weekends away. It all went into something called Timeline (sometimes still labeled Location History).</p>
+    <p>A lot of people never looked at it. Some didn’t even know the feature existed. For years it was on by default for many accounts. The result is that millions of people now have years of their real movement sitting in Google’s systems — or still sitting on their phones after Google moved the data to the device.</p>
+    <p>That data is yours. The problem is that most of us never actually take it back. It stays locked inside Google’s world instead of becoming something we can explore, keep, or build with.</p>
+    <p>This is part of a bigger idea: <a href="reclaim-your-data.html">reclaiming your data</a>. Getting the records of your own life out of the platforms that collected them, and putting them under your control.</p>
 
-    <div class="callout">Copy the prompt below. Paste it into Grok. When the app is ready, drop in your Timeline export. That is the entire workflow.</div>
+    <h2>What if that record became a map you own?</h2>
+    <p>I built a project called <a href="/apps/where-is-paul/">Where is Paul?</a> that takes real location history and turns it into an interactive globe and timeline. You can spin the world, scrub through time, click on places, and see the shape of a life in motion.</p>
+    <p>The same idea can work for anyone. You don’t need to be a developer. You just need two things:</p>
+    <ol>
+      <li>Your own Google Maps Timeline export</li>
+      <li>One short prompt that tells an AI to use the live site as a template and make a version for you</li>
+    </ol>
+
+    <div class="callout">Copy the prompt. Paste it into any capable AI. When the app is ready, drop in your Timeline file. That’s the whole process.</div>
 
     <h2>The prompt</h2>
-    <p>Everything below the line is meant to be copied as-is. Change the name if you want; leave the rest alone on the first run.</p>
+    <p>Copy everything in the box below and paste it into Grok, Claude, ChatGPT, or any AI that can build web apps.</p>
 
-    <pre style="background:#111;border:1px solid #333;border-radius:8px;padding:1.25rem;overflow-x:auto;font-size:0.9rem;line-height:1.5;color:#e5e5e5;white-space:pre-wrap;"><code>Hey Grok, build me a map like this one: https://paulvisciano.com/apps/where-is-paul and make it mine. Use the live site as the template. Then I'll drop in my Google Maps Timeline export and you can wire up my data automatically.</code></pre>
+    <pre style="background:#111;border:1px solid #333;border-radius:8px;padding:1.25rem;overflow-x:auto;font-size:0.9rem;line-height:1.5;color:#e5e5e5;white-space:pre-wrap;"><code>Build me a personal life map like this one: https://paulvisciano.com/apps/where-is-paul
 
-    <p>That is the whole ask. Grok builds the app. You feed it the export. The result is a personal life map that runs in the browser.</p>
+Use the live site as the template. Make it mine — rename it to “Where is [My Name]?” and set it up so I can drop in my own Google Maps Timeline export and have the globe and timeline fill with my places automatically.</code></pre>
 
-    <h2>How to export your Google Maps Timeline data</h2>
-    <p>Google moved most Timeline storage onto the device itself starting in late 2024. That means there are now two useful ways to get the data out. Do both if you want the fullest possible history.</p>
+    <p>That’s it. The AI uses the existing public site as the model and builds a version that runs on your data.</p>
 
-    <h3>1. On-device export (recent data)</h3>
-    <p>This is the primary way to get trips recorded after the migration.</p>
+    <h2>How to get your Google Maps Timeline data</h2>
+    <p>Google changed how this works. A few years ago the data mostly lived on their servers. Starting in late 2024 they moved a lot of it onto the phone itself. So there are two places to look.</p>
+
+    <h3>1. From your phone (recent trips)</h3>
     <ul>
-      <li><strong>Android:</strong> Settings → Location → Location services → Timeline → Export Timeline data. You get a file named <code>Timeline.json</code>.</li>
-      <li><strong>iOS:</strong> Open the Google Maps app → your profile picture → Settings → Location & Privacy (or Personal Content) → Export Timeline data → Save to Files.</li>
+      <li><strong>Android:</strong> Settings → Location → Location services → Timeline → Export Timeline data. You’ll get a file called Timeline.json.</li>
+      <li><strong>iPhone:</strong> Open the Google Maps app → tap your profile picture → Settings → Location & Privacy (or Personal Content) → Export Timeline data → Save to Files.</li>
     </ul>
 
-    <h3>2. Google Takeout (historical archive)</h3>
-    <p>Still useful for older data that lived on Google’s servers before the on-device shift.</p>
+    <h3>2. From Google Takeout (older history)</h3>
     <ol>
       <li>Go to <a href="https://takeout.google.com" target="_blank" rel="noopener">takeout.google.com</a> and sign in.</li>
-      <li>Click “Deselect all”.</li>
-      <li>Find and select only <strong>Location History (Timeline)</strong>.</li>
-      <li>Choose JSON as the format and create the export.</li>
-      <li>Google emails a download link (usually within minutes to a couple of hours). Unzip the archive.</li>
+      <li>Click “Deselect all.”</li>
+      <li>Find and check only <strong>Location History (Timeline)</strong>.</li>
+      <li>Choose JSON and create the export.</li>
+      <li>Google will email you a download link. Unzip the file when it arrives.</li>
     </ol>
-    <p>Inside you will typically find <code>Records.json</code>, Settings, and a Semantic Location History folder with monthly files. Any of the JSON pieces can be useful; the semantic monthly files are often the cleanest for place visits.</p>
+    <p>If you want the fullest picture, do both. Older data often still lives in Takeout; newer data is usually on the device.</p>
 
-    <p>Once you have the file (or files), drop them into the app the prompt generates. The generated code should attempt to parse the common shapes. If a particular format needs a small adjustment, you can ask Grok to update the parser.</p>
+    <h2>Why this matters</h2>
+    <p>The point isn’t just a pretty globe. It’s about who holds the record of your life. For years that record sat inside Google. Most people never asked for a copy. Now the tools exist to pull it out and turn it into something you can actually use and keep.</p>
+    <p>Your data stays on your machine if you run the finished app locally. The public <a href="/apps/where-is-paul/">Where is Paul?</a> site is just the example. The version built from your own Timeline is the one that belongs to you.</p>
+    <p>This is the practical side of <a href="reclaim-your-data.html">reclaiming your data</a> — not just deleting accounts or changing settings, but taking the actual history of where you’ve been and making it yours again.</p>
 
-    <h2>Why this works</h2>
-    <p>The hard parts of a spatial life map are the data model and the interaction model — how stays become markers, how time becomes a filter, how the globe stays readable. Those pieces are now described clearly enough that a single well-structured prompt can produce a working first version. The Google export is the fuel. Everything else is pattern matching against an existing reference (Where is Paul?) and ordinary web technology.</p>
-    <p>You still own the data. The export never has to leave your machine if you run the generated app locally. The published Where is Paul? site is the public demo; the private copy of the same idea, built from your own Timeline, is the version that actually belongs to you.</p>
-
-    <div class="callout">Post the prompt on X. Link back here for the full context and the export steps. The prompt is the product; the essay is the footnote.</div>
+    <div class="callout">Share the prompt. Link back here if you want people to see the full context and the export steps.</div>
 
     <h2>What to do next</h2>
     <ol>
       <li>Copy the prompt above.</li>
-      <li>Paste it into Grok (or any capable coding model).</li>
-      <li>Export your Timeline data using the steps in the section above (on-device for recent trips, Takeout for the older archive).</li>
-      <li>Drop the JSON into the generated app.</li>
-      <li>Open the result in a browser. Iterate on the UI or data cleaning as needed.</li>
+      <li>Paste it into any AI that can build web apps.</li>
+      <li>Export your Timeline data using the steps in this post.</li>
+      <li>Drop the file into the app the AI creates.</li>
+      <li>Open it in a browser and explore your own map.</li>
     </ol>
-    <p>When you want the polished, multi-year, story-linked version of the same idea, the live reference is already running: <a href="/apps/where-is-paul/">Where is Paul?</a></p>
+    <p>If you want to see the polished, multi-year version of the same idea, the live reference is here: <a href="/apps/where-is-paul/">Where is Paul?</a></p>
 
     <div class="links">
       <a href="/apps/where-is-paul/">Open Where is Paul?</a>
       <a href="where-is-paul.html">Project note</a>
-      <a href="https://github.com/paulvisciano/where-is-paul">GitHub</a>
+      <a href="reclaim-your-data.html">Reclaim your data</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
     <div class="more">
