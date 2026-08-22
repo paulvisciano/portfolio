@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="One prompt. Your own life map.">
-  <meta property="og:description" content="Paste one prompt into Grok, drop your Google Maps Timeline export, and get a personal Where is [You]? globe and timeline.">
+  <meta property="og:description" content="Paste this into Grok, drop your Google Maps Timeline export, and get a personal Where is [You]? — globe, timeline, markers, the works. The same idea behind Where is Paul?, now copy-paste ready.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/one-prompt-life-map">
   <link rel="stylesheet" href="blog.css">
@@ -22,7 +22,7 @@
     </div>
   </header>
   <nav class="section-nav" aria-label="Sections">
-    <div class="progress"><div class="progress-bar"></div></div>
+    <div class="progress"><div class="progress-bar"></div>
   </nav>
   <article>
     <p class="series">Sci-Fi Labs · Essay</p>
@@ -40,21 +40,7 @@
     <h2>The prompt</h2>
     <p>Everything below the line is meant to be copied as-is. Change the name if you want; leave the rest alone on the first run.</p>
 
-    <pre style="background:#111;border:1px solid #333;border-radius:8px;padding:1.25rem;overflow-x:auto;font-size:0.9rem;line-height:1.5;color:#e5e5e5;white-space:pre-wrap;"><code>Build a complete static web app called "Where is [My Name]?" that visualizes personal location history from a Google Maps Timeline export.
-
-Requirements:
-- Interactive 3D globe (Three.js) with markers for places stayed
-- Timeline scrubber that filters the globe by year or month
-- Click a marker to see place name, date range, and a short note
-- Simple tag filters (beach, city, nature, etc.)
-- Dark, minimal, sci-fi aesthetic — clean spatial UI, not a dashboard
-- Accept a Google Maps Timeline / Location History JSON client-side (file drop or file picker)
-- Parse the export, extract significant stays, cluster nearby points, and auto-populate the globe and timeline
-- Handle both legacy Takeout formats and the newer on-device Timeline.json if possible
-- Include a "Load sample data" button so the app demos immediately without any file
-- Single page or small set of static files only — no backend, no API keys, deployable anywhere
-
-Make the code clean, commented, and ready to open in a browser. Prefer modern vanilla JS + Three.js. If you need a starter structure, keep it minimal.</code></pre>
+    <pre style="background:#111;border:1px solid #333;border-radius:8px;padding:1.25rem;overflow-x:auto;font-size:0.9rem;line-height:1.5;color:#e5e5e5;white-space:pre-wrap;"><code>Hey Grok, build me a map like this one: https://paulvisciano.com/apps/where-is-paul and make it mine. Use the live site as the template. Then I'll drop in my Google Maps Timeline export and you can wire up my data automatically.</code></pre>
 
     <p>That is the whole ask. Grok builds the app. You feed it the export. The result is a personal life map that runs in the browser.</p>
 
