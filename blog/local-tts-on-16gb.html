@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local TTS on 16 GB — the voice quality gap — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Open WebUI + Bonsai + Whisper work. Local text-to-speech is the hard part. Kokoro, Piper, Leesac, and why natural voice still fights a 16 GB budget.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Local TTS on 16 GB — the voice quality gap">
+  <meta property="og:description" content="Open WebUI + Bonsai + Whisper work. Local text-to-speech is the hard part. Kokoro, Piper, Leesac, and why natural voice still fights a 16 GB budget.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/local-tts-voice-quality-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Local TTS on 16 GB — the voice quality gap">
+  <meta name="twitter:description" content="Whisper works. The model answers. The voice still sounds like a tool. Notes from a day wiring Open WebUI to Bonsai and chasing local TTS on 16 GB.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/local-tts-voice-quality-hero.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/local-tts-on-16gb">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Sci-Fi Labs · Field notes</p>
+    <h1>Local TTS on 16 GB — the voice quality gap</h1>
+    <p class="deck">Open WebUI talks to Bonsai. Whisper already handles speech-to-text. The remaining hard problem is the voice that talks back — and why “it works” is not the same as “it sounds human” on a 16 GB laptop.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/local-tts-voice-quality-hero.jpg" alt="Laptop on a desk at night with glowing sound waveforms floating above the screen — local text-to-speech under hardware constraints" width="1168" height="784" loading="eager"><figcaption class="fig-cap">The model answers. The voice still has to fit the machine.</figcaption></figure>
+
+    <p>Most of the day went into replacing custom chat and message plumbing with something that already works. The choice was <a class="ext" href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> — same SvelteKit surface language as the Knowledge Graph frontend, FastAPI backend, OpenAI-compatible model connections, built-in Whisper, and a real tool and RAG layer. Pointing it at the existing <a href="bonsai.html">Bonsai-27B</a> llama.cpp server was almost out of the box.</p>
+
+    <p>That part was the easy win. The rest of the day was voice.</p>
+
+    <h2>What worked without a fight</h2>
+    <p>Open WebUI’s connection model is straightforward. The Bonsai llama-server already exposes an OpenAI-compatible <code>/v1</code> endpoint. Add the base URL, leave the key blank or placeholder, and the model appears in the UI. Streaming works. The first real message went through with the full system context and came back clean.</p>
+    <p>Speech-to-text was already solved for this machine. Open WebUI ships with local Whisper. That matched what the Knowledge Graph stack was already using, so the STT path did not need a redesign. Voice mode is there: talk, get a reply, hear it spoken, mic re-arms.</p>
+    <p>One gotcha showed up immediately. Open WebUI enables a large set of tools by default — twenty-plus in a fresh install. The system prompt that describes all of them is huge. On a small local model that cost was visible: responses crawled. Turning the tools off dropped latency to near-instant. The model was fine; the prompt was the tax.</p>
+
+    <div class="callout">The model layer and the transcription layer were ready. The voice that speaks the answer was not.</div>
+
+    <h2>TTS options that fit 16 GB</h2>
+    <p>Open WebUI’s default local TTS path is Kokoro (via Kokoro JS / related local engines). Kokoro-82M is light, OpenAI-compatible in several wrappers, and ranked high on open TTS boards for its size. On paper it is the right class of model for this hardware.</p>
+    <p>In practice the default voice did not land. It was usable and fast, but it still sounded like a system voice — clear enough to understand, not natural enough to live with for long sessions. That is the recurring gap: latency is solved; presence is not.</p>
+    <p>Heavier neural TTS options were tried next. Several of them simply ran the machine out of memory. With Bonsai already loaded, Whisper resident, Open WebUI’s backend and frontend up, plus Brave, VS Code, and a coding agent that spikes under load, 16 GB has no spare room for a second large model. A few experiments ended in a hard restart. That is not a soft limit; it is the wall.</p>
+    <p>Piper TTS is the pragmatic fallback. It is fast, CPU-friendly, and designed for exactly this class of machine. Response time is excellent. The popular voices (including the widely used Lessac / Leesac family) are intelligible and stable. They are also still synthetic in a way you notice within a few sentences. Speed is solved. Naturalness is not.</p>
+
+    <h2>Why the voice is still the bottleneck</h2>
+    <p>Local LLM inference has improved faster than local TTS quality at the same memory budget. A 1-bit 27B model can reason and tool-call inside a few gigabytes of weights. A voice that does not sound like a 2018 assistant still wants either more compute, more VRAM, or a cloud API.</p>
+    <p>That mismatch matters for any product that wants spoken interaction without sending audio off-device. Whisper already keeps transcription local. The missing piece is a TTS path that is both light enough to share the machine with the LLM and good enough that people do not mute it after a minute.</p>
+    <p>For Knowledge Graph and the wider Sci-Fi Labs stack, the design constraint stays the same: everything that touches private memory stays on hardware you control. Cloud TTS is a temporary convenience, not the architecture. The honest state today is: chat works, STT works, TTS is good enough to demo and not yet good enough to trust for long daily use.</p>
+
+    <h2>What changed in the Open WebUI fork</h2>
+    <p>Alongside the evaluation, Kokoro was wired in as a first-class local engine option: config keys, admin UI, pipeline load, voice allowlist, and MP3 output that browsers actually play. A few integration bugs showed up along the way — wrong MIME types when WAV bytes were written under an <code>.mp3</code> path, stale Piper voice names in the payload causing Hugging Face 404s, and sequential sentence synthesis that delayed the first audible chunk. Those are fixed in the integration notes. Parallel sentence requests cut perceived latency to time-to-first-sentence instead of the sum of every sentence.</p>
+    <p>That work is useful whether the long-term surface stays Open WebUI or the Knowledge Graph frontend keeps calling the same APIs. The point of the day was not to adopt a chatbot UI forever. It was to stop rebuilding streaming, retries, auth, and audio plumbing by hand.</p>
+
+    <h2>Latest in Sci-Fi Apps</h2>
+    <p>Knowledge Graph remains the private spatial canvas — photos, conversations, and time on a machine you own. Open WebUI is under evaluation as the chat and tool backend so the custom stack can focus on the canvas, the graph, and the parts that do not exist yet. Bonsai stays the local model. Whisper stays the ears. The voice is the open problem.</p>
+    <p>Clone the Knowledge Graph repo if you want the spatial side: <a class="ext" href="https://github.com/paulvisciano/knowledge-graph" target="_blank" rel="noopener">github.com/paulvisciano/knowledge-graph</a>.</p>
+
+    <div class="links">
+      <a href="beyond-the-chatbot.html">Beyond the chatbot</a>
+      <a href="running-local-ai-16gb.html">Running local AI on 16 GB</a>
+      <a href="bonsai.html">Bonsai on a 16GB laptop</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="beyond-the-chatbot.html">Local AI still looks like a chatbot →</a>
+      <a href="running-local-ai-16gb.html">Running Local AI on 16 GB — the real stats →</a>
+      <a href="data-sovereignty-is-moving-to-the-edge.html">Data sovereignty is moving to the edge →</a>
+      <a href="knowledge-graph.html">Knowledge Graph →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
