@@ -9,11 +9,11 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="Local AI still looks like a chatbot">
   <meta property="og:description" content="Self-hosted stacks solved the model layer. The UI is still ChatGPT with a different backend. Spatial memory is the next step.">
-  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/chatbot-vs-canvas.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Local AI still looks like a chatbot">
   <meta name="twitter:description" content="Open WebUI and peers keep local AI in a chat window. Knowledge Graph treats memory as a 3D canvas.">
-  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/chatbot-vs-canvas.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/beyond-the-chatbot">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
@@ -31,32 +31,47 @@
   <article>
     <p class="series">Sci-Fi Labs · Essay</p>
     <h1>Local AI still looks like a chatbot</h1>
-    <p class="deck">Open WebUI, LibreChat, AnythingLLM, LobeChat, and Jan solved the hard part: run models on hardware you control. The interface is still a vertical stack of bubbles. That is not the only shape memory can take.</p>
-    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Spatial knowledge graph canvas — conversations, photos, and documents as nodes in 3D space instead of a chat window" width="1168" height="784" loading="eager"><figcaption class="fig-cap">Memory as a navigable space, not a scroll of messages.</figcaption></figure>
+    <p class="deck">You can run the model at home now. The window is still ChatGPT. That is not the only shape memory can take.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/chatbot-vs-canvas.jpg" alt="Split: a phone-shaped stack of empty chat bubbles on the left, a spatial canvas of nodes and photos on the right" width="1168" height="658" loading="eager"><figcaption class="fig-cap">Same models. Two products.</figcaption></figure>
 
-    <p>In 2026 the self-hosted AI stack is real. Open WebUI positions itself as a sovereign AI platform: data residency, local models, identity you administer. LibreChat ships multi-provider chat with team auth. AnythingLLM centers document workspaces and RAG. LobeChat optimizes for polish and plugins. Jan runs fully offline on the desktop. Ollama and llama.cpp handle the models underneath.</p>
+    <p>You can run the model at home now. Open WebUI, LibreChat, AnythingLLM, LobeChat, Jan — they proved you do not have to send every prompt to someone else’s region. Ollama and llama.cpp handle the weights. Then you open the app and you are still in ChatGPT’s window. A text box. A scroll of bubbles. Memory as a transcript.</p>
 
-    <p>Those projects matter. They proved you do not have to send every prompt to someone else’s region. They also share one design assumption: the primary surface is a chatbot.</p>
-
-    <div class="callout">Self-hosting fixed the data path. It did not fix the interface. We still talk to memory through a text box and a list of messages.</div>
+    <div class="callout">Self-hosting fixed the data path. It did not fix the interface.</div>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/scifi-hud-assistant.jpg" alt="Workshop hologram of orbital rings and schematic panels floating above a workbench" width="1168" height="658" loading="lazy"><figcaption class="fig-cap">Movies already showed this. The assistant is in the room, not in a column of bubbles.</figcaption></figure>
 
     <h2>What the current tools actually ship</h2>
-    <p>Open WebUI is the largest community option: chat, knowledge collections, tools, multi-user controls, air-gap patterns. LibreChat is the team workbench — OIDC, LDAP, agents, MCP, many providers in one window. AnythingLLM is the document specialist: workspaces, citations, desktop or Docker. LobeChat leans into agents and a cleaner UI. Jan is the privacy-first desktop client.</p>
-    <p>All of them, at the user layer, still organize experience as conversation threads. You type. The model replies. History is a scroll. Documents become context for the next message. That pattern works. It is also the same pattern ChatGPT trained the world on.</p>
+    <p>Open WebUI is the largest community option: chat, collections, tools, air-gap patterns. LibreChat is the team workbench. AnythingLLM is the document specialist. LobeChat is polish and plugins. Jan is the offline desktop client. Those projects matter. They also share one design assumption: the primary surface is a chatbot.</p>
+    <table class="compare">
+      <thead><tr><th>Tool</th><th>What it is</th><th>Surface</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Open WebUI</strong></td><td>Largest community option</td><td>Chat</td></tr>
+        <tr><td><strong>LibreChat</strong></td><td>Team workbench</td><td>Chat</td></tr>
+        <tr><td><strong>AnythingLLM</strong></td><td>Document specialist</td><td>Chat + docs</td></tr>
+        <tr><td><strong>LobeChat</strong></td><td>Polish and plugins</td><td>Chat</td></tr>
+        <tr><td><strong>Jan</strong></td><td>Offline desktop client</td><td>Chat</td></tr>
+        <tr class="chosen"><td><strong>Knowledge Graph</strong></td><td>Spatial memory</td><td>3D canvas</td></tr>
+      </tbody>
+    </table>
+    <p>You type. The model replies. History is a scroll. Documents become context for the next message. That pattern works. It is also the pattern ChatGPT trained the world on.</p>
 
     <h2>Why a canvas is a different product</h2>
-    <p>The <a href="knowledge-graph.html">Knowledge Graph</a> starts from a different question: what if your photos, notes, conversations, and later video and audio were not buried inside threads, but laid out in space you can navigate?</p>
-    <p>Time becomes depth. A month is a place you fly to. A conversation is a node you can land on, not only a transcript you re-read. Retrieval is not “paste more context into the box” — it is moving the camera to the region that already holds the answer. Live conversation mode sits on top of that canvas. Multilingual support is planned as a first-class path, not an afterthought. Live audio and video are on the roadmap so the same spatial memory can hold what you said and saw, not only what you typed.</p>
-    <p>That is closer to how people already think about their own lives: places, periods, people, artifacts. It is also closer to what spatial computing and XR make possible once the UI is not glued to a phone-shaped chat column.</p>
+    <p>The <a href="knowledge-graph.html">Knowledge Graph</a> starts from a different question: what if photos, notes, conversations, and later video and audio were not buried inside threads, but laid out in space you can navigate?</p>
+    <p>Time becomes depth. A month is a place you fly to. A conversation is a node you land on, not only a transcript you re-read. Retrieval is not “paste more context into the box.” It is moving the camera to the region that already holds the answer.</p>
+    <p>That is closer to how people already think about their lives: places, periods, people, artifacts. It is also closer to what spatial computing and XR make possible once the UI is not glued to a phone-shaped chat column.</p>
 
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Spatial knowledge graph canvas — conversations, photos, and documents as nodes in 3D space instead of a chat window" width="1168" height="784" loading="lazy"><figcaption class="fig-cap">Time as depth. A month is a place you fly to.</figcaption></figure>
+    <table class="compare">
+      <thead><tr><th></th><th>Chat stack</th><th>Knowledge Graph</th></tr></thead>
+      <tbody>
+        <tr><td>Memory</td><td>A transcript you re-read</td><td>Place, time as depth</td></tr>
+        <tr><td>Retrieval</td><td>Paste more context into the box</td><td>Fly the camera to the region</td></tr>
+        <tr><td>Product</td><td>Cloud shape, local server</td><td>Local shape, local server</td></tr>
+      </tbody>
+    </table>
     <h2>Sovereignty without a new chat clone</h2>
-    <p>Open WebUI’s framing is useful: sovereignty is control over infrastructure, data path, models, identity, and audit — not isolation for its own sake. The same principle applies to the interface. If the only way to use a local model is still a chatbot, you have moved the server and kept the product shape of the cloud apps you were trying to leave.</p>
+    <p>If the only way to use a local model is still a chatbot, you have moved the server and kept the product shape of the cloud apps you were trying to leave. Open WebUI’s framing is useful: sovereignty is control over infrastructure, data path, models, identity, and audit. The same principle applies to the interface.</p>
     <p>Sci-Fi Labs is building the personal version of that control as a spatial stack. Knowledge Graph is the memory layer. <a href="where-is-paul.html">Where is Paul?</a> is a life map. Musical Cubes is interaction as something you turn in 3D. The published sites are demos. The product is the copy that runs on your machine.</p>
     <p>You can pair that surface with the same local runtimes everyone else uses. The point is not to reject Open WebUI or LibreChat. It is to notice that “self-hosted” and “still a chatbot” are two different design decisions.</p>
-
-    <h2>Latest in Sci-Fi Apps</h2>
-    <p>Knowledge Graph continues as a private spatial canvas for photos, conversations, and time. The published demo is for exploration; the real product is your own clone on hardware you control.</p>
-    <p>Clone the repo and set up your own Knowledge Graph: <a class="ext" href="https://github.com/paulvisciano/knowledge-graph" target="_blank" rel="noopener">github.com/paulvisciano/knowledge-graph</a>.</p>
 
     <div class="links">
       <a href="knowledge-graph.html">Knowledge Graph</a>

@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Local TTS on 16 GB — the voice quality gap — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Open WebUI + Bonsai + Whisper work. Local text-to-speech is the hard part. Kokoro-82M, Bark, and why the same model sounds different server-side on a 16 GB laptop.">
+  <meta name="description" content="Open WebUI + Bonsai + Whisper work. Local TTS is the hard part. Official samples, a live 16 GB budget, and why the first Open WebUI install sent the day into a chase Kokoro JS did not need.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Local TTS on 16 GB — the voice quality gap">
-  <meta property="og:description" content="Open WebUI + Bonsai + Whisper work. Local text-to-speech is the hard part. Kokoro-82M, Bark, and why the same model sounds different server-side on a 16 GB laptop.">
+  <meta property="og:description" content="Open WebUI + Bonsai + Whisper work. Local TTS is the hard part. Official samples, a live 16 GB budget, and why the first Open WebUI install sent the day into a chase Kokoro JS did not need.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/local-tts-voice-quality-hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Local TTS on 16 GB — the voice quality gap">
-  <meta name="twitter:description" content="Whisper works. The model answers. The same Kokoro-82M model sounds different server-side than in-browser. Notes from a day wiring Open WebUI to Bonsai and chasing local TTS on 16 GB.">
+  <meta name="twitter:description" content="Whisper works. The model answers. The first Open WebUI install sent the day into Piper, XTTS, and a server pipeline. Kokoro JS was already there, and that is what shipped.">
   <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/local-tts-voice-quality-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/local-tts-on-16gb">
   <link rel="stylesheet" href="blog.css">
@@ -31,34 +31,17 @@
   <article>
     <p class="series">Sci-Fi Labs · Field notes</p>
     <h1>Local TTS on 16 GB — the voice quality gap</h1>
-    <p class="deck">Open WebUI talks to Bonsai. Whisper already handles speech-to-text. The remaining hard problem is the voice that talks back — and why "it works" is not the same as "it sounds human" on a 16 GB laptop.</p>
+    <p class="deck">The model answers. The hand goes to mute. Why "it works" is not the same as "it sounds human" on a 16 GB laptop.</p>
     <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/local-tts-voice-quality-hero.jpg" alt="Laptop on a desk at night with glowing sound waveforms floating above the screen — local text-to-speech under hardware constraints" width="1168" height="784" loading="eager"><figcaption class="fig-cap">The model answers. The voice still has to fit the machine.</figcaption></figure>
 
-    <p>Knowledge Graph is a private spatial canvas — photos, conversations, and time on a machine you own. The project has been building its own chat backend from scratch: streaming, retries, auth, audio plumbing, all hand-rolled. Today that stopped. The decision was to replace the entire custom chat stack with <a class="ext" href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> — same SvelteKit frontend language, same FastAPI backend, OpenAI-compatible model connections, built-in Whisper, a real tool and RAG layer. Everything the custom code was rebuilding by hand, poorly, already existed. Pointing it at the existing <a href="bonsai.html">Bonsai-27B</a> llama.cpp server was almost out of the box.</p>
-    <p>The model layer worked on the first try. Whisper handled speech-to-text out of the box. Chat streamed. The tools that were supposed to take weeks were there in an afternoon. The part that was supposed to be easy was easy. Then came the voice.</p>
+    <p>A 27B model answers on this laptop. Whisper hears you. Chat streams. Then the voice starts talking, and the hand goes to mute. That is the day. Not "does it run." Does it sound like someone you would keep talking to.</p>
+    <p>Knowledge Graph is a private spatial canvas — photos, conversations, and time on a machine you own. The chat stack was being rebuilt by hand: streaming, retries, auth, audio plumbing. Today that stopped. <a class="ext" href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> already had it — same SvelteKit frontend language, same FastAPI backend, built-in Whisper, a real tool and RAG layer. Pointing it at the existing <a href="bonsai.html">Bonsai-27B</a> llama.cpp server was almost out of the box. The model layer worked on the first try. The part that was supposed to be easy was easy. Then came the voice.</p>
 
-    <h2>TTS options that fit 16 GB</h2>
-    <p>The 16 GB budget is unforgiving. Bonsai-27B already claims roughly four gigabytes of weights. Whisper is resident. Open WebUI's backend and frontend are up. Brave, VS Code, and a coding agent that spikes under load take the rest. There is no spare room for a second large model — that is not a soft limit, it is the wall.</p>
-    <p>That is not a hypothetical. This is the machine right now, while writing this — an M2 Pro with 16 GB, running the full stack alongside a browser and an editor:</p>
-    <table>
-      <thead>
-        <tr><th>Process</th><th>RAM</th><th>Notes</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Bonsai-27B (llama-server)</strong></td><td>~4 GB</td><td>Metal GPU; RSS shows 9 MB because model weights are mapped, not resident</td></tr>
-        <tr><td><strong>Open WebUI backend (uvicorn)</strong></td><td>57 MB</td><td>FastAPI + Kokoro pipeline</td></tr>
-        <tr><td><strong>Piper TTS</strong></td><td>4 MB</td><td>Still running from earlier tests, not the active engine</td></tr>
-        <tr><td><strong>Open WebUI frontend (Vite)</strong></td><td>22 MB</td><td>SvelteKit dev server</td></tr>
-        <tr><td><strong>Brave Browser</strong></td><td>3.6 GB</td><td>30 processes — the real memory tax</td></tr>
-        <tr><td><strong>VS Code</strong></td><td>3.3 GB</td><td>33 processes</td></tr>
-        <tr><td><strong>opencode (coding agent)</strong></td><td>635 MB</td><td>Spikes under load</td></tr>
-        <tr><td><strong>System (wired + active + compressed)</strong></td><td>12.6 GB</td><td>3 GB compressed to swap; 2.7 GB available</td></tr>
-      </tbody>
-    </table>
-    <p>This is the normal state. A user does not close their browser to talk to their AI. The constraint is not the spec sheet — it is the machine you actually use, with everything open, every day. Any TTS engine that wants a second large model on top of this hits the wall. That is why the engine choice matters, and why "it runs" on a clean machine is a lie.</p>
-    <p>On paper, <a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro JS</a> is the right starting point. Open WebUI ships with it as the default local TTS — the 82M model running entirely in the browser, on the client. No server round-trip, no Python process, no extra RAM on the backend. In practice the default voice did not land. It was usable and fast, but it still sounded like a system voice: clear enough to understand, not natural enough to live with for long sessions. Latency was solved; presence was not.</p>
-    <p><a class="ext" href="https://github.com/OHF-Voice/piper1-gpl" target="_blank" rel="noopener">Piper</a> was the next try. It is fast, CPU-friendly, and designed for exactly this class of machine. Response time was excellent. The popular Lessac / Leesac voices were intelligible and stable, but still synthetic in a way you notice within a few sentences. Speed was solved. Naturalness was not.</p>
-    <p><a class="ext" href="https://github.com/coqui-ai/TTS" target="_blank" rel="noopener">Coqui TTS</a> (XTTS-v2) was the heavier attempt — roughly 470M parameters, around 5 GB of RAM during model loading, and another 2 GB of VRAM on top. On a machine already running Bonsai, Whisper, Open WebUI, Brave, VS Code, and a coding agent, that is not a soft limit; it is the wall.</p>
+    <h2 id="tts-options-that-fit-16-gb">TTS options that fit 16 GB</h2>
+    <p>The 16 GB budget is unforgiving. Right now, writing this on an M2 Pro: 12.6 GB spoken for, 2.7 GB left. Bonsai has the weights. Brave and VS Code are the real tax. There is no spare room for a second large model. The full process list sits under the scoreboard. "It runs" on a clean machine is a lie.</p>
+    <p>On paper, <a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro JS</a> is the right starting point. Open WebUI ships with it as the default local TTS: the 82M model, in the browser, no extra RAM on the backend. The first download did not land. Default voice, half-wired audio, a system-voice first impression. That sent the day into Piper, XTTS, Bark, and a server-side Kokoro pipeline. All of that was chasing a setup problem. Once Open WebUI was actually running Kokoro JS, it was a voice you can leave on. That is what shipped.</p>
+    <p><a class="ext" href="https://github.com/OHF-Voice/piper1-gpl" target="_blank" rel="noopener">Piper</a> was the next try. It is fast, CPU-friendly, and designed for exactly this class of machine. Response time was excellent. The popular Lessac voices were intelligible and stable, but still synthetic in a way you notice within a few sentences.</p>
+    <p><a class="ext" href="https://github.com/coqui-ai/TTS" target="_blank" rel="noopener">Coqui TTS</a> (XTTS-v2) was the heavier attempt — roughly 470M parameters, around 5 GB of RAM during model loading, and another 2 GB of VRAM on top. On a machine already running Bonsai, Whisper, Open WebUI, Brave, VS Code, and a coding agent, that load does not fit.</p>
     <p><a class="ext" href="https://github.com/suno-ai/bark" target="_blank" rel="noopener">Bark</a> was worse. A generative model that wants roughly 12 GB of VRAM with all three sub-models loaded, or 8 GB with the small flag, or 2 GB only by offloading to CPU where it crawls. A Bark experiment ended in a hard restart.</p>
 
     <figure class="oom">
@@ -74,26 +57,11 @@
       <figcaption class="fig-cap">Not a soft limit. The wall.</figcaption>
     </figure>
 
-    <p>The fix was not another engine. It was running the same Kokoro-82M on the server instead of in the browser — a Python pipeline wired into Open WebUI as a first-class local engine. Same 82M weights, same model class, but the <code>af_heart</code> voice through the server pipeline lands as a real voice instead of a system voice. Natural enough to live with for long sessions. Latency was already solved; presence was not. Running it server-side closed that gap.</p>
-
-    <p>The table below maps every option that was actually tried on this machine, in order. RAM figures are CPU inference; VRAM is the GPU floor when one is required. The real constraint is the rest of the stack — Bonsai, Whisper, Open WebUI, browser, editor — already resident, not the spec sheet.</p>
-    <table>
-      <thead>
-        <tr><th>Engine</th><th>Params</th><th>RAM (CPU)</th><th>VRAM (GPU)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong><a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro JS</a></strong> <span class="small">(Open WebUI default)</span></td><td>82M, runs in-browser</td><td>client-side — no backend RAM</td><td>uses browser tab, not GPU</td></tr>
-        <tr><td><strong><a class="ext" href="https://github.com/OHF-Voice/piper1-gpl" target="_blank" rel="noopener">Piper</a></strong> <span class="small">(Lessac voice)</span></td><td>VITS-class, varies</td><td>&lt;500 MB</td><td>not required</td></tr>
-        <tr><td><strong><a class="ext" href="https://github.com/coqui-ai/TTS" target="_blank" rel="noopener">Coqui TTS</a></strong> <span class="small">(XTTS-v2)</span></td><td>~470M</td><td>~5 GB during load</td><td>~2 GB (FP16) / ~3.4 GB (FP32)</td></tr>
-        <tr><td><strong><a class="ext" href="https://github.com/suno-ai/bark" target="_blank" rel="noopener">Bark</a></strong> <span class="small">(suno)</span></td><td>~1B class (3 sub-models)</td><td>no documented figure</td><td>~12 GB full / ~8 GB small / ~2 GB + CPU offload</td></tr>
-        <tr><td><strong><a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro-82M</a></strong> <span class="small">(server-side)</span></td><td>82M</td><td>~1.5 GB (4 GB recommended)</td><td>&lt;2 GB</td></tr>
-      </tbody>
-    </table>
-    <p class="meta">Footprints from official repos and model cards where documented. Sources: <a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro</a>, <a class="ext" href="https://github.com/OHF-Voice/piper1-gpl" target="_blank" rel="noopener">Piper</a>, <a class="ext" href="https://github.com/coqui-ai/TTS" target="_blank" rel="noopener">Coqui TTS</a>, <a class="ext" href="https://github.com/suno-ai/bark" target="_blank" rel="noopener">Bark</a>.</p>
-
     <h2>Why the voice is still the bottleneck</h2>
-    <p>A voice you do not trust is a voice you mute. That is the whole problem. The model can reason, the transcription can be perfect, the latency can be instant — if the voice sounds synthetic, the conversation never starts. People do not talk to tools. They talk to voices that sound like they belong to someone.</p>
-    <p>This is not aesthetics. A synthetic voice triggers a specific kind of fatigue: you can understand every word, and you still want it to stop inside a minute. The brain treats natural speech as signal and synthetic speech as noise. Run a system voice for ten minutes and the instinct is to reach for the mute button, not to keep talking. That is the gap between "it works" and "it is used," and it is the gap that matters for a product you actually live with.</p>
+    <div class="callout">A voice you do not trust is a voice you mute.</div>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/tts-mute-instinct.jpg" alt="Closed laptop at night with a muted speaker glyph cutting through a cyan waveform" width="1168" height="658" loading="lazy"><figcaption class="fig-cap">The conversation ends before it starts.</figcaption></figure>
+    <p>The model can reason. The transcription can be perfect. The latency can be instant. If the voice sounds synthetic, the conversation never starts. People do not talk to tools. They talk to voices that sound like they belong to someone.</p>
+    <p>This is not aesthetics. You can understand every word and still want it to stop inside a minute. The brain treats natural speech as signal and synthetic speech as noise. That is the gap between "it works" and "it is used."</p>
 
     <figure class="fig meme">
       <svg viewBox="0 0 600 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Meme: a TTS engine that sounds robotic even though every word is intelligible">
@@ -124,18 +92,141 @@
       <figcaption class="fig-cap">Intelligible is not the same as human.</figcaption>
     </figure>
 
-    <p>Frontier models get this right because they spend the compute. A 16 GB laptop does not have that room. Local LLM inference has improved faster than local TTS quality at the same memory budget — a 1-bit 27B model can reason and tool-call inside a few gigabytes of weights, but a voice that does not sound like a 2018 assistant still wants either more compute, more VRAM, or a cloud API. Until today.</p>
-    <p>The surprise was not a new engine. It was the same 82M Kokoro model run server-side instead of in-browser. Same weights, same class, noticeably different voice. The browser default was a system voice. The server pipeline with <code>af_heart</code> was a voice you can live with — natural enough that the instinct to mute never triggered. That is the bar: not "intelligible," but "kept on."</p>
-    <p>For Knowledge Graph and the wider Sci-Fi Labs stack, the design constraint stays the same: everything that touches private memory stays on hardware you control. Cloud TTS is a temporary convenience, not the architecture. The honest state today is: chat works, STT works, TTS works — once the same model is on the right side of the browser.</p>
+    <p>Frontier models get this right because they spend the compute. A 16 GB laptop does not have that room. Local LLM inference has improved faster than local TTS quality at the same memory budget. A 1-bit 27B model can reason and tool-call inside a few gigabytes of weights. A voice that does not sound like a 2018 assistant still looks, on paper, like it wants more compute, more VRAM, or a cloud API.</p>
+    <p>The surprise was not a bigger engine. It was the first Open WebUI download. Kokoro JS was already there. It did not work on first contact, so the day became a gauntlet. Piper was fast and still synthetic. XTTS did not fit. Bark forced a restart. Server-side Kokoro with <code>af_heart</code> sounded fine and spent RAM the machine does not have. Then the JS path started working. Same 82M weights. No Python TTS process. The mute instinct did not trigger. The wild goose chase was a bad first setup.</p>
+    <p>That is the bar: not "intelligible," but "kept on." Kokoro JS, once the install is actually running it, clears it without a second model in RAM.</p>
+    <p>For Knowledge Graph and the wider Sci-Fi Labs stack, the design constraint stays the same: everything that touches private memory stays on hardware you control. Cloud TTS is a temporary convenience, not the architecture. The honest state today is: chat works, STT works, TTS works. The first install is not the last word.</p>
+    <p>This is the machine right now, everything open. A user does not close their browser to talk to their AI.</p>
+    <table>
+      <thead>
+        <tr><th>Process</th><th>RAM</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bonsai-27B (llama-server)</strong></td><td>~4 GB</td><td>Metal GPU; RSS shows 9 MB because model weights are mapped, not resident</td></tr>
+        <tr><td><strong>Open WebUI backend (uvicorn)</strong></td><td>57 MB</td><td>FastAPI. Kokoro JS runs in the tab, not here</td></tr>
+        <tr><td><strong>Piper TTS</strong></td><td>4 MB</td><td>Still running from earlier tests, not the active engine</td></tr>
+        <tr><td><strong>Open WebUI frontend (Vite)</strong></td><td>22 MB</td><td>SvelteKit dev server</td></tr>
+        <tr><td><strong>Brave Browser</strong></td><td>3.6 GB</td><td>30 processes — the real memory tax</td></tr>
+        <tr><td><strong>VS Code</strong></td><td>3.3 GB</td><td>33 processes</td></tr>
+        <tr><td><strong>opencode (coding agent)</strong></td><td>635 MB</td><td>Spikes under load</td></tr>
+        <tr><td><strong>System (wired + active + compressed)</strong></td><td>12.6 GB</td><td>3 GB compressed to swap; 2.7 GB available</td></tr>
+      </tbody>
+    </table>
+    <div class="chart" role="img" aria-label="16 GB memory budget. Brave 3.6 GB, VS Code 3.3 GB, Bonsai 4 GB, other processes 1.7 GB, 2.7 GB free.">
+      <p class="chart-title">Live 16 GB budget</p>
+      <svg viewBox="0 0 720 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="18" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">16 GB machine</text>
+        <rect x="0" y="30" width="720" height="34" rx="6" fill="#1c1c20"/>
+        <rect x="0" y="30" width="162" height="34" fill="#7d5c4a"/>
+        <rect x="162" y="30" width="148.5" height="34" fill="#5c5c6a"/>
+        <rect x="310.5" y="30" width="180" height="34" fill="#6aa8c8"/>
+        <rect x="490.5" y="30" width="76.5" height="34" fill="#3a3a44"/>
+        <rect x="567" y="30" width="121.5" height="34" fill="#1e2e24" stroke="#3d5a44" stroke-width="1"/>
+        <rect x="688.5" y="30" width="31.5" height="34" fill="#2a2a30"/>
+        <g font-family="ui-monospace,monospace" font-size="11" fill="#c8c8cc">
+          <rect x="0" y="86" width="10" height="10" fill="#7d5c4a"/><text x="16" y="95">Brave 3.6</text>
+          <rect x="120" y="86" width="10" height="10" fill="#5c5c6a"/><text x="136" y="95">VS Code 3.3</text>
+          <rect x="250" y="86" width="10" height="10" fill="#6aa8c8"/><text x="266" y="95">Bonsai 4.0</text>
+          <rect x="380" y="86" width="10" height="10" fill="#3a3a44"/><text x="396" y="95">Other 1.7</text>
+          <rect x="490" y="86" width="10" height="10" fill="#1e2e24" stroke="#3d5a44"/><text x="506" y="95">Free 2.7</text>
+        </g>
+        <text x="0" y="132" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">12.6 GB spoken for. The model is not the tax. The browser is.</text>
+      </svg>
+      <p class="chart-cap">Same snapshot as the table. There is no spare room for XTTS or Bark.</p>
+    </div>
+    <p>The scoreboard is every option that was actually tried, with the official sample from each project so you can hear the class of voice. Footprints are CPU RAM unless a GPU floor is required. The highlighted row is the one that shipped.</p>
+    <div class="chart" role="img" aria-label="Engine footprints. Piper under 500 MB, Kokoro-82M about 1.5 GB, XTTS about 5 GB, Bark about 12 GB.">
+      <p class="chart-title">What each engine wants</p>
+      <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="160" y="16" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">0</text>
+        <text x="420" y="16" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">8 GB</text>
+        <text x="668" y="16" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">16</text>
+        <line x1="160" y1="22" x2="680" y2="22" stroke="#2e2e34" stroke-width="1"/>
+        <line x1="420" y1="22" x2="420" y2="200" stroke="#2e2e34" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="680" y1="22" x2="680" y2="200" stroke="#3d5a44" stroke-width="1" stroke-dasharray="3 4"/>
+        <g font-family="ui-monospace,monospace" font-size="12">
+          <text x="0" y="52" fill="#c8c8cc">Kokoro JS</text>
+          <rect x="160" y="38" width="12" height="20" rx="3" fill="#6aa8c8"/>
+          <text x="180" y="52" fill="#6aa8c8">in-browser · chosen</text>
+          <text x="0" y="88" fill="#c8c8cc">Kokoro-82M</text>
+          <rect x="160" y="74" width="48.8" height="20" rx="3" fill="#4a4a55"/>
+          <text x="216" y="88" fill="#8a8a90">1.5 · tried</text>
+          <text x="0" y="124" fill="#c8c8cc">Piper</text>
+          <rect x="160" y="110" width="16.3" height="20" rx="3" fill="#5c5c6a"/>
+          <text x="184" y="124" fill="#8a8a90">&lt;0.5</text>
+          <text x="0" y="160" fill="#c8c8cc">XTTS-v2</text>
+          <rect x="160" y="146" width="162.5" height="20" rx="3" fill="#7d5c4a"/>
+          <text x="330" y="160" fill="#c8c8cc">~5 GB</text>
+          <text x="0" y="196" fill="#c8c8cc">Bark</text>
+          <rect x="160" y="182" width="390" height="20" rx="3" fill="#8a3a3a"/>
+          <text x="558" y="196" fill="#c8c8cc">~12 GB</text>
+        </g>
+      </svg>
+      <p class="chart-cap">Scale is 16 GB. XTTS and Bark do not fit beside Bonsai, Brave, and VS Code.</p>
+    </div>
+    <table class="engine-table">
+      <thead>
+        <tr><th>Engine</th><th>Sample</th><th>Footprint</th></tr>
+      </thead>
+      <tbody>
+        <tr class="chosen">
+          <td><strong><a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro JS</a></strong> <span class="small">(Open WebUI default · chosen)</span></td>
+          <td>
+            <audio class="voice-sample" controls preload="none" controlslist="nodownload noplaybackrate">
+              <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/samples/kokoro-af-heart.wav" type="audio/wav">
+            </audio>
+            <span class="voice-cap">Official · 82M</span>
+          </td>
+          <td>In-browser. No backend RAM.</td>
+        </tr>
+        <tr>
+          <td><strong><a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro-82M</a></strong> <span class="small">(server-side, af_heart · tried)</span></td>
+          <td>
+            <audio class="voice-sample" controls preload="none" controlslist="nodownload noplaybackrate">
+              <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/samples/kokoro-af-heart.wav" type="audio/wav">
+            </audio>
+            <span class="voice-cap">Official · af_heart</span>
+          </td>
+          <td>~1.5 GB RAM. &lt;2 GB VRAM.</td>
+        </tr>
+        <tr>
+          <td><strong><a class="ext" href="https://github.com/OHF-Voice/piper1-gpl" target="_blank" rel="noopener">Piper</a></strong> <span class="small">(Lessac)</span></td>
+          <td>
+            <audio class="voice-sample" controls preload="none" controlslist="nodownload noplaybackrate">
+              <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/samples/piper-lessac.mp3" type="audio/mpeg">
+            </audio>
+            <span class="voice-cap">Official · Lessac medium</span>
+          </td>
+          <td>&lt;500 MB. No GPU.</td>
+        </tr>
+        <tr>
+          <td><strong><a class="ext" href="https://github.com/coqui-ai/TTS" target="_blank" rel="noopener">Coqui TTS</a></strong> <span class="small">(XTTS-v2)</span></td>
+          <td>
+            <audio class="voice-sample" controls preload="none" controlslist="nodownload noplaybackrate">
+              <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/samples/xtts-en.wav" type="audio/wav">
+            </audio>
+            <span class="voice-cap">Official · en sample</span>
+          </td>
+          <td>~5 GB load. ~2 GB VRAM.</td>
+        </tr>
+        <tr>
+          <td><strong><a class="ext" href="https://github.com/suno-ai/bark" target="_blank" rel="noopener">Bark</a></strong> <span class="small">(suno)</span></td>
+          <td>
+            <audio class="voice-sample" controls preload="none" controlslist="nodownload noplaybackrate">
+              <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/samples/bark-demo.mp3" type="audio/mpeg">
+            </audio>
+            <span class="voice-cap">Official · README demo</span>
+          </td>
+          <td>~12 GB VRAM full / ~8 GB small</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="meta">Official samples from each project, not recordings from this laptop. Sources: <a class="ext" href="https://huggingface.co/hexgrad/Kokoro-82M/tree/main/samples" target="_blank" rel="noopener">Kokoro samples</a>, <a class="ext" href="https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/lessac/medium/samples" target="_blank" rel="noopener">Piper Lessac</a>, <a class="ext" href="https://huggingface.co/coqui/XTTS-v2/tree/main/samples" target="_blank" rel="noopener">Coqui XTTS-v2</a>, <a class="ext" href="https://github.com/suno-ai/bark" target="_blank" rel="noopener">Bark</a>.</p>
 
-    <h2>What changed in the Open WebUI fork</h2>
-    <p>Alongside the evaluation, Kokoro was wired in as a first-class local engine option: config keys, admin UI, pipeline load, voice allowlist, and MP3 output that browsers actually play. A few integration bugs showed up along the way — wrong MIME types when WAV bytes were written under an <code>.mp3</code> path, stale Piper voice names in the payload causing Hugging Face 404s, and sequential sentence synthesis that delayed the first audible chunk. Those are fixed. Parallel sentence requests cut perceived latency to time-to-first-sentence instead of the sum of every sentence.</p>
-    <p>That work is useful whether the long-term surface stays Open WebUI or the Knowledge Graph frontend keeps calling the same APIs. The point of the day was not to adopt a chatbot UI forever. It was to stop rebuilding streaming, retries, auth, and audio plumbing by hand.</p>
-
-    <h2>Latest in Sci-Fi Apps</h2>
-    <p>Knowledge Graph remains the private spatial canvas — photos, conversations, and time on a machine you own. Open WebUI is under evaluation as the chat and tool backend so the custom stack can focus on the canvas, the graph, and the parts that do not exist yet. Bonsai stays the local model. Whisper stays the ears. Kokoro stays the voice.</p>
+    <h2>What shipped</h2>
+    <p>I now have a working Open WebUI instance talking to Bonsai. Whisper hears. Kokoro JS speaks. Full conversations, all on this machine.</p>
+    <p>Next step is not another engine. Swap the chatbot window for the Knowledge Graph UI I already built. Same models. The canvas, not the bubbles.</p>
     <p>What you want out of a personal AI model is the conversation experience you get out of frontier models, but running on a 16 GB laptop. Tall order.</p>
-    <p>Clone the Knowledge Graph repo if you want the spatial side: <a class="ext" href="https://github.com/paulvisciano/knowledge-graph" target="_blank" rel="noopener">github.com/paulvisciano/knowledge-graph</a>.</p>
 
     <div class="links">
       <a href="beyond-the-chatbot.html">Beyond the chatbot</a>
