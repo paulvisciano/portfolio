@@ -15,3 +15,6 @@
 
 # Downloaded archives
 *.zip
+
+# Local image assets (live in R2)
+blog/images/
