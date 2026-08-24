@@ -10,6 +10,10 @@
   <meta property="og:title" content="Surveillance Pricing Is the Quiet Version of the Same Problem">
   <meta property="og:description" content="The FTC is looking at personalized pricing. The same data that trains ads and recommendations also trains price discrimination. Local knowledge graphs are the quiet refusal.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/surveillance-pricing-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Surveillance Pricing Is the Quiet Version of the Same Problem">
+  <meta name="twitter:description" content="The same data that trains ads also trains the price you see. A local graph is the refusal. Memory you own, models you run.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/surveillance-pricing-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/surveillance-pricing">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
@@ -34,23 +38,32 @@
       <figcaption class="fig-cap">Data that leaves the device becomes someone else’s pricing model.</figcaption>
     </figure>
 
-    <p>This week the FTC asked for public comment on a proposed enforcement policy about personalized pricing — what privacy advocates call surveillance pricing. Companies already collect browsing history, location, household signals, and device fingerprints. The proposal says that using that data to set a different price for you than for the person next to you, without clear disclosure, can be a deceptive practice under the FTC Act.</p>
+    <p>The default is still a lease. Browsing history. Location. Household signals. Device fingerprints. Once it leaves this desk, it can set the price you see.</p>
 
-    <p>The examples are concrete. A delivery service charges more for milk because it knows multiple children live at the address. A hotel raises the rate because signals suggest the traveler is attending a funeral. A ride-hailing app prices a hospital trip higher because the data implies urgency. The price you see is not the market price; it is an estimate of what you will tolerate.</p>
+    <p>This week the FTC asked for public comment on a proposed enforcement policy about personalized pricing, what privacy advocates call surveillance pricing. Companies already collect browsing history, location, household signals, and device fingerprints. The proposal says that using that data to set a different price for you than for the person next to you, without clear disclosure, can be a deceptive practice under the FTC Act.</p>
+
+    <p>The examples are concrete.</p>
+    <table>
+      <thead><tr><th>Signal they already have</th><th>The price you see</th></tr></thead>
+      <tbody>
+        <tr><td>Multiple children at the address</td><td>Milk costs more</td></tr>
+        <tr><td>Funeral travel</td><td>Hotel rate up</td></tr>
+        <tr><td>Hospital trip, implied urgency</td><td>Ride costs more</td></tr>
+      </tbody>
+    </table>
+    <p>The price you see is not the market price. It is an estimate of what you will tolerate.</p>
 
     <div class="callout">None of this requires a new breakthrough in AI. It is the ordinary outcome of treating personal data as free raw material.</div>
 
     <h2>The same data, a different bill</h2>
     <p>The same data that trains recommendation models and ad targeting also trains price discrimination. Once the data leaves your device, the boundary is gone. You can still use the service, but you no longer control how the profile is applied against you.</p>
-
     <p>That is the quiet version of the same problem that runs through the rest of the Sci-Fi Labs writing: platforms and brokers treat your life as inventory. Surveillance pricing is simply the bill arriving for years of free extraction.</p>
 
     <h2>Why the local stack matters</h2>
     <p>One practical response is to keep the data on hardware you own. That is what <a href="knowledge-graph.html">Knowledge Graph</a> is for: a private spatial memory system that runs entirely on your own machine. Photos, conversations, voice notes, and personal history stay on disk. You query them with a local model. Nothing is uploaded.</p>
-
-    <p>The current stack runs offline on a 16GB laptop — Llama.cpp for inference, LightRAG for retrieval, Whisper for voice, and a Three.js infinite canvas for the spatial interface. There is no API key, no remote embedding service, no silent upload. Unplug the network and the system keeps working. That offline test is the practical proof that nothing is leaving.</p>
-
-    <p>Where is Paul? is the public-facing spatial layer — a 3D globe and timeline of real moments — but the same rule applies to the private archive that feeds it. The published site is a demo. The real product is the copy you run on your own machine. Both are just websites, so they open in a browser, on a phone, or inside Vision Pro without a special store or runtime. The data layer stays local by design.</p>
+    <p>The current stack runs offline on a 16 GB laptop. Llama.cpp for inference. LightRAG for retrieval. Whisper for voice. A Three.js infinite canvas for the spatial interface. There is no API key, no remote embedding service, no silent upload. Unplug the network and the system keeps working. That offline test is the practical proof that nothing is leaving. 16 GB is the machine most people actually have. Offline is the proof.</p>
+    <p><a href="where-is-paul.html">Where is Paul?</a> is the public-facing spatial layer, a 3D globe and timeline of real moments, but the same rule applies to the private archive that feeds it. The published site is a demo. The real product is the copy you run on your own machine. Both are just websites, so they open in a browser, on a phone, or inside Vision Pro without a special store or runtime. The data layer stays local by design.</p>
+    <p>On this laptop the model is <a href="bonsai.html">Bonsai</a>. Whisper hears. Kokoro JS speaks. Memory you own, models you run.</p>
 
     <h2>Seed-phrase discipline for life data</h2>
     <p>Crypto people already understand the seed-phrase mindset. Guard the keys or lose the asset. Personal data deserves the same discipline. Running the model and the graph on hardware you own is the quiet refusal of the bargain that treats your life as free training data and free pricing signals.</p>

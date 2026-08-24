@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knowledge Graph, Part 1: The canvas and the stack — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory, offline.">
+  <meta name="description" content="Memory should be a place, not a thread. The whole stack has to fit in 16 GB and still work with the network unplugged.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Knowledge Graph, Part 1: The canvas and the stack">
-  <meta property="og:description" content="An infinite canvas with time as depth — and the hard constraint of running the entire local stack in 16GB of shared memory, offline.">
+  <meta property="og:description" content="Memory should be a place, not a thread. The whole stack has to fit in 16 GB and still work with the network unplugged.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/kg-part-1">
   <link rel="stylesheet" href="blog.css">
@@ -27,16 +27,16 @@
   <article>
     <p class="series">Knowledge Graph · Field notes · Part 1 of 3</p>
     <h1>Knowledge Graph, Part 1: The canvas and the stack</h1>
-    <p class="deck">Cut over to an infinite canvas, make time a depth axis, and run the whole stack on 16GB of shared memory — models that never leave the machine.</p>
-    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg" alt="Knowledge Graph Part 1 — infinite canvas, time as depth" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">Time as depth — photos and notes as planes you travel through, not a chat log.</figcaption></figure>
-    <p>Knowledge Graph started as a bet that memory should be a place, not a thread. The first solid version of that bet was a 3D infinite canvas with time as a navigable dimension, local models for vision and speech, and a pipeline that kept originals on hardware you own.</p>
-    <p>The deeper motivation came from watching the first wave of agent projects. OpenClaw was the first publicly viral agent that could actually <em>do</em> things on your computer — a genuine leap in utility. Hermes and others chased the same frontier. But somewhere along the way the conversation shifted to multi-agent orchestration, swarms talking to each other, elaborate tool chains — and the most basic expectation quietly fell behind: the agent remembering your day, your people, the thing you mentioned last Tuesday. Memory, the thing a personal assistant is supposedly for, got treated as a solved problem while everyone worked on the complicated one. <a href="knowledge-graph.html">Knowledge Graph</a> is the bet that memory is the complicated one — and that it is the one worth getting right first.</p>
-    <p>That bet pulls in two threads that the rest of this series keeps circling back to. There is the tension between an agent built for <em>utility</em> and one built to be <em>personal</em> — they look like the same product and they are not, and I wrote about that split separately in <a href="utility-vs-personal-ai.html">Utility vs Personal AI</a>. And there is the fact that the moment you start bolting on API keys — one per service, one per model, one per integration — you have handed your data to yet another company, and the “AI on your machine” story stops being true. That one became its own piece: <a href="who-has-your-data.html">Who has your data?</a>.</p>
+    <p class="deck">Memory should be a place, not a thread. The whole stack has to fit in 16 GB and still work with the network unplugged.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-1-hero.jpg" alt="Knowledge Graph Part 1 — infinite canvas, time as depth" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">Time as depth. Photos and notes as planes you travel through, not a chat log.</figcaption></figure>
+    <p>Knowledge Graph started as a bet that memory should be a place, not a thread. Photos, notes, conversations on a canvas. Time as depth. You fly to a month instead of scrolling a log. The originals stay on hardware you own.</p>
+    <p>The first wave of agents could do things on your computer. OpenClaw was the leap. Utility moved. Memory did not. The agent still forgot Tuesday. That is the personal problem. Utility and personal look like the same product. They are not. I wrote that split in <a href="utility-vs-personal-ai.html">Utility vs Personal AI</a>. Bolt on API keys and the "AI on your machine" story stops being true. That one is <a href="who-has-your-data.html">Who has your data?</a>.</p>
+    <p><a href="knowledge-graph.html">Knowledge Graph</a> is the bet that memory is the hard part, and that it is the one worth getting right first.</p>
     <h2>Why a canvas</h2>
-    <p>Lists and chat windows flatten life into sequence. A spatial surface lets the same day hold photos, notes, and later conversations without forcing them into a single scroll order. Zoom out for months; zoom in for an afternoon. The camera is the primary navigation, not a sidebar of folders.</p>
+    <p>Lists and chat windows flatten life into a sequence. A spatial surface lets the same day hold photos, notes, and later conversations without forcing them into one scroll. Zoom out for months. Zoom in for an afternoon. The camera is the navigation. Not a sidebar of folders.</p>
     <h2>Local by default — on 16GB shared</h2>
-    <p>Models run on the laptop’s own chip — no cloud involved. Speech recognition, vision, the memory index, the database, and the canvas all share one machine. There is no obligatory cloud ingest to make the product work — cloud is optional, not the path of least resistance.</p>
-    <p>The ultimate test for sovereignty is offline. Airplane mode. No Wi‑Fi. No fallback API. If the assistant still answers from weights on disk and data on disk, it is a local model in fact — not a thin client dressed up as “AI on your machine.” Anything that silently phones home when the cable is unplugged has already failed the test.</p>
+    <p>Models run on the laptop's own chip. No cloud required. Speech, vision, the memory index, the database, and the canvas share one machine. Cloud is optional. It is not the path of least resistance.</p>
+    <p>The test is offline. Airplane mode. No Wi-Fi. No fallback API. If the assistant still answers from weights on disk and data on disk, it is local in fact, not a thin client dressed up as "AI on your machine." Anything that phones home when the cable is unplugged has already failed.</p>
     <p>Why 16GB, specifically? Because that is the machine this is built on — not a hypothetical target spec. The dev box is a 14‑inch MacBook Pro with an Apple M2 Pro: a 10‑core CPU (6 performance, 4 efficiency), a 16‑core GPU, and 16GB of unified memory — meaning the processor and the graphics share one pool of memory, there is no separate graphics memory to spill into. That is the entire budget, and the operating system, the browser, the database, and the live canvas are already in it when the first model loads.</p>
     <p>This is the part of the local‑AI story that most write‑ups quietly skip. The demos that get shared are almost always run on rented A100s or a workstation that cost more than a used car. Large orgs have the money to blow on GPUs — a frontier‑class rig is a line item, not a sacrifice. Most people do not. The <a class="ext" href="https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam" target="_blank" rel="noopener">Steam Hardware Survey</a> is one of the few public windows into the machines real users actually own, and the RAM split tells the story plainly:</p>
     <table>
@@ -64,7 +64,8 @@
         <div class="pipe-step"><div class="n">03</div><div class="t">Canvas</div><div class="d">Planes in time, queryable memory</div></div>
       </div>
     </div>
-    <p>Part 2 picks up where phones, microphones, and concurrent clients hit that 16GB budget at once — and what had to change so multi-client local AI stayed usable without abandoning the constraint.</p>
+    <p>The canvas is the product. <a href="bonsai.html">Bonsai</a> is the engine on this laptop now. Open WebUI is a temporary conversation surface. Next is swapping that window for this canvas.</p>
+    <p>Part 2 is what happened when phones, microphones, and more than one client hit that 16 GB budget at once.</p>
     <div class="series-nav">
       <a href="kg-part-1.html" class="current"><span>Part 1</span>The canvas and the stack</a>
       <a href="kg-part-2.html"><span>Part 2</span>Voice, mobile, and the queue</a>

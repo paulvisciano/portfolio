@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knowledge Graph, Part 3: A living interface — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface that still works offline.">
+  <meta name="description" content="The canvas has to earn trust. Same-day photos stay together. The surface is a place, not a changelog.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Knowledge Graph, Part 3: A living interface">
-  <meta property="og:description" content="Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface that still works offline.">
+  <meta property="og:description" content="The canvas has to earn trust. Same-day photos stay together. The surface is a place, not a changelog.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-3-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/kg-part-3">
   <link rel="stylesheet" href="blog.css">
@@ -27,16 +27,17 @@
   <article>
     <p class="series">Knowledge Graph · Field notes · Part 3 of 3</p>
     <h1>Knowledge Graph, Part 3: A living interface</h1>
-    <p class="deck">Extraction, design tokens, better answers from the graph, and the Sci-Fi Labs frame for a sovereign memory surface — still inside a 16GB shared-memory budget, still offline.</p>
+    <p class="deck">The canvas has to earn trust. Same-day photos stay together. The surface is a place, not a changelog. Still 16 GB. Still offline.</p>
     <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/kg-part-3-hero.jpg" alt="Knowledge Graph Part 3 — a living interface" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">The living interface: glassy panels, time as dimension, ambient presence instead of a chat window.</figcaption></figure>
-    <p>Parts 1 and 2 made the canvas real and the queue survivable under a hard ceiling: the entire stack in about 16GB of shared memory, with offline as the proof the model is actually local. Part 3 is where the surface became intentional — component extraction, semantic tokens, and graph answers that keep same-day photos and notes together so the place you travel through earns trust.</p>
-    <h2>Design tokens and chrome</h2>
-    <p>oklch semantic tokens replaced ad-hoc hex. Message bubbles, thinking blocks, tool summaries, and stream cursors shared one language. ProcessingDock moved to the bottom-right, learned to poll the API, hide finished work, and offer reprocess on failure. Photo nodes stopped jumping time buckets: creation waited until EXIF arrived.</p>
+    <p>Parts 1 and 2 made the canvas real and the voice pipeline survivable. Part 3 is the surface. If the place looks like a debug panel, nobody stays.</p>
+    <h2>A place has to feel like a place</h2>
+    <p>The visual language is the Sci-Fi Labs one. Glassy panels. Time as depth. Ambient chrome instead of a chat column. One night palette so the canvas, the notes, and the voice belong to the same room. Processing lives in a dock, not a modal that steals the view. Photos wait for the capture date before they pick a day. Those are not polish tickets. They are how a place feels like a place.</p>
     <h2>Why the graph answers better</h2>
-    <p>Direction is wasted if asking “what did I do last week” returns a shallow summary. Date queries stopped relying on slow LLM keyword extraction; NLP shortcuts and post-filters kept same-day media together. Notes got their own plane kind. MCP tools could save and query; the model was instructed to actually call tools when it claimed to.</p>
-    <div class="callout">Sovereignty is not a tagline. The models run on your own chip, not a rented one. The memory graph, the database, and the speech recognizer stay on hardware you control — still inside the same ~16GB shared-memory budget that defined Parts 1 and 2. The ultimate test is offline: unplug the network and the system still reasons from local weights. Photos stay in original quality on disks you own.</div>
+    <p>Direction is wasted if "what did I do last week" returns a shallow summary. Date queries hit the graph, not a keyword guess. Same-day photos and notes stay together. Notes get their own plane. When the model claims it used a tool, it has to actually call the tool.</p>
+    <div class="callout">Offline is the proof. 16 GB is the machine most people actually have. Photos stay original on disks you own.</div>
     <h2>Sci-Fi Labs frame</h2>
-    <p><a href="knowledge-graph.html">Knowledge Graph</a> sits with <a href="https://github.com/paulvisciano/neuro-graph">Neuro Graph</a> (the public memory network it evolved from), <a href="where-is-paul.html">Where is Paul?</a> (the experience layer that feeds it), and <a href="musical-cubes.html">Musical Cubes</a> under one thesis: spatial products for web, mobile, and XR. Memory as a place is the product constraint — not a feature list bolted onto a chat window, not a stack that only works when you rent more RAM in the cloud, and not an “AI” that dies the moment the network drops.</p>
+    <p><a href="knowledge-graph.html">Knowledge Graph</a> sits with <a href="https://github.com/paulvisciano/neuro-graph">Neuro Graph</a> (the public memory network it grew from), <a href="where-is-paul.html">Where is Paul?</a>, and <a href="musical-cubes.html">Musical Cubes</a> under one thesis: spatial products for web, mobile, and XR. Memory as a place is the constraint. Not a feature list bolted onto a chat window. Not a stack that only works when you rent more RAM. Not an assistant that dies when the network drops.</p>
+    <p>On this laptop the engine is <a href="bonsai.html">Bonsai</a>. Whisper hears. Kokoro JS speaks. Open WebUI is a temporary conversation surface. Next step is swapping that window for this canvas. Same models. The place, not the bubbles.</p>
     <div class="series-nav">
       <a href="kg-part-1.html"><span>Part 1</span>The canvas and the stack</a>
       <a href="kg-part-2.html"><span>Part 2</span>Voice, mobile, and the queue</a>

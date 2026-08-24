@@ -4,23 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Running Local AI on 16 GB MacBook — the real stats — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A 27B model, an embedding model, a transcription model, a Postgres database, a RAG server, an API, a worker, and a SvelteKit UI — all in 16 GB. Live stats, not benchmarks.">
+  <meta name="description" content="A 27B model, embeddings, Whisper, Postgres, RAG, API, worker, and UI — all in 16 GB. Live stats from the machine, not the model card. Bonsai, Knowledge Graph, Kokoro JS.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Running Local AI on 16 GB MacBook — the real stats">
-  <meta property="og:description" content="A 27B model, an embedding model, a transcription model, a Postgres database, a RAG server, an API, a worker, and a SvelteKit UI — all in 16 GB. Live stats, not benchmarks.">
+  <meta property="og:description" content="A 27B model, embeddings, Whisper, Postgres, RAG, API, worker, and UI — all in 16 GB. Live stats from the machine, not the model card.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Running Local AI on 16 GB MacBook — the real stats">
+  <meta name="twitter:description" content="16 GB is the machine most people actually have. Live stats from an M2 Pro desk, not a model card.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/running-local-ai-16gb">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
   <style>
-    .chart{margin:1.5rem 0 2rem;padding:1.15rem 1.3rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
-    .chart-title{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.16em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:0 0 1rem}
+    .chart-bars{margin:1.5rem 0 2rem;padding:1.15rem 1.3rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+    .chart-bars .chart-title{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.16em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:0 0 1rem}
     .bar-row{display:grid;grid-template-columns:1fr auto;gap:0.5rem;align-items:center;margin:0 0 0.35rem}
     .bar-label{font-size:0.88rem;color:var(--fg);line-height:1.4}
     .bar-label .sub{color:var(--muted);font-size:0.8rem}
     .bar-track{position:relative;height:24px;background:oklch(20% 0.003 260);border-radius:6px;overflow:hidden;grid-column:1 / -1;margin:0 0 0.4rem}
-    .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 0.6rem;font-size:0.78rem;font-family:var(--font-mono);color:var(--fg-bright);white-space:nowrap;transition:width 0.6s ease}
+    .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 0.6rem;font-size:0.78rem;font-family:var(--font-mono);color:var(--fg-bright);white-space:nowrap}
     .bar-fill.accent{background:linear-gradient(90deg,oklch(72% 0.08 230 / 0.7),oklch(72% 0.08 230 / 0.4))}
     .bar-fill.warm{background:linear-gradient(90deg,oklch(72% 0.12 50 / 0.7),oklch(72% 0.12 50 / 0.4))}
     .bar-fill.dim{background:linear-gradient(90deg,oklch(55% 0.02 260 / 0.5),oklch(40% 0.02 260 / 0.3))}
@@ -41,16 +45,8 @@
     .seg.active{background:linear-gradient(90deg,oklch(72% 0.15 25 / 0.6),oklch(72% 0.15 25 / 0.3))}
     .seg.spike{background:linear-gradient(90deg,oklch(72% 0.08 230 / 0.6),oklch(72% 0.08 230 / 0.3))}
     @media(max-width:520px){.bar-fill,.seg{font-size:0.68rem;padding:0 0.3rem}}
-    .repo-badge{position:absolute;bottom:3rem;right:1rem;display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.06em;color:var(--fg-bright);text-decoration:none;padding:0.45rem 0.9rem;border:1px solid oklch(72% 0.08 230 / 0.35);border-radius:100px;background:linear-gradient(135deg,oklch(10% 0.02 230 / 0.85),oklch(8% 0.01 260 / 0.75));backdrop-filter:blur(8px);z-index:2;transition:border-color 0.25s,box-shadow 0.25s,transform 0.15s;animation:badge-pulse 3s ease-in-out infinite}
-    .repo-badge::after{content:'';position:absolute;inset:-1px;border-radius:100px;border:1px solid oklch(72% 0.08 230 / 0);animation:badge-ring 3s ease-out infinite}
-    @keyframes badge-pulse{0%,100%{box-shadow:0 0 0 oklch(72% 0.08 230 / 0)}50%{box-shadow:0 0 16px oklch(72% 0.08 230 / 0.18)}}
-    @keyframes badge-ring{0%{transform:scale(1);border-color:oklch(72% 0.08 230 / 0.5);opacity:1}80%,100%{transform:scale(1.15);border-color:oklch(72% 0.08 230 / 0);opacity:0}}
-    .repo-badge::before{content:'';position:absolute;inset:0;border-radius:100px;background:linear-gradient(135deg,oklch(72% 0.08 230 / 0.12),transparent 60%);opacity:0;transition:opacity 0.25s}
-    .repo-badge:hover{border-color:oklch(72% 0.08 230 / 0.7);box-shadow:0 0 24px oklch(72% 0.08 230 / 0.2);transform:translateY(-1px);animation:none}
-    .repo-badge:hover::after{animation:none;opacity:0}
-    .repo-badge:hover::before{opacity:1}
-    .repo-badge svg{width:13px;height:13px;fill:currentColor;position:relative;z-index:1}
-    .repo-badge span{position:relative;z-index:1}
+    .repo-badge{position:absolute;bottom:3rem;right:1rem;display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.06em;color:var(--fg-bright);text-decoration:none;padding:0.45rem 0.9rem;border:1px solid oklch(72% 0.08 230 / 0.35);border-radius:100px;background:linear-gradient(135deg,oklch(10% 0.02 230 / 0.85),oklch(8% 0.01 260 / 0.75));backdrop-filter:blur(8px);z-index:2}
+    .repo-badge svg{width:13px;height:13px;fill:currentColor}
     @media(max-width:520px){.repo-badge{font-size:0.65rem;padding:0.35rem 0.7rem;bottom:2.4rem;right:0.6rem}}
   </style>
 </head>
@@ -65,16 +61,17 @@
     <div class="progress"><div class="progress-bar"></div></div>
   </nav>
   <article>
-    <p class="series">Knowledge Graph · Field notes</p>
+    <p class="series">Sci-Fi Labs · Field notes</p>
     <h1>Running Local AI on 16 GB MacBook — the real stats</h1>
-    <p class="deck">A 27B model, an embedding model, a transcription model, a Postgres database, a RAG server, an API, a worker, and a SvelteKit UI — all in 16 GB. Live stats from the machine, not benchmarks from the model card.</p>
-    <figure class="fig" style="position:relative"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface running on a 16GB MacBook Pro" width="1792" height="1008" loading="eager"><a class="repo-badge" href="https://github.com/paulvisciano/knowledge-graph" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub · paulvisciano/knowledge-graph</span></a><figcaption class="fig-cap">The whole stack — running, offline, on one laptop.</figcaption></figure>
-    <p>This is the technical companion to the <a href="knowledge-graph.html">Knowledge Graph</a> project page. The project page tells you what it is. This tells you what it costs to run — in memory, in swap, in tokens per second, and in months of tuning. Every number here is live, measured from the actual running system, not from a benchmark script.</p>
-    <p>The machine: a 14-inch MacBook Pro with an Apple M2 Pro — 10-core CPU (6 performance, 4 efficiency), 16-core GPU, and 16 GB of unified memory. That means the CPU and GPU share one pool. There is no separate VRAM. Every model that runs on the GPU eats from the same 16 GB the OS, the browser, and the editor are using.</p>
+    <p class="deck">A 27B model, an embedding model, Whisper, Postgres, a RAG server, an API, a worker, and a SvelteKit UI. All in 16 GB. Live numbers from the desk. Not the model card.</p>
+    <figure class="fig" style="position:relative"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface running on a 16GB MacBook Pro" width="1792" height="1008" loading="eager"><a class="repo-badge" href="https://github.com/paulvisciano/knowledge-graph" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub · paulvisciano/knowledge-graph</span></a><figcaption class="fig-cap">The whole stack. Running, offline, on one laptop.</figcaption></figure>
+
+    <p>This is the technical companion to the <a href="knowledge-graph.html">Knowledge Graph</a> project page. That page says what it is. This page says what it costs: memory, swap, tokens per second, months of tuning. Every number here is live from the running system.</p>
+    <p>On this laptop: a 14-inch MacBook Pro, Apple M2 Pro. 10-core CPU, 16-core GPU, 16 GB unified memory. CPU and GPU share one pool. There is no separate VRAM. Every model eats from the same 16 GB as the OS, the browser, and the editor. 16 GB is the machine most people actually have.</p>
 
     <h2 id="model-stack">The model stack</h2>
-    <p>Every model in the system is a file on disk. No API keys, no remote endpoints, no silent uploads. That constraint is not a limitation to work around; it is the design constraint that forced the architecture.</p>
-    <div class="chart">
+    <p>Every model is a file on disk. No API keys. No remote endpoints. No silent uploads. That is not a workaround. It is the design constraint.</p>
+    <div class="chart-bars">
       <p class="chart-title">Model files on disk</p>
       <div class="bar-row">
         <div class="bar-label">Bonsai-27B <span class="sub">LLM + Vision · Q1_0 1-bit</span></div>
@@ -102,45 +99,44 @@
         <div class="bar-track"><div class="bar-fill green" style="width:100%">5.9 GB</div></div>
       </div>
     </div>
-    <p>Bonsai-27B is a 27B-parameter model compressed with PrismML's 1-bit quantization (<code>Q1_0_g128</code>) — packed weights that are a fraction of the original size with enough reasoning quality for tool use and long context. The catch: the 1-bit Metal kernels do not exist in stock <code>llama.cpp</code>. The project builds the <a class="ext" href="https://github.com/PrismML-Eng/llama.cpp" target="_blank" rel="noopener">PrismML-Eng fork</a> from source to get them. The Homebrew bottle will refuse to load the GGUF.</p>
-    <p>The same model serves both roles — chat and vision. Bonsai-27B is built on Qwen3.6-27B, which has a vision tower. In <code>llama.cpp</code> the vision encoder weights ship as a separate file: the base GGUF holds only the language model, and the mmproj file is the projection that maps image pixels into the model's embedding space. The server runs with <code>-np 2</code> — two parallel processing slots — so the model can answer two tasks concurrently: slot 0 for interactive chat, slot 1 for the vision pipeline. You can send a message while an image is being processed, and neither blocks the other. The <a href="https://github.com/paulvisciano/knowledge-graph">project's config</a> caps VLM concurrency at 1 so the vision pipeline never eats both slots — one slot is always reserved for chat. Both slots share the same 16GB pool.</p>
-    <p>Embeddings are handled by BGE-M3, a 1024-dimensional multilingual model running on its own <code>llama-server</code> instance. Voice transcription is Whisper, running on <code>whisper-server</code> (from <code>whisper.cpp</code>) on the Metal GPU. Both are separate processes from the LLM so they can load and serve without competing for the same slot.</p>
+    <p><a href="bonsai.html">Bonsai-27B</a> is a 27B-parameter model with PrismML’s 1-bit quantization (<code>Q1_0_g128</code>). The 1-bit Metal kernels are not in stock <code>llama.cpp</code>. This project builds the <a class="ext" href="https://github.com/PrismML-Eng/llama.cpp" target="_blank" rel="noopener">PrismML-Eng fork</a> from source. The Homebrew bottle will refuse the GGUF.</p>
+    <p>The same model serves chat and vision. Bonsai-27B is built on Qwen3.6-27B. The vision encoder ships as a separate mmproj file. The server runs with <code>-np 2</code>: two parallel slots, so chat and vision do not block each other. The <a href="https://github.com/paulvisciano/knowledge-graph">project config</a> caps VLM concurrency at 1 so one slot always stays free for chat. Both slots share the same 16 GB pool.</p>
+    <p>Embeddings: BGE-M3 on its own <code>llama-server</code>. Transcription: Whisper on <code>whisper-server</code> (Metal). Separate processes. Separate slots. No fighting for the same queue.</p>
 
     <h2 id="architecture">Architecture</h2>
-    <p>The stack splits cleanly along a boundary: model servers run on the host (direct Metal access), and the service layer runs in Docker (isolated, composed, restartable). They talk to each other over <code>host.docker.internal</code> — the Docker bridge to the laptop's own loopback.</p>
+    <p>Model servers stay on the host for direct Metal access. The service layer runs in Docker. They talk over <code>host.docker.internal</code>.</p>
     <div class="pipeline">
-      <p class="pipeline-title">System architecture — everything on one laptop, nothing in the cloud</p>
+      <p class="pipeline-title">System architecture. Everything on one laptop, nothing in the cloud</p>
       <div class="pipe-step" style="flex:1 1 100%;border-color:oklch(72% 0.08 230 / 0.4)">
         <div class="n">HOST (Metal GPU)</div>
-        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">llama-server :8080 — Bonsai-27B LLM + mmproj vision (2 slots, 16K ctx each — chat & vision run concurrently)<br>llama-server :8081 — BGE-M3 embeddings<br>whisper-server :8090 — Whisper medium transcription</div>
+        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">llama-server :8080: Bonsai-27B LLM + mmproj vision (2 slots, 16K ctx each)<br>llama-server :8081: BGE-M3 embeddings<br>whisper-server :8090: Whisper medium transcription</div>
       </div>
       <div style="text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:var(--fs-micro);padding:0.5rem 0">host.docker.internal ▲ ▼</div>
       <div class="pipe-step" style="flex:1 1 100%;border-color:oklch(72% 0.12 200 / 0.35)">
         <div class="n">DOCKER (internal bridge network)</div>
         <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">
-          <strong style="color:var(--fg)">LightRAG</strong> :9621 — entity extraction, graph retrieval, query routing<br>
-          <strong style="color:var(--fg)">Postgres</strong> + pgvector — KV store, vector index (HNSW), doc status<br>
-          <strong style="color:var(--fg)">KG API</strong> :8000 — FastAPI: image pipeline, chat, sync, settings<br>
-          <strong style="color:var(--fg)">Worker</strong> — background image processing (EXIF → entities → VLM → graph)<br>
-          <strong style="color:var(--fg)">LLM Worker</strong> — chat job queue, MCP tool calls<br>
-          <strong style="color:var(--fg)">MCP Server</strong> :9653 — Model Context Protocol bridge<br>
-          <strong style="color:var(--fg)">Nexus UI</strong> :3000 — SvelteKit + Three.js infinite canvas
+          <strong style="color:var(--fg)">LightRAG</strong> :9621: entity extraction, graph retrieval, query routing<br>
+          <strong style="color:var(--fg)">Postgres</strong> + pgvector: KV store, vector index (HNSW), doc status<br>
+          <strong style="color:var(--fg)">KG API</strong> :8000: FastAPI image pipeline, chat, sync, settings<br>
+          <strong style="color:var(--fg)">Worker</strong>: background image processing (EXIF → entities → VLM → graph)<br>
+          <strong style="color:var(--fg)">LLM Worker</strong>: chat job queue, MCP tool calls<br>
+          <strong style="color:var(--fg)">MCP Server</strong> :9653: Model Context Protocol bridge<br>
+          <strong style="color:var(--fg)">Nexus UI</strong> :3000: SvelteKit + Three.js infinite canvas
         </div>
       </div>
       <div style="text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:var(--fs-micro);padding:0.5rem 0">Browser ▲ ▼</div>
       <div class="pipe-step" style="flex:1 1 100%;border-color:oklch(72% 0.08 230 / 0.2)">
         <div class="n">CLIENT</div>
-        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">localhost:3000 — the spatial canvas, chat panel, ingestion, voice — all one page</div>
+        <div class="t" style="font-size:0.88rem;color:var(--muted);margin-top:0.4rem">localhost:3000: spatial canvas, chat panel, ingestion, voice. One page</div>
       </div>
     </div>
-    <p>LightRAG is the memory engine. It does the entity-and-relation extraction that turns raw text into a queryable graph, and it runs the dual-level retrieval (local entity match + higher-level themes) that makes <em>"what did I do last week"</em> return something more than a keyword search. Its KV store, vector store, and document status all live in Postgres with pgvector and an HNSW index. The graph itself stays in NetworkX — in-process, no separate graph database — because the personal archive is small enough that an in-memory graph is faster than a network round trip.</p>
-    <p>The KG API is a FastAPI app that owns everything that is not LightRAG: image ingestion (EXIF extraction, optional face recognition, VLM image descriptions), chat (streaming SSE to the UI, job queue to the LLM worker), and the settings surface. It talks to LightRAG over HTTP inside the Docker network and to the host <code>llama-servers</code> through the Docker gateway. The API process serves HTTP only — a separate worker process owns all image processing so that a long VLM batch never blocks the website's event loop.</p>
-    <p>The worker is the quiet engine of the pipeline. It polls a Postgres jobs table with <code>SELECT FOR UPDATE SKIP LOCKED</code>, claims pending rows, and drives each one through a two-phase pipeline. No Redis, no Celery — Postgres is the queue, and <code>pg_notify</code> is the event bus that the API's SSE endpoints listen on. The architecture is deliberately boring: one database, one queue, one event stream.</p>
+    <p>LightRAG is the memory engine: entity-and-relation extraction, dual-level retrieval (local entity match + higher-level themes). KV, vectors, and document status live in Postgres with pgvector and an HNSW index. The graph stays in NetworkX, in-process, because a personal archive is small enough that an in-memory graph beats a network hop.</p>
+    <p>The KG API owns what LightRAG does not: image ingestion, chat (SSE + job queue), settings. A separate worker owns image processing so a long VLM batch never blocks the event loop. The queue is Postgres (<code>SELECT FOR UPDATE SKIP LOCKED</code>). The event bus is <code>pg_notify</code>. One database. One queue. One event stream.</p>
 
     <h2 id="image-pipeline">The image pipeline</h2>
-    <p>When a photo lands in the system, it does not go straight to the model. It goes through a two-phase pipeline that separates the cheap work from the expensive work, so a batch of 50 photos does not monopolize the GPU for an hour.</p>
+    <p>A photo does not go straight to the model. Cheap work first. Expensive work second. A batch of 50 photos should not monopolize the GPU for an hour.</p>
     <div class="pipeline">
-      <p class="pipeline-title">Two-phase image processing — one photo, four stages, all local</p>
+      <p class="pipeline-title">Two-phase image processing. One photo, four stages, all local</p>
       <div class="pipeline-flow">
         <div class="pipe-step">
           <div class="n">01</div>
@@ -151,13 +147,13 @@
         <div class="pipe-step">
           <div class="n">02</div>
           <div class="t">Entities</div>
-          <div class="d">EXIF data becomes graph nodes: Date, Location, Camera — via LightRAG entity/relation API</div>
+          <div class="d">EXIF data becomes graph nodes: Date, Location, Camera. Via LightRAG</div>
         </div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step">
           <div class="n">03</div>
           <div class="t">VLM</div>
-          <div class="d">Bonsai-27B + mmproj: image → natural-language description of the scene</div>
+          <div class="d">Bonsai-27B + mmproj: image → natural-language description</div>
         </div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step">
@@ -167,92 +163,38 @@
         </div>
       </div>
     </div>
-    <p>Phase 1 is CPU-bound: EXIF extraction with ExifRead and reverse geocoding with <code>reverse_geocoder</code> — an offline dataset, no network. The results — camera model, date, location — become entities and relations in the graph immediately via LightRAG's entity and relation creation API. This phase can run at high concurrency (up to 10 in parallel) because it never touches the LLM.</p>
-    <p>The codebase also includes face recognition — DeepFace with MTCNN detection and ArcFace 512-dimensional embeddings — but it is currently disabled. The setting <code>face_detection_enabled</code> is <code>false</code> in the database, and the API's <code>_resolve_skip_faces</code> function returns <code>True</code> when that setting is off, so every job skips the face phase. The <code>known_faces/</code> directory has no reference photos in it. DeepFace and its TensorFlow dependencies are still in <code>requirements.txt</code>, the code is still in <code>processors/face_recognizer.py</code>, and the Docker volumes for <code>face_crops</code> and <code>deepface_weights</code> still exist — but none of it runs. It was turned off because DeepFace in a container competes for the same memory budget as the rest of the stack, and on a 16 GB machine that trade was not worth it. The code is there for when the machine changes.</p>
-    <p>Phase 2 is GPU-bound: the VLM. The photo is resized to max 768px (the mmproj caps image tokens at 280, so anything larger is wasted compute) and sent to Bonsai-27B with the vision projection. The model returns a natural-language description of the scene — what is in the photo, the setting, the mood. That description is ingested by LightRAG as text, which extracts its own entities and relations and adds them to the graph. A photo of a dinner in Lisbon becomes nodes for the food, the restaurant, the city — connected to the date, the camera, and each other.</p>
-    <p>The split exists because of the 16GB constraint. Phase 1 runs fast and cheap; phase 2 is the bottleneck. Running them separately means a batch upload can complete phase 1 in seconds and then trickle phase 2 through the single VLM slot overnight, while the other LLM slot stays free for chat.</p>
+    <p>Phase 1 is CPU-bound: ExifRead + offline reverse geocoding. High concurrency (up to 10). Never touches the LLM. Face recognition (DeepFace / MTCNN / ArcFace) exists in the codebase and is currently disabled. <code>face_detection_enabled</code> is <code>false</code>. On 16 GB that trade was not worth it. The code stays for a bigger machine.</p>
+    <p>Phase 2 is GPU-bound. Photos resize to max 768px (mmproj caps image tokens at 280). Bonsai returns a scene description. LightRAG ingests it as text. A dinner in Lisbon becomes nodes for the food, the restaurant, the city, tied to date and camera.</p>
+    <p>The split exists because of the 16 GB constraint. Phase 1 finishes in seconds. Phase 2 trickles through the single VLM slot overnight. The other LLM slot stays free for chat.</p>
 
     <h2 id="chat-path">The chat and query path</h2>
-    <p>When you speak or type a question, the path is different from ingestion. The Nexus UI streams the message to the KG API, which saves it and creates an LLM job. The LLM worker picks up the job, calls the Bonsai-27B server with the chat context, and streams the response back via SSE. If the question needs memory — <em>"what did I do in Lisbon?"</em> — the worker calls LightRAG's query API first. LightRAG embeds the query with BGE-M3, retrieves the top-k entity subgraphs from the Postgres vector store, assembles a context block, and hands it to the LLM as part of the prompt. The model answers from your own data, not from its training set.</p>
-    <p>If the question has an audio component — a voice memo — Whisper transcribes it on the host GPU before the text reaches the LLM. The transcription becomes another node on the canvas, timestamped to the moment it was spoken, sitting in the same time layer as the photos and notes from that day.</p>
-    <p>The MCP server exposes the graph to external tools. Any agent that speaks the Model Context Protocol can query the graph, save to it, or search it — the same API the internal UI uses, but over a standard interface. The utility agent on your machine can ask the personal agent's memory without the personal agent's data ever leaving the laptop.</p>
+    <p>You speak or type. Nexus streams to the KG API. The LLM worker calls Bonsai with chat context and streams back over SSE. If the question needs memory (<em>“what did I do in Lisbon?”</em>), LightRAG embeds with BGE-M3, retrieves top-k entity subgraphs from Postgres, and hands a context block to the model. The answer comes from your data, not the training set.</p>
+    <p>Voice memos hit Whisper on the host GPU first. The transcript becomes another node on the canvas, timestamped to the moment it was spoken. The MCP server exposes the same graph to external tools over a standard interface. Another agent on this machine can ask without the data leaving the laptop.</p>
 
     <h2 id="graph-stats">The graph right now</h2>
-    <p>These are not benchmarks from a demo. They are the live numbers from the Postgres database running behind the <a href="knowledge-graph.html">Knowledge Graph</a>, queried while the system was serving the conversation that produced this writing.</p>
-    <div class="chart">
-      <p class="chart-title">The graph right now — live Postgres counts</p>
-      <div class="bar-row">
-        <div class="bar-label">Relation vectors <span class="sub">BGE-M3 1024-d</span></div>
-        <div class="bar-value"><strong>4,420</strong></div>
-        <div class="bar-track"><div class="bar-fill accent" style="width:100%">4,420</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Entity vectors <span class="sub">BGE-M3 1024-d</span></div>
-        <div class="bar-value"><strong>2,258</strong></div>
-        <div class="bar-track"><div class="bar-fill accent" style="width:51%">2,258</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">LLM cache entries <span class="sub">cached completions</span></div>
-        <div class="bar-value"><strong>862</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:19.5%">862</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Documents ingested</div>
-        <div class="bar-value"><strong>278</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:6.3%">278</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Image processing jobs</div>
-        <div class="bar-value"><strong>222</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:5%">222</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Photos with metadata</div>
-        <div class="bar-value"><strong>253</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:5.7%">253</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Entities in graph</div>
-        <div class="bar-value"><strong>270</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:6.1%">270</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Relations (edges)</div>
-        <div class="bar-value"><strong>256</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:5.8%">256</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Chunk vectors</div>
-        <div class="bar-value"><strong>275</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:6.2%">275</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Messages</div>
-        <div class="bar-value"><strong>79</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:1.8%">79</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Conversations</div>
-        <div class="bar-value"><strong>31</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:0.7%">31</div></div>
-      </div>
+    <p>Live Postgres counts, queried while the system was serving the conversation that produced this writing.</p>
+    <div class="chart-bars">
+      <p class="chart-title">The graph right now. Live Postgres counts</p>
+      <div class="bar-row"><div class="bar-label">Relation vectors <span class="sub">BGE-M3 1024-d</span></div><div class="bar-value"><strong>4,420</strong></div><div class="bar-track"><div class="bar-fill accent" style="width:100%">4,420</div></div></div>
+      <div class="bar-row"><div class="bar-label">Entity vectors <span class="sub">BGE-M3 1024-d</span></div><div class="bar-value"><strong>2,258</strong></div><div class="bar-track"><div class="bar-fill accent" style="width:51%">2,258</div></div></div>
+      <div class="bar-row"><div class="bar-label">LLM cache entries <span class="sub">cached completions</span></div><div class="bar-value"><strong>862</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:19.5%">862</div></div></div>
+      <div class="bar-row"><div class="bar-label">Documents ingested</div><div class="bar-value"><strong>278</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:6.3%">278</div></div></div>
+      <div class="bar-row"><div class="bar-label">Image processing jobs</div><div class="bar-value"><strong>222</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:5%">222</div></div></div>
+      <div class="bar-row"><div class="bar-label">Photos with metadata</div><div class="bar-value"><strong>253</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:5.7%">253</div></div></div>
+      <div class="bar-row"><div class="bar-label">Entities in graph</div><div class="bar-value"><strong>270</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:6.1%">270</div></div></div>
+      <div class="bar-row"><div class="bar-label">Relations (edges)</div><div class="bar-value"><strong>256</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:5.8%">256</div></div></div>
+      <div class="bar-row"><div class="bar-label">Chunk vectors</div><div class="bar-value"><strong>275</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:6.2%">275</div></div></div>
+      <div class="bar-row"><div class="bar-label">Messages</div><div class="bar-value"><strong>79</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:1.8%">79</div></div></div>
+      <div class="bar-row"><div class="bar-label">Conversations</div><div class="bar-value"><strong>31</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:0.7%">31</div></div></div>
     </div>
-    <p>The LLM cache is the quiet win. 862 cached completions mean the model does not re-run extraction on text it has already seen — a big deal when each run costs GPU time on a shared 16GB pool. The entity-to-relation ratio (270 entities, 256 relations) is low by enterprise graph standards but dense for a personal archive: nearly every entity is connected to at least one other, because the source material is one person's life, not a web crawl. Database size: 243 MB — a personal archive, not a data lake.</p>
+    <p>862 cached completions mean the model does not re-run extraction on text it has already seen. 270 entities and 256 relations is dense for a personal archive: nearly every entity connects to at least one other. Database size: 243 MB. A personal archive. Not a data lake.</p>
 
     <h2 id="throughput">Throughput</h2>
-    <p>Measured live with a direct <code>/v1/chat/completions</code> call to the Bonsai-27B server on port 8080:</p>
-    <div class="chart">
-      <p class="chart-title">Throughput — measured live on port 8080</p>
-      <div class="bar-row">
-        <div class="bar-label">Generation speed <span class="sub">tokens out</span></div>
-        <div class="bar-value"><strong>15.1 tok/s</strong></div>
-        <div class="bar-track"><div class="bar-fill accent" style="width:15.1%">15.1 tok/s</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Prompt eval speed <span class="sub">tokens in</span></div>
-        <div class="bar-value"><strong>10.3 tok/s</strong></div>
-        <div class="bar-track"><div class="bar-fill warm" style="width:10.3%">10.3 tok/s</div></div>
-      </div>
+    <p>Measured live with a direct <code>/v1/chat/completions</code> call to Bonsai-27B on port 8080:</p>
+    <div class="chart-bars">
+      <p class="chart-title">Throughput. Measured live on port 8080</p>
+      <div class="bar-row"><div class="bar-label">Generation speed <span class="sub">tokens out</span></div><div class="bar-value"><strong>15.1 tok/s</strong></div><div class="bar-track"><div class="bar-fill accent" style="width:15.1%">15.1 tok/s</div></div></div>
+      <div class="bar-row"><div class="bar-label">Prompt eval speed <span class="sub">tokens in</span></div><div class="bar-value"><strong>10.3 tok/s</strong></div><div class="bar-track"><div class="bar-fill warm" style="width:10.3%">10.3 tok/s</div></div></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.5rem;margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border)">
         <div style="text-align:center"><div class="bar-value" style="margin-bottom:0.2rem"><strong>16,384</strong></div><div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--muted)">ctx / slot</div></div>
         <div style="text-align:center"><div class="bar-value" style="margin-bottom:0.2rem"><strong>2</strong></div><div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--muted)">slots</div></div>
@@ -261,198 +203,126 @@
         <div style="text-align:center"><div class="bar-value" style="margin-bottom:0.2rem"><strong>3.5 GB</strong></div><div style="font-size:0.72rem;font-family:var(--font-mono);color:var(--muted)">Q1_0 on disk</div></div>
       </div>
     </div>
-    <p>Fifteen tokens per second is not fast by cloud standards — a frontier API model will outpace it 10x. But fifteen tokens per second is fast enough for a conversation to feel responsive, and it is coming from a 27B model running entirely on a laptop with no network cable. The prompt eval at 10 tok/s is the real bottleneck: a long context (2,997 tokens in the last chat slot) takes ~5 seconds to process before the first token generates. That is the cost of Q1 quantization — the weights are small, but the computation per weight is higher because the dequantization happens in the kernel. The DRY sampler and XTC (both tuned aggressively in <code>start-llama-servers.sh</code>) exist because at 1-bit, the model paraphrase-loops without them.</p>
+    <p>Fifteen tokens per second is not cloud-fast. It is fast enough for a conversation. It comes from a 27B model with no network cable. Prompt eval at 10.3 tok/s is the bottleneck: a long context (2,997 tokens in the last chat slot) takes ~5 seconds before the first token. DRY and XTC samplers in <code>start-llama-servers.sh</code> exist because at 1-bit the model paraphrase-loops without them.</p>
 
     <h2 id="claim-vs-machine">The claim vs the machine</h2>
-    <p>Model vendors publish performance numbers the way car companies publish MPG. The sticker says 42 mpg highway. That number came from a test track — a perfect road, 55 mph, no wind, no cargo, no passengers, no AC. You drive it off the lot and get 28. Nobody lied. The test was real. It was just not your life.</p>
-    <p>AI model cards work the same way. PrismML's <a class="ext" href="https://huggingface.co/prism-ml/Bonsai-27B-gguf" target="_blank" rel="noopener">HuggingFace model card</a> opens with a headline: <em>"~44 tok/s on an Apple M5 Pro laptop."</em> The marketing page leads with <em>"87 tok/s on M5 Max."</em> An independent reviewer on a 48 GB M4 Pro measured <a class="ext" href="https://stridenote.net/bonsai-27b-1bit-mac/" target="_blank" rel="noopener">27 tok/s</a> and called the gap "explainable rather than suspicious." Here is what those numbers look like next to the machine that actually runs the Knowledge Graph:</p>
-    <div class="chart">
-      <p class="chart-title">Claimed tok/s vs measured — the MPG problem</p>
-      <div class="bar-row">
-        <div class="bar-label">PrismML marketing <span class="sub">M5 Max · vendor-reported</span></div>
-        <div class="bar-value"><strong>87</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:100%">87 tok/s</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">PrismML model card <span class="sub">M5 Pro · vendor-reported</span></div>
-        <div class="bar-value"><strong>44</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:50.6%">44 tok/s</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">PrismML model card <span class="sub">M4 Pro · vendor-reported</span></div>
-        <div class="bar-value"><strong>26</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:29.9%">26 tok/s</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">StrideNote review <span class="sub">M4 Pro 48 GB · independent</span></div>
-        <div class="bar-value"><strong>27</strong></div>
-        <div class="bar-track"><div class="bar-fill warm" style="width:31%">27 tok/s</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label"><strong>Knowledge Graph</strong> <span class="sub">M2 Pro 16 GB · live, full stack</span></div>
-        <div class="bar-value"><strong>15.1</strong></div>
-        <div class="bar-track"><div class="bar-fill red" style="width:17.4%">15.1 tok/s</div></div>
-      </div>
+    <p>Model cards publish MPG. The sticker is a test track. Your road has traffic.</p>
+    <p>PrismML’s <a class="ext" href="https://huggingface.co/prism-ml/Bonsai-27B-gguf" target="_blank" rel="noopener">HuggingFace model card</a> leads with <em>“~44 tok/s on an Apple M5 Pro laptop.”</em> Marketing leads with <em>“87 tok/s on M5 Max.”</em> An independent reviewer on a 48 GB M4 Pro measured <a class="ext" href="https://stridenote.net/bonsai-27b-1bit-mac/" target="_blank" rel="noopener">27 tok/s</a>. Here is that scoreboard next to the machine that runs Knowledge Graph:</p>
+    <div class="chart-bars">
+      <p class="chart-title">Claimed tok/s vs measured. The MPG problem</p>
+      <div class="bar-row"><div class="bar-label">PrismML marketing <span class="sub">M5 Max · vendor-reported</span></div><div class="bar-value"><strong>87</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:100%">87 tok/s</div></div></div>
+      <div class="bar-row"><div class="bar-label">PrismML model card <span class="sub">M5 Pro · vendor-reported</span></div><div class="bar-value"><strong>44</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:50.6%">44 tok/s</div></div></div>
+      <div class="bar-row"><div class="bar-label">PrismML model card <span class="sub">M4 Pro · vendor-reported</span></div><div class="bar-value"><strong>26</strong></div><div class="bar-track"><div class="bar-fill dim" style="width:29.9%">26 tok/s</div></div></div>
+      <div class="bar-row"><div class="bar-label">StrideNote review <span class="sub">M4 Pro 48 GB · independent</span></div><div class="bar-value"><strong>27</strong></div><div class="bar-track"><div class="bar-fill warm" style="width:31%">27 tok/s</div></div></div>
+      <div class="bar-row"><div class="bar-label"><strong>Knowledge Graph</strong> <span class="sub">M2 Pro 16 GB · live, full stack</span></div><div class="bar-value"><strong>15.1</strong></div><div class="bar-track"><div class="bar-fill red" style="width:17.4%">15.1 tok/s</div></div></div>
     </div>
-    <p>The gap between 44 tok/s and 15.1 tok/s is not a lie on PrismML's part — it is the difference between a benchmark and a workload. The vendor number comes from <code>llama-bench</code>: a single model, alone in memory, generating 128 tokens from a 512-token prompt. The 15.1 number comes from a system that is running two model slots (chat + vision), an embedding server, a Whisper transcription server, a Postgres database, a LightRAG server, a FastAPI app, a background worker, and a SvelteKit UI — all sharing 16 GB with a browser and an editor. The model is not alone in memory. It is fighting for every byte.</p>
-    <p>That is the number nobody puts on their model card: what happens when the model is not the only thing running. The HuggingFace page says <em>"3.9 GB deployed footprint"</em> and it is correct — the weights are 3.9 GB. But the live system at idle consumes ~3.5 GB of wired GPU just for the weights, plus 1.7 GB for Whisper, 0.4 GB for BGE-M3, and the OS's own 4.5 GB of wired memory — and the moment the model starts generating, wired memory spikes by another 5.8 GB for the KV cache. The deployed footprint is not the deployed cost. The deployed cost is the whole machine breathing between 4.9 GB and 10.7 GB of wired memory, 8.3 to 8.7 GB of swap, and 73 MB free — and the model still answers.</p>
-    <p>The benchmark tells you what the model can do in isolation. The machine tells you what it can do in your life. Fifteen tokens per second, under full load, with the fan running, is not a number PrismML will publish. It is the number that matters — the same way the MPG you actually get matters more than the one on the sticker. The sticker is tested on a perfect road. Your road has traffic, cargo, and weather. The model card is tested with one model alone in memory. Your machine has a browser, an editor, a database, and a fan that is working hard. Both numbers are real. Only one of them is yours.</p>
+    <p>The gap between 44 and 15.1 is not a lie. It is the difference between a benchmark and a desk. Vendor numbers come from <code>llama-bench</code>: one model, alone, 128 tokens from a 512-token prompt. 15.1 comes from two model slots, an embedding server, Whisper, Postgres, LightRAG, FastAPI, a worker, and a SvelteKit UI, sharing 16 GB with a browser and an editor.</p>
+    <p>The card says <em>“3.9 GB deployed footprint.”</em> Correct for weights. Live at idle: ~3.5 GB wired GPU for weights, 1.7 GB Whisper, 0.4 GB BGE-M3, ~4.5 GB OS wired. When generation starts, wired memory spikes another 5.8 GB for KV cache and activations. The deployed footprint is not the deployed cost. The machine breathes between 4.9 GB and 10.7 GB wired, 8.3 to 8.7 GB of swap, and ~73 MB free. The model still answers.</p>
 
-    <h2 id="budget">16GB, accounted for</h2>
-    <p>The memory budget is the hardest constraint and the reason the architecture looks the way it does. On Apple Silicon, the CPU and GPU share one unified memory pool — there is no separate VRAM. Model weights loaded with <code>-ngl 99</code> (all layers on GPU) live in wired memory. But the system has two states, and they look very different.</p>
-    <h3>Idle — no active conversation, no image processing</h3>
-    <p>This is the machine at rest, with the stack running but nobody talking to the model:</p>
-    <div class="chart">
-      <p class="chart-title">Idle memory — stack running, nobody talking to the model</p>
-      <div class="bar-row">
-        <div class="bar-label">macOS + window server + kernel <span class="sub">host · wired</span></div>
-        <div class="bar-value"><strong>~4.5 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:45%">4.5 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Bonsai-27B weights <span class="sub">host · wired GPU · slots idle</span></div>
-        <div class="bar-value"><strong>~3.5 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill accent" style="width:35%">3.5 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Compressed swap <span class="sub">host · compressor</span></div>
-        <div class="bar-value"><strong>~3.7 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill warm" style="width:37%">3.7 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Whisper medium <span class="sub">host · wired GPU</span></div>
-        <div class="bar-value"><strong>~1.7 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:17%">1.7 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Brave + VS Code + opencode <span class="sub">host · resident</span></div>
-        <div class="bar-value"><strong>~1.5 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:15%">1.5 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Docker VM <span class="sub">7 containers · capped</span></div>
-        <div class="bar-value"><strong>1.5 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:15%">1.5 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">BGE-M3 embeddings <span class="sub">host · wired GPU</span></div>
-        <div class="bar-value"><strong>~0.4 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill dim" style="width:4%">0.4 GB</div></div>
-      </div>
-      <div class="bar-row" style="margin-top:0.6rem;padding-top:0.6rem;border-top:1px solid var(--border)">
-        <div class="bar-label" style="font-weight:500">Total used / 16 GB</div>
-        <div class="bar-value"><strong>15.0 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill red" style="width:93.7%">15.0 GB · 73 MB free</div></div>
-      </div>
+    <h2 id="budget">16 GB, accounted for</h2>
+    <p>On Apple Silicon there is one pool. Weights with <code>-ngl 99</code> live in wired memory. Idle and active look like different machines.</p>
+
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/plug-cut-desk.jpg" alt="Laptop on a desk with the network cable cut. Offline stack still running" width="1168" height="658" loading="lazy">
+      <figcaption class="fig-cap">Offline is the proof. The budget has to survive with the cable out.</figcaption>
+    </figure>
+
+    <h3>Idle: stack running, nobody talking</h3>
+    <table>
+      <thead><tr><th>Process</th><th>RAM</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>macOS + window server + kernel</td><td>~4.5 GB</td><td>host · wired</td></tr>
+        <tr><td>Bonsai-27B weights</td><td>~3.5 GB</td><td>host · wired GPU · slots idle</td></tr>
+        <tr><td>Compressed swap</td><td>~3.7 GB</td><td>host · compressor</td></tr>
+        <tr><td>Whisper medium</td><td>~1.7 GB</td><td>host · wired GPU</td></tr>
+        <tr><td>Brave + VS Code + opencode</td><td>~1.5 GB</td><td>host · resident</td></tr>
+        <tr><td>Docker VM</td><td>1.5 GB</td><td>7 containers · capped</td></tr>
+        <tr><td>BGE-M3 embeddings</td><td>~0.4 GB</td><td>host · wired GPU</td></tr>
+        <tr><td><strong>Total used / 16 GB</strong></td><td><strong>15.0 GB</strong></td><td>73 MB free · 8.3 GB swap</td></tr>
+      </tbody>
+    </table>
+    <div class="chart" role="img" aria-label="Idle 16 GB budget from live table. OS 4.5, Bonsai 3.5, Whisper 1.7, apps 1.5, Docker 1.5, BGE 0.4, rest of 15.0 used 1.9, 73 MB free.">
+      <p class="chart-title">Idle 16 GB budget</p>
+      <svg viewBox="0 0 720 188" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="18" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">16 GB machine · idle</text>
+        <line x1="720" y1="22" x2="720" y2="72" stroke="#3d5a44" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <rect x="0" y="30" width="720" height="34" rx="6" fill="#1c1c20"/>
+        <rect x="0" y="30" width="202.5" height="34" fill="#5c5c6a"/>
+        <rect x="202.5" y="30" width="157.5" height="34" fill="#6aa8c8"/>
+        <rect x="360" y="30" width="76.5" height="34" fill="#4a4a55"/>
+        <rect x="436.5" y="30" width="67.5" height="34" fill="#7d5c4a"/>
+        <rect x="504" y="30" width="67.5" height="34" fill="#3a3a44"/>
+        <rect x="571.5" y="30" width="18" height="34" fill="#5a6a7a"/>
+        <rect x="589.5" y="30" width="85.5" height="34" fill="#2a2a30"/>
+        <rect x="675" y="30" width="3.3" height="34" fill="#1e2e24" stroke="#3d5a44" stroke-width="1"/>
+        <g font-family="ui-monospace,monospace" font-size="10" fill="#c8c8cc">
+          <rect x="0" y="86" width="10" height="10" fill="#5c5c6a"/><text x="14" y="95">OS 4.5</text>
+          <rect x="90" y="86" width="10" height="10" fill="#6aa8c8"/><text x="104" y="95">Bonsai 3.5</text>
+          <rect x="200" y="86" width="10" height="10" fill="#4a4a55"/><text x="214" y="95">Whisper 1.7</text>
+          <rect x="320" y="86" width="10" height="10" fill="#7d5c4a"/><text x="334" y="95">Apps 1.5</text>
+          <rect x="420" y="86" width="10" height="10" fill="#3a3a44"/><text x="434" y="95">Docker 1.5</text>
+          <rect x="0" y="110" width="10" height="10" fill="#5a6a7a"/><text x="14" y="119">BGE 0.4</text>
+          <rect x="90" y="110" width="10" height="10" fill="#2a2a30"/><text x="104" y="119">Rest of 15.0 used 1.9</text>
+          <rect x="320" y="110" width="10" height="10" fill="#1e2e24" stroke="#3d5a44"/><text x="334" y="119">73 MB free</text>
+        </g>
+        <text x="0" y="154" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">15.0 GB used. Fan quiet. Dashed edge is the 16 GB wall.</text>
+      </svg>
+      <p class="chart-cap">Named rows from the idle table. Rest 1.9 is the remainder of the stated 15.0 GB used. Compressor 3.7 GB is swap accounting, not a second stack.</p>
     </div>
-    <p>The live container footprint at idle is small: the API at 80 MB, LightRAG at 45 MB, Postgres at 72 MB, Nexus at 7 MB. The LLM weights are resident in wired memory but the KV caches are empty — slot 0 has 25 prompt tokens, slot 1 has 2,997 from the last conversation, but neither is processing. The machine is at 15 GB used, 73 MB free, 8.3 GB of swap. The fan is quiet. This is the resting state.</p>
-    <h3>Active — conversation or image pipeline running</h3>
-    <p>The moment the model starts generating — whether from a chat message or an image going through the VLM — memory spikes. The KV cache fills, activations allocate, and the wired memory jumps by nearly 6 GB. Here is the same machine during an active conversation, measured while the model was generating tokens for this writing:</p>
-    <div class="chart">
-      <p class="chart-title">Idle vs active — the cost of thinking</p>
-      <div class="dual-bar">
-        <div class="label">Wired memory</div>
-        <div class="delta up">+5.8 GB</div>
-        <div class="dual-track">
-          <div class="seg idle" style="width:31.4%">4.9 GB</div>
-          <div class="seg spike" style="width:37.2%;margin-left:2px">+5.8 GB</div>
-        </div>
-      </div>
-      <div class="dual-bar">
-        <div class="label">Compressor <span class="sub">compressed swap</span></div>
-        <div class="delta down">-0.9 GB</div>
-        <div class="dual-track">
-          <div class="seg idle" style="width:37%">3.7 GB idle</div>
-          <div class="seg active" style="width:28%;margin-left:2px">2.8 GB active</div>
-        </div>
-      </div>
-      <div class="dual-bar">
-        <div class="label">Swap used</div>
-        <div class="delta up">+0.4 GB</div>
-        <div class="dual-track">
-          <div class="seg idle" style="width:83%">8.3 GB</div>
-          <div class="seg active" style="width:4%;margin-left:2px">+0.4</div>
-        </div>
-      </div>
-      <div class="dual-bar">
-        <div class="label">Free memory</div>
-        <div class="delta flat">-2 MB</div>
-        <div class="dual-track">
-          <div class="seg idle" style="width:0.7%;min-width:40px">73 MB</div>
-          <div class="seg active" style="width:0.7%;min-width:40px;margin-left:2px">71 MB</div>
-        </div>
-      </div>
+
+    <h3>Active: conversation or image pipeline</h3>
+    <p>Generation fills the KV cache. Wired memory jumps by nearly 6 GB.</p>
+    <div class="chart-bars">
+      <p class="chart-title">Idle vs active. The cost of thinking</p>
+      <div class="dual-bar"><div class="label">Wired memory</div><div class="delta up">+5.8 GB</div><div class="dual-track"><div class="seg idle" style="width:31.4%">4.9 GB</div><div class="seg spike" style="width:37.2%;margin-left:2px">+5.8 GB</div></div></div>
+      <div class="dual-bar"><div class="label">Compressor <span class="sub">compressed swap</span></div><div class="delta down">-0.9 GB</div><div class="dual-track"><div class="seg idle" style="width:37%">3.7 GB idle</div><div class="seg active" style="width:28%;margin-left:2px">2.8 GB active</div></div></div>
+      <div class="dual-bar"><div class="label">Swap used</div><div class="delta up">+0.4 GB</div><div class="dual-track"><div class="seg idle" style="width:83%">8.3 GB</div><div class="seg active" style="width:4%;margin-left:2px">+0.4</div></div></div>
+      <div class="dual-bar"><div class="label">Free memory</div><div class="delta flat">-2 MB</div><div class="dual-track"><div class="seg idle" style="width:0.7%;min-width:40px">73 MB</div><div class="seg active" style="width:0.7%;min-width:40px;margin-left:2px">71 MB</div></div></div>
       <div style="display:flex;gap:1rem;margin-top:0.8rem;font-size:0.72rem;font-family:var(--font-mono);color:var(--muted)">
         <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:oklch(55% 0.02 260 / 0.5);margin-right:0.3rem;vertical-align:middle"></span>idle</span>
         <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:oklch(72% 0.08 230 / 0.6);margin-right:0.3rem;vertical-align:middle"></span>spike / active</span>
       </div>
     </div>
-    <p>The 5.8 GB spike is the cost of thinking. Here is what actually happens inside that number.</p>
 
     <h3>What is the KV cache?</h3>
-    <p>A transformer generates text one token at a time. To predict the next token, it needs to attend to every previous token in the conversation. Re-running the entire model on all prior tokens for every single new token would be impossibly slow. Instead, the model caches the intermediate results of its attention computation — the Keys and Values for every token it has already seen — so it can reuse them on the next step. That cache is called the KV cache.</p>
-    <p>Think of it as the model's short-term memory during a conversation. The weights are the long-term memory — they do not change. The KV cache is what the model builds as it reads your prompt and writes its response. Every token you send and every token it generates adds to the cache. When the conversation ends, the cache is discarded. The next conversation starts from scratch.</p>
-    <p>The size of the cache is determined by four things: how many layers the model has, how many tokens of context it holds, the width of each layer's internal representation, and how many slots are running at once. Bonsai-27B has 64 transformer layers, but its hybrid-attention architecture means only 16 of those layers grow a full KV cache — the other 48 use linear attention, which has a fixed state that does not scale with context length. That is the architectural trick that makes a 262K-token context possible on a laptop. A conventional 27B model with 64 full-attention layers would need ~20 GB of KV cache alone at 32K context — more than the entire machine. Bonsai needs ~5 GB at full 32K context per slot.</p>
-    <p>The server is started with <code>-c 32768 -np 2</code> — 32K total context divided across two slots, so each slot gets 16K. That is a deliberate choice. The model supports 262K tokens natively, but at full 32K per slot the KV cache alone would consume ~5 GB of wired memory — on top of the 3.5 GB for weights, 1.7 GB for Whisper, and 4.5 GB for the OS, there would be nothing left. Running at 16K per slot cuts the KV cache in half, to ~2.5 GB, and leaves the machine breathing room for the rest of the stack. The trade is context depth for system stability — and on a personal archive, 16K tokens of conversation history is more than enough.</p>
-    <div class="chart">
-      <p class="chart-title">KV cache — where the 5.8 GB spike comes from</p>
-      <div class="bar-row">
-        <div class="bar-label">Full-attention KV cache <span class="sub">16/64 layers · 2 slots × 16K ctx (running) · q4_0</span></div>
-        <div class="bar-value"><strong>~2.5 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill accent" style="width:43%">2.5 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Activations + buffers + overhead <span class="sub">intermediate computation, framework, Metal</span></div>
-        <div class="bar-value"><strong>~3.3 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill warm" style="width:57%">3.3 GB</div></div>
-      </div>
-      <div class="bar-row" style="margin-top:0.6rem;padding-top:0.6rem;border-top:1px solid var(--border)">
-        <div class="bar-label" style="font-weight:500">Total spike when generating</div>
-        <div class="bar-value"><strong>~5.8 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill red" style="width:100%">5.8 GB</div></div>
-      </div>
+    <p>A transformer predicts the next token from every previous token. Re-running the whole model each step would be impossibly slow. So it caches Keys and Values for tokens already seen. Weights are long-term memory. The KV cache is short-term memory for the active conversation. When the conversation ends, the cache goes away.</p>
+    <p>Bonsai-27B has 64 transformer layers. Hybrid attention means only 16 grow a full KV cache. The other 48 use linear attention with a fixed state. That is why a 262K-token context is even discussable on a laptop. A conventional 27B with 64 full-attention layers would need ~20 GB of KV alone at 32K context. More than the entire machine. Bonsai needs ~5 GB at full 32K per slot.</p>
+    <p>The server starts with <code>-c 32768 -np 2</code>: 32K total across two slots, 16K each. Deliberate. Full 32K per slot would put ~5 GB of KV on top of 3.5 GB weights, 1.7 GB Whisper, and 4.5 GB OS. Running at 16K per slot cuts KV to ~2.5 GB. Context depth traded for stability. On a personal archive, 16K is enough.</p>
+    <div class="chart-bars">
+      <p class="chart-title">KV cache. Where the 5.8 GB spike comes from</p>
+      <div class="bar-row"><div class="bar-label">Full-attention KV cache <span class="sub">16/64 layers · 2 slots × 16K ctx · q4_0</span></div><div class="bar-value"><strong>~2.5 GB</strong></div><div class="bar-track"><div class="bar-fill accent" style="width:43%">2.5 GB</div></div></div>
+      <div class="bar-row"><div class="bar-label">Activations + buffers + overhead</div><div class="bar-value"><strong>~3.3 GB</strong></div><div class="bar-track"><div class="bar-fill warm" style="width:57%">3.3 GB</div></div></div>
+      <div class="bar-row" style="margin-top:0.6rem;padding-top:0.6rem;border-top:1px solid var(--border)"><div class="bar-label" style="font-weight:500">Total spike when generating</div><div class="bar-value"><strong>~5.8 GB</strong></div><div class="bar-track"><div class="bar-fill red" style="width:100%">5.8 GB</div></div></div>
     </div>
-    <div class="chart">
+    <div class="chart-bars">
       <p class="chart-title">Why Bonsai fits: hybrid attention vs conventional 27B</p>
-      <div class="bar-row">
-        <div class="bar-label">Bonsai-27B KV <span class="sub">16 full-attn layers · running 16K/slot · q4_0</span></div>
-        <div class="bar-value"><strong>2.5 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill green" style="width:12.5%">2.5 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Bonsai-27B KV <span class="sub">16 full-attn layers · full 32K/slot · q4_0</span></div>
-        <div class="bar-value"><strong>5.0 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill green" style="width:25%">5.0 GB</div></div>
-      </div>
-      <div class="bar-row">
-        <div class="bar-label">Conventional 27B KV <span class="sub">64 full-attn layers · full 32K/slot · q4_0</span></div>
-        <div class="bar-value"><strong>20.0 GB</strong></div>
-        <div class="bar-track"><div class="bar-fill red" style="width:100%">20.0 GB</div></div>
-      </div>
-      <div style="margin-top:0.6rem;font-size:0.82rem;color:var(--muted)">Same model, same quantization. The difference is entirely in the architecture: 75% linear attention means 75% fewer layers growing a cache. At our running 16K per slot, the KV cache is 2.5 GB — survivable. At full 32K per slot it would be 5 GB — still survivable. A conventional 27B at 32K would need 20 GB — impossible on this machine. That is why a 27B model runs on 16 GB at all.</div>
+      <div class="bar-row"><div class="bar-label">Bonsai-27B KV <span class="sub">16 full-attn · running 16K/slot · q4_0</span></div><div class="bar-value"><strong>2.5 GB</strong></div><div class="bar-track"><div class="bar-fill green" style="width:12.5%">2.5 GB</div></div></div>
+      <div class="bar-row"><div class="bar-label">Bonsai-27B KV <span class="sub">16 full-attn · full 32K/slot · q4_0</span></div><div class="bar-value"><strong>5.0 GB</strong></div><div class="bar-track"><div class="bar-fill green" style="width:25%">5.0 GB</div></div></div>
+      <div class="bar-row"><div class="bar-label">Conventional 27B KV <span class="sub">64 full-attn · full 32K/slot · q4_0</span></div><div class="bar-value"><strong>20.0 GB</strong></div><div class="bar-track"><div class="bar-fill red" style="width:100%">20.0 GB</div></div></div>
     </div>
-    <p>The server is started with <code>-ctk q4_0 -ctv q4_0</code> — 4-bit quantized KV cache. That cuts the cache size by 4x compared to FP16. Without it, the full-attention cache alone would be ~10 GB at our running 16K per slot — already more than the machine can spare. The 4-bit quantization is near-lossless: the model card reports 0.0011 nats of output divergence from FP16 KV, which is invisible in practice. The trade is memory for precision you cannot see.</p>
-    <p>So the lifecycle is: idle, the weights sit in wired GPU memory at ~3.5 GB, the KV cache is empty, the fan is quiet. You send a message. The prompt is tokenized — 2,997 tokens for the last conversation — and each token's Keys and Values are computed and stored into the cache. That allocation is the spike. The model generates its response, adding more tokens to the cache with each step. When the conversation ends, the slot goes idle, the cache stays resident until evicted, and the next time the OS needs memory it reclaims those pages and the wired memory drops back down. The system breathes.</p>
-    <p>The OS responds by compressing 0.9 GB of inactive pages back into the compressor to make room. The swap grows slightly as the compressor itself needs space. The fan ramps up. And when the conversation ends and the slots go idle, the wired memory drops back down, the compressor relaxes, and the machine returns to its resting state.</p>
-    <p>That is the real shape of local AI on 16 GB. It is not a steady-state system. It breathes. Idle, the machine is tight but stable — the models are loaded, the containers are running, and there is headroom. Active, the machine is at its limit — wired memory nearly doubles, the compressor works overtime, and every byte is contested. The architecture exists to make sure that the spike is survivable: two-phase pipelines so the VLM does not compete with chat, a separate worker so image processing does not block the API, and container memory limits so Docker cannot eat the GPU's budget. The system was designed around the spike, not the baseline.</p>
-    <p>That budget is why the reranker was removed. <code>bge-reranker-v2-m3</code> worked, but it added ~600MB of resident GPU memory for a quality bump that did not justify the cost on a machine already swapping. The architecture is willing to trade a retrieval refinement for a slot that stays free for chat. On a 32GB box the reranker comes back — it is a config change, not a rewrite.</p>
-    <div class="callout">The constraint is not a footnote. It is the reason the worker is separate from the API, the reason the pipeline is two-phase, the reason the reranker is optional, and the reason the whole stack can run with the network unplugged. Idle: 15 GB used, 8.3 GB of swap, fan quiet. Active: 10.7 GB wired, 8.7 GB of swap, fan running hard, model answering in 15 tok/s. If it only works on a $4,000 workstation, it is not a personal memory system — it is a hobby for the few.</div>
-    <p>And yet — the conversation works. Not in a demo, not in a benchmark, but right now, with the fan running hard to keep the chip cool, wired memory doubled from the spike, and VS Code and a browser open alongside the entire stack. You ask a question, the model retrieves from the graph, and the answer streams back in real time. No hiccups. No timeouts. No moment where the system freezes and you wonder if it crashed. It is slow by cloud standards and it is fast enough to use.</p>
-    <p>That did not happen on the first try, or the tenth. Getting a 27B model to run two slots — chat and vision — alongside an embedding model, a transcription model, a Postgres database, a LightRAG server, a FastAPI app, a background worker, and a SvelteKit UI, all inside 16 GB of shared memory, on a laptop that is also running a browser and an editor — that took months of tuning. Memory limits per container. Two-phase pipelines so the GPU is not monopolized. A separate worker process so the API's event loop never blocks. DRY and XTC samplers tuned to stop the 1-bit model from looping. A Whisper model that fits the budget instead of the biggest one. A reranker removed because 600 MB mattered. Each of those decisions was a failure that became a fix. The stack running right now is the survivor of a long list of things that did not work.</p>
-    <p>That is the honest version of local AI. It is not magic. It is a machine running at its limit, with a fan you can hear, doing something it was not designed to do — and doing it well enough that the person using it forgets the cost. The cost is real. So is the result.</p>
-    <p>What that result looks like, right now: a slick, modern UI on a Three.js infinite canvas. Photos from the whole month are visible — not as a grid, but as floating nodes on a time surface you scroll through. A conversation with the model holds up. You can see an image from two weeks ago, navigate to the conversation that produced it, and ask the model about it — all in the same view, all on the same machine, all offline.</p>
+    <p>KV is started with <code>-ctk q4_0 -ctv q4_0</code>: 4-bit quantized cache. Without it, full-attention cache alone would be ~10 GB at 16K per slot. The card reports 0.0011 nats of output divergence from FP16 KV. Invisible in practice.</p>
+    <p>Idle: weights sit at ~3.5 GB, cache empty, fan quiet. You send a message. Prompt tokens fill the cache. That allocation is the spike. Response adds more. Conversation ends. OS reclaims. The system breathes.</p>
+    <p>That budget is why the reranker was removed. <code>bge-reranker-v2-m3</code> worked. It added ~600 MB of resident GPU for a quality bump that did not justify the cost on a machine already swapping. On a 32 GB box it comes back. A config change, not a rewrite.</p>
+    <div class="callout">The constraint is not a footnote. Idle: 15 GB used, 8.3 GB of swap, fan quiet. Active: 10.7 GB wired, 8.7 GB of swap, fan hard, model answering at 15 tok/s. If it only works on a $4,000 workstation, it is not a personal memory system.</div>
+
+    <h2>What runs on the desk now</h2>
+    <p>The conversation works. Fan audible. Wired memory doubled. Browser and editor open. You ask. The model retrieves from the graph. The answer streams. No timeouts. Slow by cloud standards. Fast enough to use.</p>
+    <p>That took months. Memory limits per container. Two-phase pipelines. A separate worker. DRY and XTC tuned for 1-bit. A Whisper model that fits. A reranker removed because 600 MB mattered. Each decision was a failure that became a fix.</p>
+    <p>The live conversation surface right now also includes <a class="ext" href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> pointed at the same Bonsai server. Whisper in, <a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro JS</a> out. Open WebUI is temporary. Next swap is the Knowledge Graph UI already built. Same models. Canvas instead of bubbles. Published sites are demos. The product is the copy on your machine.</p>
+    <p>Offline is the proof. Memory you own, models you run.</p>
+
     <div class="links">
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
-      <a href="knowledge-graph.html">Knowledge Graph project</a>
-      <a href="kg-part-1.html">KG series · Part 1</a>
+      <a href="knowledge-graph.html">Knowledge Graph</a>
       <a href="bonsai.html">Bonsai on a 16GB laptop</a>
+      <a href="local-agent-that-knows-your-month.html">Local agent that knows your month</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
     <div class="more">
       <h3>More from Sci-Fi Labs</h3>
-      <a href="kg-part-1.html">Knowledge Graph series →</a>
+      <a href="bonsai.html">Bonsai on a 16GB laptop →</a>
+      <a href="local-agent-that-knows-your-month.html">The local agent that knows your month →</a>
       <a href="where-is-paul.html">Where is Paul? →</a>
-      <a href="musical-cubes.html">Musical Cubes →</a>
       <a href="reclaim-your-data.html">Reclaim your data →</a>
     </div>
   </article>

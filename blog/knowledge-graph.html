@@ -4,12 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Knowledge Graph — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A private spatial interface for memory and knowledge — local models, infinite canvas, no cloud chat window.">
+  <meta name="description" content="Memory as a navigable canvas. Photos, conversations, and time on a machine you own. Not a chat window.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Knowledge Graph">
-  <meta property="og:description" content="A private spatial interface for memory and knowledge — local models, infinite canvas, no cloud chat window.">
+  <meta property="og:description" content="Memory as a navigable canvas. Photos, conversations, and time on a machine you own. Not a chat window.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Knowledge Graph">
+  <meta name="twitter:description" content="Memory as a navigable canvas. Photos, conversations, and time on a machine you own. Not a chat window.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/knowledge-graph">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
@@ -25,33 +29,53 @@
     <div class="progress"><div class="progress-bar"></div></div>
   </nav>
   <article>
+    <p class="series">Sci-Fi Labs · App</p>
     <h1>Knowledge Graph</h1>
-    <p class="deck">Not a chatbot. A memory palace you explore — on hardware you own.</p>
-    <div class="hero-media">
-      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface" width="1792" height="1008">
-    </div>
-    <p><strong>Knowledge Graph</strong> is a private spatial interface for memory and knowledge. Conversations, photos, and voice notes live as floating elements on an infinite canvas of time. Scroll to move through days and months. Speak to query or add. Everything runs locally on your own machine.</p>
-    <div class="callout">Sovereignty first: memory you own, models you run, tools that answer to you — public only by choice.</div>
+    <p class="deck">Memory as a canvas you can walk. Not a chat log you scroll.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface" width="1792" height="1008" loading="eager"><figcaption class="fig-cap">Time as depth. Photos and notes as objects in space.</figcaption></figure>
+
+    <p>A chat window stores a transcript. This stores a place. Conversations, photos, and voice notes sit as objects on an infinite canvas of time. Scroll and you move through days. Speak and you query or add. The record stays on your machine.</p>
+    <div class="callout">The published site is a demo. The product is the copy that runs on your hardware. Offline is the proof.</div>
+
     <h2>What it is</h2>
     <ul>
-      <li><strong>Spatial UI</strong> — Three.js infinite canvas with time layers; pan, zoom, and scroll through memory</li>
-      <li><strong>Local intelligence</strong> — on-device LLM, vision, Whisper, and embeddings on Apple Silicon</li>
-      <li><strong>Living graph</strong> — entities and relationships extracted from conversations, photos, and voice</li>
-      <li><strong>Rich images</strong> — EXIF, reverse geocoding, and local vision descriptions become graph nodes</li>
-      <li><strong>Voice-first</strong> — speech enters the same knowledge loop, fully offline</li>
+      <li><strong>Spatial UI.</strong> Three.js infinite canvas with time layers. Pan, zoom, scroll through memory.</li>
+      <li><strong>Local intelligence.</strong> On-device LLM, vision, Whisper, and embeddings on Apple Silicon.</li>
+      <li><strong>Living graph.</strong> Entities and relationships extracted from conversations, photos, and voice.</li>
+      <li><strong>Rich images.</strong> EXIF, reverse geocoding, and local vision descriptions become graph nodes.</li>
+      <li><strong>Voice-first.</strong> Speech enters the same knowledge loop, fully offline.</li>
     </ul>
-    <div class="hero-media">
-      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial / AR view" width="1792" height="1008">
-    </div>
-    <h2>Direction</h2>
-    <p>The long-term surface is cinematic and local: glassy panels instead of bubbles, hierarchical expansion of related knowledge, time as a navigable dimension, ambient presence instead of transactional chat. Designed for web and local use now — with the same spatial language meant to extend into XR.</p>
-    <div class="hero-media">
+
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-2.jpg" alt="Knowledge Graph spatial / AR view" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">The same spatial language is meant to extend into XR.</figcaption></figure>
+
+    <h2>Chat stack vs this canvas</h2>
+    <p>A chatbot is a lease on a log. You type. It answers. The memory is the thread. Knowledge Graph is the opposite product: a private spatial canvas. You move through it.</p>
+    <table class="compare">
+      <thead>
+        <tr><th></th><th>Chat stack</th><th>Knowledge Graph</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Memory</td><td>A transcript in someone else's window</td><td>Photos, notes, and voice on a canvas you own</td></tr>
+        <tr><td>Retrieval</td><td>Top-k from a chat index</td><td>Walk the graph. The month. Every photo. Every note.</td></tr>
+        <tr class="chosen"><td>Product</td><td>A window you type into</td><td>A place you navigate</td></tr>
+      </tbody>
+    </table>
+
+    <h2>What is live on this machine</h2>
+    <p>On this 16 GB laptop the model is <a href="bonsai.html">Bonsai</a>. Whisper hears. Kokoro JS speaks. Full conversations stay local.</p>
+    <p><a class="ext" href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> is the temporary surface. Same models. A chatbot window. It was the fast way to get streaming, Whisper, and voice working. Next step is not another engine. Swap that window for this canvas. Same Bonsai. Same Whisper. Same Kokoro JS. The bubbles go. The place stays.</p>
+
+    <figure class="fig">
       <video controls playsinline preload="metadata">
         <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-video.mp4" type="video/mp4">
       </video>
-    </div>
+      <figcaption class="fig-cap">Glassy panels instead of bubbles. Time as a dimension you can move through.</figcaption>
+    </figure>
+
+    <h2>Direction</h2>
+    <p>The long-term surface is cinematic and local. Hierarchical expansion of related knowledge. Time as a navigable dimension. Ambient presence instead of transactional chat. Web and local use now. The same spatial language is meant to extend into XR.</p>
     <p>A Sci-Fi app in the strict sense: the interface you were told belonged to movies, running on a machine that never has to phone home.</p>
-    <p>Want the real technical stats — models, architecture, live memory measurements, token throughput, and the difference between idle and active load? There is a full field-notes essay for that: <a href="running-local-ai-16gb.html">Running Local AI on 16 GB MacBook — the real stats</a>.</p>
+    <p>Want the technical stats: models, architecture, live memory measurements, token throughput, idle versus active load? Field notes: <a href="running-local-ai-16gb.html">Running Local AI on 16 GB MacBook. The real stats</a>.</p>
 
     <div class="links">
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>

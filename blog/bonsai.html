@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bonsai on a 16GB Laptop — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="How PrismML’s Bonsai models make a real local LLM practical for Knowledge Graph on a 16GB laptop — 27B-class reasoning without the cloud.">
+  <meta name="description" content="A 27B model answers on this 16 GB laptop. That model is Bonsai. Weight chart, live RAM snapshot, and the stack under Knowledge Graph.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Bonsai on a 16GB Laptop">
-  <meta property="og:description" content="How PrismML’s Bonsai models make a real local LLM practical for Knowledge Graph on a 16GB laptop — 27B-class reasoning without the cloud.">
+  <meta property="og:description" content="A 27B model answers on this 16 GB laptop. That model is Bonsai. Weight chart, live RAM snapshot, and the stack under Knowledge Graph.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/bonsai">
   <link rel="stylesheet" href="blog.css">
@@ -35,18 +35,18 @@
     <div class="progress"><div class="progress-bar"></div></div>
   </nav>
   <article>
+    <p class="series">Sci-Fi Labs · Field notes</p>
     <h1 data-i18n="blog_title_bonsai">Bonsai on a 16GB Laptop</h1>
-    <p class="deck" data-i18n="blog_desc_bonsai">How PrismML’s Bonsai models make a real local LLM practical for <a href="knowledge-graph.html">Knowledge Graph</a> on a 16GB laptop — 27B-class reasoning without the cloud.</p>
-    <div class="hero-media">
-      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg" alt="Bonsai local models on laptop" width="1200" height="800">
-    </div>
+    <p class="deck" data-i18n="blog_desc_bonsai">A 27B model answers on this 16 GB laptop. That model is Bonsai. Memory you own, models you run.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg" alt="Bonsai local models on a 16 GB laptop" width="1200" height="800" loading="eager"><figcaption class="fig-cap">27B-class reasoning. Weights that fit. Offline is the proof.</figcaption></figure>
     <div data-lang-block="en">
-    <p><strong>Bonsai</strong> is the local-model path that keeps <a href="knowledge-graph.html">Knowledge Graph</a> honest: reasoning that fits in memory on a machine you own, without renting a frontier API for every turn. PrismML’s 1-bit quantization makes 27B-class reasoning practical on a 16GB laptop.</p>
-    <p>A full-precision 27B model wants on the order of 54&nbsp;GB just for weights. Even aggressive conventional quantizations still land in the mid-teens of gigabytes — too large for a typical 16&nbsp;GB machine once the OS, the spatial UI, embeddings, and KV cache take their share. Without a different approach, local 27B-class intelligence on consumer hardware is a non-starter.</p>
+    <p>A 27B model is answering on this 16 GB laptop. Not a demo tab. Not a remote API. The weights are on disk. The reply streams here.</p>
+    <p>That model is <strong>Bonsai</strong>. Open-weight builds from <a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>. Full-precision 27B wants on the order of 54 GB just for weights. Ordinary quant lands in the mid-teens. Neither leaves room for a browser, an editor, and a spatial canvas. Bonsai is the path that fits.</p>
     <div class="callout">Bonsai is what makes the constraint honest instead of aspirational.</div>
+
     <h2>What Bonsai is</h2>
-    <p><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Bonsai</a> is a family of open-weight models from <a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>. Instead of shipping 16-bit weights, Bonsai models use end-to-end <strong>1-bit</strong> ({−1, +1}) or <strong>ternary</strong> ({−1, 0, +1}) weights across embeddings, attention, MLPs, and the LM head. The practical result is a 14× reduction versus FP16 for the same architecture class.</p>
-    <p>The flagship <strong>Bonsai 27B</strong> is based on Qwen3.6 27B. It keeps multi-step reasoning, tool calling, vision input, and a 262K-token context — while fitting where full-precision models cannot:</p>
+    <p><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Bonsai</a> uses end-to-end <strong>1-bit</strong> ({−1, +1}) or <strong>ternary</strong> ({−1, 0, +1}) weights across embeddings, attention, MLPs, and the LM head. Same architecture class. Roughly 14× smaller than FP16.</p>
+    <p>The flagship <strong>Bonsai 27B</strong> is based on Qwen3.6 27B. Multi-step reasoning, tool calling, vision input, 262K-token context. A footprint a consumer laptop can hold:</p>
     <table>
       <thead>
         <tr><th>Variant</th><th>Weights</th><th>Best for</th></tr>
@@ -56,27 +56,89 @@
         <tr><td>Ternary Bonsai 27B</td><td>~5.9 GB</td><td>Everyday laptops, higher quality retention</td></tr>
       </tbody>
     </table>
-    <p>PrismML reports the ternary build retaining roughly 95% of the full-precision baseline across their benchmark suite, and the 1-bit build around 90% — enough to stay useful for real agentic loops, not just toy demos. Both ship under Apache 2.0.</p>
-    <h2>Why a 16GB laptop suddenly works</h2>
-    <p>On a 16&nbsp;GB machine the budget is unforgiving. The OS and browser (or native shell) already claim several gigabytes. Knowledge Graph also needs room for:</p>
-    <ul>
-      <li>The spatial canvas and Three.js scene</li>
-      <li>Local embeddings and retrieval over the graph</li>
-      <li>KV cache as conversations and time-layered context grow</li>
-      <li>Optional vision and voice pipelines</li>
-    </ul>
-    <p>A conventional 27B build exhausts that budget before the app has a chance to breathe. Bonsai’s ~4–6&nbsp;GB weight footprint leaves headroom. The model loads. The graph stays responsive. Queries and tool calls stay on-device.</p>
-    <p>That is the difference between “local AI” as marketing and local AI as something you can actually open every day.</p>
+    <p>PrismML reports the ternary build retaining roughly 95% of the full-precision baseline across their suite, and the 1-bit build around 90%. Both ship under Apache 2.0. Useful for real agent loops. Not a toy.</p>
+
+    <div class="chart" role="img" aria-label="Weight footprints. FP16 about 54 GB, ordinary quant about 15 GB, Bonsai 1-bit 3.9 GB and ternary 5.9 GB. Dashed line at 16 GB.">
+      <p class="chart-title">Weights vs a 16 GB machine</p>
+      <svg viewBox="0 0 720 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="160" y="16" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">0</text>
+        <text x="320" y="16" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">16 GB</text>
+        <text x="690" y="16" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">54</text>
+        <line x1="160" y1="22" x2="700" y2="22" stroke="#2e2e34" stroke-width="1"/>
+        <line x1="320" y1="22" x2="320" y2="190" stroke="#3d5a44" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="328" y="38" fill="#3d5a44" font-family="ui-monospace,monospace" font-size="11">16 GB line</text>
+        <g font-family="ui-monospace,monospace" font-size="12">
+          <text x="0" y="68" fill="#c8c8cc">FP16 27B</text>
+          <rect x="160" y="54" width="540" height="20" rx="3" fill="#8a3a3a"/>
+          <text x="708" y="68" fill="#c8c8cc" text-anchor="end">~54</text>
+          <text x="0" y="108" fill="#c8c8cc">Ordinary quant</text>
+          <rect x="160" y="94" width="150" height="20" rx="3" fill="#7d5c4a"/>
+          <text x="318" y="108" fill="#c8c8cc">~15</text>
+          <text x="0" y="148" fill="#c8c8cc">Bonsai ternary</text>
+          <rect x="160" y="134" width="59" height="20" rx="3" fill="#5c5c6a"/>
+          <text x="228" y="148" fill="#8a8a90">~5.9</text>
+          <text x="0" y="188" fill="#c8c8cc">Bonsai 1-bit</text>
+          <rect x="160" y="174" width="39" height="20" rx="3" fill="#6aa8c8"/>
+          <text x="208" y="188" fill="#6aa8c8">~3.9 · fits</text>
+        </g>
+      </svg>
+      <p class="chart-cap">16 GB is the machine most people actually have. FP16 and ordinary quant do not leave a desk.</p>
+    </div>
+
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/vault-vs-laptop.jpg" alt="A remote vault of weights versus a 16 GB laptop on a desk" width="1168" height="658" loading="lazy">
+      <figcaption class="fig-cap">54 GB on paper. 3.9 GB on this desk.</figcaption>
+    </figure>
+
+    <h2>Why a 16 GB laptop suddenly works</h2>
+    <p>On this M2 Pro the budget is unforgiving. Right now, writing with everything open: 12.6 GB spoken for, 2.7 GB free. Bonsai has the weights. Brave and VS Code are the real tax. There is no spare room for a second large model.</p>
+    <table>
+      <thead>
+        <tr><th>Process</th><th>RAM</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bonsai-27B (llama-server)</strong></td><td>~4 GB</td><td>Metal GPU; live footprint beside the rest of the desk</td></tr>
+        <tr><td><strong>Brave Browser</strong></td><td>3.6 GB</td><td>The real memory tax</td></tr>
+        <tr><td><strong>VS Code</strong></td><td>3.3 GB</td><td>Editor open while the model answers</td></tr>
+        <tr><td><strong>System (wired + active + compressed)</strong></td><td>12.6 GB</td><td>2.7 GB available</td></tr>
+      </tbody>
+    </table>
+    <div class="chart" role="img" aria-label="16 GB memory budget. Brave 3.6 GB, VS Code 3.3 GB, Bonsai 4 GB, other 1.7 GB, 2.7 GB free.">
+      <p class="chart-title">Live 16 GB budget</p>
+      <svg viewBox="0 0 720 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="18" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">16 GB machine</text>
+        <rect x="0" y="30" width="720" height="34" rx="6" fill="#1c1c20"/>
+        <rect x="0" y="30" width="162" height="34" fill="#7d5c4a"/>
+        <rect x="162" y="30" width="148.5" height="34" fill="#5c5c6a"/>
+        <rect x="310.5" y="30" width="180" height="34" fill="#6aa8c8"/>
+        <rect x="490.5" y="30" width="76.5" height="34" fill="#3a3a44"/>
+        <rect x="567" y="30" width="121.5" height="34" fill="#1e2e24" stroke="#3d5a44" stroke-width="1"/>
+        <rect x="688.5" y="30" width="31.5" height="34" fill="#2a2a30"/>
+        <g font-family="ui-monospace,monospace" font-size="11" fill="#c8c8cc">
+          <rect x="0" y="86" width="10" height="10" fill="#7d5c4a"/><text x="16" y="95">Brave 3.6</text>
+          <rect x="120" y="86" width="10" height="10" fill="#5c5c6a"/><text x="136" y="95">VS Code 3.3</text>
+          <rect x="250" y="86" width="10" height="10" fill="#6aa8c8"/><text x="266" y="95">Bonsai 4.0</text>
+          <rect x="380" y="86" width="10" height="10" fill="#3a3a44"/><text x="396" y="95">Other 1.7</text>
+          <rect x="490" y="86" width="10" height="10" fill="#1e2e24" stroke="#3d5a44"/><text x="506" y="95">Free 2.7</text>
+        </g>
+        <text x="0" y="132" fill="#8a8a90" font-family="ui-monospace,monospace" font-size="11">12.6 GB spoken for. The model is not the tax. The browser is.</text>
+      </svg>
+      <p class="chart-cap">Same live snapshot as the TTS field notes. A conventional 27B never starts here.</p>
+    </div>
+    <p>That is the difference between “local AI” as a slide and local AI as something you open every day.</p>
+
     <h2>How it fits Knowledge Graph</h2>
-    <p>Knowledge Graph is not a chat window with a model behind it. It is a spatial interface: time as a dimension, floating notes and photos, voice in and out, everything running locally. The model is the quiet engine under that surface — reasoning over the graph, answering in context, never shipping private memory to a remote endpoint.</p>
-    <p>Bonsai makes that architecture honest on hardware people already own. No cloud fallback required for the core loop. Sovereignty stops being a slogan and becomes a loadable binary.</p>
+    <p><a href="knowledge-graph.html">Knowledge Graph</a> is a private spatial canvas: photos, conversations, and time on a machine you own. The model under it is not a brochure claim. It is a running stack.</p>
+    <p>Right now: <a class="ext" href="https://github.com/PrismML-Eng/llama.cpp" target="_blank" rel="noopener">llama.cpp</a> (PrismML fork) serves Bonsai. <a class="ext" href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> is the temporary conversation surface. Whisper hears. <a class="ext" href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro JS</a> speaks in the browser. Next swap is not another engine. It is the Knowledge Graph UI already built. Same models. Canvas instead of chat bubbles.</p>
+    <p>Published sites are demos. The product is the copy on your machine. Offline is the proof. Memory you own, models you run.</p>
+
     <h2>Getting started</h2>
     <ul>
-      <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a> — company and product home</li>
-      <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a> — launch post and rationale</li>
-      <li><a class="ext" href="https://docs.prismml.com/get-started/introduction" target="_blank" rel="noopener">Bonsai documentation</a> — lineup, formats, and how to run</li>
-      <li><a class="ext" href="https://docs.prismml.com/models/bonsai-27b" target="_blank" rel="noopener">Bonsai 27B model page</a> — specs and artifacts</li>
-      <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a> — GGUF and MLX weights</li>
+      <li><a class="ext" href="https://prismml.com" target="_blank" rel="noopener">PrismML</a>: company and product home</li>
+      <li><a class="ext" href="https://prismml.com/news/bonsai-27b" target="_blank" rel="noopener">Announcing Bonsai 27B</a>: launch post and rationale</li>
+      <li><a class="ext" href="https://docs.prismml.com/get-started/introduction" target="_blank" rel="noopener">Bonsai documentation</a>: lineup, formats, and how to run</li>
+      <li><a class="ext" href="https://docs.prismml.com/models/bonsai-27b" target="_blank" rel="noopener">Bonsai 27B model page</a>: specs and artifacts</li>
+      <li><a class="ext" href="https://huggingface.co/prism-ml" target="_blank" rel="noopener">prism-ml on Hugging Face</a>: GGUF and MLX weights</li>
     </ul>
     </div>
     <div data-lang-block="bg" hidden>
@@ -198,15 +260,16 @@
     </div>
     <div class="links">
       <a href="knowledge-graph.html">Knowledge Graph</a>
+      <a href="running-local-ai-16gb.html">Running local AI on 16 GB</a>
       <a href="https://github.com/paulvisciano/knowledge-graph">GitHub</a>
-      <a href="kg-part-1.html">Series · Part 1</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
     <div class="more">
       <h3 data-i18n="more_from">More from Sci-Fi Labs</h3>
+      <a href="running-local-ai-16gb.html">Running Local AI on 16 GB →</a>
+      <a href="knowledge-graph.html">Knowledge Graph →</a>
       <a href="reclaim-your-data.html">Reclaim your data →</a>
       <a href="where-is-paul.html">Where is Paul? →</a>
-      <a href="musical-cubes.html">Musical Cubes →</a>
     </div>
   </article>
   <footer>

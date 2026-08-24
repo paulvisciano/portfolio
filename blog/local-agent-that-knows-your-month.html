@@ -4,12 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Local Agent That Can Answer “What Have I Been Up To?” — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A local agent is only useful when retrieval works. This week Knowledge Graph started returning every photo and note for a date range and flying the spatial canvas to the right time layer — offline, zero API keys.">
+  <meta name="description" content="A local agent is only useful when retrieval works. Knowledge Graph returns every photo and note for a date range and flies the canvas to the month. Offline, zero API keys.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The Local Agent That Can Answer “What Have I Been Up To?”">
-  <meta property="og:description" content="A local agent is only useful when retrieval works. This week Knowledge Graph started returning every photo and note for a date range and flying the spatial canvas to the right time layer — offline, zero API keys.">
+  <meta property="og:description" content="A local agent is only useful when retrieval works. Knowledge Graph returns every photo and note for a date range and flies the canvas to the month. Offline, zero API keys.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Local Agent That Can Answer “What Have I Been Up To?”">
+  <meta name="twitter:description" content="Retrieval was the missing piece. Fly the camera to the month. Every photo and note in the answer. Offline is the proof.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/local-agent-that-knows-your-month">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
@@ -25,47 +29,57 @@
     <div class="progress"><div class="progress-bar"></div></div>
   </nav>
   <article>
-    <p class="series">Sci-Fi Labs · Essay</p>
+    <p class="series">Sci-Fi Labs · Field notes</p>
     <h1>The Local Agent That Can Answer “What Have I Been Up To?”</h1>
-    <p class="deck">Cloud agents are convenient because they already have your data. Local agents become useful only when the retrieval layer can actually see the whole month.</p>
+    <p class="deck">Cloud agents feel useful because the vendor already holds your month. A local agent only starts when retrieval can see the whole set and fly the canvas there.</p>
 
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Spatial knowledge graph canvas with time layers of photos and notes, camera flying toward a month bucket" width="1168" height="784" loading="eager">
-      <figcaption class="fig-cap">When the agent can fly the canvas to the right month and feed every photo into the answer, the local stack stops being a demo.</figcaption>
+      <figcaption class="fig-cap">Fly the camera to the month. Feed every photo into the answer.</figcaption>
     </figure>
 
-    <p>A local agent is only useful if it can answer the questions you actually care about. For a personal memory system that question is usually some version of “what have I been up to this month?” or “show me last month.”</p>
-
-    <p>Until a few days ago, <a href="knowledge-graph.html">Knowledge Graph</a> still hit the classic retrieval ceiling. Vector search returned a top-k slice. Ask about August and you would get roughly seven photos out of the twenty-three that lived in the graph. The model never saw the full set, so the answer was incomplete even though every file sat on disk.</p>
-
+    <p>A local agent is only useful if it answers the questions you actually ask. For a personal memory system that question is usually some version of “what have I been up to this month?” or “show me last month.”</p>
+    <p>The model was never the missing piece. Retrieval was. Until a few days ago, <a href="knowledge-graph.html">Knowledge Graph</a> still hit the classic ceiling. Vector search returned a top-k slice. Ask about August and you would get roughly seven photos out of the twenty-three that lived in the graph. The files were on disk. The agent never saw the full set. The answer was incomplete because the prompt was incomplete.</p>
     <div class="callout">The data was already local. The agent just could not reach all of it.</div>
 
     <h2>Closing the retrieval gap</h2>
-    <p>This week’s commits closed that gap. The agent now walks the graph for the date range, pulls every Photo entity linked by its real EXIF taken-on relationship, and injects the complete set into the response. Notes travel the same path. Relative language — “this month,” “last month,” a bare month name — is parsed into a proper range instead of being rewritten into a keyword salad by the language model.</p>
+    <p>This week’s commits closed that gap. The agent walks the graph for the date range, pulls every Photo entity linked by its real EXIF taken-on relationship, and injects the complete set into the response. Notes travel the same path. Relative language (“this month,” “last month,” a bare month name) is parsed into a proper range instead of being rewritten into a keyword salad by the language model.</p>
+    <p>At the same time a navigate tool landed. When you mention a time period the system posts a request. The UI polls, matches the target to a time bucket, and flies the Three.js canvas to that layer. You see the spatial layout of the month, not only a text reply.</p>
+    <p>Tool results are no longer dumped as raw JSON. Entities, relationships, and image paths render inline so the conversation stays readable. The truncation limit that previously cut month-scale context down to 8,000 characters was raised so the model actually receives the data the graph returns.</p>
 
-    <p>At the same time a new navigate tool was added. When the user mentions a time period the system posts a request; the UI polls, matches the target to a time bucket, and flies the Three.js canvas to that layer. You see the spatial layout of the month, not only a text reply.</p>
+    <table class="compare">
+      <thead>
+        <tr><th></th><th>Chat transcript</th><th>Canvas place</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>What you get</strong></td><td>A text summary of a top-k slice</td><td>Every photo and note in the month, on a time layer</td></tr>
+        <tr><td><strong>Where you look</strong></td><td>A scroll of bubbles</td><td>The spatial layout of that month</td></tr>
+        <tr class="chosen"><td><strong>What shipped</strong></td><td>Incomplete answer from incomplete retrieval</td><td>Date-range walk + fly-to-bucket</td></tr>
+      </tbody>
+    </table>
 
-    <p>Tool results themselves are no longer dumped as raw JSON. Entities, relationships, and image paths are parsed and rendered inline so the conversation stays readable. The truncation limit that previously cut month-scale context down to 8 000 characters was raised so the model actually receives the data the graph returns.</p>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/utility-vs-personal.jpg" alt="Utility AI versus personal memory on a desk" width="1168" height="658" loading="lazy">
+      <figcaption class="fig-cap">A chat log is a lease. A place on the canvas is yours.</figcaption>
+    </figure>
 
     <h2>Why this is the agentic difference</h2>
-    <p>Cloud agents feel powerful because the vendor already holds the corpus. You hand the workflow over; the data has already left. A local agent has to earn the same usefulness on hardware you control. That means the retrieval layer, the date logic, the spatial navigation, and the prompt hygiene all have to be good enough that the model can act on a complete view of your own history.</p>
-
-    <p>Knowledge Graph is the test bed for that claim. It is a private spatial memory engine — conversations, photos, and voice notes floating as time layers on an infinite canvas. Inference runs through Llama.cpp. Retrieval uses LightRAG. Voice is local Whisper. The published site is a demo. The real product is the copy that runs on your machine, answers questions about your own life, and never phones home.</p>
-
-    <p>The same principle applies to the rest of the Sci-Fi Labs stack. <a href="where-is-paul.html">Where is Paul?</a> is the public-facing spatial life map — globe, timeline, stories — that can feed moments into the private graph. Both are just websites, so they open in any browser, including Apple Vision Pro and other AR/VR headsets. The data layer stays local by design.</p>
+    <p>Cloud agents feel powerful because the vendor already holds the corpus. You hand the workflow over. The data has already left. A local agent has to earn the same usefulness on hardware you control. That means the retrieval layer, the date logic, the spatial navigation, and the prompt hygiene all have to be good enough that the model acts on a complete view of your own history.</p>
+    <p>Knowledge Graph is the test bed for that claim. It is a private spatial memory engine: conversations, photos, and voice notes floating as time layers on an infinite canvas. Inference runs through llama.cpp. Retrieval uses LightRAG. Voice is local Whisper. Kokoro JS speaks when the conversation surface needs it. The published site is a demo. The product is the copy that runs on your machine, answers questions about your own life, and never phones home.</p>
+    <p>The same principle applies to the rest of the Sci-Fi Labs stack. <a href="where-is-paul.html">Where is Paul?</a> is the public-facing spatial life map (globe, timeline, stories) that can feed moments into the private graph. Both are just websites, so they open in any browser, including Apple Vision Pro and other AR/VR headsets. The data layer stays local by design.</p>
 
     <h2>Ambient alternatives keep arriving</h2>
     <p>While the local retrieval work landed, the rest of the industry continued in the opposite direction. Comcast began offering Wi-Fi motion sensing on millions of home gateways. The feature detects movement through signal disruption, stores up to seven days of activity history in the company’s cloud, and can be disclosed under a valid subpoena or warrant. Convenient. Ambient. No longer yours the moment it leaves the house.</p>
-
-    <div class="callout">The choice is not between agents and no agents. It is between agents that keep the data and agents that treat the data as the price of convenience.</div>
+    <div class="callout">If your agent only works while a remote company is happy, you have a lease.</div>
 
     <h2>What “done” looks like</h2>
-    <p>Unplug the network. Ask the agent what you did last month. Watch the canvas fly to the correct bucket and the answer arrive with every photo and note that belongs there. That offline test is still the only proof that matters. Everything else is marketing.</p>
+    <p>Unplug the network. Ask the agent what you did last month. Watch the canvas fly to the correct bucket and the answer arrive with every photo and note that belongs there. Offline is the proof. Everything else is marketing.</p>
+    <p>Memory you own, models you run. Published sites are demos. The product is the copy on your machine.</p>
 
     <div class="links">
       <a href="knowledge-graph.html">Knowledge Graph</a>
-      <a href="kg-part-1.html">KG series · Part 1</a>
       <a href="running-local-ai-16gb.html">Running Local AI on 16 GB</a>
+      <a href="bonsai.html">Bonsai on a 16GB laptop</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
     <div class="more">
@@ -73,7 +87,7 @@
       <a href="knowledge-graph.html">Knowledge Graph →</a>
       <a href="where-is-paul.html">Where is Paul? →</a>
       <a href="reclaim-your-data.html">Reclaim your data →</a>
-      <a href="surveillance-pricing.html">Surveillance Pricing →</a>
+      <a href="data-sovereignty-is-moving-to-the-edge.html">Data sovereignty is moving to the edge →</a>
     </div>
   </article>
   <footer>

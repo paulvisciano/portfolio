@@ -10,6 +10,10 @@
   <meta property="og:title" content="They can pull the plug">
   <meta property="og:description" content="Anthropic cut OpenClaw off Claude subscriptions. Overnight, personal agents and small businesses that depended on that model stopped working. That is the cost of a stack you do not own.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/they-can-pull-the-plug-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="They can pull the plug">
+  <meta name="twitter:description" content="If your agent only works while a remote company is happy, you have a lease. Anthropic made that visible in a Friday email.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/they-can-pull-the-plug-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/they-can-pull-the-plug">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
@@ -30,37 +34,57 @@
     <p class="deck">Anthropic stopped letting Claude subscriptions power third-party agents like OpenClaw. For thousands of people the agent that ran their inbox, calendar, and workflows simply stopped. The lesson is not about one company. It is about what happens when your entire setup lives on someone else’s switch.</p>
     <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/they-can-pull-the-plug-hero.jpg" alt="A cloud cable cut by a corporate hand while a small local model core stays lit on the desk" width="1176" height="784" loading="eager"><figcaption class="fig-cap">When the remote model goes dark, only what runs on your hardware keeps working.</figcaption></figure>
 
+    <p>The stack on this desk still runs if the cable is cut. The stack that lives in someone else’s API does not. A Friday email made that visible.</p>
+
     <h2>The subscription stopped covering the agent</h2>
-    <p>On April 3, 2026, Anthropic emailed Claude subscribers: starting the next day, subscription limits would no longer cover “third-party harnesses including OpenClaw.” If you wanted to keep using OpenClaw with Claude, you would pay separately — pay-as-you-go or extra-usage bundles — outside the flat monthly plan.<sup><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">1</a></sup></p>
+    <p>On April 3, 2026, Anthropic emailed Claude subscribers: starting the next day, subscription limits would no longer cover “third-party harnesses including OpenClaw.” If you wanted to keep using OpenClaw with Claude, you would pay separately, pay-as-you-go or extra-usage bundles, outside the flat monthly plan.<sup><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">1</a></sup></p>
     <p>OpenClaw is an open-source personal agent that runs on your machine and talks to the chat apps you already use. It had become the way a large cohort of people wired Claude into real work: clearing inboxes, driving calendars, chaining tools, running multi-step tasks while they slept. Estimates put more than a hundred thousand instances in the wild around the cutoff. For heavy agent users, moving from a subscription ceiling to metered API rates could mean cost jumps measured in tens of times the previous monthly bill.<sup><a class="ext" href="https://thenextweb.com/news/anthropic-openclaw-claude-subscription-ban-cost" target="_blank" rel="noopener">2</a></sup></p>
-    <p>OpenClaw’s creator, Peter Steinberger, said he and others had tried to push back and only managed to delay the change by a week. Days later his own Claude account was suspended for “suspicious” activity. On X he posted the suspension notice with a short line that spread fast: <a class="ext" href="https://x.com/steipete/status/2042615534567457102" target="_blank" rel="noopener">“Yeah folks, it’s gonna be harder in the future to ensure OpenClaw still works with Anthropic models.”</a> A few hours later the account was <a class="ext" href="https://x.com/steipete/status/2042648934238097842" target="_blank" rel="noopener">reinstated</a>. An Anthropic engineer replied that the company had not banned anyone for using OpenClaw and that the hit looked like an overactive abuse classifier — the kind of ambiguity that still leaves the user offline until someone on the other side decides to look.<sup><a class="ext" href="https://techcrunch.com/2026/04/10/anthropic-temporarily-banned-openclaws-creator-from-accessing-claude/" target="_blank" rel="noopener">3</a></sup></p>
+
+    <div class="stat-strip">
+      <div class="stat"><div class="n">Apr 3</div><div class="l">Email to subscribers</div></div>
+      <div class="stat"><div class="n">100k+</div><div class="l">OpenClaw instances in the wild</div></div>
+      <div class="stat"><div class="n">tens of ×</div><div class="l">Possible cost jump off the plan</div></div>
+    </div>
+
+    <p>OpenClaw’s creator, Peter Steinberger, said he and others had tried to push back and only managed to delay the change by a week. Days later his own Claude account was suspended for “suspicious” activity. On X he posted the suspension notice with a short line that spread fast: <a class="ext" href="https://x.com/steipete/status/2042615534567457102" target="_blank" rel="noopener">“Yeah folks, it’s gonna be harder in the future to ensure OpenClaw still works with Anthropic models.”</a> A few hours later the account was <a class="ext" href="https://x.com/steipete/status/2042648934238097842" target="_blank" rel="noopener">reinstated</a>. An Anthropic engineer replied that the company had not banned anyone for using OpenClaw and that the hit looked like an overactive abuse classifier. The kind of ambiguity that still leaves the user offline until someone on the other side decides to look.<sup><a class="ext" href="https://techcrunch.com/2026/04/10/anthropic-temporarily-banned-openclaws-creator-from-accessing-claude/" target="_blank" rel="noopener">3</a></sup></p>
 
     <h2>Why it felt like a ban</h2>
-    <p>Technically the models were still available. Practically, the deal that made OpenClaw usable for ordinary subscribers was gone. Subscription OAuth had been the easy path. API keys and extra-usage bundles were the hard path — higher cost, more friction, more accounting. For many people the agent simply stopped being viable overnight.</p>
-    <p>Anthropic already ships its own agent surfaces — Claude Code, Cowork, and the rest of the first-party stack. OpenClaw is not Anthropic’s product. It is a competitor for the agent layer even when it calls Anthropic’s models underneath. Whether the stated reason is infrastructure load, terms of service, or product strategy, the effect is the same: the company that owns the model decides which tools are allowed to sit on top of it, and on what commercial terms.<sup><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">1</a></sup></p>
-    <p>Earlier waves had already banned or rate-limited users who pointed flat-rate Claude (and Gemini) OAuth credentials at OpenClaw because agent workloads chew tokens at a scale that looks like abuse to a consumer plan. The April change made the policy explicit and permanent for third-party harnesses.<sup><a class="ext" href="https://www.pcworld.com/article/3068842/whats-behind-the-openclaw-ban-wave.html" target="_blank" rel="noopener">4</a></sup></p>
+    <p>Technically the models were still available. Practically, the deal that made OpenClaw usable for ordinary subscribers was gone. Subscription OAuth had been the easy path. API keys and extra-usage bundles were the hard path: higher cost, more friction, more accounting. For many people the agent simply stopped being viable overnight.</p>
+    <p>Anthropic already ships its own agent surfaces, Claude Code, Cowork, and the rest of the first-party stack. OpenClaw is not Anthropic’s product. It is a competitor for the agent layer even when it calls Anthropic’s models underneath. Whether the stated reason is infrastructure load, terms of service, or product strategy, the effect is the same: the company that owns the model decides which tools are allowed to sit on top of it, and on what commercial terms.<sup><a class="ext" href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban" target="_blank" rel="noopener">1</a></sup></p>
+    <p>Earlier waves had already banned or rate-limited users who pointed flat-rate Claude (and Gemini) OAuth credentials at OpenClaw because agents chew tokens at a scale that looks like abuse to a consumer plan. The April change made the policy explicit and permanent for third-party harnesses.<sup><a class="ext" href="https://www.pcworld.com/article/3068842/whats-behind-the-openclaw-ban-wave.html" target="_blank" rel="noopener">4</a></sup></p>
 
     <h2>Imagine you are running a business on it</h2>
     <p>Picture a solo operator or a small team that built daily operations around an OpenClaw agent: inbound email triage, research briefs, calendar negotiation, draft replies, status updates into Slack. The agent is not a toy. It is the workflow. Friday the subscription still covers it. Saturday the same agent either fails or starts burning API credits at a rate that kills the unit economics.</p>
-    <p>There is no negotiation window that matters. There is no alternate Claude endpoint you control. There is only the provider’s terms, the provider’s pricing, and the provider’s product roadmap — including its own agent that competes with the tool you chose. Your business did not get a board seat. It got a dependency.</p>
+    <p>There is no negotiation window that matters. There is no alternate Claude endpoint you control. There is only the provider’s terms, the provider’s pricing, and the provider’s product roadmap, including its own agent that competes with the tool you chose. Your business did not get a board seat. It got a dependency.</p>
     <p>That is the wake-up call. Not “Anthropic is uniquely evil.” Every frontier lab can do a version of this. Token prices can spike. Rate limits can tighten. A competitor product can be favored. A usage pattern can be reclassified. A founder of a popular harness can get a suspension email. Your calendar and your clients do not care which clause in the terms of service caused the outage. They only care that the work stopped.</p>
 
     <div class="callout">If your agent only works while a remote company is happy with the arrangement, you do not have an agent. You have a lease.</div>
 
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/plug-cut-desk.jpg" alt="Cut cloud cable on a night desk while a local laptop stays lit" width="1168" height="784" loading="lazy"><figcaption class="fig-cap">The remote path goes dark. The machine on the desk does not.</figcaption></figure>
+
     <h2>What running your own actually buys</h2>
     <p>A local model does not solve every problem. Quality still varies. Hardware still costs money. You still have to operate the stack. What it does solve is the single remote kill switch.</p>
+    <table>
+      <thead><tr><th></th><th>Lease</th><th>Local</th></tr></thead>
+      <tbody>
+        <tr><td>Access</td><td>While the vendor is happy</td><td>The weights are a file on disk</td></tr>
+        <tr><td>Continuity</td><td>Friday terms. Saturday the agent stops.</td><td>Monday still runs.</td></tr>
+      </tbody>
+    </table>
     <ul>
       <li><strong>Pricing.</strong> API token rates are not a law of nature. They are a product decision. Local inference has a fixed cost of electricity and silicon. No surprise invoice when the agent has a busy week.</li>
       <li><strong>Access.</strong> No one can revoke your weights because you used them with the wrong harness. The file is on your disk. The runtime is on your machine.</li>
-      <li><strong>Tooling freedom.</strong> You choose the agent framework — OpenClaw, something you wrote, something the community maintains — without asking the model vendor whether that combination is still blessed.</li>
+      <li><strong>Tooling freedom.</strong> You choose the agent framework, OpenClaw, something you wrote, something the community maintains, without asking the model vendor whether that combination is still blessed.</li>
       <li><strong>Continuity.</strong> When the cloud path changes terms on a Friday, the local path keeps running Monday. Businesses that cannot absorb a multi-day outage need that property.</li>
     </ul>
     <p>This is the same structural argument as in <a href="too-dangerous-for-you.html">Too dangerous for you</a> and <a href="who-owns-the-answer.html">Who owns the answer?</a>: capability that only exists behind someone else’s API is capability they can shape, price, or withdraw. OpenClaw made that visible to a large group of people who thought they had built a personal operating system and discovered they had built a thin client.</p>
 
     <h2>The honest trade</h2>
     <p>Cloud frontier models are still stronger at many tasks. Paying for them is often rational. The mistake is treating the cloud path as the only path and wiring critical work to it with no fallback.</p>
-    <p>Run a local model for the agent that has to keep working. Use the frontier API where the quality gap matters and the failure mode is acceptable. Keep the harness — OpenClaw or otherwise — under your control so switching the model underneath is a config change, not a product rewrite.</p>
+    <p>Run a local model for the agent that has to keep working. Use the frontier API where the quality gap matters and the failure mode is acceptable. Keep the harness, OpenClaw or otherwise, under your control so switching the model underneath is a config change, not a product rewrite.</p>
     <p>Anthropic’s OpenClaw cutoff was not the end of personal agents. It was a reminder that personal only counts if the stack still runs when the vendor changes its mind. The people who felt that reminder hardest were the ones who had already handed the switch to someone else.</p>
+    <p>That is the design of the Sci-Fi Labs stack. The <a href="knowledge-graph.html">Knowledge Graph</a> is a private spatial canvas for memory: photos, conversations, time as depth, on hardware you control. <a href="where-is-paul.html">Where is Paul?</a> turns a travel record into a globe and a timeline without parking the raw material on a third-party server. On this laptop the model is <a href="bonsai.html">Bonsai</a>. Whisper hears. Kokoro JS speaks. The published sites are demos. The product is the copy that runs on your machine.</p>
+    <p>16 GB is the machine most people actually have. Offline is the proof. Memory you own, models you run.</p>
 
     <h2>On X</h2>
     <p>Primary posts from the cutoff week:</p>
