@@ -4,6 +4,7 @@
   "cleanUrls": true,
   "redirects": [
     { "source": "/apps/neuro-graph", "destination": "/apps/neuro-graph/", "permanent": false },
+    { "source": "/apps/the-secret-family", "destination": "/apps/the-secret-family/", "permanent": false },
     { "source": "/apps/where-is-paul", "destination": "/apps/where-is-paul/", "permanent": false }
   ],
   "rewrites": [
@@ -12,6 +13,8 @@
     { "source": "/apps/musical-cubes/:path*", "destination": "https://musical-cubes.vercel.app/:path*" },
     { "source": "/apps/neuro-graph/", "destination": "https://neuro-graph-sage.vercel.app/" },
     { "source": "/apps/neuro-graph/:path*", "destination": "https://neuro-graph-sage.vercel.app/:path*" },
+    { "source": "/apps/the-secret-family/", "destination": "https://the-secret-family.vercel.app/" },
+    { "source": "/apps/the-secret-family/:path*", "destination": "https://the-secret-family.vercel.app/:path*" },
     { "source": "/apps/where-is-paul/", "destination": "https://where-is-paul.vercel.app/" },
     { "source": "/apps/where-is-paul/:path*", "destination": "https://where-is-paul.vercel.app/:path*" },
     { "source": "/", "destination": "/index.html" }
