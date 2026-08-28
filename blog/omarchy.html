@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Omarchy — A glimpse into the future — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="macOS and Windows run dozens of processes you never asked for and can't even name. Omarchy is DHH's AI OS — a tiled Arch desktop that's keyboard-first, with AI baked in and giving you a ton of freedom.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Omarchy — A glimpse into the future">
+  <meta property="og:description" content="macOS and Windows run dozens of processes you never asked for and can't even name. Omarchy is DHH's AI OS — a tiled Arch desktop that's keyboard-first, with AI baked in and giving you a ton of freedom.">
+  <meta property="og:image" content="images/omarchy-keyboard-desk.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Omarchy — A glimpse into the future">
+  <meta name="twitter:description" content="Only the apps you asked for. No mystery processes. No corporate switch. Omarchy is the desktop version of that bet.">
+  <meta name="twitter:image" content="images/omarchy-keyboard-desk.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/omarchy">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Sci-Fi Labs · Field notes</p>
+    <h1>Omarchy — A glimpse into the future</h1>
+    <p class="deck">macOS and Windows run dozens of processes you never asked for and can't even name. Omarchy is DHH's AI OS — a tiled Arch desktop that's keyboard-first, with AI baked in and giving you a ton of freedom.</p>
+
+    <figure class="fig">
+      <img src="images/omarchy-keyboard-desk.jpg" alt="Night desk with a mechanical keyboard and a laptop running a dark tiled desktop, terminal beside browser, no dock" width="1536" height="1024" loading="eager">
+      <figcaption class="fig-cap">No dock. No icons. A window you opened, and another one. That is the whole surface.</figcaption>
+    </figure>
+
+    <p>Open Activity Monitor on a Mac. Scroll the list. There are dozens of processes you never asked for and could not name. Daemons for cloud sync you turned off. Helpers for features you never touched. The machine on your desk is doing work for someone else.</p>
+    <p>That is a lease. The hardware is yours. The operating system is not.</p>
+    <p>On August 14, 2026, David Heinemeier Hansson posted <a class="ext" href="https://www.youtube.com/watch?v=F7fe9pa8OeE" target="_blank" rel="noopener">Omarchy Quattro</a>, an 81-minute walk through the other bet. Arch. Hyprland. Now Quickshell. A desktop you can see. He calls it “a new kind of computer for people who just love computers,” built for the person who does not have a thousand hours to configure a tiling window manager from scratch.<sup><a class="ext" href="https://www.youtube.com/watch?v=F7fe9pa8OeE" target="_blank" rel="noopener">1</a></sup></p>
+
+    <h2>Watch</h2>
+    <div class="fig" style="padding:0;background:#000;">
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+        <iframe src="https://www.youtube.com/embed/F7fe9pa8OeE" title="Omarchy Quattro — David Heinemeier Hansson" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <h2>What it is</h2>
+    <p>Omarchy is an omakase Linux system. Opinionated on purpose. Not trying to feel like Windows. Not trying to feel like a Mac. DHH’s line in the video is the whole pitch: “this is your computer.”</p>
+    <p>Quattro is the 4.0 cut. The bar, the launcher, the menus, the lock screen, and the control panels now live in one Quickshell process. The old stack of separate tools is gone. One shell. One theme. Plugins instead of a pile of daemons you cannot name.<sup><a class="ext" href="https://github.com/basecamp/omarchy/releases/tag/v4.0.0" target="_blank" rel="noopener">2</a></sup></p>
+
+    <div class="stat-strip">
+      <div class="stat"><div class="n">&lt; 6 GB</div><div class="l">ISO size</div></div>
+      <div class="stat"><div class="n">~1 min</div><div class="l">Install on a fast machine</div></div>
+      <div class="stat"><div class="n">114</div><div class="l">Plugins on release day</div></div>
+      <div class="stat"><div class="n">Super + K</div><div class="l">The one hotkey to memorize</div></div>
+    </div>
+    <p class="chart-cap" style="margin-top:-0.6rem;margin-bottom:1.6rem;">Numbers from the Quattro walkthrough and the 4.0 notes. Plugin count is what the community site showed on release day.</p>
+
+    <h2>Getting started</h2>
+    <p>Download the ISO from <a class="ext" href="https://omarchy.org/" target="_blank" rel="noopener">omarchy.org</a>. Put it on a USB stick. BalenaEtcher on a Mac or Windows machine. Caligula if you are already on Linux. Boot the stick.</p>
+    <p>Turn off Secure Boot and TPM in the BIOS. Those are Microsoft schemes. Omarchy will not install while they are on.</p>
+    <p>Full-disk encryption is the default. Use a wired keyboard or a 2.4 GHz dongle at unlock. Bluetooth will not type the LUKS password at boot. Same rule as the BIOS. Dual-boot into free space if you want to keep Windows. Turn BitLocker off first.</p>
+    <p>Answer the setup questions. Sit through the install show. On a fast machine it can finish in about a minute. On an older one, still under five. Then you are in a tiled desktop with no dock and no icons.</p>
+    <p>The first toast on login opens the keybindings list if you click it. That is the on-ramp. Super is the Windows key, or Command if you came from a Mac. Your thumb already knows it.</p>
+
+    <table>
+      <thead><tr><th>You reach for</th><th>In Omarchy</th></tr></thead>
+      <tbody>
+        <tr><td>Spotlight, Raycast, Start menu</td><td><code>Super + Space</code></td></tr>
+        <tr><td>A dock, an icon, a click</td><td>A hotkey, or the menu. There is no dock.</td></tr>
+        <tr><td>Cmd + C everywhere</td><td><code>Super + C</code> / <code>Super + V</code>, including the terminal</td></tr>
+        <tr><td>Close a window, keep the app</td><td>Close means quit. <code>Super + W</code> is gone.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The keys that matter</h2>
+    <p><code>Super + K</code> is the only binding you have to memorize. It shows every mapping, searchable. The rest you learn by living in it for a week.</p>
+    <p>Super + Shift is the launch family. Terminal is Super + Return. Browser is Super + Shift + Return. Editor, mail, the web apps, the agent: Shift is how you start something. The “shift” people talk about is that chord, and it is also the bigger one. You stop hunting windows. You start naming keys.</p>
+
+    <table class="compare">
+      <thead><tr><th>Keys</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr class="chosen"><td><code>Super + K</code></td><td>Show every binding</td></tr>
+        <tr><td><code>Super + Space</code></td><td>Omarchy menu. Apps, setup, install, update.</td></tr>
+        <tr><td><code>Super + Alt + Space</code></td><td>Apps only</td></tr>
+        <tr><td><code>Super + Return</code></td><td>Terminal</td></tr>
+        <tr><td><code>Super + Shift + Return</code></td><td>Browser</td></tr>
+        <tr><td><code>Super + W</code></td><td>Close the window. The app quits.</td></tr>
+        <tr><td><code>Super + 1 / 2 / 3 / 4</code></td><td>Jump to a workspace. Instant. No animation.</td></tr>
+        <tr><td><code>Super + Shift + 1 / 2 / 3 / 4</code></td><td>Send this window there</td></tr>
+        <tr><td><code>Super + Arrow</code></td><td>Move focus</td></tr>
+        <tr><td><code>Super + Shift + Arrow</code></td><td>Swap windows</td></tr>
+        <tr><td><code>Super + F</code></td><td>Full screen</td></tr>
+        <tr><td><code>Super + T</code></td><td>Float this window, or tile it again</td></tr>
+        <tr><td><code>Print Screen</code></td><td>Screenshot</td></tr>
+        <tr><td><code>Super + Ctrl + Shift + A</code></td><td>Your default AI agent</td></tr>
+      </tbody>
+    </table>
+    <p>Bindings live in <code>~/.config/hypr/bindings.lua</code>. One file. Add a line, it documents itself in Super + K. You can drop the preinstalled app keys and keep the window management. You can start from a blank slate. The machine will launch what you bound. It will not keep a store’s worth of extras running in the dark.</p>
+
+    <h2>Why this is the shift</h2>
+    <p>Windows and a Mac train you to click a surface you do not control. A dock of badges. A tray of updaters. Ten million processes, some of them helping, most of them reporting. You cannot name them. You cannot see why they are there. You cannot turn them off without breaking a license or a store rule.</p>
+    <p>Omarchy tiles. Open one window, it takes the screen. Open a second, they split. You do not fish a window out from under another one. Workspaces are instant. Close means quit. Software comes from a package manager, not from an installer you downloaded because an ad told you to. Updates go through one menu: Update, then Omarchy. A snapshot first. A boot-menu rollback if the update is bad.</p>
+    <p>Quattro also moved the internals from a git checkout in your home directory to system packages. Your edits stay yours. An update does not clobber the file you actually changed. That is a small sentence with a large consequence. It is the difference between a ricing project and a machine you can live on.</p>
+    <p>Want a custom app? Bind it. Turn a URL into a frameless web app from the menu. Write a bar widget. On release day the community plugin site already had 114 of them. They are not sandboxed. Read the code. That is the trade: more power, more responsibility, no gatekeeper in the middle.</p>
+
+    <div class="callout">Only the apps you asked for should be running. If you cannot name a process, it should not be there.</div>
+
+    <h2>AI is a key, not a landlord</h2>
+    <p>Omarchy treats coding agents as first-class. That is the part of Quattro that sounds like science fiction and is already a hotkey.</p>
+    <p>You pick a default agent in the menu: Claude Code, Codex, OpenCode, Pi, Grok, Crush, Copilot, and the rest. Nothing downloads until you actually run one. The launchers are tiny stubs. <code>Super + Ctrl + Shift + A</code> opens your agent in its own window. In a terminal, <code>a</code> does the same inline. A process crashes, you get a toast, one click hands the core dump to that agent. Theme changes follow Claude, Pi, and OpenCode. The top bar grows a usage panel the first time it sees agent traffic, then stays out of the way until then.<sup><a class="ext" href="https://omarchy.org/manual/ai/" target="_blank" rel="noopener">3</a></sup></p>
+    <p>Because AI is baked in that deep, it can modify the OS in whatever way you want. Build a new theme. Change how the bar looks. Fix an app that is not working. The config files are plain text, the agent can read them, and the change lands without a reboot. You are not filing a feature request with a company that might get back to you next quarter. You describe what you want, the machine changes.</p>
+    <p>DHH built Quattro this way. In the video he calls it an agentic operating system, “fully agent accelerated in its construction.” He also says the quiet part: you do not have to use any of it. Right-click the default-agent notice, dismiss it, and there is no AI on the machine. That is the right default for an OS. Present. Optional. Not a mandatory cloud account.</p>
+    <p>The honest split still matters. Those agent CLIs authenticate to someone else’s API. That path is still a lease. Omarchy also ships the local path: LM Studio and Ollama under Install, then AI. Models as files on disk. If the cable is cut, those still run. The Sci-Fi Labs stack on this laptop is the same bet with a different surface. Bonsai. Whisper. Kokoro JS. The canvas, not the chatbot window.</p>
+
+    <table>
+      <thead><tr><th></th><th>Cloud agent key</th><th>Local model</th></tr></thead>
+      <tbody>
+        <tr><td>Where it lives</td><td>A remote API behind a login</td><td>Weights on your disk</td></tr>
+        <tr><td>Who can stop it</td><td>The vendor</td><td>You, by not launching it</td></tr>
+        <tr><td>On Omarchy</td><td><code>Super + Ctrl + Shift + A</code></td><td>Install &gt; AI &gt; LM Studio or Ollama</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The phone, and the rest of the hardware</h2>
+    <p>Keep this post on Omarchy. The future it points at is larger.</p>
+    <p>If you mostly use a phone for a camera and a browser, that is all it should run. Not a store. Not a dozen silent listeners. Not a corporate account as the price of unlocking the device you already paid for. The same rule as the desktop: only the apps you asked for. Custom apps to your liking. No gatekeeping. No sending your photos and your location to someone else’s data center because the default path had no other door.</p>
+    <p>As the models get better, that becomes a literal instruction to the hardware. Speak. Get a surface back. Bind a camera. Bind a browser. Leave the rest off. Omarchy is the desktop proof that this is already a taste, not a mockup. A tiling window manager used to cost a thousand hours. Agents collapsed that. The same collapse will hit the phone, the headset, the radio in the living room. The constraint is not capability. It is whether the vendor lets you.</p>
+    <p>Linux on a phone is still messy. That is not an argument for keeping the lease. It is an argument for the next Omarchy-shaped cut: a small set of defaults, a key you can learn in a week, a way to throw away everything you did not ask for.</p>
+
+    <h2>What this desk already does</h2>
+    <p>The published sites are demos. The product is the copy that runs on your machine. <a href="knowledge-graph.html">Knowledge Graph</a> is a private spatial canvas. <a href="where-is-paul.html">Where is Paul?</a> is a globe and a timeline. On this laptop the model is <a href="bonsai.html">Bonsai</a>. Whisper hears. Kokoro JS speaks.</p>
+    <p>Omarchy is the operating system version of that sentence. Memory you own, models you run. 16 GB is the machine most people actually have. Offline is the proof.</p>
+    <p>Burn the ISO if you want to feel the desktop. Keep the rule even if you do not: if you cannot name a process, it should not be running. If a company can pull the plug, you do not own the stack.</p>
+
+    <h2>Sources</h2>
+    <ol class="sources">
+      <li><a class="ext" href="https://www.youtube.com/watch?v=F7fe9pa8OeE" target="_blank" rel="noopener">David Heinemeier Hansson — Omarchy Quattro</a> (14 Aug 2026)</li>
+      <li><a class="ext" href="https://github.com/basecamp/omarchy/releases/tag/v4.0.0" target="_blank" rel="noopener">Omarchy v4.0.0 — The Quattro Release</a></li>
+      <li><a class="ext" href="https://omarchy.org/manual/ai/" target="_blank" rel="noopener">The Omarchy Manual — AI</a></li>
+      <li><a class="ext" href="https://omarchy.org/manual/hotkeys/" target="_blank" rel="noopener">The Omarchy Manual — Hotkeys</a></li>
+      <li><a class="ext" href="https://omarchy.org/" target="_blank" rel="noopener">omarchy.org — ISO and getting started</a></li>
+    </ol>
+    <div class="links">
+      <a href="they-can-pull-the-plug.html">They can pull the plug</a>
+      <a href="data-sovereignty-is-moving-to-the-edge.html">Data sovereignty</a>
+      <a href="running-local-ai-16gb.html">Local AI on 16 GB</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="they-can-pull-the-plug.html">They can pull the plug →</a>
+      <a href="bonsai.html">Bonsai →</a>
+      <a href="kg-part-1.html">Knowledge Graph · Part 1 →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
