@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>One prompt. Your own life map. — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="Paste a prompt. Drop a Takeout. Get a Where is [You]? globe. The live map is the demo. Your copy runs on your machine.">
+  <meta name="description" content="Clone Where is Paul? The only file you change is moments/moments.js. Optional: paste a prompt, drop a Takeout, get a Where is [You]? globe.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="One prompt. Your own life map.">
-  <meta property="og:description" content="Paste a prompt. Drop a Takeout. Get a Where is [You]? globe. The live map is the demo. Your copy runs on your machine.">
+  <meta property="og:description" content="Clone the repo. Swap moments.js. Optional Grok prompt second. A spatial web app with your name on it.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="One prompt. Your own life map.">
-  <meta name="twitter:description" content="Paste a prompt. Drop a Takeout. Get a Where is [You]? globe.">
+  <meta name="twitter:description" content="Clone first. The only file you change is moments.js. Prompt second if you want Takeout to fill the globe.">
   <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/one-prompt-life-map">
   <link rel="stylesheet" href="blog.css">
@@ -31,118 +31,86 @@
   <article>
     <p class="series">Sci-Fi Labs · App</p>
     <h1>One prompt. Your own life map.</h1>
-    <p class="deck">Paste a prompt. Drop a Takeout. Get a Where is [You]? globe. The live map is the demo. Your copy runs on your machine.</p>
-    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg" alt="Where is Paul spatial life map: globe and timeline of real moments" width="1200" height="676" loading="eager"><figcaption class="fig-cap">Where is Paul? is the live example. The prompt below builds the same kind of map from your own data.</figcaption></figure>
+    <p class="deck">Clone the globe. Swap one file. Get a Where is [You]? spatial web app. The live map is the demo. Your copy is the repo.</p>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg" alt="Where is Paul spatial life map: globe and timeline of real moments" width="1200" height="676" loading="eager">
+      <figcaption class="fig-cap">Where is Paul? is the live example. moments.js is how it becomes yours.</figcaption>
+    </figure>
+
+    <p><a href="/apps/where-is-paul/">Where is Paul?</a> is a spatial web app. A life on a globe. Hex color is how long a stay lasted. Same URL on a phone, a desk, and Safari on Vision Pro. Pinch to zoom. Look to look around.</p>
+    <p>You do not need a chatbot to start. You need the repo.</p>
+
+    <div class="callout">Clone first. The only file you change is <code>moments/moments.js</code>. The Grok prompt is second, if you want Takeout to fill the globe for you.</div>
 
     <div class="pipeline">
-      <p class="pipeline-title">Three steps</p>
+      <p class="pipeline-title">The door</p>
       <div class="pipeline-flow">
         <div class="pipe-step">
           <div class="n">01</div>
-          <div class="t">Prompt</div>
-          <div class="d">Paste it into any AI that can build a web app. The live site is the template.</div>
+          <div class="t">Clone</div>
+          <div class="d">github.com/paulvisciano/where-is-paul</div>
         </div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step">
           <div class="n">02</div>
-          <div class="t">Takeout</div>
-          <div class="d">Export Timeline.json from the phone or from Google Takeout.</div>
+          <div class="t">Swap</div>
+          <div class="d">Edit moments/moments.js. Date, place, stay, media.</div>
         </div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step">
           <div class="n">03</div>
-          <div class="t">Globe</div>
-          <div class="d">Drop the file. The globe and timeline fill with your places. Where is [You]?</div>
+          <div class="t">Optional</div>
+          <div class="d">Paste the prompt below. Drop Timeline.json. Auto-fill.</div>
         </div>
       </div>
     </div>
 
-    <h2>The record already exists</h2>
-    <p>If you used Google Maps or had location services on, Google saved a detailed record of where you went. Not only the big trips. Coffee shops. Routes to work. Weekends away. It went into Timeline, sometimes still labeled Location History.</p>
-    <p>A lot of people never looked at it. For years it was on by default for many accounts. Google later moved a lot of that history onto the phone itself. The data is yours. Most of it still sits inside their world instead of becoming a place you can walk.</p>
-    <p>This is the practical side of <a href="reclaim-your-data.html">reclaiming your data</a>. Get the record out. Put it on a globe you control.</p>
+    <h2>Clone it</h2>
+    <p>Repo: <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">github.com/paulvisciano/where-is-paul</a></p>
+    <p>Open <code>moments/moments.js</code>. That is the only file you need to change. Put your dates, coordinates, stay lengths, photos, comics. Hex color on the globe will follow stay duration. Not height.</p>
+    <p>Run it locally. Open the same URL on a phone or a desk. On Vision Pro, Safari. Pinch. Look. No extra session.</p>
 
-    <h2>What the map is</h2>
-    <p><a href="/apps/where-is-paul/">Where is Paul?</a> takes real location history and turns it into an interactive globe and timeline. You spin the world. You scrub through time. You click a place. The shape of a life in motion.</p>
-    <p>The same idea works for anyone. You do not need to be a developer. You need two things: your own Google Maps Timeline export, and one short prompt that tells an AI to use the live site as a template.</p>
-    <div class="callout">Copy the prompt. Paste it. When the app is ready, drop in your Timeline file. That is the whole process.</div>
+    <h2>If you want Takeout to do the typing</h2>
+    <p>Google already has a record of where you went, if Maps Timeline was on. Coffee shops. Routes to work. Weekends. A lot of people never looked at it. Get the file out. Put it on a globe you control.</p>
+    <p>Copy everything in the box and paste it into Grok, Claude, ChatGPT, or any AI that can build a web app. After the clone, not instead of it.</p>
+<pre style="white-space:pre-wrap;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:10px;background:var(--surface);font-family:var(--font-mono);font-size:0.9rem;line-height:1.55;overflow:auto;"><code>Build me a personal life map like this one: https://paulvisciano.com/apps/where-is-paul
 
-    <h2>The prompt</h2>
-    <p>Copy everything in the box below and paste it into Grok, Claude, ChatGPT, or any AI that can build web apps.</p>
+Start from this repo: https://github.com/paulvisciano/where-is-paul
+The only file I should have to change is moments/moments.js.
 
-    <pre style="background:#111;border:1px solid #333;border-radius:8px;padding:1.25rem;overflow-x:auto;font-size:0.9rem;line-height:1.5;color:#e5e5e5;white-space:pre-wrap;"><code>Build me a personal life map like this one: https://paulvisciano.com/apps/where-is-paul
+Rename it to “Where is [My Name]?” and set it up so I can drop in my own Google Maps Timeline export and have the globe and timeline fill with my places. Hex color encodes stay duration, not height. Same URL in a browser, on a phone, and in Safari on Vision Pro.</code></pre>
 
-Use the live site as the template. Make it mine — rename it to “Where is [My Name]?” and set it up so I can drop in my own Google Maps Timeline export and have the globe and timeline fill with my places automatically.</code></pre>
-
-    <p>That is it. The AI uses the public site as the model and builds a version that runs on your data.</p>
-
-    <h2>How to get your Google Maps Timeline data</h2>
-    <p>Google changed how this works. A few years ago the data mostly lived on their servers. Starting in late 2024 they moved a lot of it onto the phone itself. So there are two places to look.</p>
-
-    <h3>1. From your phone (recent trips)</h3>
-
-    <h4>Android</h4>
-    <p>Open your phone's <strong>Settings</strong> app, then go to:</p>
-    <p><strong>Location → Location services → Timeline</strong></p>
-    <p>You will see a screen like this:</p>
-    <figure class="fig">
-      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/android-timeline-export.png" alt="Android Timeline settings screen showing Export Timeline data option" width="600" height="1200" loading="lazy" style="max-width:320px;height:auto;border-radius:12px;border:1px solid #333;margin-inline:auto;">
-      <figcaption class="fig-cap">The Timeline screen on Android. Tap “Export Timeline data”.</figcaption>
-    </figure>
-    <ol>
-      <li>Tap <strong>Export Timeline data</strong></li>
-      <li>Tap Continue and choose where to save the file</li>
-      <li>You will get a file named <code>Timeline.json</code></li>
-    </ol>
-
-    <h4>iPhone</h4>
-    <ul>
-      <li>Open the <strong>Google Maps</strong> app</li>
-      <li>Tap your profile picture (top right)</li>
-      <li>Go to <strong>Settings → Personal content</strong> (or Location & Privacy)</li>
-      <li>Tap <strong>Export Timeline data</strong> → Save to Files</li>
-    </ul>
-
-    <h3>2. From Google Takeout (older history)</h3>
-    <ol>
-      <li>Go to <a href="https://takeout.google.com" target="_blank" rel="noopener">takeout.google.com</a> and sign in.</li>
-      <li>Click “Deselect all.”</li>
-      <li>Find and check only <strong>Location History (Timeline)</strong>.</li>
-      <li>Choose JSON and create the export.</li>
-      <li>Google will email you a download link. Unzip the file when it arrives.</li>
-    </ol>
-    <p>If you want the fullest picture, do both. Older data often still lives in Takeout. Newer data is usually on the device.</p>
-
-    <h2>Where it runs</h2>
-    <p>Your data stays on your machine if you run the finished app locally. The public <a href="/apps/where-is-paul/">Where is Paul?</a> site is the example. The version built from your own Timeline is the one that belongs to you. Offline is the proof.</p>
-    <div class="callout">Share the prompt. Link back here if you want people to see the full context and the export steps.</div>
+    <h2>How to get Timeline data</h2>
+    <p>Google moved a lot of this onto the phone in late 2024. Two places to look.</p>
+    <h3>From your phone (recent trips)</h3>
+    <p><strong>Android.</strong> Settings → Location → Location services → Timeline → Export Timeline data. You get <code>Timeline.json</code>.</p>
+    <p><strong>iPhone.</strong> Google Maps app → profile → Settings → Personal content (or Location &amp; Privacy) → Export Timeline data → Save to Files.</p>
+    <h3>From Google Takeout (older history)</h3>
+    <p>takeout.google.com. Deselect all. Check only Location History (Timeline). JSON. Download the zip. If you want the fullest picture, do both. Older data often still lives in Takeout. Newer data is usually on the device.</p>
 
     <h2>What to do next</h2>
     <ol>
-      <li>Copy the prompt above.</li>
-      <li>Paste it into any AI that can build web apps.</li>
-      <li>Export your Timeline data using the steps in this post.</li>
-      <li>Drop the file into the app the AI creates.</li>
-      <li>Open it in a browser and explore your own map.</li>
+      <li>Open the live globe: <a href="/apps/where-is-paul/">Where is Paul?</a></li>
+      <li>Clone <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">the repo</a> and edit <code>moments/moments.js</code>.</li>
+      <li>If you want auto-fill, paste the prompt and drop <code>Timeline.json</code>.</li>
     </ol>
-    <p>The live reference is here: <a href="/apps/where-is-paul/">Where is Paul?</a></p>
+    <p>The category this sits in: <a href="what-are-sci-fi-apps.html">What are Spatial Web Apps?</a></p>
 
     <div class="links">
-      <a href="/apps/where-is-paul/">Open Where is Paul?</a>
-      <a href="where-is-paul.html">Project note</a>
-      <a href="reclaim-your-data.html">Reclaim your data</a>
-      <a href="../index.html#blog">All blogs</a>
+      <a href="/apps/where-is-paul/">Open the globe</a>
+      <a href="https://github.com/paulvisciano/where-is-paul">Clone the repo</a>
+      <a href="where-is-paul.html">Where is Paul?</a>
+      <a href="what-are-sci-fi-apps.html">What are Spatial Web Apps?</a>
     </div>
     <div class="more">
       <h3>More from Sci-Fi Labs</h3>
       <a href="where-is-paul.html">Where is Paul? →</a>
-      <a href="reclaim-your-data.html">Reclaim your data →</a>
-      <a href="what-are-sci-fi-apps.html">What are Sci-Fi Apps? →</a>
-      <a href="knowledge-graph.html">Knowledge Graph →</a>
+      <a href="what-are-sci-fi-apps.html">What are Spatial Web Apps? →</a>
+      <a href="/apps/musical-cubes/">Musical Cubes →</a>
     </div>
   </article>
   <footer>
-    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+    Sci-Fi Labs · Spatial web apps · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
   </footer>
 <script src="analytics.js" defer></script>
 <script src="section-nav.js" defer></script>
