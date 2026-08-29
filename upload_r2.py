@@ -98,11 +98,27 @@ def upload_file(filename: str, content_type: str):
     print(f"Public URL: {public_url}")
     return public_url
 
+def upload_file_from(src_path: str, r2_key: str, content_type: str):
+    src = Path(__file__).parent / src_path
+    body = src.read_bytes()
+    print(f"Uploading {src_path} ({len(body):,} bytes) -> {BUCKET}/{r2_key}")
+    resp = sigv4_put(r2_key, body, content_type, ENDPOINT)
+    print(f"HTTP {resp.status} {resp.reason}")
+    public_url = f"{PUBLIC_BASE}/{r2_key}"
+    print(f"Public URL: {public_url}")
+    return public_url
+
 def main():
-    upload_file("musical-cubes.jpg", "image/jpeg")
-    upload_file("musical-cubes.webp", "image/webp")
-    upload_file("musical-cubes.mp4", "video/mp4")
-    upload_file("musical-cubes-landscape.mp4", "video/mp4")
+    if len(sys.argv) == 3:
+        # Usage: python3 upload_r2.py <src_path> <r2_key>
+        src_path, r2_key = sys.argv[1], sys.argv[2]
+        content_type = "image/jpeg" if src_path.endswith((".jpg", ".jpeg")) else "application/octet-stream"
+        upload_file_from(src_path, r2_key, content_type)
+    else:
+        upload_file("musical-cubes.jpg", "image/jpeg")
+        upload_file("musical-cubes.webp", "image/webp")
+        upload_file("musical-cubes.mp4", "video/mp4")
+        upload_file("musical-cubes-landscape.mp4", "video/mp4")
     print("Done.")
 
 if __name__ == "__main__":
