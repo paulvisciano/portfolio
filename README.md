@@ -6,7 +6,7 @@ Personal portfolio for **Paul Visciano** — designer and engineer behind **Sci-
 
 ## What this is
 
-Minimal, editorial site for work across **web, mobile, and XR**. Spatial apps that treat life, memory, and music as environments you move through — not chat windows or timeline tools.
+**Not so static, static sites.** Minimal, editorial site for work across **web, mobile, and XR**. Spatial apps that treat life, memory, and music as environments you move through — not chat windows or timeline tools.
 
 Thesis: **make science fiction real**, and ship it across every surface.
 
