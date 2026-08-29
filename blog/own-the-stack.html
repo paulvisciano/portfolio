@@ -18,8 +18,291 @@
   <link rel="canonical" href="https://paulvisciano.com/blog/own-the-stack">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
+  <style>
+    .deck-stage{margin:0 0 2rem;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#05060a}
+    .deck-frame{position:relative;aspect-ratio:3/2;background:#000}
+    .deck-frame img,.deck-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .deck-frame video{object-fit:contain;background:#000}
+    .deck-overlay{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.2rem 1.1rem;background:linear-gradient(to top,oklch(8% 0.002 260 / 0.92),transparent);pointer-events:none}
+    .deck-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:0 0 0.35rem}
+    .deck-title{font-family:var(--font-display);font-size:clamp(1.4rem,3.2vw,2.1rem);line-height:1.1;letter-spacing:-0.03em;margin:0 0 0.35rem}
+    .deck-copy{margin:0;color:var(--muted);font-size:0.95rem;max-width:36rem}
+    .deck-bar{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.7rem 0.85rem;border-top:1px solid var(--border);background:oklch(10% 0.003 260)}
+    .deck-dots{display:flex;gap:0.4rem;flex-wrap:wrap}
+    .deck-dots button{width:9px;height:9px;border-radius:99px;border:0;background:oklch(40% 0.01 260);cursor:pointer;padding:0}
+    .deck-dots button[aria-current="true"]{background:oklch(72% 0.08 230);width:22px}
+    .deck-nav{display:flex;gap:0.4rem}
+    .deck-nav button{appearance:none;border:1px solid var(--border);background:oklch(16% 0.003 260);color:var(--fg);font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 0.65rem;border-radius:6px;cursor:pointer}
+    .deck-nav button:hover{border-color:var(--border-hi);color:var(--fg-bright)}
+    .hint{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+    @media(max-width:640px){.hint{display:none}}
+    .layer-grid{display:grid;gap:0.75rem;margin:0 0 1.6rem}
+    @media(min-width:720px){.layer-grid{grid-template-columns:repeat(3,1fr)}}
+    .layer{padding:1rem;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+    .layer .n{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:0 0 0.4rem}
+    .layer h3{font-family:var(--font-display);font-size:1.25rem;font-weight:400;margin:0 0 0.45rem}
+    .layer p{margin:0;font-size:0.95rem;color:var(--muted)}
+  </style>
 </head>
 <body>
-<!-- truncated-in-error -->
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <nav>
+        <a href="../index.html#blog">Blogs</a>
+        &nbsp;·&nbsp;
+        <a href="../index.html#work">Work</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Sci-Fi Labs · Vision</p>
+    <h1>Own the stack</h1>
+    <p class="deck">A nearby future where the operating system, the private archive, and the public rooms all belong to you. Not a lease from three companies. A computer you can unplug.</p>
+    <div class="deck-stage" id="vision-deck" aria-label="Interactive vision deck">
+      <div class="deck-frame">
+        <img id="deck-img" alt="" width="1176" height="784">
+        <video id="deck-vid" playsinline muted loop preload="metadata" hidden></video>
+        <div class="deck-overlay">
+          <p class="deck-kicker" id="deck-kicker"></p>
+          <p class="deck-title" id="deck-title"></p>
+          <p class="deck-copy" id="deck-copy"></p>
+        </div>
+      </div>
+      <div class="deck-bar">
+        <div class="deck-dots" id="deck-dots" role="tablist" aria-label="Slides"></div>
+        <p class="hint">← → keys · swipe</p>
+        <div class="deck-nav">
+          <button type="button" id="deck-prev" aria-label="Previous slide">Prev</button>
+          <button type="button" id="deck-next" aria-label="Next slide">Next</button>
+        </div>
+      </div>
+    </div>
+    <p>Most of the software on a desk is rented. The operating system phones home. Photos sit in someone else’s bucket. The music tool is a subscription with a sample library you do not own. The social layer is a feed you do not control. If any one of those companies pulls the plug, a piece of your life goes dark.</p>
+    <p>Sci-Fi Labs is the other stack. Three layers on one timeline. Open source. No cloud landlord. The public campaign leads with a globe. The private graph stays on a drive you can unplug.</p>
+    <div class="layer-grid">
+      <div class="layer"><p class="n">01 · OS</p><h3>Omarchy</h3><p>A tiled Arch desktop you can see. Agents as a key, not a landlord. Only the processes you asked for.</p></div>
+      <div class="layer"><p class="n">02 · Private</p><h3>Knowledge Graph</h3><p>The file browser becomes a conversation. Sensitive files live on a drive you can unplug.</p></div>
+      <div class="layer"><p class="n">03 · Public</p><h3>Spatial web apps</h3><p>A globe, a cube, a network. Published as websites on your domain. Same URL on phone, desk, Vision Pro.</p></div>
+    </div>
+    <div class="callout">Own the OS. Own the apps. Own the data. If a company can pull the plug, you do not own the stack.</div>
+    <div class="pipeline">
+      <p class="pipeline-title">The stack, left to right</p>
+      <div class="pipeline-flow">
+        <div class="pipe-step"><div class="n">01</div><div class="t">Omarchy</div><div class="d">Burn the ISO. Tiled Arch. Super + K.</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">02</div><div class="t">Air-gap drive</div><div class="d">Photos, voice, money, medical. Unplug = blind.</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">03</div><div class="t">Knowledge Graph</div><div class="d">Speak to the files. Local model. No landlord.</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">04</div><div class="t">Public rooms</div><div class="d">Globe. Cubes. Network. Ordinary websites.</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="n">05</div><div class="t">Space</div><div class="d">Same URL. Gestures. The window drops away.</div></div>
+      </div>
+    </div>
+    <h2>The operating system you can name</h2>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/02-os.jpg" alt="Night desk with a tiled dark Linux desktop, terminal beside browser, mechanical keyboard" width="1176" height="784" loading="lazy">
+      <figcaption class="fig-cap">No dock. No mystery tray. A window you opened, and another one.</figcaption>
+    </figure>
+    <p><a href="omarchy.html">Omarchy</a> is DHH’s omakase Linux cut — Arch, Hyprland, Quickshell. Quattro shipped August 14, 2026. The bar, launcher, lock screen, and menus live in one process. Super + K shows every binding. You install it, customize it, and the machine launches what you bound.</p>
+    <p>That is the desk the rest of the stack is meant to sit on. Not a Mac you cannot name the processes on. Not a Windows lease. A desktop you can read. Agents are a hotkey. Local models are files. If you dismiss the agent notice, there is no AI on the machine. Present. Optional. Not a mandatory cloud account.</p>
+    <p>Sci-Fi Labs takes that desk as the owned OS. Knowledge Graph becomes the native file layer on top of it. The public apps stay websites. Own the OS, the apps, and the data. That is the whole sentence.</p>
+    <h2>The drive you can unplug</h2>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/03-airgap.jpg" alt="Silver external drive on a desk with the USB-C cable disconnected; laptop behind it shows a glowing photo graph" width="1176" height="784" loading="lazy">
+      <figcaption class="fig-cap">Plug it in, talk to your files. Unplug it, the AI is blind.</figcaption>
+    </figure>
+    <p><a href="knowledge-graph.html">Knowledge Graph</a> is the private layer. It is not the homepage hero. Conversations, photos, voice notes, financials, medical records — the files you would not hand to a cloud — live on an external drive. When the cable is in, a local model sees them as a graph you can walk. When the cable is out, there is nothing to see.</p>
+    <p>That is an air gap, not a privacy setting. A toggle in a settings panel can be walked back by an update. A cable on the desk cannot. The graph is the file browser: you speak instead of hunting folders. Photos sit next to the conversations that mention them. A receipt sits next to the trip it paid for. Time is an axis, not a folder name.</p>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg" alt="Laptop screen showing a dark infinite canvas of personal photos, voice notes, and documents linked as a graph, with a silver drive plugged in beside it" width="1176" height="784" loading="lazy">
+      <figcaption class="fig-cap">The file browser as a conversation. Local model. Drive LED on.</figcaption>
+    </figure>
+    <p>JARVIS was the first cut of that idea — git as memory, an agent that knew the month. Neuro Graph is the public face of a network. Knowledge Graph is the engine that stays on the machine. Bonsai runs on 16 GB. Whisper hears. Nothing leaves the desk unless you publish it on purpose.</p>
+    <h2>The public rooms</h2>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/globe-spin.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-globe.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">Where is Paul? Live capture from the running app. Pins, stay-length bars, comic covers on the shelf.</figcaption>
+    </figure>
+    <p>The public layer is ordinary websites. No store. No extra session. Same URL on a phone, a desk, and Safari on Vision Pro. Pinch to zoom. Look to look around.</p>
+    <p><a href="/apps/where-is-paul/">Where is Paul?</a> is the flagship — globe, field-log filters, comics from real photographs, a character bible. Fifty-three moments across twenty-seven countries. The color of a place is how long a stay lasted. Clone it and swap <code>moments/moments.js</code>. That is your own social media, on your domain.</p>
+    <p>The latest cut is cohesive. Search “Places, people, stories.” Open Filters and you get the tribe, the years, the tags. Tap a pin and a comic drawer slides in with a street map. Characters is a flipbook: photograph on one side, illustration on the other.</p>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-filters.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-filters.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">Field Log Filters, captured live. People, year, tag. The public graph of a life.</figcaption>
+    </figure>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-comics.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-comic.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">Bangkok Hustle I, then Chicago. Drawer, full post, city map. All from the running globe.</figcaption>
+    </figure>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-characters.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-characters-reader.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">The character bible, live. Photo and drawing. Arrow to the next person.</figcaption>
+    </figure>
+    <p>The portfolio site is the blog layer of the same life. Essays, field notes, the argument. Not a feed someone else ranks. A room you publish.</p>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-cubes.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-cubes.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">Musical Cubes, running. Each face is a stem. Publish a side or the whole cube.</figcaption>
+    </figure>
+    <p><a href="/apps/musical-cubes/">Musical Cubes</a> is the music layer. Tracks as rotating cubes. Each face is a stem — vocal, guitar, drums, bass. You play a face, loop it, sync it to the others. You can publish one vocal or an entire arrangement. The original performer keeps the largest cut. A remix writes a royalty chain instead of erasing the first name.</p>
+    <p>That is a different primitive than a DAW timeline or a streaming catalog. The cube is the unit of ownership. A marketplace of faces, not a lease on a sample pack.</p>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-globe-chicago.jpg" alt="Where is Paul globe turned to North America with Chicago and Americas pins" width="1176" height="784" loading="lazy">
+      <figcaption class="fig-cap">Chicago on the live globe. A cube made on the road lands on the same pin.</figcaption>
+    </figure>
+    <p>A cube made on the road can drop onto the globe at the place it was recorded. The public rooms share a clock. A photo on the private drive, a pin on the globe, a face on a cube, a paragraph on the blog — same moment, four surfaces. You decide which surface is public.</p>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-neuro.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-neuro.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">Neuro Graph, running. People, places, time as a graph you orbit.</figcaption>
+    </figure>
+    <p><a href="/apps/neuro-graph/">Neuro Graph</a> is the public network of that life. The Secret Family is another room: a hierarchy of claims you walk in the browser. Maps claims. Not an endorsement.</p>
+    <h2>One timeline</h2>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/09-timeline.jpg" alt="Person at a night desk with an amber timeline of light connecting an external drive, a laptop graph, a holographic globe, and a music cube" width="1176" height="784" loading="lazy">
+      <figcaption class="fig-cap">Drive. Graph. Globe. Cube. One clock running through all four.</figcaption>
+    </figure>
+    <p>The nearby future is not four products. It is one day.</p>
+    <p>Morning on Omarchy. Super + Return is the terminal. Super + Shift + Return is the browser. No dock. You plug in the drive. Knowledge Graph wakes up. You ask what you recorded last Tuesday and a voice note and three photographs slide into view. You leave the medical folder closed. The model cannot see a file that is not on the mounted volume.</p>
+    <p>Afternoon you publish. A pin goes on the globe. A paragraph goes on the site. A cube face — just the vocal — goes public with the performer named first. The rest of the cube stays yours. Evening, the same URL opens in Safari on a headset. The window is gone. The rooms are still the rooms.</p>
+    <table>
+      <thead><tr><th>Layer</th><th>What lives there</th><th>Who can take it</th></tr></thead>
+      <tbody>
+        <tr class="chosen"><td>Omarchy</td><td>The desk. Keys. Agents you chose.</td><td>You, by not launching them.</td></tr>
+        <tr><td>Air-gap drive</td><td>Photos, voice, money, medical.</td><td>Nobody, once the cable is out.</td></tr>
+        <tr><td>Knowledge Graph</td><td>The private conversation with those files.</td><td>The model on the machine.</td></tr>
+        <tr><td>Where is Paul?</td><td>The life you chose to show.</td><td>You. It is a file on your domain.</td></tr>
+        <tr><td>Musical Cubes</td><td>Stems you play, publish, or keep.</td><td>The royalty chain you wrote.</td></tr>
+        <tr><td>Portfolio</td><td>The argument. The field notes.</td><td>You. It is a static site.</td></tr>
+      </tbody>
+    </table>
+    <h2>The nearby future</h2>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/06-ar.jpg" alt="Person standing in a dim apartment navigating holographic panels of a globe, a knowledge graph, and a music cube" width="1176" height="784" loading="lazy">
+      <figcaption class="fig-cap">Same apps in space. Gestures instead of a dock. Still your machine underneath.</figcaption>
+    </figure>
+    <p>The same URL already opens on a phone, a desk, and Safari on Vision Pro. The next surface is space itself — a hologram of the UI you already have. The stack does not change. The window disappears.</p>
+    <p>That is not a product launch. It is a sequence you can start this weekend: burn the Omarchy ISO, plug in a drive, open the globe, turn a cube. The private conversations stay on the drive. The public rooms stay websites you publish yourself. Everything in the lab is a repo you can fork.</p>
+    <div class="stat-strip">
+      <div class="stat"><div class="n">3</div><div class="l">Layers · OS, private, public</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Timeline across every room</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">Cloud landlords required</div></div>
+      <div class="stat"><div class="n">16 GB</div><div class="l">The machine most people have</div></div>
+    </div>
+    <h2>Watch the stack</h2>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-features.mp4" controls playsinline poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-globe.jpg" width="1176" height="784"></video>
+      <figcaption class="fig-cap">Where is Paul? live demo. Globe, Chicago, Bangkok, filters, comic drawer, character bible.</figcaption>
+    </figure>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/stack-tour.mp4" controls playsinline poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-filters.jpg" width="1176" height="784"></video>
+      <figcaption class="fig-cap">The public stack in one pass. Globe, filters, comics, cast, cubes, Neuro Graph, portfolio.</figcaption>
+    </figure>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/where-is-paul-tablet.mp4" controls playsinline poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-globe.jpg" width="1176" height="784"></video>
+      <figcaption class="fig-cap">Same URL on a tablet. The window is a website.</figcaption>
+    </figure>
+    <figure class="fig">
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/who-is-paul-apple-vision-2.mp4" controls playsinline poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/06-ar.jpg" width="1176" height="784"></video>
+      <figcaption class="fig-cap">Same URL in Safari on Vision Pro. The rooms are still the rooms.</figcaption>
+    </figure>
+    <h2>Latest in Sci-Fi Apps</h2>
+    <p>The public lead is <a href="/apps/where-is-paul/">Where is Paul?</a> — globe, filters, comics, characters, all live on one URL you can clone. <a href="/apps/musical-cubes/">Musical Cubes</a> and <a href="/apps/neuro-graph/">Neuro Graph</a> are the sister rooms. Knowledge Graph stays off the homepage on purpose. This page is the map of how those rooms sit on an owned OS.</p>
+    <div class="links">
+      <a href="omarchy.html">Omarchy essay</a>
+      <a href="what-are-sci-fi-apps.html">What are Spatial Web Apps?</a>
+      <a href="/apps/where-is-paul/">Open the globe</a>
+      <a href="https://github.com/paulvisciano">The repos</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="omarchy.html">Omarchy — A glimpse into the future →</a>
+      <a href="knowledge-graph.html">Knowledge Graph →</a>
+      <a href="they-can-pull-the-plug.html">They can pull the plug →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial web apps · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+<script>
+(function () {
+  var R2 = "https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/";
+  var slides = [
+    { kind: "vid", src: R2 + "globe-spin.mp4", poster: R2 + "live-globe.jpg", kicker: "00 · Live demo", title: "Where is Paul?", copy: "The flagship, captured from the running app." },
+    { kind: "vid", src: R2 + "wip-filters.mp4", poster: R2 + "live-filters.jpg", kicker: "03 · Public", title: "Field Log Filters", copy: "People, year, tag. The tribe on one panel." },
+    { kind: "vid", src: R2 + "wip-comics.mp4", poster: R2 + "live-comic.jpg", kicker: "03 · Public", title: "Comics on the pin", copy: "Tap Bangkok. Drawer, full post, city map." },
+    { kind: "vid", src: R2 + "wip-characters.mp4", poster: R2 + "live-characters-reader.jpg", kicker: "03 · Public", title: "The character bible", copy: "Photograph and drawing. Arrow to the next person." },
+    { kind: "img", src: R2 + "02-os.jpg", kicker: "01 · OS", title: "Omarchy on the desk", copy: "Tiled Arch. Only the apps you asked for." },
+    { kind: "img", src: R2 + "03-airgap.jpg", kicker: "02 · Private", title: "Unplug the archive", copy: "Sensitive files live on a drive you can pull." },
+    { kind: "img", src: R2 + "08-graph.jpg", kicker: "02 · Private", title: "Talk to the files", copy: "Knowledge Graph is the file browser." },
+    { kind: "vid", src: R2 + "wip-cubes.mp4", poster: R2 + "live-cubes.jpg", kicker: "03 · Public", title: "Music as a cube", copy: "Each face is a stem. Publish a side or the whole." },
+    { kind: "vid", src: R2 + "wip-neuro.mp4", poster: R2 + "live-neuro.jpg", kicker: "03 · Public", title: "A network you orbit", copy: "Neuro Graph. People, places, time." },
+    { kind: "img", src: R2 + "06-ar.jpg", kicker: "05 · Space", title: "Same apps, no window", copy: "Gestures in the room. Still your machine." },
+    { kind: "vid", src: R2 + "wip-features.mp4", poster: R2 + "live-globe.jpg", kicker: "Play", title: "Where is Paul? tour", copy: "Globe, filters, drawers, cast. All live captures." },
+    { kind: "vid", src: R2 + "stack-tour.mp4", poster: R2 + "live-filters.jpg", kicker: "Play", title: "The public stack", copy: "Globe through Neuro Graph and the portfolio." }
+  ];
+  var i = 0;
+  var img = document.getElementById("deck-img");
+  var vid = document.getElementById("deck-vid");
+  var kicker = document.getElementById("deck-kicker");
+  var title = document.getElementById("deck-title");
+  var copy = document.getElementById("deck-copy");
+  var dots = document.getElementById("deck-dots");
+  slides.forEach(function (_, n) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "Slide " + (n + 1));
+    b.addEventListener("click", function () { show(n); });
+    dots.appendChild(b);
+  });
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    var s = slides[i];
+    kicker.textContent = s.kicker;
+    title.textContent = s.title;
+    copy.textContent = s.copy;
+    Array.prototype.forEach.call(dots.children, function (b, idx) {
+      if (idx === i) b.setAttribute("aria-current", "true");
+      else b.removeAttribute("aria-current");
+    });
+    if (s.kind === "vid") {
+      img.hidden = true;
+      vid.hidden = false;
+      vid.poster = s.poster;
+      if (vid.src !== s.src) vid.src = s.src;
+      vid.play().catch(function () {});
+    } else {
+      vid.pause();
+      vid.hidden = true;
+      img.hidden = false;
+      img.src = s.src;
+      img.alt = s.title;
+    }
+  }
+  document.getElementById("deck-prev").addEventListener("click", function () { show(i - 1); });
+  document.getElementById("deck-next").addEventListener("click", function () { show(i + 1); });
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target && e.target.tagName) || "";
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "VIDEO") return;
+    if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); show(i + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); show(i - 1); }
+  });
+  var startX = 0;
+  document.getElementById("vision-deck").addEventListener("touchstart", function (e) {
+    startX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  document.getElementById("vision-deck").addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (dx < -40) show(i + 1);
+    if (dx > 40) show(i - 1);
+  }, { passive: true });
+  show(0);
+})();
+</script>
 </body>
 </html>
