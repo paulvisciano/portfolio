@@ -10,6 +10,8 @@ Minimal, editorial site for work across **web, mobile, and XR**. Spatial apps th
 
 Thesis: **make science fiction real**, and ship it across every surface.
 
+Underneath it: **your life is your data.** Conversations, photos, documents, moments — mapped in time, browsed on your own machine, instead of sitting in someone else's cloud training their models. The spatial UI is how you navigate what's yours.
+
 ## Sections
 
 - **Work** — featured Sci-Fi apps with video previews
@@ -22,8 +24,18 @@ Thesis: **make science fiction real**, and ship it across every surface.
 | Project | What it is | Links |
 |---|---|---|
 | **Where is Paul?** | Spatial life map — 3D globe, timeline, stories | [Live](https://paulvisciano.github.io/) · [Blog](/blog/where-is-paul.html) |
-| **Knowledge Graph** | Sovereign memory space — local AI, infinite canvas | [Repo](https://github.com/paulvisciano/knowledge-graph) · [Blog](/blog/knowledge-graph.html) |
+| **Knowledge Graph** | Private journal of your life — local AI, infinite canvas. Labeled demo of the running UI, plus a how-to for wiring it into your own stack. | [Repo](https://github.com/paulvisciano/knowledge-graph) · [Blog](/blog/knowledge-graph.html) |
 | **Musical Cubes** | Music production in 3D — rotating cube instruments | [Live](https://paulvisciano.com/apps/musical-cubes) · [Repo](https://github.com/paulvisciano/musical-cubes) · [Blog](/blog/musical-cubes.html) |
+
+## The through-line
+
+Every project is a different lens on the same archive — your content, mapped in time:
+
+- **Neuro Graph** finds the connections between people, places, and moments.
+- **Where is Paul?** puts those moments on a globe.
+- **Knowledge Graph** journals the conversations and images privately, on your machine.
+
+Same data. Different visualizations. One catalog.
 
 ## Stack
 
@@ -47,4 +59,4 @@ Push to `main`. With the repo linked to Vercel, production updates automatically
 ---
 
 *Sci-Fi is reality.*  
-*Let’s build the future together.*
+*Let's build the future together.*
