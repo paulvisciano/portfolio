@@ -4,19 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Where is Paul? — the flagship spatial web app</title>
-  <meta name="description" content="Family asked where Paul was. The answer is a globe you can spin. Hex color is how long you stayed. Same URL on a phone, a desk, and Safari on Vision Pro.">
+  <meta name="description" content="Family asked where I was. I built them a globe. Then the years underneath: Varna, Sofia, Chicago, Clearwater, and the ones that would not sit still. Clone it and put your life on it.">
   <meta name="theme-color" content="#0a0a0a">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Where is Paul? — the flagship spatial web app">
-  <meta property="og:description" content="A life on a globe. Hex color is stay. Same URL on a phone, a desk, and Safari on Vision Pro.">
+  <meta property="og:description" content="Family asked where I was. The answer is a globe they can spin. Under the pins is a life.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Where is Paul? — the flagship spatial web app">
-  <meta name="twitter:description" content="Family asked where Paul was. The answer is a globe you can spin.">
+  <meta name="twitter:description" content="Family asked where I was. I built them a globe they can spin.">
   <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/where-is-paul.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/where-is-paul">
-  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="blog.css?v=covers">
   <link rel="stylesheet" href="section-nav.css">
+  <style>
+    .cover-shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.85rem;margin:1.6rem 0 1.5rem}
+    @media(min-width:720px){.cover-shelf{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}}
+    .cover-shelf a{position:relative;display:block;text-decoration:none;color:inherit;border-radius:4px 10px 10px 4px;overflow:hidden;background:#111;border:1px solid oklch(28% 0.003 260);box-shadow:inset 3px 0 0 rgba(255,255,255,.14),0 12px 28px rgba(0,0,0,.4);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+    .cover-shelf a:hover,.cover-shelf a:focus-visible{transform:translateY(-8px);border-color:oklch(72% 0.08 230 / 0.55);box-shadow:inset 3px 0 0 oklch(72% 0.08 230 / 0.7),0 20px 36px rgba(0,0,0,.5);outline:none;z-index:1}
+    .cover-shelf img{display:block;width:100%;height:15.5rem;object-fit:cover;object-position:top center}
+    @media(min-width:720px){.cover-shelf img{height:20rem}}
+    .cover-shelf .cover-meta{position:absolute;left:0;right:0;bottom:0;padding:2.2rem .7rem .65rem;background:linear-gradient(to top,rgba(10,10,12,.94),rgba(10,10,12,.5) 55%,transparent);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#f5f5f5;line-height:1.35}
+    .cover-shelf .cover-meta em{display:block;font-style:normal;color:oklch(72% 0.08 230);font-size:10px;letter-spacing:.14em;margin-bottom:.2rem}
+    .cover-shelf .cover-open{display:block;margin-top:.35rem;color:#8a8a90;letter-spacing:.12em}
+    .cover-shelf a:hover .cover-open{color:oklch(72% 0.08 230)}
+  </style>
 </head>
 <body>
   <header class="top">
@@ -35,20 +47,93 @@
   <article>
     <p class="series">Sci-Fi Labs · Flagship</p>
     <h1>Where is Paul?</h1>
-    <p class="deck">Family asked where he was. The answer is a globe you can spin.</p>
+    <p class="deck">Family asked where I was. I built them a globe they can spin.</p>
     <figure class="fig">
       <video controls playsinline preload="metadata" aria-label="Where is Paul globe and timeline">
         <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/where-is-paul-tablet.mp4" type="video/mp4">
       </video>
-      <figcaption class="fig-cap">Spin the world. Scrub the years. Hex color is how long you stayed.</figcaption>
+      <figcaption class="fig-cap">Spin the world. Scrub the years. The color of each place is how long I stayed — darker means longer.</figcaption>
     </figure>
 
-    <p>The texts kept coming. Sofia. Bangkok. A layover that turned into a month. By the time you named the city, he had already left it. A pin on a group chat is stale before you send it.</p>
-    <p>So the answer became a place you open. A globe. Cities as hexes. Years as a strip you can drag. Comics and photos sitting on the path, not in a camera roll you never scroll. Time as a surface.</p>
-    <p>This is the flagship of Sci-Fi Labs. A spatial web app. Not a feed. Not a photo dump. A life you move through. Same URL on a phone, a desk, and Safari on Vision Pro. Pinch to zoom. Look to look around. No store. No extra session.</p>
+    <p>The texts kept coming. Sofia. Bangkok. A layover that turned into a month. By the time they named the city, I had already left it. A pin in a group chat is stale before you send it.</p>
+    <p>Instagram could not help them. A highlight reel is not an answer. Google already knew the coordinates, if Timeline was on, but a surveillance file is not something you send your mother. I wanted a place she could open and actually see me.</p>
+    <p>So I built a globe. Places light up on the Earth. Years as a strip you can drag. Photos and comics sitting on the path instead of dying in a camera roll. Not a regular website. A spatial exploration of a lifetime — on a phone, on a desk, and, if you put a headset on, in the room with you.</p>
+    <p>This is the flagship of Sci-Fi Labs. The live map is the demo. Your copy is a clone.</p>
     <p><a class="ext" href="https://paulvisciano.com/apps/where-is-paul/">https://paulvisciano.com/apps/where-is-paul/</a></p>
 
-    <div class="callout">The live map is the demo. Your copy is a clone. The only file you change is <code>moments/moments.js</code>.</div>
+    <div class="callout">Open it first. What follows is the life underneath the pins.</div>
+
+    <h2>What you are looking at</h2>
+    <p>Spin it and look for the dark tiles. Those are not the famous cities. Those are the years I actually lived somewhere. The bright ones are crossings — a night, a weekend, a spark on the way through.</p>
+    <p>I was born in Varna in 1988, on the Black Sea. I remember the water more than the streets. When I was six we moved inland to <a class="ext" href="https://paulvisciano.com/apps/where-is-paul/moments/sofia/1994-11-24">Sofia</a>, and the capital became the whole world. I started at 119th school, then Doris Tenedi German High. After class we played soccer on concrete until the lights came on. I still have the scars on my knees. By thirteen, downtown was ours.</p>
+    <p>At sixteen I got on a plane for an exchange year in Osseo, Wisconsin. A foster family, a small American high school, a winter I had no language for. Chicago caught me after that and held on for a decade. Gordon Tech. College. Volleyball courts, which is how I found my people. I spent fifteen years building software for other companies, and somewhere in there I became a dual citizen — Bulgarian and American, always a little of both.</p>
+    <p>The pin that keeps coming back in Florida is not a beach habit. My mother lives in Clearwater. That is where Christmas happens. That is where I land when a year gets too long. My brother David is on this map too. We shared Varna, then Sofia, then Chicago, and then our lives went in different directions without coming apart.</p>
+    <p>The years that look like travel started while I still had a job. Medellín in 2022, for months. Then St. Petersburg, Florida, for most of a year. Beirut, Athens, Barcelona. Home to Sofia and Varna as a guest in the cities that made me. Honolulu. Bangkok. Bali. Siargao. Friends from the courts kept appearing in new countries, which is how I knew I had not left my life. I had only stretched it.</p>
+    <p>In October 2025 I flew to Chicago for a wedding and sat with my dad for the first time in sixteen years. That day is a comic now: <a class="ext" href="https://paulvisciano.com/apps/where-is-paul/moments/chicago/2025-10-01">Full Throttle</a>. A few months later I was in Bangkok when I left the job — <a class="ext" href="https://paulvisciano.com/apps/where-is-paul/moments/bangkok/2026-02-28">Day One</a> on the globe. Family can open it now and see where I am — and where I have been — without guessing from a text.</p>
+
+    <h2>How to read the globe</h2>
+    <p>Open it. Drag the world with one finger. You are not scrolling a list of trips. You are standing over those years.</p>
+    <p><strong>The color of a place is how long I stayed.</strong> Each tile on the Earth is somewhere I slept. Orange or dark, that is the nights — not how much I posted, not how famous the city is, not how tall the tile looks. Height on this map is a lie. Color is the nights.</p>
+    <p>The scale runs the opposite way most maps train you to read. A layover is bright orange, almost a flare. A couple of weeks cools toward rust. A month sits there, darker. A year, or a childhood, goes nearly brown. Hover or tap and the number of days is written on the tile. You do not have to guess.</p>
+    <p>So Sofia is dark because I grew up there. Chicago is dark because that decade held. Clearwater keeps returning because home is a person, and the nights add up. A one-night city is a spark you can miss if you only look for glow. Look for the dark. That is where I stayed.</p>
+    <p>If you write about travel, you already know this. The postcard and the rent are different stories. The globe only tells the second one.</p>
+    <p><strong>The timeline is the same life, laid flat.</strong> Cards on top. Years under them. Eras as a strip you can jump. Scrub 1994 and you are in Sofia. Scrub 2004 and you are in Wisconsin. Scrub 2022 and the job is still on and Medellín is already happening. The orange pip is where you are in the story.</p>
+    <p><strong>Pins mix media.</strong> A photo. A post. A short video. A comic drawn from the photographs of that day. People in their own voices — <a class="ext" href="https://paulvisciano.com/apps/where-is-paul/characters">my mother, the St. Pete crew</a>, the ones who keep appearing when the pin changes. Tap one and a story opens. Mixed on purpose. A life is not one format.</p>
+    <p>If you only remember one thing: longer stay, darker tile. Then drag the years. Start with <a class="ext" href="https://paulvisciano.com/apps/where-is-paul/">the globe</a>.</p>
+
+    <h2>The comics are the days</h2>
+    <p>The books on the globe are not made-up stories with my face pasted on. They are days I lived, drawn from real photographs. A comic is how the day survives without becoming a caption you never read again.</p>
+    <p>They hide what actually happened in the panels. <a class="ext" href="https://paulvisciano.com/apps/where-is-paul/moments/bangkok/2025-08-31">Bangkok Hustle I</a> looks like a long night in the city until you notice the scam. Someone tried to take me. It is in the book. The next episode is the morning after. If you only spin the globe you will miss it. Open the cover.</p>
+    <p>Tap a cover. You land in the live reader — same app, that day, pages you can flip.</p>
+    <div class="cover-shelf" role="list">
+      <a role="listitem" href="https://paulvisciano.com/apps/where-is-paul/moments/bangkok/2025-08-31">
+        <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/moments/bangkok/2025-08-31/cover.webp" alt="Urban Runner Episode 4: Bangkok Hustle I" width="400" height="600" loading="lazy">
+        <span class="cover-meta"><em>Bangkok</em>Hustle I<span class="cover-open">Open →</span></span>
+      </a>
+      <a role="listitem" href="https://paulvisciano.com/apps/where-is-paul/characters">
+        <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/characters/cover-thumb.webp" alt="Urban Runner: The People in My Life" width="400" height="600" loading="lazy">
+        <span class="cover-meta"><em>Cast</em>The people<span class="cover-open">Open →</span></span>
+      </a>
+      <a role="listitem" href="https://paulvisciano.com/apps/where-is-paul/moments/chicago/2025-10-01">
+        <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/moments/chicago/2025-10-01/cover.webp" alt="Chicago Episode 1: Full Throttle" width="400" height="600" loading="lazy">
+        <span class="cover-meta"><em>Chicago</em>Full Throttle<span class="cover-open">Open →</span></span>
+      </a>
+      <a role="listitem" href="https://paulvisciano.com/apps/where-is-paul/moments/siargao/2025-12-14">
+        <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/moments/siargao/2025-12-14/cover.webp" alt="Siargao arc" width="400" height="600" loading="lazy">
+        <span class="cover-meta"><em>Siargao</em>Island arc<span class="cover-open">Open →</span></span>
+      </a>
+      <a role="listitem" href="https://paulvisciano.com/apps/where-is-paul/moments/istanbul/2025-09-24">
+        <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/moments/istanbul/2025-09-24/cover.webp" alt="Istanbul: Crossroads of Cultures" width="400" height="600" loading="lazy">
+        <span class="cover-meta"><em>Istanbul</em>Crossroads<span class="cover-open">Open →</span></span>
+      </a>
+      <a role="listitem" href="https://paulvisciano.com/apps/where-is-paul/moments/miami/2025-10-09">
+        <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/moments/miami/2025-10-09/cover.webp" alt="Miami Episode 4: Side Out" width="400" height="600" loading="lazy">
+        <span class="cover-meta"><em>Miami</em>Side Out<span class="cover-open">Open →</span></span>
+      </a>
+    </div>
+    <div class="lib-chips">
+      <a href="https://paulvisciano.com/apps/where-is-paul/">Open the globe</a>
+      <a href="https://paulvisciano.com/apps/where-is-paul/moments/sofia/1994-11-24">Sofia years</a>
+      <a href="https://paulvisciano.com/apps/where-is-paul/moments/bangkok/2025-08-31">The Bangkok scam</a>
+      <a href="https://paulvisciano.com/apps/where-is-paul/moments/bangkok/2025-09-01">The morning after</a>
+      <a href="https://paulvisciano.com/apps/where-is-paul/characters">The people</a>
+      <a href="https://paulvisciano.com/apps/where-is-paul/moments/bangkok/2026-02-28">Day One</a>
+    </div>
+
+    <h2>Step into the years</h2>
+    <figure class="fig">
+      <video controls playsinline preload="metadata" aria-label="Where is Paul on Apple Vision Pro">
+        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/who-is-paul-apple-vision-2.mp4" type="video/mp4">
+      </video>
+      <figcaption class="fig-cap">Apple Vision Pro. The same URL, at the scale of a room. Pinch to zoom. Look to look around.</figcaption>
+    </figure>
+    <p>On a phone you can spin it. On a desk you can scrub the years. Put on Apple Vision Pro, open the same URL in Safari, and you are inside it.</p>
+    <p>The globe hangs in front of you. Pinch and Sofia comes closer — not a caption, a city you can lean toward. Look around and Chicago is a decade standing in space. The comics, the photos, the voices sit with the Earth. You are not scrolling my life. You are moving through it.</p>
+    <p>That is the differentiator. A travel site is a page. This is a spatial exploration of a lifetime. Mine, if you open my globe. Yours, if you clone it, put your nights in the file, and hand someone a headset. There is no separate build. No extra session. The headset does not get a special app. It gets the life, in 3D, at the scale of a room.</p>
+
+    <h2>Make your own</h2>
+    <p>Google already has a version of your life if Timeline was on. Instagram has the version that performed. Neither one is yours in a way you can hand to your family, fork, or keep when the company changes the product.</p>
+    <p>This is a static site. No database. No backend. No account. No algorithm ranking who sees what. You decide what exists by what you put in the files. That is the privacy model. Not a promise from a platform. A folder you hold.</p>
 
     <div class="pipeline">
       <p class="pipeline-title">From a life to a globe</p>
@@ -56,7 +141,7 @@
         <div class="pipe-step">
           <div class="n">01</div>
           <div class="t">Open</div>
-          <div class="d">Spin the world. Scrub the years. Tap a pin. That is the product.</div>
+          <div class="d">Spin my years. Then imagine yours on the same shell.</div>
         </div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step">
@@ -68,34 +153,17 @@
         <div class="pipe-step">
           <div class="n">03</div>
           <div class="t">Yours</div>
-          <div class="d">Where is [You]? Same spatial app. Your moments.</div>
+          <div class="d">Where is [You]? Same spatial app. Your nights. Your people.</div>
         </div>
       </div>
     </div>
 
-    <h2>How to read the globe</h2>
-    <p>Open it. Drag the world with one finger. You are not scrolling a list of trips. You are standing over the years.</p>
-    <p><strong>Hex color is stay.</strong> How long you actually slept there. Not how much you posted. Not how famous the city is. Height is a lie on this map. Color is the nights.</p>
-    <p><strong>The timeline is the same life, laid flat.</strong> Cards on top. Years under them. Eras as a strip you can jump. Scrub a year and the globe turns with you. The orange pip is where you are in the story.</p>
-    <p><strong>Pins mix media.</strong> A photo. A post. A short video. A comic drawn from real photographs. Tap one and a story opens. Mixed on purpose. A life is not one format.</p>
-    <p>If you only remember one thing: longer stay, different color. Then drag the years.</p>
-
-    <h2>Same URL, including the headset</h2>
-    <figure class="fig">
-      <video controls playsinline preload="metadata" aria-label="Where is Paul on Apple Vision Pro">
-        <source src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/portfolio/who-is-paul-apple-vision-2.mp4" type="video/mp4">
-      </video>
-      <figcaption class="fig-cap">Safari on Vision Pro. Pinch to zoom. Look to look around. Same URL.</figcaption>
-    </figure>
-    <p>On a phone it is the page. On a desk it is the page. On Vision Pro it is still the page, opened in Safari. There is no separate build. Spatial apps are web apps.</p>
-
-    <h2>Make your own</h2>
-    <p>Clone <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">github.com/paulvisciano/where-is-paul</a>. Edit <code>moments/moments.js</code>. Date, place, stay, media. That is the fork door.</p>
-    <p>If you are sitting on a Google Timeline export and you want the long way, the walkthrough is here: <a href="one-prompt-life-map.html">One prompt. Your own life map.</a> Clone first. Prompt second.</p>
-    <p>Live: <a href="/apps/where-is-paul/">paulvisciano.com/apps/where-is-paul</a></p>
+    <p>Clone <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">github.com/paulvisciano/where-is-paul</a>. Edit <code>moments/moments.js</code>. Date, place, stay, media. Rename it Where is [You]?. Send the URL to whoever still asks where you are. If they put a headset on, they are not reading your year. They are standing in it.</p>
+    <p>If you are sitting on a Google Timeline export and you want the long way, the walkthrough is here: <a href="one-prompt-life-map.html">One prompt. Your own life map.</a> Clone first. Prompt second. Takeout can fill the nights. You still choose what goes public.</p>
+    <p>Live: <a href="https://paulvisciano.com/apps/where-is-paul/">paulvisciano.com/apps/where-is-paul</a></p>
 
     <div class="links">
-      <a href="/apps/where-is-paul/">Open the globe</a>
+      <a href="https://paulvisciano.com/apps/where-is-paul/">Open the globe</a>
       <a href="https://github.com/paulvisciano/where-is-paul">GitHub</a>
       <a href="one-prompt-life-map.html">Clone walkthrough</a>
       <a href="what-are-sci-fi-apps.html">What are Spatial Web Apps?</a>
