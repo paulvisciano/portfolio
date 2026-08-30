@@ -6,8 +6,10 @@
     { "source": "/apps/neuro-graph", "destination": "/apps/neuro-graph/", "permanent": false },
     { "source": "/apps/the-secret-family", "destination": "/apps/the-secret-family/", "permanent": false },
     { "source": "/apps/where-is-paul", "destination": "/apps/where-is-paul/", "permanent": false },
-    { "source": "/blog/what-are-spatial-web-apps", "destination": "/blog/what-are-sci-fi-apps", "permanent": true },
-    { "source": "/blog/what-are-spatial-web-apps/", "destination": "/blog/what-are-sci-fi-apps", "permanent": true }
+    { "source": "/blog/what-are-spatial-web-apps", "destination": "/blog/what-are-spatial-apps", "permanent": true },
+    { "source": "/blog/what-are-spatial-web-apps/", "destination": "/blog/what-are-spatial-apps", "permanent": true },
+    { "source": "/blog/what-are-sci-fi-apps", "destination": "/blog/what-are-spatial-apps", "permanent": true },
+    { "source": "/blog/what-are-sci-fi-apps/", "destination": "/blog/what-are-spatial-apps", "permanent": true }
   ],
   "rewrites": [
     { "source": "/apps/musical-cubes", "destination": "https://musical-cubes.vercel.app/" },
