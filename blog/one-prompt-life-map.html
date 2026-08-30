@@ -17,6 +17,9 @@
   <link rel="canonical" href="https://paulvisciano.com/blog/one-prompt-life-map">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
+  <style>
+    article h3 { margin: 2rem 0 0.65rem; }
+  </style>
 </head>
 <body>
   <header class="top">
@@ -40,7 +43,7 @@
     <p><a href="/apps/where-is-paul/">Where is Paul?</a> is a spatial web app. A life on a globe. The color of a place is how long a stay lasted. Same URL on a phone, a desk, and Safari on Vision Pro. Pinch to zoom. Look to look around.</p>
     <p>You do not need a chatbot to start. You need the repo.</p>
 
-    <div class="callout">Clone first. The only file you change is <code>moments/moments.js</code>. The Grok prompt is second, if you want Takeout to fill the globe for you.</div>
+    <div class="callout">Clone it. Run it locally. The only file you change is <code>moments/moments.js</code>. The Grok prompt is second, if you want Takeout to fill the globe for you.</div>
 
     <div class="pipeline">
       <p class="pipeline-title">The door</p>
@@ -48,7 +51,7 @@
         <div class="pipe-step">
           <div class="n">01</div>
           <div class="t">Clone</div>
-          <div class="d">github.com/paulvisciano/where-is-paul</div>
+          <div class="d">git clone · npm install · npm start</div>
         </div>
         <div class="pipe-arrow">→</div>
         <div class="pipe-step">
@@ -67,8 +70,34 @@
 
     <h2>Clone it</h2>
     <p>Repo: <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">github.com/paulvisciano/where-is-paul</a></p>
-    <p>Open <code>moments/moments.js</code>. That is the only file you need to change. Put your dates, coordinates, stay lengths, photos, comics. The color of each place on the globe will follow stay duration. Not how tall it looks.</p>
-    <p>Run it locally. Open the same URL on a phone or a desk. On Vision Pro, Safari. Pinch. Look. No extra session.</p>
+    <p>This is a static site. No database. No backend. No account. You decide what exists by what you put in the files.</p>
+
+    <h3>Run it locally</h3>
+<pre style="white-space:pre-wrap;padding:1rem 1.1rem;margin:0.75rem 0 1.4rem;border:1px solid var(--border);border-radius:10px;background:var(--surface);font-family:var(--font-mono);font-size:0.9rem;line-height:1.55;overflow:auto;"><code>git clone https://github.com/paulvisciano/where-is-paul.git
+cd where-is-paul
+npm install
+npm start</code></pre>
+    <p>Open <code>http://localhost:8080</code>. Don’t open <code>index.html</code> as a file — posts fetch over HTTP.</p>
+
+    <h3>Replace the pins</h3>
+    <p>Open <code>moments/moments.js</code>. That is the only file you need to change for a globe of your life. Replace the <code>window.momentsInTime</code> array with your stays. One object per pin:</p>
+<pre style="white-space:pre-wrap;padding:1rem 1.1rem;margin:0.75rem 0 1.4rem;border:1px solid var(--border);border-radius:10px;background:var(--surface);font-family:var(--font-mono);font-size:0.9rem;line-height:1.55;overflow:auto;"><code>{
+  id: "lisbon-2025-10-12",
+  title: "Lisbon",
+  date: new Date("2025-10-12T00:00:00Z"),
+  timelineHighlight: "Lisbon",
+  tags: ["city"],
+  snippet: "One paragraph. This is the card on the globe.",
+  fullLink: "#",
+  image: "/moments/lisbon/2025-10-12/image-thumb.webp",
+  imageAlt: "Lisbon",
+  location: { lat: 38.7223, lng: -9.1393, name: "Lisbon, Portugal" },
+  stayDuration: 12,
+  formattedDuration: formatDuration(12)
+}</code></pre>
+    <p><code>stayDuration</code> is days. That number is the hex color: a few days stay bright orange, months go darker. Not height.</p>
+    <p>To drop the people in the demo, set <code>window.characters = []</code> in <code>characters/characters.js</code>.</p>
+    <p>Written posts live at <code>moments/&lt;city&gt;/&lt;YYYY-MM-DD&gt;/content.html</code>. Comics, photos, and video sit in that folder or on any <code>https://</code> URL. Publish is any static host. <code>vercel.json</code> is already in the repo.</p>
 
     <h2>If you want Takeout to do the typing</h2>
     <p>Google already has a record of where you went, if Maps Timeline was on. Coffee shops. Routes to work. Weekends. A lot of people never looked at it. Get the file out. Put it on a globe you control.</p>
@@ -91,7 +120,7 @@ Rename it to “Where is [My Name]?” and set it up so I can drop in my own Goo
     <h2>What to do next</h2>
     <ol>
       <li>Open the live globe: <a href="/apps/where-is-paul/">Where is Paul?</a></li>
-      <li>Clone <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">the repo</a> and edit <code>moments/moments.js</code>.</li>
+      <li>Clone <a class="ext" href="https://github.com/paulvisciano/where-is-paul" target="_blank" rel="noopener">the repo</a>, run <code>npm install</code> and <code>npm start</code>, then edit <code>moments/moments.js</code>.</li>
       <li>If you want auto-fill, paste the prompt and drop <code>Timeline.json</code>.</li>
     </ol>
     <p>The category this sits in: <a href="what-are-sci-fi-apps.html">What are Spatial Web Apps?</a></p>
