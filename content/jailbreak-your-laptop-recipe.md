@@ -46,7 +46,7 @@ I already have the entire ecosystem running. Open WebUI with the Knowledge Graph
 
 ---
 
-## Part 1 — On the OS
+## Part 1 — PWN the OS
 
 **Crack the lock the vendor shipped.**
 
