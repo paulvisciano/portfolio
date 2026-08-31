@@ -2,7 +2,7 @@
 
 You bought the phone. You think you own it. You don't.
 
-Every picture you take gets sent to the cloud. Your location is tracked. Every message you send, every call you make, every search — reported, monetized, used to train someone else's model. You rely on the brand to push out updates, and the brand decides what those updates do. You paid for the silicon. You rented the software, the data, and the intelligence.
+Every picture you take gets sent to the cloud. Your location is tracked. Every message you send, every call you make, every search — reported, monetized, used to train someone else's model. You rely on the brand to push out updates, and the brand decides what those updates do. You paid for the silicon. You locked the software, the data, and the intelligence.
 
 That's the deal we've all been living with. And it's about to change.
 
@@ -56,7 +56,7 @@ A 2026 analysis found that nine out of ten AI-related fines in recent years conc
 
 And you rely on the brand to push out updates. Google has been struggling to make a better camera app for years. Now you can make your own — just the way you like it. Annoyed by something in the operating system? Change it. Annoyed by how an app works? Change it. Build your own. If you like an app but don't want to rely on somebody else, clone it.
 
-The hardware was always yours. The software was rented. The data was extracted. The AI was someone else's. All four were someone else's lock.
+The hardware was always yours. The software was locked. The data was extracted. The AI was someone else's. All four were someone else's lock.
 
 ## The flip
 
