@@ -22,6 +22,11 @@
   .cover { page-break-after: always; }
   .cover .big { font-size: 40pt; font-weight: 800; line-height: 1.05; }
   .cover .tagline { font-size: 14pt; color:#555; margin-top: 10pt; }
+  .cook { background:#fff8e1; border:1px solid #f0c040; border-radius:6px; padding:10pt 12pt; margin:10pt 0; page-break-inside: avoid; }
+  .cook h3 { margin-top:0; color:#7a5c00; }
+  .cook .agents { font-size:9.5pt; color:#555; margin:4pt 0 8pt; }
+  .cook .agents a { color:#7a5c00; }
+  .cook .prompt { background:#fff; border-left-color:#f0c040; }
 </style>
 </head>
 <body>
@@ -58,6 +63,16 @@
   </ol>
   <h3>Prompt an AI to set it up</h3>
   <div class="prompt">You are a systems engineer. Walk me through installing Omarchy 4.x on a MacBook with an 18 GB unified-memory chip. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.</div>
+  <div class="cook">
+    <h3>Let AI Cook</h3>
+    <div class="agents">Run any of these <b>locally</b> against your own model (Bonsai via llama.cpp, or Ollama) — no cloud API, no API key:
+      <a href="https://code.claude.com">Claude Code</a> ·
+      <a href="https://github.com/NousResearch/hermes-agent">Hermes</a> ·
+      <a href="https://openclaw.ai">OpenClaw</a> ·
+      <a href="https://opencode.ai">OpenCode</a>
+    </div>
+    <div class="prompt">Install Omarchy 4.x on this MacBook (18 GB unified memory). Turn off Secure Boot, flash the ISO, run the full-disk encrypted install with Hyprland, then verify with `omarchy --version`. Do it step by step and stop if anything fails.</div>
+  </div>
 </div>
 
 <h2>Step 2 — Fork or Build Your Apps</h2>
@@ -73,6 +88,11 @@
   </ol>
   <h3>Prompt an AI to set it up</h3>
   <div class="prompt">I have a forked web app that currently calls OpenAI's API. Rewrite it to call a local llama.cpp server on http://localhost:8080 instead. Show me the fetch changes, how to start the server with a Bonsai 8B Q1_0 GGUF, and how to keep the same UI. No cloud, no API keys.</div>
+  <div class="cook">
+    <h3>Let AI Cook</h3>
+    <div class="agents">Same local agents — Claude Code, Hermes, OpenClaw, or OpenCode pointed at your llama.cpp / Ollama endpoint.</div>
+    <div class="prompt">Rewrite this forked app to call http://localhost:8080 (Bonsai 8B via llama.cpp) instead of OpenAI. Keep the UI identical, show the fetch changes, start the server, and confirm it answers with no API key.</div>
+  </div>
 </div>
 
 <h2>Step 3 — Build Your Own Website (Your Portal to the Internet)</h2>
@@ -89,6 +109,11 @@
   </ol>
   <h3>Prompt an AI to set it up</h3>
   <div class="prompt">Guide me from zero to a live personal site: 1) buy example.com, 2) create a GitHub repo and push a simple static site, 3) connect it to Vercel so every push to main deploys, 4) add the custom domain in Vercel and give me the exact DNS records to set at my registrar. Confirm with curl that https://example.com returns 200.</div>
+  <div class="cook">
+    <h3>Let AI Cook</h3>
+    <div class="agents">Claude Code, Hermes, OpenClaw, or OpenCode — all local, all pointed at your model.</div>
+    <div class="prompt">Take me from zero to a live site on example.com: buy the domain, create the GitHub repo, push a static site, connect Vercel for auto-deploy on main, add the domain, and give me the exact DNS records. Verify with curl that it returns 200.</div>
+  </div>
 </div>
 
 <h2>Step 4 — Your Local AI Layer</h2>
@@ -104,6 +129,11 @@
   </ol>
   <h3>Prompt an AI to set it up</h3>
   <div class="prompt">Set up a local AI assistant on my MacBook (18 GB unified memory) using Bonsai 8B 1-bit via llama.cpp. Download the Q1_0 GGUF, start an OpenAI-compatible server on port 8080, bind it to my LAN IP so my phone on the same Wi-Fi can talk to it, and give me a curl test that returns a chat completion. No cloud, no API keys.</div>
+  <div class="cook">
+    <h3>Let AI Cook</h3>
+    <div class="agents">Claude Code, Hermes, OpenClaw, or OpenCode running fully local.</div>
+    <div class="prompt">Set up Bonsai 8B 1-bit on this MacBook via llama.cpp: download the Q1_0 GGUF, start the OpenAI-compatible server on port 8080 bound to my LAN IP, point the knowledge-graph app at it, and verify with a curl chat completion from both this machine and my phone on the same Wi-Fi. No cloud.</div>
+  </div>
 </div>
 
 <h2>Step 5 — Graduate to Creator</h2>
@@ -119,6 +149,11 @@
   </ol>
   <h3>Prompt an AI to set it up</h3>
   <div class="prompt">I want to build my first original web app from scratch. It should run on my Omarchy machine, call my local Bonsai model on localhost:8080, and deploy to my custom domain via Vercel on git push. Give me the project scaffold, the API call, and the vercel.json. Keep it fully local — no external services.</div>
+  <div class="cook">
+    <h3>Let AI Cook</h3>
+    <div class="agents">Claude Code, Hermes, OpenClaw, or OpenCode — local only.</div>
+    <div class="prompt">Scaffold my first original web app on this Omarchy machine. It must call my local Bonsai model on localhost:8080, include a vercel.json, and deploy to my custom domain on git push. Keep every service local — no external APIs.</div>
+  </div>
 </div>
 
 <h2>The Finished Dish</h2>
