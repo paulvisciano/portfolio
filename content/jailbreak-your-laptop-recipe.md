@@ -26,7 +26,9 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 - Omarchy — the native Linux distro you bake yourself
 - Bonsai — the personal AI brain (1-bit, ~1.15 GB for 8B)
 - Stronger coding models for setup: Grok 4.6 via OpenCode, or GLM 5.2 / 5.1
-- llama.cpp as the runtime
+- llama.cpp as the runtime (it ships with its own UI)
+- Open WebUI on top of llama.cpp
+- Knowledge Graph UI wired into Open WebUI under Graph
 - Existing apps you can fork, plus a stack you like for originals
 - A domain name you claim
 - Vercel for the public layer
@@ -51,14 +53,18 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 
 ## Part 2 — Run Your Local AI
 
-**Give the stack a brain.**
+**Give the stack a brain. Three surfaces, one machine.**
+
+llama.cpp is the engine. It already comes with a UI that is pretty good. Open WebUI makes the same local model feel like a workspace — chats, notes, search. The latest layer: the Knowledge Graph UI lives *inside* Open WebUI, under Graph. Memory is not a separate app. It is a menu item on the assistant you already run.
 
 1. Get a Bonsai GGUF (start with Bonsai-8B-Q1_0.gguf).
-2. Serve it with llama.cpp on localhost:8080 — OpenAI-compatible, no API key.
-3. Bind it to your LAN IP so the phone on the same Wi-Fi can talk to it.
-4. Use a stronger model (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) if you want help standing this up. Hand daily use back to Bonsai.
+2. Serve it with llama.cpp on localhost:8080 — OpenAI-compatible, no API key. Use the built-in llama.cpp UI first if you want the thinnest path.
+3. Point Open WebUI at that same local endpoint. This is the daily workspace.
+4. Open Graph in Open WebUI. That is the Knowledge Graph — chats as cards on a canvas, time as space, no cloud relay.
+5. Bind it to your LAN IP so the phone on the same Wi-Fi can talk to it.
+6. Use a stronger model (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) if you want help standing this up. Hand daily use back to Bonsai.
 
-**Result:** Your assistant lives on your machine, not a server farm in Virginia. Phone and laptop share it. No one can shadowban you. No one can sell your data.
+**Result:** Your assistant and your memory live on your machine. Phone and laptop share them. No one can shadowban you. No one can sell your data.
 
 ---
 
@@ -98,7 +104,7 @@ This is the public layer. The brain stays local. The site is what the internet g
 1. If you want to share an app, publish it to your domain from Part 4. If you don't, don't.
 2. Export your data from the platforms that already have it — photos, chats, notes, history, the graph of your life.
 3. Import that archive onto the machine you own.
-4. Point the knowledge graph at it. That data lives here now.
+4. Point the Knowledge Graph (Open WebUI → Graph) at it. That data lives here now.
 
 **Result:** The loop closes. You own the OS, the AI, the apps, the site, and the archive. Nothing stays rented unless you decide it should.
 
@@ -120,7 +126,7 @@ This is the road to sovereignty.
 ## Why This Recipe Works
 
 - Every layer is already built and working.
-- Each part is a reason to trust the guide.
+- Each step is a reason to trust the guide.
 - The marketing angle writes itself: every other app is a subscription you rent; yours is software you own.
 - Natural endpoint: someone brings their own data home and the tutorial ends.
 

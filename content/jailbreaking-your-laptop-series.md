@@ -32,11 +32,15 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 
 **What we show:**
 - Bonsai as the personal AI brain — 1-bit, ~1.15 GB for 8B, runs on an 18-gig MacBook
-- llama.cpp serving an OpenAI-compatible endpoint on localhost:8080
-- Phone and laptop talking to the same assistant over your own Wi-Fi — no account sync, no cloud relay
-- Stronger models (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) for the setup agents; Bonsai for daily use
+- llama.cpp as the runtime. It ships with its own UI — already pretty good.
+- Open WebUI on top of that same local endpoint — chats, notes, search, a real workspace
+- Knowledge Graph UI integrated *into* Open WebUI under the Graph menu. Memory is a surface on the assistant, not a separate product.
+- Phone and laptop on the same Wi-Fi, no cloud relay
+- Stronger models (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) for setup; Bonsai for daily use
 
-**Payoff:** Your assistant lives on your machine, not a server farm in Virginia. No one can shadowban you. No one can sell your data.
+**Demo shot:** Open WebUI → Graph — the spatial canvas of chats.
+
+**Payoff:** Your assistant and your memory live on your machine, not a server farm in Virginia.
 
 ---
 
@@ -70,7 +74,7 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 - Publishing is optional. Share an app to your domain only if you choose to
 - Reclaim your data from the platforms that already have it — export, download, pull it home
 - Import it onto the machine you own: photos, chats, notes, history, the graph of your life
-- The knowledge graph becomes the place that data lives now
+- Drop that archive into Open WebUI → Graph. That is where the data lives now
 
 **Payoff:** The loop closes. You own the OS, the AI, the apps, the site, and the archive. Nothing stays rented unless you decide it should.
 
