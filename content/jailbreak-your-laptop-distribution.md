@@ -40,7 +40,7 @@ google-chrome --headless --print-to-pdf=jailbreak-your-laptop.pdf content/jailbr
 
 Every channel points at the same five parts:
 
-1. Jailbreak Your Laptop
+1. On the OS
 2. Run Your Local AI
 3. Create Your Own Apps
 4. Create Your Own Site — the public layer
