@@ -63,9 +63,7 @@ Use a wired or 2.4 GHz keyboard — full-disk encryption won't accept a Bluetoot
 
 **Result:** The machine is yours. No cloud middleman. No telemetry you can't refuse. You get a curated, minimal set of services you chose, no vendor defaults baked in, and the ability to override everything through AI — themes, drivers, game fixes, all tweakable through conversation.
 
-**Prompt:** You are a systems engineer. Walk me through installing Omarchy 4.x on a laptop with 16 GB of memory. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.
-
-**Let AI Cook** (stronger model — OpenCode + Grok 4.6, Claude Code, Hermes, or OpenClaw): Install Omarchy 4.x on this laptop (16 GB memory). Turn off Secure Boot, flash the ISO, run the full-disk encrypted install with Hyprland, then verify with `omarchy --version`. Do it step by step and stop if anything fails.
+**This step is manual.** The OS install is the one part you do by hand — no AI in the loop. You want to feel the lock crack yourself. AI comes in from Part 2 onward, once the machine is yours.
 
 ---
 
