@@ -16,7 +16,7 @@ This is the roadmap to sovereignty. Every layer already works.
 
 ---
 
-## Part 1 — Jailbreak Your Laptop
+## Part 1 — On the OS
 
 **Hook:** Before the iPhone was a status symbol, it was a locked box. In 2007, a seventeen-year-old named George Hotz — geohot — spent five hundred hours soldering and coding until he cracked it open. The first unlocked iPhone. He didn't ask permission. He just took ownership.
 
@@ -34,14 +34,15 @@ This is the roadmap to sovereignty. Every layer already works.
 ## Part 2 — Run Your Local AI
 
 **What we show:**
-- Bonsai + llama.cpp (ships with its own UI)
-- Open WebUI as the daily workspace
-- Knowledge Graph UI under Graph in Open WebUI
-- Phone and laptop on the same Wi-Fi
+- Get llama.cpp set up — it ships with its own UI
+- Pull a model: Bonsai (8B Q1_0 GGUF)
+- Set up Open WebUI and point it at Bonsai on localhost:8080
+- If you want the Knowledge Graph, use the custom fork: github.com/paulvisciano/open-webui — Graph lives under the Graph menu
+- Expose everything over Wi-Fi — access your local AI from any device on the network
 
-**Demo shot:** Open WebUI → Graph — chats as cards on a canvas.
+**Demo shot:** Open WebUI → Graph — chats as cards on a canvas. Phone on the same Wi-Fi hitting the same assistant.
 
-**Payoff:** Assistant and memory live on your machine.
+**Payoff:** Assistant and memory live on your machine. Any device on the network can reach them.
 
 ---
 
