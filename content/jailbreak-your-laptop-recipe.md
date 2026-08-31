@@ -20,35 +20,52 @@ This is the roadmap to sovereignty. Every layer already works. Follow the steps 
 
 ---
 
-## Ingredients
+## The Ingredients
 
 - A laptop (16 gigs works — no GPU required; Mac, PC, or Linux)
-- Omarchy — the native Linux distro you bake yourself
-- Bonsai — the personal AI brain (1-bit, ~1.15 GB for 8B)
-- Stronger coding models for setup: Grok 4.6 via OpenCode, or GLM 5.2 / 5.1
-- llama.cpp as the runtime (it ships with its own UI)
-- Open WebUI on top of llama.cpp
-- Knowledge Graph UI wired into Open WebUI under Graph
-- Where is Paul? — the journey on a globe: comics, blogs, pins, photos, video
-- The portfolio at your own domain — work, blogs, apps. Also social media you host.
+- **Omarchy** — the owned OS. [omarchy.org](https://omarchy.org) · ISO: [iso.omarchy.org](https://iso.omarchy.org) · [Getting Started](https://omarchy.org/manual/getting-started) · [github.com/omacom/omarchy](https://github.com/omacom/omarchy)
+- **Bonsai** — the personal AI brain (1-bit, ~1.15 GB for 8B). Journaling, talking to a local model, the knowledge graph. [prismml.com](https://prismml.com) · [docs.prismml.com](https://docs.prismml.com) · [huggingface.co/prism-ml/bonsai](https://huggingface.co/collections/prism-ml/bonsai)
+- **Stronger coding models** for setup — Grok 4.6 via OpenCode, or GLM 5.2 / 5.1. Reach for these when you need more power: installing software, coding, multi-step work. Hand daily use back to Bonsai.
+- **llama.cpp** — the runtime for Bonsai. Ships with its own UI. [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
+- **Open WebUI** — the daily workspace on top of llama.cpp, with the Knowledge Graph under Graph. [github.com/open-webui/open-webui](https://github.com/open-webui/open-webui)
+- **Vercel** — the public layer. [vercel.com](https://vercel.com)
+- **GitHub** — your source of truth. [github.com](https://github.com)
 - A domain name you claim
-- Vercel for the public layer
-- A GitHub repository as source of truth
 - Your own data, exported from the platforms that already have it
 - Patience, and a willingness to stop asking permission
 
+### Two layers of AI
+
+**Bonsai** is the personal AI layer — journaling, talking to a local model, remembering your life through the knowledge graph.
+
+**Stronger models** (Grok 4.6, GLM 5.x) are for the moments you need more power — setting up software on the machine, coding, multi-step installs. Reach for those when building; hand daily use back to Bonsai.
+
+### Proof it works, not ingredients
+
+I already have the entire ecosystem running. Open WebUI with the Knowledge Graph, Bonsai served through llama.cpp, my portfolio published to my own domain, and a few spatial apps — Where is Paul? and Musical Cubes — all built and tested on this machine. The steps below are what I actually did.
+
 ---
 
-## Part 1 — Jailbreak Your Laptop
+## Part 1 — On the OS
 
 **Crack the lock the vendor shipped.**
 
-1. Install Omarchy on your machine.
-2. Strip the vendor's assumptions: update servers, identity checks, telemetry.
-3. Replace the sealed system with something you control.
-4. Same defiance as geohot, different layer — you are cracking the assumption that the vendor's OS is the only one allowed on their hardware.
+From the [official Getting Started](https://omarchy.org/manual/getting-started):
+
+1. Omarchy is installed using an ISO. Choose a full-disk install or a free-space install (unallocated space — how you dual boot; turn off BitLocker in Windows first).
+2. The installation defaults to full encryption. The full-disk option wipes the selected drive — back up first.
+3. Download the ISO from [omarchy.org](https://omarchy.org), put it on a USB stick (balenaEtcher on Mac/Windows, caligula on Linux), and boot off the stick.
+4. **Turn off Secure Boot and/or TPM in the BIOS.** They're Microsoft security schemes meant for Windows and Microsoft-affiliated Linux distributions.
+5. Answer the configuration questions, confirm them, select a drive, and watch the install. Under a minute on fast machines, no more than five on older ones.
+6. Reboot. List every process, every service, every connection. You chose all of it.
+
+Use a wired or 2.4 GHz keyboard — full-disk encryption won't accept a Bluetooth keyboard at startup.
 
 **Result:** The machine is yours. No cloud middleman. No telemetry you can't refuse. You can see every process, every service, every connection — and the AI layer lets you control it all through conversation.
+
+**Prompt:** You are a systems engineer. Walk me through installing Omarchy 4.x on a laptop with 16 GB of memory. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.
+
+**Let AI Cook** (stronger model — OpenCode + Grok 4.6, Claude Code, Hermes, or OpenClaw): Install Omarchy 4.x on this laptop (16 GB memory). Turn off Secure Boot, flash the ISO, run the full-disk encrypted install with Hyprland, then verify with `omarchy --version`. Do it step by step and stop if anything fails.
 
 ---
 
@@ -129,15 +146,6 @@ Your work and your journey live on a domain you own, not a feed you rent.
 Your data is home.
 
 This is the road to sovereignty.
-
----
-
-## Why This Recipe Works
-
-- Every layer is already built and working.
-- Each step is a reason to trust the guide.
-- The marketing angle writes itself: every other app is a subscription you rent; yours is software you own.
-- Natural endpoint: someone brings their own data home and the tutorial ends.
 
 ---
 
