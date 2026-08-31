@@ -29,6 +29,7 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 - llama.cpp as the runtime (it ships with its own UI)
 - Open WebUI on top of llama.cpp
 - Knowledge Graph UI wired into Open WebUI under Graph
+- Where is Paul? — the owned social arm. A life on a globe: comics, blogs, pins, photos, video
 - Existing apps you can fork, plus a stack you like for originals
 - A domain name you claim
 - Vercel for the public layer
@@ -70,14 +71,18 @@ llama.cpp is the engine. It already comes with a UI that is pretty good. Open We
 
 ## Part 3 — Create Your Own Apps
 
-**Make the software yours.**
+**Make the software yours. Where is Paul? is the social arm.**
 
-1. Fork an open-source app you like, or start from a template.
-2. Point it at localhost:8080 instead of a hosted API.
+Social media rented you a feed. This stack gives you a globe.
+
+Where is Paul? saves the journey in a form you own — pins on Earth, comic episodes, blogs, photos, video. Family asked where you were. The answer became a place you can spin, not a timeline someone else ranks.
+
+1. Fork an open-source app you like, or start from a template — or clone Where is Paul? and swap `moments/moments.js`.
+2. Point local tools at localhost:8080 instead of a hosted API.
 3. Then stop forking. Scaffold an original app that talks to your local model.
 4. Run it on the machine you jailbroke in Part 1. No account, no subscription, no telemetry you can't refuse.
 
-**Result:** Apps stop being products someone sells you. They become infrastructure you run.
+**Result:** Apps stop being products someone sells you. The journey stops living on Instagram. Both become infrastructure you run.
 
 ---
 
@@ -85,13 +90,15 @@ llama.cpp is the engine. It already comes with a UI that is pretty good. Open We
 
 **Claim your public face.**
 
+The globe can stay private. When you want a public arm, it ships as a website — same URL on a phone, a desk, and Safari on Vision Pro.
+
 1. Claim your domain name.
 2. Create a GitHub repository — this becomes the source of truth.
 3. Set up Vercel. Vercel is in charge of deployments.
 4. Wire your domain into Vercel (update the registrar's DNS records).
 5. Push to the repo. Vercel deploys on every push.
 
-This is the public layer. The brain stays local. The site is what the internet gets to see.
+This is the public layer. The brain stays local. The site — portfolio, globe, comics — is what the internet gets to see.
 
 **Result:** A public face on the internet that no platform can take away.
 
@@ -101,12 +108,12 @@ This is the public layer. The brain stays local. The site is what the internet g
 
 **Sharing is optional. The archive is not.**
 
-1. If you want to share an app, publish it to your domain from Part 4. If you don't, don't.
+1. If you want to share an app or a chapter of the globe, publish it to your domain from Part 4. If you don't, don't.
 2. Export your data from the platforms that already have it — photos, chats, notes, history, the graph of your life.
 3. Import that archive onto the machine you own.
-4. Point the Knowledge Graph (Open WebUI → Graph) at it. That data lives here now.
+4. Drop memory into Open WebUI → Graph. Drop the journey into Where is Paul? — pins, comics, blogs, photos, video. That data lives here now.
 
-**Result:** The loop closes. You own the OS, the AI, the apps, the site, and the archive. Nothing stays rented unless you decide it should.
+**Result:** The loop closes. You own the OS, the AI, the apps, the site, the social arm, and the archive. Nothing stays rented unless you decide it should.
 
 ---
 
@@ -116,6 +123,7 @@ You have reclaimed your computer.
 You own the OS.  
 You run your own AI.  
 You run your own apps.  
+Your journey lives on a globe you own, not a feed you rent.  
 You have a public layer that is yours.  
 Your data is home.
 

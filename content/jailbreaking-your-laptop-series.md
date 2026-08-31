@@ -47,12 +47,14 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 ## Part 3 — Create Your Own Apps
 
 **What we show:**
-- Fork the apps that ship with the stack, or start from a template
-- Point them at localhost instead of a hosted API
-- Then stop forking — scaffold an original app that talks to your local model
-- Run everything on the machine you jailbroke in Part 1
+- Where is Paul? as the owned social arm — a globe instead of a feed
+- The journey saved as comics, blogs, pins, photos, video
+- Clone the globe, swap `moments/moments.js`, make it Where is [You]?
+- Fork other apps or build originals that talk to the local model on localhost:8080
 
-**Payoff:** Apps stop being products someone sells you and become infrastructure you run.
+**Demo shot:** Bangkok pin open — comics, photos, stories on the globe.
+
+**Payoff:** The journey stops living on Instagram. Apps become infrastructure you run.
 
 ---
 
@@ -62,7 +64,8 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 - Claim a domain
 - Push a repo to GitHub — source of truth
 - Vercel deploys on every push to main
-- Wire the domain in. This is the public face, not the brain — the brain stays local
+- The globe ships as a website: same URL on a phone, a desk, and Safari on Vision Pro
+- This is the public face, not the brain — the brain stays local
 
 **Payoff:** A public face on the internet that no platform can take away. The site is the proof of ownership.
 
@@ -71,12 +74,12 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 ## Part 5 — Publish If You Want. Reclaim Your Data.
 
 **What we show:**
-- Publishing is optional. Share an app to your domain only if you choose to
+- Publishing is optional. Share a chapter of the globe only if you choose to
 - Reclaim your data from the platforms that already have it — export, download, pull it home
-- Import it onto the machine you own: photos, chats, notes, history, the graph of your life
-- Drop that archive into Open WebUI → Graph. That is where the data lives now
+- Memory goes into Open WebUI → Graph
+- The journey goes into Where is Paul? — pins, comics, blogs, photos, video
 
-**Payoff:** The loop closes. You own the OS, the AI, the apps, the site, and the archive. Nothing stays rented unless you decide it should.
+**Payoff:** The loop closes. You own the OS, the AI, the apps, the site, the social arm, and the archive.
 
 ---
 
