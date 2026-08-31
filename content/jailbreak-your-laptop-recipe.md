@@ -14,7 +14,7 @@ To see why this matters, go back to where jailbreaking began. Back then the lock
 
 Today the lock isn't the phone. It's the operating system on the laptop you use every day — the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. Jailbreaking your laptop is the same idea: crack the lock the vendor shipped, on whatever machine you have. Mac, PC, or a Linux box you already run.
 
-The payoff is transparency. On a locked OS you're guessing what's running, what phones home, what you can't see. On Omarchy you can list every process, every service, every connection, and know exactly what's happening because you chose it. And the AI layer turns that knowledge into control — ask your local model to audit the machine, kill a process, reconfigure a service, customize the desktop, all through conversation, all on localhost. The lock you cracked becomes a machine you can talk to.
+The payoff is transparency and editability. On a locked OS you can still inspect processes — the difference is what happens next. On Omarchy you get a curated, minimal set of services you chose, no vendor telemetry baked in by default, and the ability to override everything through AI. Something not working? Describe it and the local model rewrites the config. Don't like how it looks? Ask for a custom theme. A game that won't launch, a driver that misbehaves — those become easily tweakable through conversation, with every change visible and reversible. The lock you cracked becomes a machine you can talk to.
 
 This is the roadmap to sovereignty. Every layer already works. Follow the steps and you end up with a computer that is truly yours.
 
@@ -61,7 +61,7 @@ From the [official Getting Started](https://omarchy.org/manual/getting-started):
 
 Use a wired or 2.4 GHz keyboard — full-disk encryption won't accept a Bluetooth keyboard at startup.
 
-**Result:** The machine is yours. No cloud middleman. No telemetry you can't refuse. You can see every process, every service, every connection — and the AI layer lets you control it all through conversation.
+**Result:** The machine is yours. No cloud middleman. No telemetry you can't refuse. You get a curated, minimal set of services you chose, no vendor defaults baked in, and the ability to override everything through AI — themes, drivers, game fixes, all tweakable through conversation.
 
 **Prompt:** You are a systems engineer. Walk me through installing Omarchy 4.x on a laptop with 16 GB of memory. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.
 
