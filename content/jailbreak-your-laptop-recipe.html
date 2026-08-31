@@ -52,10 +52,10 @@
 <h2>The Ingredients</h2>
 <ul class="links">
   <li><b>Omarchy</b> — the owned OS. <a href="https://omarchy.org">omarchy.org</a> · ISO: <a href="https://iso.omarchy.org">iso.omarchy.org</a> · <a href="https://github.com/omacom/omarchy">github.com/omacom/omarchy</a> · <a href="https://omarchy.org/manual/getting-started">Getting Started</a></li>
-  <li><b>Bonsai</b> — the personal AI brain (1-bit, ~1.15 GB for 8B). Runs the knowledge graph and everyday assistant. <a href="https://prismml.com">prismml.com</a> · <a href="https://docs.prismml.com">docs.prismml.com</a> · <a href="https://huggingface.co/collections/prism-ml/bonsai">huggingface.co/prism-ml/bonsai</a></li>
+  <li><b>Bonsai</b> — the personal AI brain (1-bit, ~1.15 GB for 8B). Journaling, talking to a local model, the knowledge graph. <a href="https://prismml.com">prismml.com</a> · <a href="https://docs.prismml.com">docs.prismml.com</a> · <a href="https://huggingface.co/collections/prism-ml/bonsai">huggingface.co/prism-ml/bonsai</a></li>
   <li><b>Stronger coding models</b> — for the setup agents in "Let AI Cook": Grok 4.6 (via OpenCode), GLM 5.2 / 5.1 (open weights, MIT). These are heavier than Bonsai and handle the multi-step install work.</li>
   <li><b>llama.cpp</b> — the runtime for Bonsai. <a href="https://github.com/ggml-org/llama.cpp">github.com/ggml-org/llama.cpp</a> (PrismML fork: <a href="https://github.com/PrismML-Eng/llama.cpp">PrismML-Eng/llama.cpp</a>)</li>
-  <li><b>Open WebUI</b> — the daily workspace on top of llama.cpp. <a href="https://github.com/open-webui/open-webui">github.com/open-webui/open-webui</a></li>
+  <li><b>Open WebUI</b> — the daily workspace on top of llama.cpp. <a href="https://github.com/open-webui/open-webui">github.com/open-webui/open-webui</a> · Knowledge Graph fork: <a href="https://github.com/paulvisciano/open-webui">github.com/paulvisciano/open-webui</a></li>
   <li><b>Vercel</b> — the public layer. <a href="https://vercel.com">vercel.com</a></li>
   <li><b>GitHub</b> — your source of truth. <a href="https://github.com">github.com</a></li>
   <li><b>A domain registrar</b> — Namecheap, Cloudflare, Porkbun, etc.</li>
@@ -114,23 +114,25 @@
 
 <h2>Part 2 — Run Your Local AI</h2>
 <div class="step">
-  <p>The knowledge graph is the personal assistant that runs on your machine. Phone and laptop talk to each other over your own Wi-Fi — no account sync, no cloud relay. Bonsai 8B fits in about 1.15 GB; on a 16 GB machine it leaves room for everything else. This is the layer Bonsai was built for: journaling, talking to a local model, remembering your life.</p>
+  <p>Give the stack a brain. Three surfaces, one machine.</p>
   <img src="jailbreak-your-laptop.png" alt="[Screenshot: phone and laptop both chatting with the same local assistant over Wi-Fi, llama.cpp server log]">
   <div class="img-note">📷 Replace with: two devices hitting the same localhost assistant + server throughput log.</div>
+
   <h3>Do this</h3>
   <ol>
-    <li>Get a Bonsai GGUF from <a href="https://huggingface.co/collections/prism-ml/bonsai">huggingface.co/prism-ml/bonsai</a> (start with Bonsai-8B-Q1_0.gguf).</li>
-    <li>Run it with llama.cpp: <code>./llama-server -m Bonsai-8B-Q1_0.gguf -c 0 --port 8080</code>. Its built-in UI is already good enough to talk to the model.</li>
-    <li>Point Open WebUI at that same local endpoint. This is the daily workspace — chats, notes, search.</li>
-    <li>Open Graph in Open WebUI. That is the Knowledge Graph — chats as cards on a canvas, time as space, no cloud.</li>
-    <li>Bind it to your LAN IP so the phone on the same Wi-Fi can reach it.</li>
+    <li>Get llama.cpp set up. It ships with its own UI — good enough to talk to a model right away. <a href="https://github.com/ggml-org/llama.cpp">github.com/ggml-org/llama.cpp</a></li>
+    <li>Pull a model: <b>Bonsai</b>. Start with the 8B Q1_0 GGUF from <a href="https://huggingface.co/collections/prism-ml/bonsai">huggingface.co/prism-ml/bonsai</a>. Serve it with llama.cpp on port 8080 — OpenAI-compatible, no API key.</li>
+    <li>Set up <a href="https://github.com/open-webui/open-webui">Open WebUI</a> and point it at that same local endpoint. This is the daily workspace — chats, notes, search.</li>
+    <li>If you want the Knowledge Graph, use my custom fork of Open WebUI that includes it: <a href="https://github.com/paulvisciano/open-webui">github.com/paulvisciano/open-webui</a>. The Graph lives under the Graph menu — chats as cards on a canvas, time as space, no cloud.</li>
+    <li>Expose everything over Wi-Fi. Bind to your LAN IP. Now you can access your local AI from any device on the network — phone, laptop, tablet.</li>
   </ol>
+
   <h3>Prompt an AI to set it up</h3>
-  <div class="prompt">Set up a local AI stack on my laptop (16 GB memory): Bonsai 8B 1-bit via llama.cpp on port 8080, then Open WebUI pointed at that endpoint, then the Knowledge Graph UI available under the Graph menu in Open WebUI. Bind it to my LAN IP so my phone on the same Wi-Fi can talk to it. No cloud, no API keys.</div>
+  <div class="prompt">Set up llama.cpp on my laptop, pull the Bonsai 8B Q1_0 GGUF, serve it on port 8080, install Open WebUI and point it at that endpoint, then clone my fork at github.com/paulvisciano/open-webui for the Knowledge Graph under Graph. Bind everything to my LAN IP so any device on the Wi-Fi can reach it. No cloud, no API keys.</div>
   <div class="cook">
     <h3>Let AI Cook</h3>
     <div class="agents">Use a stronger model here too if you want — OpenCode + Grok 4.6 or GLM 5.2 — then hand the finished assistant over to Bonsai for daily use.</div>
-    <div class="prompt">Set up Bonsai 8B 1-bit on this laptop via llama.cpp: download the Q1_0 GGUF, start the OpenAI-compatible server on port 8080 bound to my LAN IP, point Open WebUI at it, verify Graph opens the Knowledge Graph canvas, and confirm the phone on the same Wi-Fi can reach it. No cloud.</div>
+    <div class="prompt">Set up llama.cpp, pull Bonsai 8B Q1_0, serve it on 8080, install Open WebUI pointed at it, clone github.com/paulvisciano/open-webui for the Graph, and bind to my LAN IP. Verify the phone on the same Wi-Fi can reach it. No cloud.</div>
   </div>
 </div>
 
