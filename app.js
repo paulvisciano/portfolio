@@ -649,3 +649,53 @@ window.__userInteracted = false;
   }
   update();
 })();
+
+(function () {
+  var cycle = document.querySelector('.hero-cta-cycle');
+  if (!cycle) return;
+  var links = cycle.querySelectorAll('.hero-cta');
+  if (!links.length) return;
+
+  var i = 0;
+  var timer = null;
+  var running = false;
+
+  var show = function (n) {
+    links.forEach(function (link, idx) {
+      link.classList.toggle('is-active', idx === n);
+    });
+  };
+
+  var step = function () {
+    i = (i + 1) % links.length;
+    show(i);
+  };
+
+  var start = function () {
+    if (running) return;
+    running = true;
+    timer = setInterval(step, 3800);
+  };
+
+  var stop = function () {
+    running = false;
+    if (timer) { clearInterval(timer); timer = null; }
+  };
+
+  show(0);
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
+  start();
+
+  cycle.addEventListener('mouseenter', stop);
+  cycle.addEventListener('mouseleave', start);
+  cycle.addEventListener('focusin', stop);
+  cycle.addEventListener('focusout', start);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else if (!running) start();
+  });
+})();

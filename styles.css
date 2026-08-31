@@ -172,6 +172,25 @@ color: var(--fg); transition: color 0.2s;
 .hero-cta::after { content: '→'; transition: transform 0.2s; }
 .hero-cta:hover { color: var(--muted); }
 .hero-cta:hover::after { transform: translateX(4px); }
+
+/* ─── hero CTA cycling animation ───────────────────────────────── */
+.hero-cta-cycle {
+  display: inline-flex; align-items: center; justify-content: center;
+  position: relative; min-height: 1.5em; width: 100%; text-align: center;
+}
+.hero-cta-cycle .hero-cta {
+  position: absolute; inset-inline: 0;
+  justify-content: center;
+  opacity: 0; transform: translateY(4px); pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  white-space: nowrap;
+}
+.hero-cta-cycle .hero-cta.is-active {
+  opacity: 1; transform: translateY(0); pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta-cycle .hero-cta { transition: none; transform: none; }
+}
 /* ─── featured projects ────────────────────────────────────────── */
 .projects-head {
 display: flex; align-items: center; justify-content: space-between;
