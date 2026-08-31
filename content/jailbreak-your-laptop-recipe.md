@@ -27,7 +27,7 @@ This is the roadmap to sovereignty. Every layer already works. Follow the steps 
 - **Bonsai** — the personal AI brain (1-bit, ~1.15 GB for 8B). Journaling, talking to a local model, the knowledge graph. [prismml.com](https://prismml.com) · [docs.prismml.com](https://docs.prismml.com) · [huggingface.co/prism-ml/bonsai](https://huggingface.co/collections/prism-ml/bonsai)
 - **Stronger coding models** for setup — Grok 4.6 via OpenCode, or GLM 5.2 / 5.1. Reach for these when you need more power: installing software, coding, multi-step work. Hand daily use back to Bonsai.
 - **llama.cpp** — the runtime for Bonsai. Ships with its own UI. [github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp)
-- **Open WebUI** — the daily workspace on top of llama.cpp, with the Knowledge Graph under Graph. [github.com/open-webui/open-webui](https://github.com/open-webui/open-webui)
+- **Open WebUI** — the daily workspace on top of llama.cpp. [github.com/open-webui/open-webui](https://github.com/open-webui/open-webui)
 - **Vercel** — the public layer. [vercel.com](https://vercel.com)
 - **GitHub** — your source of truth. [github.com](https://github.com)
 - A domain name you claim
@@ -71,18 +71,19 @@ Use a wired or 2.4 GHz keyboard — full-disk encryption won't accept a Bluetoot
 
 ## Part 2 — Run Your Local AI
 
-**Give the stack a brain. Three surfaces, one machine.**
+**Give the stack a brain.**
 
-llama.cpp is the engine. It already comes with a UI that is pretty good. Open WebUI makes the same local model feel like a workspace — chats, notes, search. The latest layer: the Knowledge Graph UI lives *inside* Open WebUI, under Graph. Memory is not a separate app. It is a menu item on the assistant you already run.
-
-1. Get a Bonsai GGUF (start with Bonsai-8B-Q1_0.gguf).
-2. Serve it with llama.cpp on localhost:8080 — OpenAI-compatible, no API key. Use the built-in llama.cpp UI first if you want the thinnest path.
-3. Point Open WebUI at that same local endpoint. This is the daily workspace.
-4. Open Graph in Open WebUI. That is the Knowledge Graph — chats as cards on a canvas, time as space, no cloud relay.
-5. Bind it to your LAN IP so the phone on the same Wi-Fi can talk to it.
-6. Use a stronger model (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) if you want help standing this up. Hand daily use back to Bonsai.
+1. Get llama.cpp set up. It ships with its own UI — good enough to talk to a model right away.
+2. Pull a model: Bonsai. Start with the 8B Q1_0 GGUF from [huggingface.co/prism-ml/bonsai](https://huggingface.co/collections/prism-ml/bonsai). Serve it with llama.cpp on port 8080 — OpenAI-compatible, no API key.
+3. Set up Open WebUI and point it at that same local endpoint. This is the daily workspace — chats, notes, search.
+4. If you want the Knowledge Graph, use my custom fork of Open WebUI that includes it: [github.com/paulvisciano/open-webui](https://github.com/paulvisciano/open-webui). The Graph lives under the Graph menu — chats as cards on a canvas, time as space, no cloud.
+5. Expose everything over Wi-Fi. Bind to your LAN IP. Now you can access your local AI from any device on the network — phone, laptop, tablet.
 
 **Result:** Your assistant and your memory live on your machine. Phone and laptop share them. No one can shadowban you. No one can sell your data.
+
+**Prompt:** Set up llama.cpp on my laptop, pull the Bonsai 8B Q1_0 GGUF, serve it on port 8080, install Open WebUI and point it at that endpoint, then clone my fork at github.com/paulvisciano/open-webui for the Knowledge Graph under Graph. Bind everything to my LAN IP so any device on the Wi-Fi can reach it. No cloud, no API keys.
+
+**Let AI Cook** (stronger model — OpenCode + Grok 4.6 or GLM 5.2): Set up llama.cpp, pull Bonsai 8B Q1_0, serve it on 8080, install Open WebUI pointed at it, clone github.com/paulvisciano/open-webui for the Graph, and bind to my LAN IP. Verify the phone on the same Wi-Fi can reach it. No cloud.
 
 ---
 
