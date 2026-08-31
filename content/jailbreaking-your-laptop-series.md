@@ -22,73 +22,61 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 - Install Omarchy — the native Linux distro you bake yourself
 - Strip the vendor's assumptions: update servers, identity checks, telemetry
 - Replace the sealed system with something you control
-- Same defiance as geohot, different layer: cracking the assumption that the vendor's OS is the only one allowed on their hardware
 
-**Payoff:** The machine is yours. No cloud middleman, no telemetry you can't refuse.
+**Payoff:** The machine is yours.
 
 ---
 
 ## Part 2 — Run Your Local AI
 
 **What we show:**
-- Bonsai as the personal AI brain — 1-bit, ~1.15 GB for 8B, runs on an 18-gig MacBook
-- llama.cpp as the runtime. It ships with its own UI — already pretty good.
-- Open WebUI on top of that same local endpoint — chats, notes, search, a real workspace
-- Knowledge Graph UI integrated *into* Open WebUI under the Graph menu. Memory is a surface on the assistant, not a separate product.
-- Phone and laptop on the same Wi-Fi, no cloud relay
-- Stronger models (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) for setup; Bonsai for daily use
+- Bonsai + llama.cpp (ships with its own UI)
+- Open WebUI as the daily workspace
+- Knowledge Graph UI under Graph in Open WebUI
+- Phone and laptop on the same Wi-Fi
 
-**Demo shot:** Open WebUI → Graph — the spatial canvas of chats.
+**Demo shot:** Open WebUI → Graph — chats as cards on a canvas.
 
-**Payoff:** Your assistant and your memory live on your machine, not a server farm in Virginia.
+**Payoff:** Assistant and memory live on your machine.
 
 ---
 
 ## Part 3 — Create Your Own Apps
 
 **What we show:**
-- Where is Paul? as the owned social arm — a globe instead of a feed
-- The journey saved as comics, blogs, pins, photos, video
-- Clone the globe, swap `moments/moments.js`, make it Where is [You]?
-- Fork other apps or build originals that talk to the local model on localhost:8080
+- Where is Paul? — journey as pins, comics, blogs, photos, video
+- Musical Cubes — an original app, not a fork
+- Point tools at localhost:8080
 
-**Demo shot:** Bangkok pin open — comics, photos, stories on the globe.
+**Demo shot:** Bangkok pin on the globe. Musical Cubes rotating stems.
 
-**Payoff:** The journey stops living on Instagram. Apps become infrastructure you run.
+**Payoff:** Apps become infrastructure you run.
 
 ---
 
 ## Part 4 — Create Your Own Site (The Public Layer)
 
 **What we show:**
-- Claim a domain
-- Push a repo to GitHub — source of truth
-- Vercel deploys on every push to main
-- The globe ships as a website: same URL on a phone, a desk, and Safari on Vision Pro
-- This is the public face, not the brain — the brain stays local
+- paulvisciano.com — work, blogs, apps under a domain you own
+- This is also social media. Home / Work / Blogs / About
+- Claim the domain, GitHub as source of truth, Vercel deploys, wire DNS
+- Same URL on a phone, a desk, and Safari on Vision Pro
+- The globe is the journey. The portfolio is the showroom. Together they replace LinkedIn + Medium + Instagram for anything you want to keep.
 
-**Payoff:** A public face on the internet that no platform can take away. The site is the proof of ownership.
+**Demo shot:** Hero (“Hallo, ich bin Paul Visciano”), Work carousel, Blogs grid.
+
+**Payoff:** A public face no platform can take away.
 
 ---
 
 ## Part 5 — Publish If You Want. Reclaim Your Data.
 
 **What we show:**
-- Publishing is optional. Share a chapter of the globe only if you choose to
-- Reclaim your data from the platforms that already have it — export, download, pull it home
-- Memory goes into Open WebUI → Graph
-- The journey goes into Where is Paul? — pins, comics, blogs, photos, video
+- Publish a blog, an app, or a chapter of the globe only if you choose to
+- Export from the rented platforms
+- Memory → Graph. Journey → Where is Paul?. Work → portfolio.
 
-**Payoff:** The loop closes. You own the OS, the AI, the apps, the site, the social arm, and the archive.
-
----
-
-## Why This Series Works
-
-- You're not selling a roadmap — you're demoing a finished product. Every layer already works.
-- Each part is a reason to trust you as the guide.
-- The marketing angle writes itself: every other app is a subscription you rent; yours is software you own.
-- Natural endpoint: part five ends with someone bringing their own data home.
+**Payoff:** The loop closes.
 
 ---
 

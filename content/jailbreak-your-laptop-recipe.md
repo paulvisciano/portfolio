@@ -29,8 +29,8 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 - llama.cpp as the runtime (it ships with its own UI)
 - Open WebUI on top of llama.cpp
 - Knowledge Graph UI wired into Open WebUI under Graph
-- Where is Paul? — the owned social arm. A life on a globe: comics, blogs, pins, photos, video
-- Existing apps you can fork, plus a stack you like for originals
+- Where is Paul? — the journey on a globe: comics, blogs, pins, photos, video
+- The portfolio at your own domain — work, blogs, apps. Also social media you host.
 - A domain name you claim
 - Vercel for the public layer
 - A GitHub repository as source of truth
@@ -71,26 +71,28 @@ llama.cpp is the engine. It already comes with a UI that is pretty good. Open We
 
 ## Part 3 — Create Your Own Apps
 
-**Make the software yours. Where is Paul? is the social arm.**
+**Make the software yours.**
 
-Social media rented you a feed. This stack gives you a globe.
+Social media rented you a feed. This stack gives you apps you run.
 
-Where is Paul? saves the journey in a form you own — pins on Earth, comic episodes, blogs, photos, video. Family asked where you were. The answer became a place you can spin, not a timeline someone else ranks.
+Where is Paul? saves the journey — pins on Earth, comic episodes, blogs, photos, video. Musical Cubes is an original: tracks as rotating cubes you play, loop, and sync. The portfolio site is where those apps get shown.
 
 1. Fork an open-source app you like, or start from a template — or clone Where is Paul? and swap `moments/moments.js`.
 2. Point local tools at localhost:8080 instead of a hosted API.
 3. Then stop forking. Scaffold an original app that talks to your local model.
 4. Run it on the machine you jailbroke in Part 1. No account, no subscription, no telemetry you can't refuse.
 
-**Result:** Apps stop being products someone sells you. The journey stops living on Instagram. Both become infrastructure you run.
+**Result:** Apps stop being products someone sells you. They become infrastructure you run.
 
 ---
 
 ## Part 4 — Create Your Own Site (The Public Layer)
 
-**Claim your public face.**
+**Claim your public face. This is also social media.**
 
-The globe can stay private. When you want a public arm, it ships as a website — same URL on a phone, a desk, and Safari on Vision Pro.
+paulvisciano.com is not a landing page you rent from a builder. It is the public arm of the stack — work, blogs, and apps hosted under a domain you own. Home, Work, Blogs, About. Same URL on a phone, a desk, and Safari on Vision Pro.
+
+Where is Paul? is the journey. The portfolio is the showroom. Together they replace LinkedIn + Medium + Instagram for anything you actually want to keep.
 
 1. Claim your domain name.
 2. Create a GitHub repository — this becomes the source of truth.
@@ -98,7 +100,7 @@ The globe can stay private. When you want a public arm, it ships as a website �
 4. Wire your domain into Vercel (update the registrar's DNS records).
 5. Push to the repo. Vercel deploys on every push.
 
-This is the public layer. The brain stays local. The site — portfolio, globe, comics — is what the internet gets to see.
+This is the public layer. The brain stays local. The site is what the internet gets to see.
 
 **Result:** A public face on the internet that no platform can take away.
 
@@ -108,10 +110,10 @@ This is the public layer. The brain stays local. The site — portfolio, globe, 
 
 **Sharing is optional. The archive is not.**
 
-1. If you want to share an app or a chapter of the globe, publish it to your domain from Part 4. If you don't, don't.
+1. If you want to share an app, a blog, or a chapter of the globe, publish it to your domain from Part 4. If you don't, don't.
 2. Export your data from the platforms that already have it — photos, chats, notes, history, the graph of your life.
 3. Import that archive onto the machine you own.
-4. Drop memory into Open WebUI → Graph. Drop the journey into Where is Paul? — pins, comics, blogs, photos, video. That data lives here now.
+4. Drop memory into Open WebUI → Graph. Drop the journey into Where is Paul?. Drop the work into the portfolio. That data lives here now.
 
 **Result:** The loop closes. You own the OS, the AI, the apps, the site, the social arm, and the archive. Nothing stays rented unless you decide it should.
 
@@ -123,8 +125,7 @@ You have reclaimed your computer.
 You own the OS.  
 You run your own AI.  
 You run your own apps.  
-Your journey lives on a globe you own, not a feed you rent.  
-You have a public layer that is yours.  
+Your work and your journey live on a domain you own, not a feed you rent.  
 Your data is home.
 
 This is the road to sovereignty.
