@@ -27,6 +27,10 @@
   .cook .agents a { color:#7a5c00; }
   .cook .prompt { background:#fff; border-left-color:#f0c040; }
   .note { background:#eef; border-left:3px solid #336; padding:8pt 10pt; font-size:9.5pt; color:#224; margin:8pt 0; }
+  .official { background:#f7f7f7; border:1px solid #ddd; border-radius:6px; padding:10pt 12pt; margin:10pt 0; page-break-inside: avoid; }
+  .official h3 { margin-top:0; }
+  .official ol { margin:6pt 0 0; }
+  .official li { margin:4pt 0; }
 </style>
 </head>
 <body>
@@ -39,35 +43,61 @@
   <p style="font-size:9pt; color:#999;">Drop real screenshots over the image placeholders below before publishing.</p>
 </div>
 
+<h2>The Premise</h2>
+<p>To see why this matters, go back to where jailbreaking began. Back then the lock was physical — a phone locked to one carrier, sealed by firmware, and the only way out was to crack the firmware itself. In the summer of 2007, a seventeen-year-old named George Hotz — geohot — spent five hundred hours soldering and coding to unlock the original iPhone. He posted the video from his parents' kitchen: "This is the world's first unlocked iPhone." It was breaking news. The New York Times, CBS, CNBC, Wired — the story spread across the world in a weekend. He traded one of the unlocked phones for a Nissan 350Z. He was still a teenager.</p>
+<p>Today the lock isn't the phone. It's the operating system on the laptop you use every day — the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. Jailbreaking your laptop is the same idea: crack the lock the vendor shipped, on whatever machine you have. Mac, PC, or a Linux box you already run.</p>
+<p>The payoff is transparency. On a locked OS you're guessing what's running, what phones home, what you can't see. On Omarchy you can list every process, every service, every connection, and know exactly what's happening because you chose it. And the AI layer turns that knowledge into control — ask your local model to audit the machine, kill a process, reconfigure a service, customize the desktop, all through conversation, all on localhost. The lock you cracked becomes a machine you can talk to.</p>
+<p>This is the roadmap to sovereignty. Every layer already works. Follow the steps and you end up with a computer that is truly yours.</p>
+
 <h2>The Ingredients</h2>
 <ul class="links">
-  <li><b>Omarchy</b> — the owned OS. <a href="https://omarchy.org">omarchy.org</a> · ISO: <a href="https://iso.omarchy.org/omarchy-4.0.2.iso">iso.omarchy.org</a> · <a href="https://github.com/omacom/omarchy">github.com/omacom/omarchy</a></li>
+  <li><b>Omarchy</b> — the owned OS. <a href="https://omarchy.org">omarchy.org</a> · ISO: <a href="https://iso.omarchy.org">iso.omarchy.org</a> · <a href="https://github.com/omacom/omarchy">github.com/omacom/omarchy</a> · <a href="https://omarchy.org/manual/getting-started">Getting Started</a></li>
   <li><b>Bonsai</b> — the personal AI brain (1-bit, ~1.15 GB for 8B). Runs the knowledge graph and everyday assistant. <a href="https://prismml.com">prismml.com</a> · <a href="https://docs.prismml.com">docs.prismml.com</a> · <a href="https://huggingface.co/collections/prism-ml/bonsai">huggingface.co/prism-ml/bonsai</a></li>
   <li><b>Stronger coding models</b> — for the setup agents in "Let AI Cook": Grok 4.6 (via OpenCode), GLM 5.2 / 5.1 (open weights, MIT). These are heavier than Bonsai and handle the multi-step install work.</li>
   <li><b>llama.cpp</b> — the runtime for Bonsai. <a href="https://github.com/ggml-org/llama.cpp">github.com/ggml-org/llama.cpp</a> (PrismML fork: <a href="https://github.com/PrismML-Eng/llama.cpp">PrismML-Eng/llama.cpp</a>)</li>
+  <li><b>Open WebUI</b> — the daily workspace on top of llama.cpp. <a href="https://github.com/open-webui/open-webui">github.com/open-webui/open-webui</a></li>
   <li><b>Vercel</b> — the public layer. <a href="https://vercel.com">vercel.com</a></li>
   <li><b>GitHub</b> — your source of truth. <a href="https://github.com">github.com</a></li>
   <li><b>A domain registrar</b> — Namecheap, Cloudflare, Porkbun, etc.</li>
 </ul>
 
 <div class="note">
-  <b>Two layers of AI:</b> Bonsai is the lightweight personal assistant that stays on your machine forever. The stronger models (Grok 4.6, GLM 5.x) are the chefs you call in to do the heavy setup — then you can keep them local too via OpenCode + llama.cpp/Ollama, or use them only while building.
+  <b>Two layers of AI.</b> Bonsai is the personal AI layer — journaling, talking to a local model, the knowledge graph. The stronger models (Grok 4.6, GLM 5.x) are for the moments you need more power: setting up software on the machine, coding, multi-step installs. Reach for those when building; hand daily use back to Bonsai.
 </div>
 
-<h2>Part 1 — Jailbreak Your Laptop</h2>
+<div class="note">
+  <b>Proof it works, not ingredients.</b> I already have the entire ecosystem running. Open WebUI with the Knowledge Graph, Bonsai served through llama.cpp, my portfolio published to my own domain, and a few spatial apps — Where is Paul? and Musical Cubes — all built and tested on this machine. The steps below are what I actually did.
+</div>
+
+<h2>Part 1 — On the OS</h2>
 <div class="step">
-  <p>To see why this matters, go back to where jailbreaking began. Back then the lock was physical — a phone locked to one carrier, sealed by firmware, and the only way out was to crack the firmware itself. In the summer of 2007, a seventeen-year-old named George Hotz — geohot — spent five hundred hours soldering and coding to unlock the original iPhone. He posted the video from his parents' kitchen: "This is the world's first unlocked iPhone." It was breaking news. The New York Times, CBS, CNBC, Wired — the story spread across the world in a weekend. He traded one of the unlocked phones for a Nissan 350Z. He was still a teenager.</p>
-  <p>Today the lock isn't the phone. It's the operating system on the laptop you use every day — the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. Jailbreaking your laptop is the same idea: crack the lock the vendor shipped, on whatever machine you have. Mac, PC, or a Linux box you already run.</p>
-  <p>The payoff is transparency. On a locked OS you're guessing what's running, what phones home, what you can't see. On Omarchy you can list every process, every service, every connection, and know exactly what's happening because you chose it. And the AI layer turns that knowledge into control — ask your local model to audit the machine, kill a process, reconfigure a service, customize the desktop, all through conversation, all on localhost. The lock you cracked becomes a machine you can talk to.</p>
+  <p>Crack the lock the vendor shipped. Replace their assumptions with an OS you control.</p>
   <img src="jailbreak-your-laptop.png" alt="[Screenshot: Omarchy desktop after install — Hyprland tiling, Quickshell bar]">
   <div class="img-note">📷 Replace with: Omarchy desktop screenshot after first boot.</div>
+
+  <div class="official">
+    <h3>Official Getting Started — <a href="https://omarchy.org/manual/getting-started">omarchy.org/manual/getting-started</a></h3>
+    <p>From the Omarchy manual, condensed:</p>
+    <ol>
+      <li>Omarchy is installed using an ISO. Choose a full-disk install (takes over the entire drive) or a free-space install (unallocated space — how you dual boot alongside Windows or another OS; turn off BitLocker in Windows first).</li>
+      <li>The installation defaults to full encryption. The full-disk option wipes the selected drive — back up first.</li>
+      <li>Download the Omarchy ISO from <a href="https://omarchy.org">omarchy.org</a>, put it on a USB stick (balenaEtcher on Mac/Windows, caligula on Linux), and boot off the stick.</li>
+      <li><b>You must turn off Secure Boot and/or TPM in the BIOS.</b> They're Microsoft security schemes meant for Windows and Microsoft-affiliated Linux distributions.</li>
+      <li>Answer the configuration questions, confirm them, select a drive, and watch the install. Under a minute on fast machines, no more than five on older ones.</li>
+      <li>Now you're ready to Omarchy.</li>
+    </ol>
+    <p style="font-size:9.5pt;color:#555;margin:8pt 0 0;">Use a wired or 2.4 GHz keyboard — full-disk encryption won't accept a Bluetooth keyboard at startup. Encryption is on by default for a reason: you don't want anyone with access to your hardware to get your data. Hit Ctrl+C on the first screen to prepare the machine for another owner, or on the disk-formatting screen to install without encryption.</p>
+  </div>
+
   <h3>Do this</h3>
   <ol>
-    <li>Download the ISO from <a href="https://iso.omarchy.org/omarchy-4.0.2.iso">iso.omarchy.org</a>.</li>
-    <li>Flash it to a USB stick (balenaEtcher on Mac/Windows).</li>
+    <li>Download the ISO from <a href="https://omarchy.org">omarchy.org</a> (or the direct ISO at <a href="https://iso.omarchy.org">iso.omarchy.org</a>).</li>
+    <li>Flash it to a USB stick (balenaEtcher on Mac/Windows, caligula on Linux).</li>
     <li>Boot off the stick. Turn off Secure Boot / TPM in BIOS.</li>
     <li>Follow the configurator — full-disk or free-space install, encryption on by default.</li>
+    <li>Reboot. List every process, every service, every connection. You chose all of it.</li>
   </ol>
+
   <h3>Prompt an AI to set it up</h3>
   <div class="prompt">You are a systems engineer. Walk me through installing Omarchy 4.x on a laptop with 16 GB of memory. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.</div>
   <div class="cook">
@@ -84,21 +114,23 @@
 
 <h2>Part 2 — Run Your Local AI</h2>
 <div class="step">
-  <p>The knowledge graph is the personal assistant that runs on your machine. Phone and laptop talk to each other over your own Wi-Fi — no account sync, no cloud relay. Bonsai 8B fits in about 1.15 GB; on a 16 GB machine it leaves room for everything else. This is the layer Bonsai was built for.</p>
+  <p>The knowledge graph is the personal assistant that runs on your machine. Phone and laptop talk to each other over your own Wi-Fi — no account sync, no cloud relay. Bonsai 8B fits in about 1.15 GB; on a 16 GB machine it leaves room for everything else. This is the layer Bonsai was built for: journaling, talking to a local model, remembering your life.</p>
   <img src="jailbreak-your-laptop.png" alt="[Screenshot: phone and laptop both chatting with the same local assistant over Wi-Fi, llama.cpp server log]">
   <div class="img-note">📷 Replace with: two devices hitting the same localhost assistant + server throughput log.</div>
   <h3>Do this</h3>
   <ol>
     <li>Get a Bonsai GGUF from <a href="https://huggingface.co/collections/prism-ml/bonsai">huggingface.co/prism-ml/bonsai</a> (start with Bonsai-8B-Q1_0.gguf).</li>
-    <li>Run it with llama.cpp: <code>./llama-server -m Bonsai-8B-Q1_0.gguf -c 0 --port 8080</code>.</li>
-    <li>Point your knowledge-graph app at <code>http://localhost:8080</code>. Expose it on your LAN IP so the phone can reach it.</li>
+    <li>Run it with llama.cpp: <code>./llama-server -m Bonsai-8B-Q1_0.gguf -c 0 --port 8080</code>. Its built-in UI is already good enough to talk to the model.</li>
+    <li>Point Open WebUI at that same local endpoint. This is the daily workspace — chats, notes, search.</li>
+    <li>Open Graph in Open WebUI. That is the Knowledge Graph — chats as cards on a canvas, time as space, no cloud.</li>
+    <li>Bind it to your LAN IP so the phone on the same Wi-Fi can reach it.</li>
   </ol>
   <h3>Prompt an AI to set it up</h3>
-  <div class="prompt">Set up a local AI assistant on my laptop (16 GB memory) using Bonsai 8B 1-bit via llama.cpp. Download the Q1_0 GGUF, start an OpenAI-compatible server on port 8080, bind it to my LAN IP so my phone on the same Wi-Fi can talk to it, and give me a curl test that returns a chat completion. No cloud, no API keys.</div>
+  <div class="prompt">Set up a local AI stack on my laptop (16 GB memory): Bonsai 8B 1-bit via llama.cpp on port 8080, then Open WebUI pointed at that endpoint, then the Knowledge Graph UI available under the Graph menu in Open WebUI. Bind it to my LAN IP so my phone on the same Wi-Fi can talk to it. No cloud, no API keys.</div>
   <div class="cook">
     <h3>Let AI Cook</h3>
     <div class="agents">Use a stronger model here too if you want — OpenCode + Grok 4.6 or GLM 5.2 — then hand the finished assistant over to Bonsai for daily use.</div>
-    <div class="prompt">Set up Bonsai 8B 1-bit on this laptop via llama.cpp: download the Q1_0 GGUF, start the OpenAI-compatible server on port 8080 bound to my LAN IP, point the knowledge-graph app at it, and verify with a curl chat completion from both this machine and my phone on the same Wi-Fi. No cloud.</div>
+    <div class="prompt">Set up Bonsai 8B 1-bit on this laptop via llama.cpp: download the Q1_0 GGUF, start the OpenAI-compatible server on port 8080 bound to my LAN IP, point Open WebUI at it, verify Graph opens the Knowledge Graph canvas, and confirm the phone on the same Wi-Fi can reach it. No cloud.</div>
   </div>
 </div>
 
