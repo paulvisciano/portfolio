@@ -27,11 +27,11 @@ style: |
 
 <!-- _class: lead -->
 
-# Jailbreaking Your Laptop
+# Jailbreak Your Laptop
 
 Own the OS. Own the apps. Own the stack.
 
-<div class="tagline">A multi-part vlog series</div>
+<div class="tagline">A five-part series</div>
 
 ---
 
@@ -45,66 +45,60 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 
 ---
 
-## Part 1 — The OS
-
-**Take Over the Machine**
+## Part 1 — Jailbreak Your Laptop
 
 - Install Omarchy — the native Linux distro you bake yourself
 - Strip the vendor's assumptions: update servers, identity checks, telemetry
-- Replace the sealed system with something you wrote
+- Replace the sealed system with something you control
 - Same defiance as geohot, different layer
 
 **Payoff:** The machine is yours. No cloud middleman, no telemetry you can't refuse.
 
 ---
 
-## Part 2 — The Apps
+## Part 2 — Run Your Local AI
 
-**Fork, Customize, or Build**
+- Bonsai as the personal AI brain — 1-bit, ~1.15 GB for 8B
+- llama.cpp on localhost:8080, OpenAI-compatible
+- Phone and laptop on the same Wi-Fi, no cloud relay
+- Stronger models (Grok 4.6, GLM 5.x) for setup; Bonsai for daily use
 
-- Fork the existing apps that ship with the stack
-- Customize them however you want — your rules, your UI, your data
-- Or build your own from scratch
-- Run everything on localhost — no API keys, no cloud, or optional cloud whenever you decide
+**Payoff:** Your assistant lives on your machine, not a server farm in Virginia.
+
+---
+
+## Part 3 — Create Your Own Apps
+
+- Fork what ships with the stack, or start from a template
+- Point everything at localhost instead of a hosted API
+- Then stop forking — scaffold an original app that talks to your local model
+- Run it on the machine you jailbroke in Part 1
 
 **Payoff:** Apps stop being products someone sells you and become infrastructure you run.
 
 ---
 
-## Part 3 — Your Own Website
+## Part 4 — Create Your Own Site
 
-**Claim the Domain**
+**The public layer**
 
-- Claim your domain
-- Set up Vercel to deploy your own portfolio or personal website
-- One command, live on the internet — fully yours
+- Claim a domain
+- GitHub as source of truth, Vercel deploys on every push
+- Wire the domain in
+- This is the public face. The brain stays local.
 
-**Payoff:** A public face on the internet that no platform can take away. The portfolio becomes the proof of ownership.
-
----
-
-## Part 4 — The Local AI Layer
-
-**Your Personal Assistant**
-
-- The knowledge graph running on your machine as the personal assistant layer
-- Works across the entire Wi-Fi network — phone and computer talk to each other
-- Talk to the assistant from either device
-- All running on an 18-gig MacBook — no data center, no supervision needed
-
-**Payoff:** Your social graph and your assistant live on your machine, not a server farm in Virginia.
+**Payoff:** A public face on the internet that no platform can take away.
 
 ---
 
-## Part 5 — Build Your Own Apps
+## Part 5 — Publish If You Want. Reclaim Your Data.
 
-**Graduate to Creator**
+- Publishing is optional — share an app to your domain only if you choose to
+- Export your data from the platforms that already have it
+- Import it onto the machine you own: photos, chats, notes, history
+- The knowledge graph becomes the place that data lives now
 
-- Move from forking to creating original apps
-- Publish them to your own domain
-- The moment someone stops following the tutorial and starts owning the stack for real
-
-**Payoff:** The loop closes — customize, publish, own. You become the next geohot.
+**Payoff:** You own the OS, the AI, the apps, the site, and the archive.
 
 ---
 
@@ -113,7 +107,7 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 - You're not selling a roadmap — you're demoing a finished product. Every layer already works.
 - Each part is a reason to trust you as the guide.
 - The marketing angle writes itself: every other app is a subscription you rent, yours is software you own.
-- Natural endpoint: part five ends with someone shipping their first original app.
+- Natural endpoint: part five ends with someone bringing their own data home.
 
 ---
 
@@ -123,4 +117,4 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 
 Paul Visciano — Sci-Fi Labs
 
-pauvisciano.com
+paulvisciano.com

@@ -24,17 +24,19 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 
 - A laptop (MacBook with 18 gigs works — no GPU required)
 - Omarchy — the native Linux distro you bake yourself
-- Existing apps you can fork or customize
+- Bonsai — the personal AI brain (1-bit, ~1.15 GB for 8B)
+- Stronger coding models for setup: Grok 4.6 via OpenCode, or GLM 5.2 / 5.1
+- llama.cpp as the runtime
+- Existing apps you can fork, plus a stack you like for originals
 - A domain name you claim
-- Vercel for deployments
+- Vercel for the public layer
 - A GitHub repository as source of truth
-- llama.cpp running a local model (Bonsai or Llama)
-- Your own knowledge graph as the personal assistant layer
+- Your own data, exported from the platforms that already have it
 - Patience, and a willingness to stop asking permission
 
 ---
 
-## Step 1 — Take Over the OS
+## Part 1 — Jailbreak Your Laptop
 
 **Crack the lock.**
 
@@ -47,58 +49,58 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 
 ---
 
-## Step 2 — Fork, Customize, or Build the Apps
+## Part 2 — Run Your Local AI
+
+**Give the stack a brain.**
+
+1. Get a Bonsai GGUF (start with Bonsai-8B-Q1_0.gguf).
+2. Serve it with llama.cpp on localhost:8080 — OpenAI-compatible, no API key.
+3. Bind it to your LAN IP so the phone on the same Wi-Fi can talk to it.
+4. Use a stronger model (Grok 4.6 via OpenCode, GLM 5.2 / 5.1) if you want help standing this up. Hand daily use back to Bonsai.
+
+**Result:** Your assistant lives on your machine, not a server farm in Virginia. Phone and laptop share it. No one can shadowban you. No one can sell your data.
+
+---
+
+## Part 3 — Create Your Own Apps
 
 **Make the software yours.**
 
-1. Fork the apps that ship with the stack.
-2. Customize them — your rules, your UI, your data.
-3. Or build your own from scratch.
-4. Run everything on localhost. No API keys. No cloud — or optional cloud whenever you decide.
-5. Walk through open design, open code, and wire it to a local Ollama or llama.cpp model.
+1. Fork an open-source app you like, or start from a template.
+2. Point it at localhost:8080 instead of a hosted API.
+3. Then stop forking. Scaffold an original app that talks to your local model.
+4. Run it on the machine you jailbroke in Part 1. No account, no subscription, no telemetry you can't refuse.
 
 **Result:** Apps stop being products someone sells you. They become infrastructure you run.
 
 ---
 
-## Step 3 — Build Your Own Website: Your Portal to the Internet
+## Part 4 — Create Your Own Site (The Public Layer)
 
 **Claim your public face.**
 
 1. Claim your domain name.
 2. Create a GitHub repository — this becomes the source of truth.
 3. Set up Vercel. Vercel is in charge of deployments.
-4. Wire your domain name into Vercel (update the registrar's DNS records).
+4. Wire your domain into Vercel (update the registrar's DNS records).
 5. Push to the repo. Vercel deploys on every push.
-6. Your portfolio or personal website is live — fully yours.
 
-**Result:** A public face on the internet that no platform can take away. The portfolio becomes the proof of ownership.
+This is the public layer. The brain stays local. The site is what the internet gets to see.
 
----
-
-## Step 4 — The Local AI Layer: Your Personal Assistant
-
-**Give the stack a brain.**
-
-1. Run llama.cpp with a local model — Bonsai (the 1-bit family) or Llama.
-2. The knowledge graph becomes your personal assistant layer, running on your machine.
-3. It works across your entire Wi-Fi network — phone and computer talk to each other.
-4. Talk to the assistant from either device.
-5. All of it runs on an 18-gig MacBook. No data center. No supervision.
-
-**Result:** Your social graph and your assistant live on your machine, not a server farm in Virginia. No one can shadowban you. No one can sell your data.
+**Result:** A public face on the internet that no platform can take away.
 
 ---
 
-## Step 5 — Build Your Own Apps: Graduate to Creator
+## Part 5 — Publish If You Want. Reclaim Your Data.
 
-**Stop following the recipe. Start writing it.**
+**Sharing is optional. The archive is not.**
 
-1. Move from forking to creating original apps.
-2. Publish them to your own domain.
-3. The moment you stop following the tutorial and start owning the stack for real.
+1. If you want to share an app, publish it to your domain from Part 4. If you don't, don't.
+2. Export your data from the platforms that already have it — photos, chats, notes, history, the graph of your life.
+3. Import that archive onto the machine you own.
+4. Point the knowledge graph at it. That data lives here now.
 
-**Result:** The loop closes — customize, publish, own. You become the next geohot.
+**Result:** The loop closes. You own the OS, the AI, the apps, the site, and the archive. Nothing stays rented unless you decide it should.
 
 ---
 
@@ -106,10 +108,10 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 
 You have reclaimed your computer.  
 You own the OS.  
-You own the apps.  
-You own the data — it never leaves your machine.  
-You have a personal assistant that runs on your Wi-Fi.  
-You have a website that is yours, deployed from your repo, on your domain.
+You run your own AI.  
+You run your own apps.  
+You have a public layer that is yours.  
+Your data is home.
 
 This is the road to sovereignty.
 
@@ -118,9 +120,9 @@ This is the road to sovereignty.
 ## Why This Recipe Works
 
 - Every layer is already built and working.
-- Each step is a reason to trust the guide.
+- Each part is a reason to trust the guide.
 - The marketing angle writes itself: every other app is a subscription you rent; yours is software you own.
-- Natural endpoint: someone ships their first original app and the tutorial ends.
+- Natural endpoint: someone brings their own data home and the tutorial ends.
 
 ---
 
