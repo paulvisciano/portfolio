@@ -56,7 +56,8 @@
 
 <h2>Part 1 — Jailbreak Your Laptop</h2>
 <div class="step">
-  <p>Crack the lock Apple (or whoever) shipped. Replace their assumptions with an OS you control. Geohot did it to firmware in 2007; you do it to the whole stack today.</p>
+  <p>Back then the lock was physical. A phone locked to one carrier, sealed by firmware, and the only way out was to crack the firmware itself — geohot soldering and coding for five hundred hours to unlock the original iPhone in 2007. Today the lock isn't the phone. It's the operating system on the laptop you use every day — the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. Jailbreaking your laptop is the same idea: crack the lock the vendor shipped, on whatever machine you have. Mac, PC, or a Linux box you already run.</p>
+  <p>The payoff is transparency. On a locked OS you're guessing what's running, what phones home, what you can't see. On Omarchy you can list every process, every service, every connection, and know exactly what's happening because you chose it. And the AI layer turns that knowledge into control — ask your local model to audit the machine, kill a process, reconfigure a service, customize the desktop, all through conversation, all on localhost. The lock you cracked becomes a machine you can talk to.</p>
   <img src="jailbreak-your-laptop.png" alt="[Screenshot: Omarchy desktop after install — Hyprland tiling, Quickshell bar]">
   <div class="img-note">📷 Replace with: Omarchy desktop screenshot after first boot.</div>
   <h3>Do this</h3>
@@ -67,7 +68,7 @@
     <li>Follow the configurator — full-disk or free-space install, encryption on by default.</li>
   </ol>
   <h3>Prompt an AI to set it up</h3>
-  <div class="prompt">You are a systems engineer. Walk me through installing Omarchy 4.x on a MacBook with an 18 GB unified-memory chip. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.</div>
+  <div class="prompt">You are a systems engineer. Walk me through installing Omarchy 4.x on a laptop with 16 GB of memory. I want full-disk encryption, Hyprland, and the default developer tools. Give me the exact commands, the BIOS settings to change, and what to do if the installer complains about Secure Boot. Then verify the install with `omarchy --version`.</div>
   <div class="cook">
     <h3>Let AI Cook</h3>
     <div class="agents">Run these agents against a <b>stronger coding model</b> (Grok 4.6 via OpenCode, or GLM 5.2 / 5.1). Bonsai is too light for multi-step installs — save it for the personal assistant layer in Part 2.
@@ -76,13 +77,13 @@
       <a href="https://github.com/NousResearch/hermes-agent">Hermes</a> ·
       <a href="https://openclaw.ai">OpenClaw</a>
     </div>
-    <div class="prompt">Install Omarchy 4.x on this MacBook (18 GB unified memory). Turn off Secure Boot, flash the ISO, run the full-disk encrypted install with Hyprland, then verify with `omarchy --version`. Do it step by step and stop if anything fails.</div>
+    <div class="prompt">Install Omarchy 4.x on this laptop (16 GB memory). Turn off Secure Boot, flash the ISO, run the full-disk encrypted install with Hyprland, then verify with `omarchy --version`. Do it step by step and stop if anything fails.</div>
   </div>
 </div>
 
 <h2>Part 2 — Run Your Local AI</h2>
 <div class="step">
-  <p>The knowledge graph is the personal assistant that runs on your machine. Phone and laptop talk to each other over your own Wi-Fi — no account sync, no cloud relay. Bonsai 8B fits in about 1.15 GB; on an 18 GB Mac it leaves room for everything else. This is the layer Bonsai was built for.</p>
+  <p>The knowledge graph is the personal assistant that runs on your machine. Phone and laptop talk to each other over your own Wi-Fi — no account sync, no cloud relay. Bonsai 8B fits in about 1.15 GB; on a 16 GB machine it leaves room for everything else. This is the layer Bonsai was built for.</p>
   <img src="jailbreak-your-laptop.png" alt="[Screenshot: phone and laptop both chatting with the same local assistant over Wi-Fi, llama.cpp server log]">
   <div class="img-note">📷 Replace with: two devices hitting the same localhost assistant + server throughput log.</div>
   <h3>Do this</h3>
@@ -92,11 +93,11 @@
     <li>Point your knowledge-graph app at <code>http://localhost:8080</code>. Expose it on your LAN IP so the phone can reach it.</li>
   </ol>
   <h3>Prompt an AI to set it up</h3>
-  <div class="prompt">Set up a local AI assistant on my MacBook (18 GB unified memory) using Bonsai 8B 1-bit via llama.cpp. Download the Q1_0 GGUF, start an OpenAI-compatible server on port 8080, bind it to my LAN IP so my phone on the same Wi-Fi can talk to it, and give me a curl test that returns a chat completion. No cloud, no API keys.</div>
+  <div class="prompt">Set up a local AI assistant on my laptop (16 GB memory) using Bonsai 8B 1-bit via llama.cpp. Download the Q1_0 GGUF, start an OpenAI-compatible server on port 8080, bind it to my LAN IP so my phone on the same Wi-Fi can talk to it, and give me a curl test that returns a chat completion. No cloud, no API keys.</div>
   <div class="cook">
     <h3>Let AI Cook</h3>
     <div class="agents">Use a stronger model here too if you want — OpenCode + Grok 4.6 or GLM 5.2 — then hand the finished assistant over to Bonsai for daily use.</div>
-    <div class="prompt">Set up Bonsai 8B 1-bit on this MacBook via llama.cpp: download the Q1_0 GGUF, start the OpenAI-compatible server on port 8080 bound to my LAN IP, point the knowledge-graph app at it, and verify with a curl chat completion from both this machine and my phone on the same Wi-Fi. No cloud.</div>
+    <div class="prompt">Set up Bonsai 8B 1-bit on this laptop via llama.cpp: download the Q1_0 GGUF, start the OpenAI-compatible server on port 8080 bound to my LAN IP, point the knowledge-graph app at it, and verify with a curl chat completion from both this machine and my phone on the same Wi-Fi. No cloud.</div>
   </div>
 </div>
 
@@ -144,7 +145,7 @@
 
 <h2>Part 5 — Publish If You Want. Reclaim Your Data.</h2>
 <div class="step">
-  <p>Sharing is optional. The archive is not. Publish an app to your domain only if you choose to. Then pull your data home from the platforms that already have it, and import it onto the machine you own.</p>
+  <p>Publishing is optional. The archive is not. Publish an app to your domain only if you choose to. Then pull your data home from the platforms that already have it, and import it onto the machine you own.</p>
   <img src="jailbreak-your-laptop.png" alt="[Screenshot: data import into the local knowledge graph + optional app live on your domain]">
   <div class="img-note">📷 Replace with: export/import flow into the knowledge graph, plus (optional) an original app live on your domain.</div>
   <h3>Do this</h3>

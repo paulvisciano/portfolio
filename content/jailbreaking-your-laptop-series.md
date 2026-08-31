@@ -8,9 +8,11 @@
 
 ## The Arc
 
-Ownership used to mean cracking someone else's lock. Now it means building the lock yourself.
+Back then the lock was physical. A phone locked to one carrier, sealed by firmware, and the only way out was to crack the firmware itself — geohot soldering and coding for five hundred hours to unlock the original iPhone in 2007. Today the lock isn't the phone. It's the operating system on the laptop you use every day — the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. Jailbreaking your laptop is the same idea: crack the lock the vendor shipped, on whatever machine you have. Mac, PC, or a Linux box you already run.
 
-From geohot cracking the first iPhone in 2007 to running a fully local stack on an 18-gig MacBook — the defiance is the same, the layer just moved.
+The payoff is transparency. On a locked OS you're guessing what's running, what phones home, what you can't see. On Omarchy you can list every process, every service, every connection, and know exactly what's happening because you chose it. And the AI layer turns that knowledge into control — ask your local model to audit the machine, kill a process, reconfigure a service, customize the desktop, all through conversation, all on localhost. The lock you cracked becomes a machine you can talk to.
+
+This is the roadmap to sovereignty. Every layer already works.
 
 ---
 
@@ -22,8 +24,10 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 - Install Omarchy — the native Linux distro you bake yourself
 - Strip the vendor's assumptions: update servers, identity checks, telemetry
 - Replace the sealed system with something you control
+- See every process, every service, every connection — no guessing
+- Talk to the machine through AI: audit, reconfigure, customize
 
-**Payoff:** The machine is yours.
+**Payoff:** The machine is yours. The lock you cracked becomes a machine you can talk to.
 
 ---
 
@@ -63,7 +67,7 @@ From geohot cracking the first iPhone in 2007 to running a fully local stack on 
 - Same URL on a phone, a desk, and Safari on Vision Pro
 - The globe is the journey. The portfolio is the showroom. Together they replace LinkedIn + Medium + Instagram for anything you want to keep.
 
-**Demo shot:** Hero (“Hallo, ich bin Paul Visciano”), Work carousel, Blogs grid.
+**Demo shot:** Hero ("Hallo, ich bin Paul Visciano"), Work carousel, Blogs grid.
 
 **Payoff:** A public face no platform can take away.
 

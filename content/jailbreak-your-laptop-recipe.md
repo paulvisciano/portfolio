@@ -10,19 +10,17 @@
 
 ## The Premise
 
-Ownership used to mean cracking someone else's lock.  
-Now it means building the lock yourself.
+Back then the lock was physical. A phone locked to one carrier, sealed by firmware, and the only way out was to crack the firmware itself — geohot soldering and coding for five hundred hours to unlock the original iPhone in 2007. Today the lock isn't the phone. It's the operating system on the laptop you use every day — the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. Jailbreaking your laptop is the same idea: crack the lock the vendor shipped, on whatever machine you have. Mac, PC, or a Linux box you already run.
 
-From geohot cracking the first iPhone in 2007 to running a fully local stack on an 18-gig MacBook — the defiance is the same, the layer just moved.
+The payoff is transparency. On a locked OS you're guessing what's running, what phones home, what you can't see. On Omarchy you can list every process, every service, every connection, and know exactly what's happening because you chose it. And the AI layer turns that knowledge into control — ask your local model to audit the machine, kill a process, reconfigure a service, customize the desktop, all through conversation, all on localhost. The lock you cracked becomes a machine you can talk to.
 
-This is not a roadmap. Every layer already works.  
-This is a recipe. Follow the steps and you end up with a computer that is truly yours.
+This is the roadmap to sovereignty. Every layer already works. Follow the steps and you end up with a computer that is truly yours.
 
 ---
 
 ## Ingredients
 
-- A laptop (MacBook with 18 gigs works — no GPU required)
+- A laptop (16 gigs works — no GPU required; Mac, PC, or Linux)
 - Omarchy — the native Linux distro you bake yourself
 - Bonsai — the personal AI brain (1-bit, ~1.15 GB for 8B)
 - Stronger coding models for setup: Grok 4.6 via OpenCode, or GLM 5.2 / 5.1
@@ -41,14 +39,14 @@ This is a recipe. Follow the steps and you end up with a computer that is truly 
 
 ## Part 1 — Jailbreak Your Laptop
 
-**Crack the lock.**
+**Crack the lock the vendor shipped.**
 
 1. Install Omarchy on your machine.
 2. Strip the vendor's assumptions: update servers, identity checks, telemetry.
 3. Replace the sealed system with something you control.
 4. Same defiance as geohot, different layer — you are cracking the assumption that the vendor's OS is the only one allowed on their hardware.
 
-**Result:** The machine is yours. No cloud middleman. No telemetry you can't refuse.
+**Result:** The machine is yours. No cloud middleman. No telemetry you can't refuse. You can see every process, every service, every connection — and the AI layer lets you control it all through conversation.
 
 ---
 
@@ -108,7 +106,7 @@ This is the public layer. The brain stays local. The site is what the internet g
 
 ## Part 5 — Publish If You Want. Reclaim Your Data.
 
-**Sharing is optional. The archive is not.**
+**Publishing is optional. The archive is not.**
 
 1. If you want to share an app, a blog, or a chapter of the globe, publish it to your domain from Part 4. If you don't, don't.
 2. Export your data from the platforms that already have it — photos, chats, notes, history, the graph of your life.
