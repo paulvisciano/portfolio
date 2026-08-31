@@ -45,7 +45,7 @@ This is the roadmap to sovereignty. Every layer already works.
 
 ---
 
-## Part 1 — Jailbreak Your Laptop
+## Part 1 — On the OS
 
 - Install Omarchy — the native Linux distro you bake yourself
 - Strip the vendor's assumptions: update servers, identity checks, telemetry
@@ -60,12 +60,13 @@ This is the roadmap to sovereignty. Every layer already works.
 
 ## Part 2 — Run Your Local AI
 
-- Bonsai as the personal AI brain — 1-bit, ~1.15 GB for 8B
-- llama.cpp on localhost:8080, OpenAI-compatible
-- Phone and laptop on the same Wi-Fi, no cloud relay
-- Stronger models (Grok 4.6, GLM 5.x) for setup; Bonsai for daily use
+- Get llama.cpp set up — it ships with its own UI
+- Pull a model: Bonsai (8B Q1_0 GGUF)
+- Set up Open WebUI and point it at Bonsai on localhost:8080
+- If you want the Knowledge Graph, use the custom fork: github.com/paulvisciano/open-webui — Graph under the Graph menu
+- Expose everything over Wi-Fi — access your local AI from any device on the network
 
-**Payoff:** Your assistant lives on your machine, not a server farm in Virginia.
+**Payoff:** Your assistant lives on your machine. Any device on the network can reach it.
 
 ---
 
@@ -106,7 +107,7 @@ This is the roadmap to sovereignty. Every layer already works.
 
 ## Why This Series Works
 
-- You're not selling a roadmap — you're demoing a finished product. Every layer already works.
+- You're demoing a finished product, not selling a course. Every layer already works.
 - Each part is a reason to trust you as the guide.
 - The marketing angle writes itself: every other app is a subscription you rent, yours is software you own.
 - Natural endpoint: part five ends with someone bringing their own data home.
