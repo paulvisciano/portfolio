@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jailbreaking Your Laptop, Part 4: The Local AI Layer — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="The knowledge graph is the personal assistant layer running on your machine. It works across the entire Wi-Fi network — phone and computer talk to each other. All on an 18-gig MacBook. No data center. No supervision.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Jailbreaking Your Laptop, Part 4: The Local AI Layer">
+  <meta property="og:description" content="Your social graph and your assistant live on your machine, not a server farm. Phone and laptop share the same brain on your own network.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 4: The Local AI Layer">
+  <meta name="twitter:description" content="The knowledge graph as personal assistant. Runs across your Wi-Fi. 18 gigs is plenty.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/jailbreaking-your-laptop-4">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Jailbreaking Your Laptop · Part 4 of 5</p>
+    <h1>The Local AI Layer</h1>
+    <p class="deck">The knowledge graph is the personal assistant layer that's running on your machine. I already have it working in a way that works across the entire Wi-Fi network — so you can have multiple devices on the Wi-Fi. Phone and my computer can talk to each other, and I can talk to the assistant from either one.</p>
+
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg" alt="Laptop screen showing a dark infinite canvas of personal photos, voice notes, and documents linked as a graph, with a silver drive plugged in beside it" width="1176" height="784" loading="eager">
+      <figcaption class="fig-cap">The file browser as a conversation. Local model. Drive LED on.</figcaption>
+    </figure>
+
+    <p>The OS is yours. The apps are yours. Now the brain. The knowledge graph is the personal assistant layer that runs on your machine — not a cloud service that forgets you when the subscription lapses.</p>
+    <p>It already works across the entire Wi-Fi network. Phone and computer talk to each other. You talk to the assistant from either device. No account sync, no cloud relay, just your devices talking to each other on a network you control.</p>
+
+    <h2>Eighteen gigs is plenty</h2>
+    <p>And it all runs on an 18-gig MacBook, so you don't need supervision. Eighteen gigs of unified memory is the quiet flex — the whole stack, OS, apps, knowledge graph, all running local without a data center behind it.</p>
+    <p>The test is offline. Airplane mode. No Wi-Fi. No fallback API. If the assistant still answers from weights on disk and data on disk, it is local in fact, not a thin client dressed up as "AI on your machine." Anything that phones home when the cable is unplugged has already failed.</p>
+
+    <div class="callout">Your social graph and your assistant live on your machine, not a server farm in Virginia. No one can shadowban you. No one can sell your data.</div>
+
+    <h2>The assistant that knows your month</h2>
+    <p>This is the layer that makes the stack feel alive. You ask what you recorded last Tuesday and a voice note and three photographs slide into view. You leave the medical folder closed. The model cannot see a file that is not on the mounted volume.</p>
+    <p>JARVIS was the first cut of that idea — git as memory, an agent that knew the month. Knowledge Graph is the engine that stays on the machine. Bonsai runs on 16 GB. Whisper hears. Nothing leaves the desk unless you publish it on purpose.</p>
+
+    <h2>The payoff</h2>
+    <p>The personal assistant layer is real, running, and local. Next, the moment someone stops following the tutorial and starts owning the stack for real — building their own apps.</p>
+
+    <div class="series-nav">
+      <a href="jailbreaking-your-laptop-1.html"><span>Part 1</span>Take Over the Machine</a>
+      <a href="jailbreaking-your-laptop-2.html"><span>Part 2</span>Fork, Customize, or Build</a>
+      <a href="jailbreaking-your-laptop-3.html"><span>Part 3</span>Claim the Domain</a>
+      <a href="jailbreaking-your-laptop-4.html" class="current"><span>Part 4</span>The Local AI Layer</a>
+      <a href="jailbreaking-your-laptop-5.html"><span>Part 5</span>Graduate to Creator</a>
+    </div>
+    <div class="links">
+      <a href="knowledge-graph.html">Knowledge Graph overview</a>
+      <a href="kg-part-1.html">KG Part 1: The canvas and the stack</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="jailbreaking-your-laptop-3.html">Part 3: Your Own Website ←</a>
+      <a href="jailbreaking-your-laptop-5.html">Part 5: Build Your Own Apps →</a>
+      <a href="knowledge-graph.html">Knowledge Graph →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jailbreaking Your Laptop, Part 1: Take Over the Machine — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Before the iPhone was a status symbol, it was a locked box. In 2007 a seventeen-year-old named geohot spent five hundred hours cracking it open. The first unlocked iPhone. He didn't ask permission. He just took ownership. Now the lock is the OS itself.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Jailbreaking Your Laptop, Part 1: Take Over the Machine">
+  <meta property="og:description" content="Ownership used to mean cracking someone else's lock. Now it means building the lock yourself. Part 1: Omarchy, the OS you bake.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 1: Take Over the Machine">
+  <meta name="twitter:description" content="From geohot to Omarchy. The defiance is the same, the layer just moved.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/jailbreaking-your-laptop-1">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Jailbreaking Your Laptop · Part 1 of 5</p>
+    <h1>Take Over the Machine</h1>
+    <p class="deck">Before the iPhone was a status symbol, it was a locked box. In 2007 a seventeen-year-old named George Hotz — geohot — spent five hundred hours soldering and coding until he cracked it open. The first unlocked iPhone. He didn't ask permission. He just took ownership.</p>
+
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg" alt="Night desk with a mechanical keyboard and a laptop running a dark tiled desktop, terminal beside browser, no dock" width="1536" height="1024" loading="eager">
+      <figcaption class="fig-cap">No dock. No icons. A window you opened, and another one. That is the whole surface.</figcaption>
+    </figure>
+
+    <p>Ownership used to mean cracking someone else's lock. Now it means building the lock yourself.</p>
+    <p>Geohot didn't negotiate with AT&amp;T. He didn't file a feature request. He took the hardware he paid for and made it do what he wanted. That is the original act of ownership in computing — defiance, not permission.</p>
+    <p>The lock moved. On a modern Mac the lock is the OS itself: SIP, the sealed system volume, notarization, the T2 chip deciding what gets to run. You own the silicon. You rent the software. Omarchy is you cracking that open and replacing it with something you wrote.</p>
+
+    <h2>The OS you bake</h2>
+    <p><a href="omarchy.html">Omarchy</a> is DHH's omakase Linux cut — Arch, Hyprland, Quickshell. Quattro shipped August 14, 2026. The bar, the launcher, the lock screen, and the menus live in one process. Super + K shows every binding. You install it, customize it, and the machine launches what you bound.</p>
+    <p>That is the desk the rest of the stack is meant to sit on. Not a Mac you cannot name the processes on. Not a Windows lease. A desktop you can read. Agents are a hotkey. Local models are files. If you dismiss the agent notice, there is no AI on the machine. Present. Optional. Not a mandatory cloud account.</p>
+
+    <div class="callout">Same defiance as geohot, different layer. He cracked Apple's firmware. You're cracking Apple's assumption that their OS is the only one allowed on their hardware.</div>
+
+    <h2>What you strip out</h2>
+    <p>The vendor's assumptions come out first. Update servers you never chose. Identity checks that phone home. Telemetry you cannot refuse. The sealed system that decides what runs before you do.</p>
+    <p>Omarchy tiles. Open one window, it takes the screen. Open a second, they split. You do not fish a window out from under another one. Workspaces are instant. Close means quit. Software comes from a package manager, not from an installer you downloaded because an ad told you to. Updates go through one menu: Update, then Omarchy. A snapshot first. A boot-menu rollback if the update is bad.</p>
+
+    <h2>The payoff</h2>
+    <p>The machine is yours. No cloud middleman, no telemetry you can't refuse. You can customize it however you want — your rules, your keys, your processes. Only the apps you asked for should be running. If you cannot name a process, it should not be there.</p>
+    <p>That is part one. The lock is cracked. Next, the apps.</p>
+
+    <div class="series-nav">
+      <a href="jailbreaking-your-laptop-1.html" class="current"><span>Part 1</span>Take Over the Machine</a>
+      <a href="jailbreaking-your-laptop-2.html"><span>Part 2</span>Fork, Customize, or Build</a>
+      <a href="jailbreaking-your-laptop-3.html"><span>Part 3</span>Claim the Domain</a>
+      <a href="jailbreaking-your-laptop-4.html"><span>Part 4</span>The Local AI Layer</a>
+      <a href="jailbreaking-your-laptop-5.html"><span>Part 5</span>Graduate to Creator</a>
+    </div>
+    <div class="links">
+      <a href="omarchy.html">Omarchy essay</a>
+      <a href="own-the-stack.html">Own the stack</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="jailbreaking-your-laptop-2.html">Part 2: The Apps →</a>
+      <a href="omarchy.html">Omarchy — A glimpse into the future →</a>
+      <a href="own-the-stack.html">Own the stack →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
