@@ -439,34 +439,25 @@ window.__userInteracted = false;
   var el = document.querySelector('[data-od-id="greeting"]');
   if (!el) return;
   var gi = 0;
-  var ci = 0;
-  var typing = true;
-  el.textContent = '';
+  var FADE_MS = 600;
+  var HOLD_MS = 3200;
 
-  function tick() {
-    var current = greetings[gi];
-    if (typing) {
-      ci++;
-      el.textContent = current.substring(0, ci);
-      if (ci >= current.length) {
-        typing = false;
-        setTimeout(tick, 2500);
-        return;
-      }
-      setTimeout(tick, 80);
-    } else {
-      ci--;
-      el.textContent = current.substring(0, ci);
-      if (ci <= 0) {
-        typing = true;
-        gi = (gi + 1) % greetings.length;
-        setTimeout(tick, 300);
-        return;
-      }
-      setTimeout(tick, 40);
-    }
+  el.textContent = greetings[0];
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
   }
-  tick();
+
+  function cycle() {
+    el.style.opacity = '0';
+    setTimeout(function () {
+      gi = (gi + 1) % greetings.length;
+      el.textContent = greetings[gi];
+      el.style.opacity = '1';
+    }, FADE_MS);
+  }
+
+  setInterval(cycle, FADE_MS + HOLD_MS);
 })();
 
 (function () {
@@ -656,37 +647,91 @@ window.__userInteracted = false;
   var links = cycle.querySelectorAll('.hero-cta');
   if (!links.length) return;
 
-  var i = 0;
+  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  var SCRAMBLE_MS = 900;
+  var RESOLVE_MS = 450;
+  var HOLD_MS = 4000;
+  var FADE_MS = 3800;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var names = [];
+  links.forEach(function (link) { names.push(link.textContent); });
+
+  var activeIdx = 0;
+  var rafId = null;
   var timer = null;
   var running = false;
 
-  var show = function (n) {
+  var randChar = function () {
+    return GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
+  };
+
+  var setActive = function (n) {
     links.forEach(function (link, idx) {
       link.classList.toggle('is-active', idx === n);
     });
   };
 
-  var step = function () {
-    i = (i + 1) % links.length;
-    show(i);
+  var scrambleTo = function (n, done) {
+    var link = links[n];
+    var target = names[n];
+    var len = target.length;
+    var startTs = null;
+    var total = SCRAMBLE_MS + RESOLVE_MS;
+    rafId = requestAnimationFrame(function tick(ts) {
+      if (startTs === null) startTs = ts;
+      var elapsed = ts - startTs;
+      var out = '';
+      if (elapsed < SCRAMBLE_MS) {
+        for (var k = 0; k < len; k++) out += randChar();
+      } else {
+        var p = Math.min(1, (elapsed - SCRAMBLE_MS) / RESOLVE_MS);
+        var locked = Math.floor(p * len);
+        for (var j = 0; j < len; j++) {
+          out += j < locked ? target.charAt(j) : randChar();
+        }
+      }
+      link.textContent = out;
+      if (elapsed < total) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        link.textContent = target;
+        rafId = null;
+        if (done) done();
+      }
+    });
+  };
+
+  var stepScramble = function () {
+    activeIdx = (activeIdx + 1) % links.length;
+    setActive(activeIdx);
+    scrambleTo(activeIdx, function () {
+      if (running) timer = setTimeout(stepScramble, HOLD_MS);
+    });
+  };
+
+  var stepFade = function () {
+    activeIdx = (activeIdx + 1) % links.length;
+    setActive(activeIdx);
+    if (running) timer = setTimeout(stepFade, FADE_MS);
   };
 
   var start = function () {
     if (running) return;
     running = true;
-    timer = setInterval(step, 3800);
+    if (rafId) return;
+    timer = setTimeout(reduced ? stepFade : stepScramble, reduced ? FADE_MS : HOLD_MS);
   };
 
   var stop = function () {
     running = false;
-    if (timer) { clearInterval(timer); timer = null; }
+    if (timer) { clearTimeout(timer); timer = null; }
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    links.forEach(function (link, idx) { link.textContent = names[idx]; });
   };
 
-  show(0);
-
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
+  setActive(0);
+  links[0].textContent = names[0];
 
   start();
 
