@@ -34,37 +34,28 @@
   <article>
     <p class="series">Jailbreaking Your Laptop · Part 1 of 5</p>
     <h1>Take Over the Machine</h1>
-    <p class="deck">Before the iPhone was a status symbol, it was a locked box. In 2007 a seventeen-year-old named George Hotz — geohot — spent five hundred hours soldering and coding until he cracked it open. The first unlocked iPhone. He didn't ask permission. He just took ownership.</p>
+    <p class="deck">The lock moved from the carrier to the operating system. Sealed system volumes, notarization, telemetry you can't refuse. You own the silicon. You rent the software. This is the install that flips that.</p>
 
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg" alt="Night desk with a mechanical keyboard and a laptop running a dark tiled desktop, terminal beside browser, no dock" width="1536" height="1024" loading="eager">
       <figcaption class="fig-cap">No dock. No icons. A window you opened, and another one. That is the whole surface.</figcaption>
     </figure>
 
-    <p>In August 2007, a seventeen-year-old named George Hotz sat in his parents' kitchen in New Jersey and spent five hundred hours with a soldering iron and a stack of code. The original iPhone shipped locked to AT&amp;T. The carrier did not negotiate. Apple did not ask permission. Geohot cracked the firmware anyway, posted the video, and called it the world's first unlocked iPhone. The story broke across the New York Times, CBS, CNBC, and Wired in a weekend. He traded one of the unlocked phones for a Nissan 350Z. He was still a teenager.</p>
-    <p>That is the original act of ownership in computing. Defiance, not a feature request. You paid for the hardware. You decide what it runs.</p>
-    <p>The lock moved. On a modern Mac the lock is no longer a carrier contract. It is the operating system itself: <a class="ext" href="https://omarchy.org/manual/getting-started/" target="_blank" rel="noopener">SIP</a>, the sealed system volume, notarization checks, the T2 chip gating what gets to run before you ever see a login screen. You own the silicon. You rent the software, and the software decides what you may do with the machine you bought.</p>
-    <p>Jailbreaking your laptop is the same idea as that kitchen in 2007, aimed at a different layer. Geohot cracked Apple's firmware. You are cracking Apple's assumption that their OS is the only one allowed to run on their hardware. This part of the series walks you through installing <a class="ext" href="https://omarchy.org/" target="_blank" rel="noopener">Omarchy</a>, an Arch-based desktop you can read, edit, and own. The full geohot deep-dive lives in <a href="own-your-hardware.html">its own essay</a>. Here we install.</p>
+    <p>The geohot story is in <a href="own-your-hardware.html">its own essay</a>. The short version: in 2007 a teenager cracked the iPhone's firmware and took ownership of the hardware. Jailbreaking your laptop is the same move aimed at a different layer — the OS itself. You are cracking the assumption that the vendor's operating system is the only one allowed on the machine you bought.</p>
 
-    <h2>The OS you bake</h2>
-    <p><a href="omarchy.html">Omarchy</a> is David Heinemeier Hansson's <a class="ext" href="https://manuals.omamix.org/3/omacom/76/omakase-computing" target="_blank" rel="noopener">omakase</a> Linux. Omakase is the sushi term for "the chef picks the menu." You don't choose every package, every setting, every wallpaper. Someone with taste already did. You get a curated desktop out of the box, and you change what you want to change. It is opinionated on purpose — not trying to feel like Windows, not trying to feel like a Mac.</p>
-    <p>It is built on <a class="ext" href="https://archlinux.org/" target="_blank" rel="noopener">Arch</a> (a lightweight, rolling-release Linux distribution) and <a class="ext" href="https://hyprland.org/" target="_blank" rel="noopener">Hyprland</a> (the window manager that arranges your apps on screen). With Quattro (v4.0.0), released August 14, 2026, every piece of the desktop you see — the bar across the top, the app launcher, the lock screen, the menus, the volume and brightness pop-ups, the password prompts — now runs inside a single program called <a class="ext" href="https://github.com/omacom/omarchy/releases/tag/v4.0.0" target="_blank" rel="noopener">Quickshell</a>. Quickshell is the defining change of Quattro, not a founding component of Omarchy. Before it, the desktop was a pile of separate background tools you could not name. Now it is one.</p>
-    <p>You don't spend a thousand hours configuring everything from scratch. You install it, learn the keys, and the machine launches what you bound. The only keybinding you have to memorize is <code>Super + K</code> — it opens a searchable page listing every key combination on the desktop. (Super is the Windows key on a PC, or Command on a Mac.) There are separate key maps for the terminal multiplexer and the file browser, but those are for power users who want them. Start with the desktop one. The full reference is on the <a class="ext" href="https://omarchy.org/manual/hotkeys/" target="_blank" rel="noopener">official hotkeys page</a>.</p>
+    <p>You replace it with <a href="omarchy.html">Omarchy</a> — David Heinemeier Hansson's <a class="ext" href="https://manuals.omamix.org/3/omacom/76/omakase-computing" target="_blank" rel="noopener">omakase</a> Linux. Omakase means the chef picks the menu: you get a curated desktop out of the box instead of spending a thousand hours configuring one from scratch. It runs on <a class="ext" href="https://archlinux.org/" target="_blank" rel="noopener">Arch</a> and <a class="ext" href="https://hyprland.org/" target="_blank" rel="noopener">Hyprland</a>. As of Quattro (v4.0.0, August 14, 2026), the bar, launcher, lock screen, menus, and password prompts all run inside one program called <a class="ext" href="https://github.com/omacom/omarchy/releases/tag/v4.0.0" target="_blank" rel="noopener">Quickshell</a> — instead of the old pile of background tools you could not name.</p>
 
-    <div class="callout">Same defiance as geohot, different layer. He cracked Apple's firmware. You're cracking Apple's assumption that their OS is the only one allowed on their hardware.</div>
+    <p>What leaves: update servers you never chose, identity checks that phone home, telemetry you cannot refuse, the sealed system that decides what runs before you do. What stays: a short list of things you picked. If you cannot name a process running on your machine, it should not be there.</p>
 
-    <h2>What you strip out</h2>
-    <p>Before you install anything, understand what comes out. The vendor's assumptions leave first: update servers you never chose, identity checks that phone home, telemetry you cannot refuse, the sealed system that decides what runs before you do. None of that ships with Omarchy. There is no mandatory cloud account. No store taking a cut of the software you install. No process running in the dark because a vendor assumed you wanted it.</p>
-    <p>What replaces it is a short list of things you chose. A window manager. A terminal. A browser. A package manager. A snapshot tool. That is most of it. If you cannot name a process running on your machine, it should not be there. That is the rule you are installing toward.</p>
+    <div class="callout">Same defiance as geohot, different layer. He cracked a phone's firmware. You're cracking the assumption that the vendor's OS is the only one allowed on the machine you bought.</div>
 
     <h2>What you need</h2>
     <p>The ingredients for Part 1 are short. Most of the work is in the install itself.</p>
     <ul>
       <li><strong>A laptop.</strong> 16 GB of RAM works. No GPU required. A Mac, a PC, or a Linux box you already run.</li>
       <li><strong>A USB stick.</strong> 4 GB or larger. The ISO is under 6 GB.</li>
-      <li><strong>A wired or 2.4 GHz keyboard.</strong> This is a documented requirement, not a preference. Bluetooth cannot type the LUKS encryption password at boot. The BIOS has the same limitation. Use a cable or a dongle.</li>
-      <li><strong>The Omarchy ISO.</strong> Download it from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>.</li>
-      <li><strong>A flash tool.</strong> <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a> on Mac or Windows. <a class="ext" href="https://github.com/ifd3f/caligula" target="_blank" rel="noopener">caligula</a> if you are already on Linux.</li>
+      <li><strong>A wired or 2.4 GHz keyboard.</strong> This is a documented requirement, not a preference. Bluetooth cannot type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. Use a cable or a dongle.</li>
+      <li><strong>The Omarchy ISO.</strong> Download it from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. You'll flash it to the USB stick in step 1.</li>
     </ul>
 
     <div class="stat-strip">
@@ -78,24 +69,37 @@
     <h2>Install Omarchy</h2>
     <p>This is the main event. The steps below come from the <a class="ext" href="https://omarchy.org/manual/getting-started/" target="_blank" rel="noopener">official Getting Started page</a>. Follow them in order. The OS install is the one part of this whole series you do by hand. No AI in the loop. You want to feel the lock crack yourself. AI comes in from Part 2 onward, once the machine is yours.</p>
 
-    <div class="callout"><strong>Before you start:</strong> plug in a wired or 2.4 GHz keyboard. Bluetooth will not type your encryption password at boot — the Bluetooth driver is not loaded that early. Same rule applies in the BIOS. This trips people up. Use a cable or a dongle.</div>
+    <div class="callout"><strong>Before you start:</strong> plug in a wired or 2.4 GHz keyboard. Bluetooth will not type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. This trips people up. Use a cable or a dongle.</div>
+
+    <div class="os-switch" role="tablist" aria-label="Select your current OS">
+      <span class="os-label">I'm on</span>
+      <button data-os="mac" role="tab" aria-selected="true" title="Mac">
+        <svg viewBox="-12 0 396 512" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.3q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      </button>
+      <button data-os="win" role="tab" aria-selected="false" title="Windows">
+        <svg viewBox="0 0 448 512" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M0 93.4 183.6 68V232H0V93.4zM203.8 65 448 32v200H203.8V65zM0 280h183.6v164L0 418.6V280zM203.8 280H448v200l-244.2-32.7V280z"/></svg>
+      </button>
+      <button data-os="linux" role="tab" aria-selected="false" title="Linux">
+        <svg viewBox="0 0 448 512" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M220.8 2.5c12.7-1.7 26 .3 37 7.1 4.6 2.8 9.1 6.2 14.4 7.8 6.2 1.9 13.2.6 18.8 4.1 5.3 3.2 7.8 9.6 8.4 15.7.7 6.9-1.2 13.8-3.2 20.4-3.5 11.5-8.6 22.7-9.9 34.8-1 9.4.6 19.2 5.1 27.6 4.8 9 12.1 16.1 19.4 23.1 7.3 7 14.8 14.1 20.3 22.8 2.7 4.2 4.8 8.8 5.9 13.7 1.1 4.9 1.1 9.9 0 14.8-2 9.1-7.5 17.1-13.7 24-6.4 7-13.9 13.1-21.1 19.3-7.4 6.4-14.6 13.2-19.3 21.8-4.7 8.6-6.7 18.9-4.5 28.4 2.2 9.5 8.4 17.8 16.4 23.3 8 5.5 17.7 8.4 27.5 9.4 9.8 1 19.7.3 29.5-1.1 9.8-1.4 19.6-3.5 29.5-4.2 9.9-.7 20.1.2 29 4.4 4.5 2.1 8.5 5.2 11.7 9.1 3.2 3.9 5.5 8.6 6.7 13.6 1.2 5 1.2 10.2.1 15.2-1.1 5-3.4 9.7-6.7 13.6-6.6 7.8-16.2 12.2-25.8 14.6-9.6 2.4-19.6 2.9-29.5 2.6-19.8-.6-39.4-4.6-59.2-4.6-9.9 0-19.8.8-29.5 2.6-9.7 1.8-19.3 4.6-28.3 8.9-9 4.3-17.4 10.1-24.3 17.4-6.9 7.3-12.3 16-15.6 25.5-3.3 9.5-4.5 19.7-3.4 29.7 1.1 10 4.4 19.8 9.7 28.4 5.3 8.6 12.6 16 21 21.3 8.4 5.3 18 8.5 27.8 8.9 9.8.4 19.7-1.8 28.5-6.3 8.8-4.5 16.5-11.3 22-19.6 5.5-8.3 8.9-18.1 9.7-28.1.8-10-1-20.2-5.1-29.3-4.1-9.1-10.5-17.1-18.5-23-8-5.9-17.5-9.7-27.3-10.9-9.8-1.2-19.9.2-29 4-9.1 3.8-17.3 9.9-23.6 17.6-6.3 7.7-10.8 17-12.9 26.8-2.1 9.8-1.8 20.1.8 29.8 2.6 9.7 7.6 18.8 14.4 26.2 6.8 7.4 15.4 13.2 24.8 16.6 9.4 3.4 19.6 4.4 29.5 2.9z"/></svg>
+      </button>
+    </div>
 
     <ol class="steps">
       <li>
         <p class="step-title">Download and flash the ISO</p>
-        <p class="step-body">Pull the image from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. It is under 6 GB. Flash it to a USB stick — <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a> on Mac or Windows, <a class="ext" href="https://github.com/ifd3f/caligula" target="_blank" rel="noopener">caligula</a> on Linux. What you are making is a bootable installer stick, not a live USB you run forever. Once the install finishes, the stick comes out.</p>
+        <p class="step-body">Pull the image from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. It is under 6 GB. Flash it to a USB stick <span data-os="mac">with <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a></span><span data-os="win">with <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a></span><span data-os="linux">with <a class="ext" href="https://github.com/ifd3f/caligula" target="_blank" rel="noopener">caligula</a></span>. What you are making is a bootable installer stick, not a live USB you run forever. Once the install finishes, the stick comes out.</p>
       </li>
       <li>
-        <p class="step-title">Turn off Secure Boot and TPM in the BIOS</p>
-        <p class="step-body">Reboot into the BIOS (usually F2, F12, or Del at startup). Find the Secure Boot and TPM settings and switch both off. These are Microsoft security schemes, designed for Windows and Microsoft-affiliated Linux distributions. Omarchy will not install while they are on. This is not a flaw in Omarchy — it is the point. You are telling the hardware to stop deferring to Microsoft's idea of what is allowed to boot.</p>
+        <p class="step-title">Turn off Secure Boot</p>
+        <p class="step-body"><span data-os="mac">On a Mac, there is no Secure Boot to disable — skip this step and go straight to booting the USB stick. Hold Option as you power on to get the boot menu.</span><span data-os="win">Reboot into your computer's firmware settings (usually F2, F12, or Del at startup). Find the Secure Boot setting and switch it off. If you also see a TPM setting, turn that off too.</span><span data-os="linux">Reboot into your computer's firmware settings (usually F2 or Del at startup). Find the Secure Boot setting and switch it off, if it is present.</span> <span data-os="win">Secure Boot is a Microsoft security scheme, designed for Windows and Microsoft-affiliated Linux distributions. Omarchy will not install while it is on. This is not a flaw in Omarchy — it is the point. You are telling the hardware to stop deferring to Microsoft's idea of what is allowed to boot.</span><span data-os="linux">Secure Boot is a Microsoft security scheme. If your machine shipped with Windows, it is likely on and Omarchy will not install until it is off. If your machine came with Linux, it may already be off.</span></p>
       </li>
       <li>
         <p class="step-title">Boot off the USB stick</p>
-        <p class="step-body">Plug the stick in, power on, and pick it from the boot menu. You will land in the Omarchy installer. If it does not boot, you are still on Secure Boot or the stick was not flashed correctly. Check both before trying again.</p>
+        <p class="step-body">Plug the stick in, power on<span data-os="mac">, and hold Option until the boot menu appears</span><span data-os="win">, and pick the USB stick from the boot menu (F12 or the key your manufacturer assigned)</span><span data-os="linux">, and pick the USB stick from the boot menu</span>. You will land in the Omarchy installer. If it does not boot, you are still on Secure Boot or the stick was not flashed correctly. Check both before trying again.</p>
       </li>
       <li>
         <p class="step-title">Choose your install type</p>
-        <p class="step-body">Two paths. <em>Full-disk</em> wipes the entire drive and installs Omarchy as the only OS. <em>Free-space</em> puts Omarchy into unallocated space on the drive — that is how you dual boot. If you are keeping Windows, turn off BitLocker first; Omarchy cannot install into encrypted Windows space. The installation defaults to full encryption either way. If you are using an existing drive, back up first. Full-disk means what it says.</p>
+        <p class="step-body">Two paths. <em>Full-disk</em> wipes the entire drive and installs Omarchy as the only OS. <em>Free-space</em> puts Omarchy into unallocated space on the drive — that is how you dual boot. <span data-os="win">If you are keeping Windows, turn off BitLocker first; Omarchy cannot install into encrypted Windows space.</span><span data-os="mac">If you are keeping macOS, make sure you have a free partition ready in Disk Utility before you start.</span><span data-os="linux">If you are keeping your current Linux install, make sure you have unallocated free space on the drive.</span> The installation defaults to full encryption either way. If you are using an existing drive, back up first. Full-disk means what it says.</p>
       </li>
       <li>
         <p class="step-title">Answer the configuration questions</p>
@@ -125,10 +129,10 @@
       </tbody>
     </table>
 
-    <p>That last row is the one that catches former Mac users. On macOS, the red dot closes the window and keeps the app running in the dock. Omarchy has no dock. Close a window and the app is gone. If you wanted it minimized, you wanted it open. This is a tiling-WM consequence, not an Omarchy slogan. It takes about a day to stop reaching for a dock that is not there.</p>
+    <p>That last row is the one that catches former Mac users. On macOS, the red dot closes the window and keeps the app running in the dock. Omarchy has no dock. Close a window and the app is gone. If you wanted it minimized, you wanted it open. This is how tiling window managers work — there is no separate dock to minimize into. It takes about a day to stop reaching for a dock that is not there.</p>
 
     <h2>How tiling works</h2>
-    <p>Omarchy uses the <code>dwindle</code> layout. That is the documented name. Open one window, it takes the whole screen. Open a second, they split. Open a third, the active half splits again. You do not drag windows around. You do not fish one out from under another. The layout handles where things go. The <a class="ext" href="https://omarchy.org/manual/navigation/" target="_blank" rel="noopener">navigation page</a> covers the full set of movement and swap keys.</p>
+    <p>Omarchy uses a tiling layout called <code>dwindle</code>. Open one window, it takes the whole screen. Open a second, they split. Open a third, the active half splits again. You do not drag windows around. You do not fish one out from under another. The layout handles where things go. The <a class="ext" href="https://omarchy.org/manual/navigation/" target="_blank" rel="noopener">navigation page</a> covers the full set of movement and swap keys.</p>
     <p>Workspaces are how you keep things separate. <code>Super + 1</code> through <code>Super + 4</code> (and beyond) jump to a workspace. The switch happens with a keybinding. No animation, no carousel, noExpose-style preview. You hit the number, you are there. <code>Super + Shift + 1</code> sends the current window to workspace 1. That is the whole model. Windows tile within a workspace, workspaces switch with a number.</p>
     <p>This is the part that feels strange for the first day and obvious by the third. You stop managing windows. You start naming what you want on screen and where.</p>
 
@@ -148,14 +152,14 @@
     <p>Those are contest winners from the <a class="ext" href="https://hypr.land/hall_of_fame/" target="_blank" rel="noopener">Hyprland Hall of Fame</a>. Every desktop you see there started from the same base you just installed. The bar, the launcher, the animations, the colors — all of it is configuration you can read and change. On macOS or Windows, you pick from a handful of wallpapers and call it customization. On Omarchy, you pick from a gallery of full desktop environments, or you build your own. That is the difference between a lease and ownership.</p>
 
     <h2>Install and update software</h2>
-    <p>Software comes from <code>pacman</code> and the AUR, the Arch User Repository. You do not run <code>pacman</code> by hand unless you want to. The Omarchy menu handles package management. <code>Super + Space</code> opens the menu. Install, update, and setup all live there. The full list of what is available and how to reach it is on the <a class="ext" href="https://omarchy.org/manual/other-packages/" target="_blank" rel="noopener">other-packages page</a>.</p>
-    <p>Updates go through one menu path: Update, then Omarchy. Not <code>pacman -Syu</code> by hand, not a separate AUR helper, not a daemon checking in the background. One menu item. Before every update, Omarchy takes a snapshot of the root filesystem automatically. You do not opt in. You do not remember to do it. It happens.</p>
+    <p>Software comes from Arch's package manager and the Arch User Repository — a community-maintained collection of packages that covers almost anything you would want. You do not run the package manager by hand unless you want to. The Omarchy menu handles it. <code>Super + Space</code> opens the menu. Install, update, and setup all live there. The full list of what is available and how to reach it is on the <a class="ext" href="https://omarchy.org/manual/other-packages/" target="_blank" rel="noopener">other-packages page</a>.</p>
+    <p>Updates go through one menu path: Update, then Omarchy. Not a command you type by hand, not a separate package tool, not a background process checking in. One menu item. Before every update, Omarchy takes a snapshot of your system automatically. You do not opt in. You do not remember to do it. It happens.</p>
     <p>The <a class="ext" href="https://omarchy.org/manual/updates/" target="_blank" rel="noopener">updates page</a> covers the details, including how to handle the rare case where a package needs manual attention after an update.</p>
 
     <h2>Snapshots and rollback</h2>
     <p>Snapshots are automatic before every update. You do not schedule them. You do not trigger them. Omarchy takes one, runs the update, and if the update is fine you never think about it again.</p>
-    <p>If the update breaks something, reboot. At the boot menu, the <a class="ext" href="https://omarchy.org/manual/system-snapshots/" target="_blank" rel="noopener">Limine bootloader</a> lists your snapshots. Pick the one from before the update, boot into it, and you are back. The catch: snapshots restore <strong>root only</strong>, not <code>/home</code>. Your home directory, your configs, your files are not covered by the root snapshot. This is by design. The system is reversible. Your data is yours to back up. Treat <code>/home</code> as something you are responsible for, because it is.</p>
-    <p>The workflow is short. Update breaks something. Reboot. Pick the snapshot from the Limine menu. You are back. Fix the problem, run the update again, move on.</p>
+    <p>If the update breaks something, reboot. At the boot menu, you will see a list of your snapshots — pick the one from before the update, boot into it, and you are back. The <a class="ext" href="https://omarchy.org/manual/system-snapshots/" target="_blank" rel="noopener">system snapshots page</a> has the details. The catch: snapshots restore the <strong>system only</strong>, not your personal files. Your home directory — your documents, photos, configs, everything under your user folder — is not covered. This is by design. The system is reversible. Your data is yours to back up.</p>
+    <p>The workflow is short. Update breaks something. Reboot. Pick the snapshot from the boot menu. You are back. Fix the problem, run the update again, move on.</p>
 
     <h2>The payoff</h2>
     <p>The machine is yours. No cloud middleman. No telemetry you cannot refuse. No sealed system deciding what runs before you do. You installed a curated, minimal set of services you chose. You can customize it. Your rules, your keys, your processes. Only the apps you asked for should be running. If you cannot name a process, it should not be there.</p>
@@ -187,5 +191,19 @@
   </footer>
 <script src="analytics.js" defer></script>
 <script src="section-nav.js" defer></script>
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.os-switch button');
+  var spans = document.querySelectorAll('[data-os]');
+  function select(os){
+    buttons.forEach(function(b){ b.setAttribute('aria-selected', b.dataset.os === os ? 'true' : 'false'); });
+    spans.forEach(function(s){ s.classList.toggle('os-active', s.dataset.os === os); });
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ select(b.dataset.os); });
+  });
+  select('mac');
+})();
+</script>
 </body>
 </html>
