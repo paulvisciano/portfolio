@@ -159,7 +159,7 @@ font-family: var(--font-mono); font-size: var(--fs-micro);
 letter-spacing: 0.18em; text-transform: uppercase;
 color: var(--muted); margin-bottom: var(--gap-md);
 min-height: 1.8em; display: flex; align-items: center; justify-content: center;
-transition: opacity 0.6s ease;
+transition: opacity 1.2s ease;
 }
 .hero h1 { color: var(--fg-bright); margin-bottom: var(--gap-md); }
 .hero .hr-thin { margin-inline: auto; margin-bottom: var(--gap-md); }

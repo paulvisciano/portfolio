@@ -439,7 +439,7 @@ window.__userInteracted = false;
   var el = document.querySelector('[data-od-id="greeting"]');
   if (!el) return;
   var gi = 0;
-  var FADE_MS = 600;
+  var FADE_MS = 1200;
   var HOLD_MS = 3200;
 
   el.textContent = greetings[0];
