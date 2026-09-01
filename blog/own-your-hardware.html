@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You Bought the Hardware. You Never Owned It. — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="You paid for the silicon. The software was locked, the data was extracted, the AI was someone else's. geohot spent two decades cracking locks and handing the key to everyone. This is the same thesis, applied to the machine you use every day.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="You Bought the Hardware. You Never Owned It.">
+  <meta property="og:description" content="geohot cracked the iPhone, the PS3, Android, cars, and AI compute. The same thesis, applied to your laptop, your AI, and your data.">
+  <meta property="og:image" content="https://i.ytimg.com/vi/tvJ1RGlxe8Q/hqdefault.jpg">
+  <meta property="og:url" content="https://paulvisciano.com/blog/own-your-hardware">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You Bought the Hardware. You Never Owned It.">
+  <meta name="twitter:description" content="The lock moved from a chip you could solder to the OS on your laptop. The fix is the same move geohot made for two decades.">
+  <meta name="twitter:image" content="https://i.ytimg.com/vi/tvJ1RGlxe8Q/hqdefault.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/own-your-hardware">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Sci-Fi Labs · Essay</p>
+    <h1>You Bought the Hardware. You Never Owned It.</h1>
+    <p class="deck">You paid for the silicon. The software, the data, and the intelligence belong to someone else. We've entered a new era of computing — one where you can own the full stack. The OS, the AI, the apps, the data. Here's why, and how.</p>
+
+    <p>You bought the phone. You think you own it. You don't.</p>
+    <p>Every picture you take gets sent to the cloud. Your location is tracked. Every message you send, every call you make, every search — reported, monetized, used to train someone else's model. You rely on the brand to push out updates, and the brand decides what those updates do. You paid for the silicon. The software, the data, and the intelligence belong to the vendor, not you.</p>
+    <p>That's the deal we've all been living with. It just ended. The pieces have finally converged: an OS that ships with AI baked in, local models good enough to run as a personal assistant on a 16 GB laptop, where your sensitive data stays, and frontier models a prompt away for the heavy lifting. You can take control of the whole stack — the OS, the AI, the apps, the data — on a machine that answers to you.</p>
+
+    <h2>The precedent</h2>
+    <p>In August 2007, a seventeen-year-old named George Hotz — geohot — spent about five hundred hours soldering and coding until he unlocked the original iPhone. He stood in his parents' kitchen, hit record, and said: "This is the world's first unlocked iPhone." The New York Times covered it. CBS, CNBC, Wired. He traded the phone for a Nissan 350Z.</p>
+    <p>He wasn't trying to be rich. He wanted to use his iPhone on T-Mobile instead of AT&amp;T. The lock was physical — a carrier-locked baseband chip, firmware signed by the manufacturer, a bootloader that decided what was allowed to run. He cracked it with a Phillips screwdriver, a guitar pick, and a soldering iron, then posted the instructions so anyone could do it.</p>
+    <figure class="fig"><a href="https://www.youtube.com/watch?v=tvJ1RGlxe8Q" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/tvJ1RGlxe8Q/hqdefault.jpg" alt="George Hotz in his parents' kitchen, August 2007, holding the world's first unlocked iPhone — from the video he published himself" width="480" height="360" loading="lazy" style="max-width:480px;margin-inline:auto"></a><figcaption class="fig-cap">August 21, 2007 — geohot in his parents' kitchen, holding the world's first unlocked iPhone. He hit record and posted it himself. <a href="https://www.youtube.com/watch?v=tvJ1RGlxe8Q" target="_blank" rel="noopener">Watch the video →</a></figcaption></figure>
+
+    <p>That was the first crack. Then he did it again, and again, for nearly two decades. The PS3's hypervisor in 2010 — Sony sued him under the DMCA the next year. Towelroot in 2014, a one-tap Android root for devices with an eighteen-thousand-dollar bounty on them. comma.ai and openpilot — open-source self-driving, MIT-licensed, now on over three hundred car models and over three hundred million miles. tiny corp and tinygrad — a from-scratch deep learning framework to commoditize the petaflop and keep compute decentralized.</p>
+    <p>Same move, every time. Phone. Console. Car. Android. AI compute. Take something that isn't yours. Make it yours. Hand the key to everyone.</p>
+    <p>His own words nail the philosophy. From his blog: "I don't mean 'owns' from a legalist perspective, I mean 'owns' as in the hacker meaning, like 'owning' the box. Who has root?"</p>
+    <p>He's the precedent. Same move, every time — and it applies just as much to the machine you're reading this on.</p>
+
+    <h2>The machine was always locked</h2>
+    <p>The lock on the laptop isn't new. Windows and macOS have been locked down for years — SIP, the sealed system volume, notarization, telemetry you can't refuse, a vendor deciding what gets to run before you do. You open Activity Monitor and see the list. You just can't do anything about most of it.</p>
+    <p>What changed isn't the OS. What changed is that the vendor's reach now extends to the AI that writes your code, the data that trains it, and the intelligence that organizes your life — all of it behind the same gate. And for the first time, the tools exist to take all of it back.</p>
+
+    <figure class="fig">
+      <canvas id="jailbreak-game" width="480" height="320" style="display:block;width:100%;max-width:480px;margin-inline:auto;background:#0a0b12;touch-action:none"></canvas>
+      <div id="jailbreak-pad" style="display:flex;gap:0.4rem;justify-content:center;padding:0.6rem 0.95rem 0.25rem;border-top:1px solid var(--border);background:var(--bg-card)">
+        <button data-dir="up" aria-label="Move up" style="flex:0 0 2.2rem;font-family:var(--font-mono);font-size:var(--fs-meta);line-height:1;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0;cursor:pointer">▲</button>
+        <button data-dir="left" aria-label="Move left" style="flex:0 0 2.2rem;font-family:var(--font-mono);font-size:var(--fs-meta);line-height:1;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0;cursor:pointer">◀</button>
+        <button data-dir="down" aria-label="Move down" style="flex:0 0 2.2rem;font-family:var(--font-mono);font-size:var(--fs-meta);line-height:1;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0;cursor:pointer">▼</button>
+        <button data-dir="right" aria-label="Move right" style="flex:0 0 2.2rem;font-family:var(--font-mono);font-size:var(--fs-meta);line-height:1;color:var(--fg);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0;cursor:pointer">▶</button>
+        <button id="jailbreak-replay" data-dir="replay" aria-label="Replay" style="flex:0 0 auto;align-self:center;font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.06em;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:6px;padding:0.45rem 0.7rem;cursor:pointer;display:none">REPLAY</button>
+      </div>
+      <figcaption class="fig-cap">Break the laptop out of the cell. Arrow keys or WASD — or tap the buttons on mobile.</figcaption>
+    </figure>
+
+    <p>Linux has been the escape hatch for decades. You could always replace the vendor's OS with one you controlled. That part isn't new. What's new is that the pieces finally fit together. Omarchy ships with AI natively integrated — you can tweak anything about it by talking to a local model. A driver misbehaves, a game won't launch, you hate the theme — describe the problem, the model writes the fix, you approve it, every change visible and reversible.</p>
+    <p>That's not customization. Customization is picking from a menu. This is describing the machine you actually want and having it built. And it only gets better from here — the models get smarter, the tools get easier, the gap between what you imagine and what you can build keeps closing.</p>
+
+    <script>
+    (function () {
+      "use strict";
+      var canvas = document.getElementById('jailbreak-game');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var W = canvas.width, H = canvas.height;
+
+      var COL = {
+        card:   'oklch(12% 0.003 260)',
+        surface:'oklch(14% 0.003 260)',
+        fg:     'oklch(96% 0.002 260)',
+        muted:  'oklch(58% 0.004 260)',
+        border: 'oklch(28% 0.003 260)',
+        bar:    'oklch(28% 0.003 260)',
+        body:   'oklch(20% 0.003 260)',
+        accent: 'oklch(72% 0.08 230)',
+        accentBright: 'oklch(86% 0.10 230)'
+      };
+
+      var WALL_X = 192, BAR_W = 12, GAP_H = 78, GAP_Y = 96;
+      var START = { x: 38, y: 132 };
+      var BAR_COUNT = 5;
+      var bars = [];
+      (function buildBars() {
+        for (var i = 0; i < BAR_COUNT; i++) {
+          var x = WALL_X + i * (BAR_W + 6);
+          bars.push({ x: x, y: 0,            w: BAR_W, h: GAP_Y });
+          bars.push({ x: x, y: GAP_Y + GAP_H, w: BAR_W, h: H - (GAP_Y + GAP_H) });
+        }
+      })();
+
+      var LW = 34, LH = 26, SCREEN_W = 28, SCREEN_H = 18, SPEED = 2.2;
+      var player = { x: START.x, y: START.y, vx: 0, vy: 0 };
+      var keys = {};
+      var won = false, flash = 0, glow = 0;
+      var exitX = W - 8;
+      var pad = document.getElementById('jailbreak-pad');
+      var replayBtn = document.getElementById('jailbreak-replay');
+
+      function reset(toStart) {
+        player.x = START.x; player.y = START.y; player.vx = 0; player.vy = 0;
+        if (toStart) { won = false; glow = 0; if (replayBtn) replayBtn.style.display = 'none'; }
+      }
+
+      function collide() {
+        var px = player.x, py = player.y, pw = LW, ph = LH;
+        for (var i = 0; i < bars.length; i++) {
+          var b = bars[i];
+          if (px < b.x + b.w && px + pw > b.x && py < b.y + b.h && py + ph > b.y) return true;
+        }
+        return false;
+      }
+
+      function step() {
+        if (won) { if (glow < 1) glow = Math.min(1, glow + 0.04); return; }
+        var dx = 0, dy = 0;
+        if (keys.up) dy -= 1;
+        if (keys.down) dy += 1;
+        if (keys.left) dx -= 1;
+        if (keys.right) dx += 1;
+        if (dx !== 0 && dy !== 0) { dx *= 0.7071; dy *= 0.7071; }
+        player.vx = dx * SPEED; player.vy = dy * SPEED;
+        var nx = Math.max(2, Math.min(W - LW - 2, player.x + player.vx));
+        var ny = Math.max(2, Math.min(H - LH - 2, player.y + player.vy));
+        var hit = false;
+        player.x = nx; if (collide()) { player.x -= player.vx; hit = true; }
+        player.y = ny; if (collide()) { player.y -= player.vy; hit = true; }
+        if (collide()) { player.x = START.x; player.y = START.y; hit = true; }
+        if (hit) flash = 10; else if (flash > 0) flash--;
+        if (player.x + LW >= exitX) { won = true; if (replayBtn) replayBtn.style.display = 'inline-block'; }
+      }
+
+      function drawGrid() {
+        ctx.save();
+        ctx.strokeStyle = 'oklch(16% 0.003 260)'; ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (var x = 0; x <= W; x += 20) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, H); }
+        for (var y = 0; y <= H; y += 20) { ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); }
+        ctx.stroke();
+        ctx.strokeStyle = 'oklch(18% 0.004 230)';
+        var sy = (Date.now() / 30) % H;
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(W, sy); ctx.stroke();
+        ctx.restore();
+      }
+
+      function drawBars() {
+        ctx.save();
+        for (var i = 0; i < bars.length; i++) {
+          var b = bars[i];
+          ctx.fillStyle = COL.bar; ctx.fillRect(b.x, b.y, b.w, b.h);
+          ctx.fillStyle = 'oklch(34% 0.003 260)'; ctx.fillRect(b.x, b.y, 1, b.h);
+        }
+        ctx.strokeStyle = COL.bar; ctx.lineWidth = 2;
+        var wallRight = WALL_X + BAR_W * BAR_COUNT + (BAR_COUNT - 1) * 6;
+        ctx.beginPath();
+        ctx.moveTo(WALL_X - 4, GAP_Y); ctx.lineTo(WALL_X - 4, GAP_Y + GAP_H);
+        ctx.moveTo(wallRight + 4, GAP_Y); ctx.lineTo(wallRight + 4, GAP_Y + GAP_H);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function drawExit() {
+        ctx.save();
+        ctx.strokeStyle = won ? COL.accentBright : COL.accent;
+        ctx.globalAlpha = won ? 0.9 : 0.45;
+        ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(exitX + 2, 8); ctx.lineTo(exitX + 2, H - 8); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.globalAlpha = 0.55; ctx.fillStyle = COL.muted;
+        ctx.font = '10px JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace';
+        ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+        ctx.fillText('EXIT', W - 6, 6);
+        ctx.restore();
+      }
+
+      function drawLaptop() {
+        var x = player.x, y = player.y;
+        ctx.save();
+        ctx.globalAlpha = 0.35; ctx.fillStyle = 'oklch(4% 0 0)';
+        ctx.beginPath(); ctx.ellipse(x + LW / 2, y + LH + 3, LW * 0.5, 3, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = COL.body; ctx.fillRect(x, y + SCREEN_H - 2, LW, LH - (SCREEN_H - 2));
+        ctx.fillStyle = 'oklch(28% 0.003 260)'; ctx.fillRect(x, y + LH - 2, LW, 2);
+        ctx.fillStyle = 'oklch(10% 0.003 260)'; ctx.fillRect(x + 7, y + LH - 6, LW - 14, 1);
+        var sx = x + 3, sy = y;
+        ctx.fillStyle = COL.body; ctx.fillRect(sx, sy, SCREEN_W, SCREEN_H);
+        ctx.fillStyle = 'oklch(10% 0.003 260)'; ctx.fillRect(sx + 2, sy + 2, SCREEN_W - 4, SCREEN_H - 4);
+        var screenCol = won ? COL.accentBright : COL.accent;
+        ctx.shadowColor = screenCol; ctx.shadowBlur = won ? 22 : 14;
+        ctx.fillStyle = screenCol; ctx.globalAlpha = won ? 1 : 0.85;
+        ctx.fillRect(sx + 3, sy + 3, SCREEN_W - 6, SCREEN_H - 6);
+        ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+        ctx.fillStyle = 'oklch(10% 0.003 260)';
+        ctx.fillRect(sx + 5, sy + 5, 6, 1); ctx.fillRect(sx + 5, sy + 8, 10, 1); ctx.fillRect(sx + 5, sy + 11, 4, 1);
+        if (flash > 0) { ctx.globalAlpha = (flash / 10) * 0.6; ctx.fillStyle = COL.fg; ctx.fillRect(x - 2, y - 2, LW + 4, LH + 4); }
+        ctx.restore();
+      }
+
+      function drawHUD() {
+        ctx.save();
+        ctx.fillStyle = COL.muted;
+        ctx.font = '10px JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        ctx.fillText('// cell_01 — find the gap in the bars', 8, 8);
+        ctx.textAlign = 'right';
+        ctx.fillText(won ? 'status: ESCAPED' : 'status: LOCKED', W - 8, H - 16);
+        ctx.restore();
+      }
+
+      function drawWin() {
+        if (!won) return;
+        ctx.save();
+        ctx.fillStyle = 'oklch(8% 0.002 260 / 0.78)'; ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = COL.fg; ctx.font = '600 30px Fraunces, Iowan Old Style, Georgia, serif';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText("You're out.", W / 2, H / 2 - 8);
+        ctx.fillStyle = COL.muted;
+        ctx.font = '11px JetBrains Mono, ui-monospace, SF Mono, Menlo, monospace';
+        ctx.fillText('// the hardware was always yours', W / 2, H / 2 + 22);
+        ctx.restore();
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = COL.card; ctx.fillRect(0, 0, W, H);
+        drawGrid(); drawExit(); drawBars(); drawHUD(); drawLaptop(); drawWin();
+      }
+
+      function loop() { step(); render(); requestAnimationFrame(loop); }
+
+      function setKey(name, val) {
+        if (name === 'up' || name === 'down' || name === 'left' || name === 'right') keys[name] = val;
+      }
+
+      var keyMap = {
+        'ArrowUp':'up','w':'up','W':'up','ArrowDown':'down','s':'down','S':'down',
+        'ArrowLeft':'left','a':'left','A':'left','ArrowRight':'right','d':'right','D':'right'
+      };
+
+      window.addEventListener('keydown', function (e) {
+        var t = e.target && e.target.tagName;
+        if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
+        var k = keyMap[e.key];
+        if (k) { setKey(k, true); e.preventDefault(); }
+      }, { passive: false });
+
+      window.addEventListener('keyup', function (e) {
+        var t = e.target && e.target.tagName;
+        if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
+        var k = keyMap[e.key];
+        if (k) { setKey(k, false); e.preventDefault(); }
+      }, { passive: false });
+
+      if (pad) {
+        var btns = pad.querySelectorAll('button[data-dir]');
+        for (var i = 0; i < btns.length; i++) {
+          (function (btn) {
+            var dir = btn.getAttribute('data-dir');
+            if (dir === 'replay') { btn.addEventListener('click', function () { reset(true); }); return; }
+            var press = function (e) { e.preventDefault(); setKey(dir, true); };
+            var release = function (e) { e.preventDefault(); setKey(dir, false); };
+            btn.addEventListener('touchstart', press, { passive: false });
+            btn.addEventListener('touchend', release, { passive: false });
+            btn.addEventListener('touchcancel', release, { passive: false });
+            btn.addEventListener('mousedown', press);
+            btn.addEventListener('mouseup', release);
+            btn.addEventListener('mouseleave', release);
+          })(btns[i]);
+        }
+      }
+
+      window.addEventListener('blur', function () {
+        keys.up = keys.down = keys.left = keys.right = false;
+      });
+
+      reset(false);
+      loop();
+    })();
+    </script>
+
+    <h2>The AI belongs to you too</h2>
+    <p>Following the same logic, you should own the AI.</p>
+    <p>The model that writes your code, answers your questions, organizes your life — that shouldn't live on someone else's server, under someone else's terms, with someone else's off-switch. Hotz put it bluntly: "The fundamental limitation of cloud is who owns the off-switch."</p>
+    <p>Running AI locally used to be hard. On 16 GB of RAM — what most people actually have on their laptop — frontier models don't fit. But the landscape shifted. Small, efficient models like Bonsai run on a machine like that through llama.cpp, and you get a personal assistant that lives on your hardware, not a server farm in Virginia. Your sensitive data stays there. For the moments you need more — building an app, a multi-step install, a real refactor — you bring in frontier models through OpenCode. That conversation goes through the cloud, and you should treat it that way. The frontier model gets the code, not your life. When the heavy lifting is done, you hand daily use back to the local model.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/bonsai-laptop.jpg" alt="Bonsai local model running on a 16 GB laptop — the personal assistant that lives on your hardware" width="1200" height="800" loading="lazy"><figcaption class="fig-cap">The assistant that lives on your hardware, not a server farm. 16 GB is enough.</figcaption></figure>
+
+    <h2>Your data is more valuable than ever — and they're taking it</h2>
+    <p>Here's the part that makes this urgent now, not just philosophically interesting.</p>
+    <p>In the old world, your data was harvested and sold for ads. Now your data is more valuable than ever — because it gets used by AI to teach it and make it better. Every photo, every message, every document, every search, every financial record you hand to a cloud service becomes training material for someone else's model. They're basically stealing your intellectual property and your private data, turning it into capability, and selling that capability back to you.</p>
+    <div class="stat-strip">
+      <div class="stat"><div class="n">Your photos</div><div class="l">Sent to the cloud</div></div>
+      <div class="stat"><div class="n">Your messages</div><div class="l">Monetized</div></div>
+      <div class="stat"><div class="n">Your searches</div><div class="l">Reported</div></div>
+      <div class="stat"><div class="n">All of it</div><div class="l">Trains their model</div></div>
+      <div class="stat"><div class="n">None of it</div><div class="l">Yours anymore</div></div>
+    </div>
+    <p>The hardware was always yours. The software was someone else's. The data was extracted. The AI was someone else's. The whole stack belonged to the vendor.</p>
+
+    <h2>The culmination</h2>
+    <p>Any one of these pieces on its own isn't enough. Linux without AI is just a distro you maintain yourself. AI without Linux is a chat window in someone else's cloud. The era begins when they converge.</p>
+    <p>The OS ships with the model. The model is good enough to run on the machine you have. Frontier models are a prompt away for the hard parts. And the whole thing gets easier every month.</p>
+    <p>You can talk to your computer now. The model writes the code — whether that's a UI tweak, which is most of the cases, or wiring in something that doesn't work quite right for your setup. You don't need to be a developer. You need to be able to describe what you want.</p>
+    <div class="chart" role="img" aria-label="The rented stack vs the owned stack. Four layers compared: OS, AI, apps, data.">
+      <p class="chart-title">Rented vs owned</p>
+      <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g font-family="ui-monospace,monospace" font-size="14">
+          <text x="180" y="22" fill="#8a8a90" font-size="11" letter-spacing="0.1em">RENTED</text>
+          <text x="540" y="22" fill="#6aa8c8" font-size="11" letter-spacing="0.1em" text-anchor="middle">OWNED</text>
+          <line x1="0" y1="34" x2="720" y2="34" stroke="#2e2e34" stroke-width="1"/>
+          <line x1="360" y1="34" x2="360" y2="320" stroke="#2e2e34" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="10" y="70" fill="#c8c8cc">OS</text>
+          <rect x="180" y="52" width="160" height="28" rx="3" fill="#5c5c6a"/>
+          <text x="260" y="71" fill="#d0d0d4" text-anchor="middle" font-size="12">vendor</text>
+          <rect x="380" y="52" width="330" height="28" rx="3" fill="#6aa8c8"/>
+          <text x="545" y="71" fill="#0a0b12" text-anchor="middle" font-size="12" font-weight="600">Omarchy</text>
+          <text x="10" y="120" fill="#c8c8cc">AI</text>
+          <rect x="180" y="102" width="160" height="28" rx="3" fill="#5c5c6a"/>
+          <text x="260" y="121" fill="#d0d0d4" text-anchor="middle" font-size="12">cloud API</text>
+          <rect x="380" y="102" width="330" height="28" rx="3" fill="#6aa8c8"/>
+          <text x="545" y="121" fill="#0a0b12" text-anchor="middle" font-size="12" font-weight="600">Bonsai + Open WebUI</text>
+          <text x="10" y="170" fill="#c8c8cc">Apps</text>
+          <rect x="180" y="152" width="160" height="28" rx="3" fill="#5c5c6a"/>
+          <text x="260" y="171" fill="#d0d0d4" text-anchor="middle" font-size="12">subscription</text>
+          <rect x="380" y="152" width="330" height="28" rx="3" fill="#6aa8c8"/>
+          <text x="545" y="171" fill="#0a0b12" text-anchor="middle" font-size="12" font-weight="600">your own</text>
+          <text x="10" y="220" fill="#c8c8cc">Data</text>
+          <rect x="180" y="202" width="160" height="28" rx="3" fill="#5c5c6a"/>
+          <text x="260" y="221" fill="#d0d0d4" text-anchor="middle" font-size="12">their servers</text>
+          <rect x="380" y="202" width="330" height="28" rx="3" fill="#6aa8c8"/>
+          <text x="545" y="221" fill="#0a0b12" text-anchor="middle" font-size="12" font-weight="600">your machine</text>
+        </g>
+      </svg>
+      <p class="chart-cap">Four layers. The rented stack gives you partial use. The owned stack gives you the whole thing.</p>
+    </div>
+    <p>Pull your bank statements and have your AI build a mobile app and a desktop app for your financials. Download your medical records — the data you're most locked out of, the one place the cloud's convenience argument is weakest — and feed it to a local model. You get a health dashboard that works the way you think, not the way a vendor's product manager decided. Same move for taxes, credit card statements, everything. The archive was always yours. It just had nowhere to go.</p>
+    <figure class="fig"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/knowledge-graph-1.jpg" alt="Knowledge Graph spatial interface — conversations, photos, and documents as nodes on a canvas instead of a chat window" width="1792" height="1008" loading="lazy"><figcaption class="fig-cap">Your data as a place, not a feed. The archive was always yours — it just had nowhere to go.</figcaption></figure>
+    <p>Flash a custom ROM on your phone. Build custom apps. Take control of your desktop. Run AI locally. Publish only what you choose. The rest stays on the machine. Private. Secure. Sovereign.</p>
+    <p>And this is the early days. The models will get more intelligent. The tools will get easier. What you can do today by talking to a model is the floor, not the ceiling.</p>
+
+    <h2>The pattern, applied</h2>
+    <p>geohot spent nearly two decades proving the thesis: take something that isn't yours, make it yours, hand the key to everyone. This is the same thesis applied to the machine you use every day — the laptop, the AI, the apps, the data. Not one device. The whole stack.</p>
+
+    <div class="callout">This is the new era of computing. Not one piece — the culmination. An OS you own, with AI baked in. A local model good enough for the daily conversation on 16 GB. Frontier models a prompt away for the hard parts. All of it getting smarter and easier every month. You own the hardware, the software, the AI, and the data. The full stack, on a machine that answers to you.</div>
+
+    <h2>The recipe</h2>
+    <p>This is the why. The how is a five-part series that takes you from a stock laptop to a machine you own end to end — the OS, the local AI, the apps, the public site, and the archive of your data. It runs on 16 GB — the laptop you already have.</p>
+    <ol>
+      <li><a href="jailbreaking-your-laptop-1.html"><strong>Take Over the Machine</strong></a> — install Omarchy, strip the vendor's defaults, list every process and know why it's there.</li>
+      <li><a href="jailbreaking-your-laptop-2.html"><strong>Fork, Customize, or Build</strong></a> — llama.cpp + Bonsai on localhost, Open WebUI on top, the Knowledge Graph fork for memory.</li>
+      <li><a href="jailbreaking-your-laptop-3.html"><strong>Claim the Domain</strong></a> — claim a domain, push to GitHub, let Vercel deploy. The public arm of the stack.</li>
+      <li><a href="jailbreaking-your-laptop-4.html"><strong>The Local AI Layer</strong></a> — fork or scaffold apps, point them at your local model, run them on the machine you jailbroke.</li>
+      <li><a href="jailbreaking-your-laptop-5.html"><strong>Graduate to Creator</strong></a> — export from the platforms, import onto the machine, drop it into the graph. The archive comes home.</li>
+    </ol>
+    <p>It works on the laptop you already have. The full walkthrough — prompts, commands, the exact order — is in the series.</p>
+    <div class="links">
+      <a href="jailbreaking-your-laptop-1.html">Read the series →</a>
+      <a href="/content/jailbreak-your-laptop.pdf">Grab the condensed recipe (PDF)</a>
+      <a href="../index.html#work">See the stack running →</a>
+    </div>
+    <p>Paul Visciano · Sci-Fi Labs · paulvisciano.com</p>
+
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="they-can-pull-the-plug.html">They can pull the plug →</a>
+      <a href="omarchy.html">Omarchy — DHH's tiled Arch desktop →</a>
+      <a href="bonsai.html">Bonsai on a 16GB laptop →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial web apps · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
