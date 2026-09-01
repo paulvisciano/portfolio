@@ -4,7 +4,7 @@
   s.forEach(function(src){
     var el = document.createElement('script');
     el.src = src;
-    el.defer = false;
+    el.async = false;
     document.head.appendChild(el);
   });
 })();

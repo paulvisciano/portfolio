@@ -31,8 +31,9 @@
 .lang-switch button:hover { color: var(--fg); }
 .lang-switch button.active {
   color: var(--fg-bright);
-  border-color: var(--border-hi);
-  background: oklch(16% 0.004 260 / 0.8);
+  border-color: oklch(72% 0.08 230 / 0.5);
+  background: oklch(72% 0.08 230 / 0.12);
+  font-weight: 600;
 }
 @media (max-width: 720px) {
   .lang-switch {
