@@ -7,7 +7,6 @@
 - `Sci-Fi-Labs-Shared-Context.md` — identity, products, infra, conversation log
 - `Spatial-Web-Apps-Presence-Plan.md` — chrome, copy, GitHub pin museum
 - `Sci-Fi-Labs-Vision-Suite-v2.md` — the deck copy
-- Presence Protocol (unfilled): https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/presence-protocol/index.html
 
 This file answers three questions the other two leave open:
 

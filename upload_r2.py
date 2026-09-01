@@ -112,7 +112,7 @@ def main():
     if len(sys.argv) == 3:
         # Usage: python3 upload_r2.py <src_path> <r2_key>
         src_path, r2_key = sys.argv[1], sys.argv[2]
-        content_type = "image/jpeg" if src_path.endswith((".jpg", ".jpeg")) else "application/octet-stream"
+        content_type = "image/jpeg" if src_path.endswith((".jpg", ".jpeg")) else "application/pdf" if src_path.endswith(".pdf") else "application/octet-stream"
         upload_file_from(src_path, r2_key, content_type)
     else:
         upload_file("musical-cubes.jpg", "image/jpeg")

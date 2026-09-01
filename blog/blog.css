@@ -50,7 +50,7 @@ ul{margin:0 0 1.4rem;padding-left:1.25rem}
 li{margin:0 0 0.65rem;line-height:1.6}
 .callout{margin:1.75rem 0;padding:1.15rem 1.3rem;border-left:2px solid oklch(72% 0.08 230 / 0.55);background:oklch(72% 0.08 230 / 0.06);border-radius:0 8px 8px 0;color:var(--fg);font-size:1.1rem;line-height:1.7}
 .links{display:flex;flex-wrap:wrap;gap:1rem;margin:2rem 0 1.5rem}
-.links a{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:0.15rem}
+.links a{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.12em;text-transform:uppercase;color:oklch(72% 0.08 230);border-bottom:1px solid oklch(72% 0.08 230 / 0.25);padding-bottom:0.15rem}
 .links a:hover{color:var(--fg-bright)}
 .more{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
 .more h3{font-family:var(--font-display);font-weight:400;font-size:1.1rem;margin:0 0 0.85rem;color:var(--muted)}
