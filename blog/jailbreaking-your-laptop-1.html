@@ -20,6 +20,25 @@
   <link rel="canonical" href="https://paulvisciano.com/blog/jailbreaking-your-laptop-1">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
+  <style>
+    article h3 { margin: 2.25rem 0 0.7rem; }
+    .fig img { cursor: zoom-in; }
+    .fig img:focus-visible { outline: 2px solid oklch(72% 0.08 230 / 0.7); outline-offset: 3px; }
+    .img-zoom { position: fixed; inset: 0; z-index: 200; margin: 0; padding: 1.25rem 1.25rem 2.75rem; border: 0; background: oklch(8% 0.002 260 / 0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: flex; align-items: center; justify-content: center; cursor: zoom-out; touch-action: none; }
+    .img-zoom[hidden] { display: none !important; }
+    .img-zoom img { max-width: 96vw; max-height: 90vh; width: auto; height: auto; object-fit: contain; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 24px 64px oklch(0% 0 0 / 0.55); transform-origin: center center; user-select: none; -webkit-user-drag: none; }
+    .img-zoom.is-panning img { cursor: grabbing; }
+    .img-zoom.is-zoomed img { cursor: grab; }
+    .img-zoom-hint { position: absolute; bottom: 0.85rem; left: 0; right: 0; text-align: center; font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); pointer-events: none; }
+    .prompt-card { margin: 1.5rem 0 1.75rem; border: 1px solid oklch(72% 0.08 230 / 0.38); border-radius: 12px; background: oklch(10% 0.012 230); overflow: hidden; box-shadow: inset 3px 0 0 oklch(72% 0.08 230 / 0.75); }
+    .prompt-bar { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.6rem 0.95rem 0.6rem 1.15rem; border-bottom: 1px solid oklch(72% 0.08 230 / 0.22); background: oklch(72% 0.08 230 / 0.07); }
+    .prompt-bar span { font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.14em; text-transform: uppercase; color: oklch(72% 0.08 230); }
+    .prompt-copy { appearance: none; border: 1px solid oklch(72% 0.08 230 / 0.45); background: transparent; color: var(--fg); font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.32rem 0.7rem; border-radius: 6px; cursor: pointer; line-height: 1.2; }
+    .prompt-copy:hover, .prompt-copy:focus-visible { color: var(--fg-bright); border-color: oklch(72% 0.08 230); background: oklch(72% 0.08 230 / 0.12); outline: none; }
+    .prompt-copy.is-copied { color: oklch(72% 0.08 230); border-color: oklch(72% 0.08 230 / 0.75); }
+    .prompt-card pre { margin: 0; padding: 1.15rem 1.2rem 1.25rem 1.35rem; white-space: pre-wrap; font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.65; color: var(--fg-bright); overflow: auto; }
+    .prompt-card code { background: none; padding: 0; font-size: inherit; color: inherit; user-select: all; }
+  </style>
 </head>
 <body>
   <header class="top">
@@ -51,12 +70,13 @@
     <div class="callout">Same defiance as geohot, different layer. He cracked a phone's firmware. You're cracking the assumption that the vendor's OS is the only one allowed on the machine you bought.</div>
 
     <h2>What you need</h2>
-    <p>The ingredients for Part 1 are short. Most of the work is in the install itself.</p>
+    <p>The hardware list is short. Backup first. Then the install.</p>
     <ul>
       <li><strong>A laptop.</strong> 16 GB of RAM works. No GPU required. A Mac, a PC, or a Linux box you already run.</li>
       <li><strong>A USB stick.</strong> 4 GB or larger. The ISO is under 6 GB.</li>
       <li><strong>A wired or 2.4 GHz keyboard.</strong> This is a documented requirement, not a preference. Bluetooth cannot type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. Use a cable or a dongle.</li>
       <li><strong>The Omarchy ISO.</strong> Download it from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. You'll flash it to the USB stick in step 1.</li>
+      <li><strong>A vault.</strong> An external drive. Desktop, Downloads, and Documents come off the machine first.</li>
     </ul>
 
     <div class="stat-strip">
@@ -67,10 +87,44 @@
     </div>
     <p class="chart-cap" style="margin-top:-0.6rem;margin-bottom:1.6rem;">Numbers from the Quattro walkthrough and the official Getting Started page.</p>
 
-    <h2>Install Omarchy</h2>
-    <p>This is the main event. The steps below come from the <a class="ext" href="https://omarchy.org/manual/getting-started/" target="_blank" rel="noopener">official Getting Started page</a>. Follow them in order. The OS install is the one part of this whole series you do by hand. No AI in the loop. You want to feel the lock crack yourself. AI comes in from Part 2 onward, once the machine is yours.</p>
+    <h3 id="backup">Backup before you install</h3>
+    <p>Do this before you flash anything. Drag the folders yourself, or let the agent you already have cook — <a class="ext" href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a>, Claude Code, whichever is on the machine. I used OpenCode with GLM-5.3 Flash, running locally through Ollama.</p>
+    <p>Plug the vault in. This was the first prompt:</p>
 
-    <div class="callout"><strong>Before you start:</strong> plug in a wired or 2.4 GHz keyboard. Bluetooth will not type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. This trips people up. Use a cable or a dongle.</div>
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/vault-backup-prompt.webp" alt="OpenCode session: the vault backup prompt and GLM-5.3 Flash planning the move into RAW/archive by creation date" width="1800" height="1134" loading="lazy">
+      <figcaption class="fig-cap">OpenCode + GLM-5.3 Flash, local. Same prompt works in Claude Code.</figcaption>
+    </figure>
+
+    <div class="prompt-card">
+      <div class="prompt-bar">
+        <span>Prompt</span>
+        <button type="button" class="prompt-copy" aria-label="Copy prompt">Copy</button>
+      </div>
+      <pre id="vault-prompt"><code>I have connected my vault, an external hard drive that stores all my sensitive data.
+
+Move all files from Desktop, Downloads, and Documents to my vault under RAW/archive/[dated-folder].
+
+The dated folder should be based on the date the file was created.
+
+- Move should only be additive
+- Skip files that are already on the vault
+- Skip files over 2GB
+- Skip installers</code></pre>
+    </div>
+
+    <p>Additive only. Skip what's already on the vault. Skip installers and anything over 2 GB. Folders named by each file's creation date.</p>
+    <p>When it finishes you want a clean summary. Zero errors. Nothing overwritten. Mine looked like this:</p>
+
+    <figure class="fig">
+      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/vault-backup-done.webp" alt="OpenCode summary: 1,730 files moved to RAW/archive by creation date, five installers skipped, no overwrites" width="1514" height="950" loading="lazy">
+      <figcaption class="fig-cap">1,730 files. 3.44 GB. Five installers left in Downloads. Vault still had 1.6 TB free.</figcaption>
+    </figure>
+
+    <h2>Install Omarchy</h2>
+    <p>This is the main event. The steps below come from the <a class="ext" href="https://omarchy.org/manual/getting-started/" target="_blank" rel="noopener">official Getting Started page</a>. Follow them in order. The OS install is still by hand. You want to feel the lock crack yourself. AI already did the backup. It comes back in Part 2, once the machine is yours.</p>
+
+    <div class="callout"><strong>Before you start:</strong> if Desktop, Downloads, and Documents are still on the machine, stop. That's above. Then plug in a wired or 2.4 GHz keyboard. Bluetooth will not type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. This trips people up. Use a cable or a dongle.</div>
 
     <div class="os-switch" role="tablist" aria-label="Select your current OS">
       <span class="os-label">I'm on</span>
@@ -217,6 +271,161 @@
   var saved = 'mac';
   try { saved = localStorage.getItem('jailbreak-os') || 'mac'; } catch(e) {}
   select(saved);
+})();
+</script>
+<script>
+(function(){
+  var btn = document.querySelector('.prompt-copy');
+  var code = document.querySelector('#vault-prompt code');
+  if (!btn || !code) return;
+  var timer = null;
+  function copied(){
+    btn.textContent = 'Copied';
+    btn.classList.add('is-copied');
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      btn.textContent = 'Copy';
+      btn.classList.remove('is-copied');
+    }, 1600);
+  }
+  btn.addEventListener('click', function(){
+    var text = code.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(copied).catch(fallback);
+    } else {
+      fallback();
+    }
+    function fallback(){
+      var range = document.createRange();
+      range.selectNodeContents(code);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      try { document.execCommand('copy'); copied(); } catch (e) {}
+    }
+  });
+})();
+</script>
+<script>
+(function(){
+  var imgs = document.querySelectorAll('.fig img');
+  if (!imgs.length) return;
+
+  var overlay = document.createElement('div');
+  overlay.className = 'img-zoom';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Zoomed image');
+  overlay.tabIndex = -1;
+  overlay.hidden = true;
+
+  var zoomImg = document.createElement('img');
+  var hint = document.createElement('p');
+  hint.className = 'img-zoom-hint';
+  hint.textContent = 'Scroll to zoom · Esc to close';
+  overlay.appendChild(zoomImg);
+  overlay.appendChild(hint);
+  document.body.appendChild(overlay);
+
+  var scale = 1, x = 0, y = 0;
+  var dragging = false, moved = false, lx = 0, ly = 0, pinch = 0;
+
+  function apply(){
+    zoomImg.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(' + scale + ')';
+    overlay.classList.toggle('is-zoomed', scale > 1);
+  }
+  function reset(){
+    scale = 1; x = 0; y = 0;
+    overlay.classList.remove('is-zoomed', 'is-panning');
+    apply();
+  }
+  function open(src, alt){
+    zoomImg.src = src;
+    zoomImg.alt = alt || '';
+    reset();
+    overlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    overlay.focus();
+  }
+  function close(){
+    overlay.hidden = true;
+    zoomImg.removeAttribute('src');
+    document.body.style.overflow = '';
+    reset();
+  }
+
+  imgs.forEach(function(img){
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', (img.alt || 'Image') + ' — view larger');
+    function go(){ open(img.currentSrc || img.src, img.alt); }
+    img.addEventListener('click', go);
+    img.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    });
+  });
+
+  overlay.addEventListener('click', function(e){
+    if (e.target !== zoomImg) close();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && !overlay.hidden) close();
+  });
+
+  overlay.addEventListener('wheel', function(e){
+    if (overlay.hidden) return;
+    e.preventDefault();
+    var next = scale * (e.deltaY < 0 ? 1.12 : 0.9);
+    scale = Math.min(5, Math.max(1, next));
+    if (scale === 1) { x = 0; y = 0; }
+    apply();
+  }, { passive: false });
+
+  overlay.addEventListener('pointerdown', function(e){
+    if (e.target !== zoomImg) return;
+    if (scale === 1) return;
+    dragging = true;
+    moved = false;
+    lx = e.clientX;
+    ly = e.clientY;
+    overlay.classList.add('is-panning');
+    overlay.setPointerCapture(e.pointerId);
+  });
+  overlay.addEventListener('pointermove', function(e){
+    if (!dragging) return;
+    var dx = e.clientX - lx, dy = e.clientY - ly;
+    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) moved = true;
+    x += dx; y += dy;
+    lx = e.clientX; ly = e.clientY;
+    apply();
+  });
+  overlay.addEventListener('pointerup', function(){
+    dragging = false;
+    overlay.classList.remove('is-panning');
+    if (!moved && scale === 1) close();
+  });
+
+  overlay.addEventListener('touchstart', function(e){
+    if (e.touches.length === 2) {
+      var dx = e.touches[0].clientX - e.touches[1].clientX;
+      var dy = e.touches[0].clientY - e.touches[1].clientY;
+      pinch = Math.hypot(dx, dy);
+    }
+  }, { passive: true });
+  overlay.addEventListener('touchmove', function(e){
+    if (e.touches.length !== 2) return;
+    e.preventDefault();
+    var dx = e.touches[0].clientX - e.touches[1].clientX;
+    var dy = e.touches[0].clientY - e.touches[1].clientY;
+    var d = Math.hypot(dx, dy);
+    if (pinch) {
+      scale = Math.min(5, Math.max(1, scale * (d / pinch)));
+      if (scale === 1) { x = 0; y = 0; }
+      apply();
+    }
+    pinch = d;
+  }, { passive: false });
+  overlay.addEventListener('touchend', function(){ pinch = 0; });
 })();
 </script>
 </body>
