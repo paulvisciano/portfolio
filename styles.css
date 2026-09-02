@@ -811,6 +811,8 @@ background: oklch(12% 0.003 260 / 0.6);
 .series-reveal.is-in .series-step:nth-child(5) { animation: series-in 0.7s ease 3.7s both; }
 @media (max-width: 760px) {
   .series-flow { grid-template-columns: 1fr; gap: var(--gap-md); }
+  .series-flow .series-path { grid-column: 1; grid-row: 2; }
+  .series-flow .series-cover { grid-column: 1; grid-row: 1; justify-self: center; }
   .series-cover { max-width: 300px; }
   .series-section { min-height: auto; padding-block: clamp(32px, 6vh, 48px); }
 }
