@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jailbreaking Your Laptop, Part 4: The Local AI Layer — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="The knowledge graph is the personal assistant layer running on your machine. It works across the entire Wi-Fi network — phone and computer talk to each other. All on a 16-gig MacBook. No data center. No supervision.">
+  <title>Jailbreaking Your Laptop, Part 4: Build Your Own Apps — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Once the OS is yours, the apps stop being products someone sells you and become infrastructure you run. Fork the existing apps, customize them, or build your own. Run everything on localhost — no API keys, no cloud, or optional cloud whenever you decide.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Jailbreaking Your Laptop, Part 4: The Local AI Layer">
-  <meta property="og:description" content="Your social graph and your assistant live on your machine, not a server farm. Phone and laptop share the same brain on your own network.">
-  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg">
+  <meta property="og:title" content="Jailbreaking Your Laptop, Part 4: Build Your Own Apps">
+  <meta property="og:description" content="Apps stop being products someone sells you and become infrastructure you run. No API keys. No cloud. Or optional cloud whenever you decide.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-globe.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 4: The Local AI Layer">
-  <meta name="twitter:description" content="The knowledge graph as personal assistant. Runs across your Wi-Fi. 16 gigs is plenty.">
-  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg">
+  <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 4: Build Your Own Apps">
+  <meta name="twitter:description" content="You can basically build your own social media in browser version. All on localhost.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-globe.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/jailbreaking-your-laptop-4">
   <link rel="stylesheet" href="blog.css">
   <link rel="stylesheet" href="section-nav.css">
@@ -33,47 +33,52 @@
   </nav>
   <article>
     <p class="series">Jailbreaking Your Laptop · Part 4 of 5</p>
-    <h1>The Local AI Layer</h1>
-    <p class="deck">The knowledge graph is the personal assistant layer that's running on your machine. I already have it working in a way that works across the entire Wi-Fi network — so you can have multiple devices on the Wi-Fi. Phone and my computer can talk to each other, and I can talk to the assistant from either one.</p>
+    <div class="series-banner">Part 4 of 5 in <a href="jailbreak-your-laptop.html">Jailbreak Your Laptop</a> · <a href="jailbreak-your-laptop.html">Series overview →</a></div>
+    <h1>Build Your Own Apps</h1>
+    <p class="deck">The OS is yours, the AI is local, the domain is claimed. Now the apps — fork what ships, customize it, or build your own. Publish if you want.</p>
 
     <figure class="fig">
-      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/08-graph.jpg" alt="Laptop screen showing a dark infinite canvas of personal photos, voice notes, and documents linked as a graph, with a silver drive plugged in beside it" width="1176" height="784" loading="eager">
-      <figcaption class="fig-cap">The file browser as a conversation. Local model. Drive LED on.</figcaption>
+      <video src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/wip-filters.mp4" poster="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/own-the-stack/live-filters.jpg" autoplay muted loop playsinline width="1176" height="784"></video>
+      <figcaption class="fig-cap">Field Log Filters, captured live. People, year, tag. The public graph of a life — running on your machine.</figcaption>
     </figure>
 
-    <p>The OS is yours. The apps are yours. Now the brain. The knowledge graph is the personal assistant layer that runs on your machine — not a cloud service that forgets you when the subscription lapses.</p>
-    <p>It already works across the entire Wi-Fi network. Phone and computer talk to each other. You talk to the assistant from either device. No account sync, no cloud relay, just your devices talking to each other on a network you control.</p>
+    <p>The stack is yours. Now the apps. Every other app is a subscription you rent. Yours is software you own.</p>
+    <p>You can fork the existing apps that ship with the stack. Customize them however you want — your rules, your UI, your data. Or build your own from scratch. The fork is the on-ramp. The build is the graduation.</p>
 
-    <h2>Sixteen gigs is plenty</h2>
-    <p>And it all runs on a 16-gig MacBook, so you don't need supervision. Sixteen gigs of unified memory is the quiet flex — the whole stack, OS, apps, knowledge graph, all running local without a data center behind it.</p>
-    <p>The test is offline. Airplane mode. No Wi-Fi. No fallback API. If the assistant still answers from weights on disk and data on disk, it is local in fact, not a thin client dressed up as "AI on your machine." Anything that phones home when the cable is unplugged has already failed.</p>
+    <h2>No API keys. No cloud. Or optional cloud.</h2>
+    <p>You can basically build your own social media in browser version. A browser that isn't a feed farm. No algorithm deciding what you see, no account you didn't choose, no platform in the middle.</p>
+    <p>And they all run on localhost. Your social graph lives on your machine, not a server farm in Virginia. No one can shadowban you. No one can sell your data. When you want to share, you publish to your own domain instead of begging for an API key.</p>
+    <p>Cloud becomes a choice instead of a default. Opt in whenever you decide. The default path is your machine.</p>
 
-    <div class="callout">Your social graph and your assistant live on your machine, not a server farm in Virginia. No one can shadowban you. No one can sell your data.</div>
+    <div class="callout">Apps stop being products someone sells you and become infrastructure you run.</div>
 
-    <h2>The assistant that knows your month</h2>
-    <p>This is the layer that makes the stack feel alive. You ask what you recorded last Tuesday and a voice note and three photographs slide into view. You leave the medical folder closed. The model cannot see a file that is not on the mounted volume.</p>
-    <p>JARVIS was the first cut of that idea — git as memory, an agent that knew the month. Knowledge Graph is the engine that stays on the machine. Bonsai runs on 16 GB. Whisper hears. Nothing leaves the desk unless you publish it on purpose.</p>
+    <h2>The marketing angle writes itself</h2>
+    <p>Every other app is a subscription you rent. Yours is software you own. That sentence is the whole pitch. You don't need a landing page to sell it — you need a walkthrough that ends with someone running their own timeline.</p>
+    <p>The tutorial funnel is simple: walk them from a fresh machine to a live domain, and every step is a reason to trust you as the guide. Fork an app. Customize it. Publish it. Own it.</p>
 
     <h2>The payoff</h2>
-    <p>The personal assistant layer is real, running, and local. Next, the moment someone stops following the tutorial and starts owning the stack for real — building their own apps.</p>
+    <p>You can customize the existing apps or build your own and then publish them as well. One command, live on the internet, fully yours. The loop starts to close: customize, publish, own.</p>
+    <p>That is part four. Next, the graduation — from cracking someone else's lock to writing your own.</p>
 
     <div class="series-nav">
+      <a href="jailbreak-your-laptop.html"><span>Overview</span>Jailbreak Your Laptop</a>
       <a href="jailbreaking-your-laptop-1.html"><span>Part 1</span>Take Over the Machine</a>
-      <a href="jailbreaking-your-laptop-2.html"><span>Part 2</span>Fork, Customize, or Build</a>
-      <a href="jailbreaking-your-laptop-3.html"><span>Part 3</span>Claim the Domain</a>
-      <a href="jailbreaking-your-laptop-4.html" class="current"><span>Part 4</span>The Local AI Layer</a>
+      <a href="jailbreaking-your-laptop-2.html"><span>Part 2</span>Run Local AI</a>
+      <a href="jailbreaking-your-laptop-3.html"><span>Part 3</span>Create Your Own Site</a>
+      <a href="jailbreaking-your-laptop-4.html" class="current"><span>Part 4</span>Build Your Own Apps</a>
       <a href="jailbreaking-your-laptop-5.html"><span>Part 5</span>Graduate to Creator</a>
     </div>
+    <p class="series-start">New to the series? Start with the why: <a href="own-your-hardware.html">You Bought the Hardware. You Never Owned It. →</a></p>
     <div class="links">
-      <a href="knowledge-graph.html">Knowledge Graph overview</a>
-      <a href="kg-part-1.html">KG Part 1: The canvas and the stack</a>
+      <a href="own-the-stack.html">Own the stack</a>
+      <a href="what-are-spatial-apps.html">What are Spatial Web Apps?</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
     <div class="more">
       <h3>More from Sci-Fi Labs</h3>
       <a href="jailbreaking-your-laptop-3.html">Part 3: Your Own Website ←</a>
-      <a href="jailbreaking-your-laptop-5.html">Part 5: Build Your Own Apps →</a>
-      <a href="knowledge-graph.html">Knowledge Graph →</a>
+      <a href="jailbreaking-your-laptop-5.html">Part 5: Graduate to Creator →</a>
+      <a href="own-the-stack.html">Own the stack →</a>
     </div>
   </article>
   <footer>
