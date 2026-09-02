@@ -174,41 +174,37 @@ color: var(--fg); transition: color 0.2s;
 .hero-cta:hover { color: var(--muted); }
 .hero-cta:hover::after { transform: translateX(4px); }
 
-/* ─── hero CTA cycling animation ───────────────────────────────── */
-.hero-cta-cycle {
+/* ─── hero CTAs: series-first ──────────────────────────────────── */
+.hero-ctas {
   display: inline-flex; align-items: center; justify-content: center;
-  position: relative; min-height: 1.5em; width: 100%; text-align: center;
+  gap: var(--gap-sm); flex-wrap: wrap;
 }
-.hero-cta-cycle .hero-cta {
-  position: absolute; inset-inline: 0;
-  justify-content: center;
-  opacity: 0; pointer-events: none;
-  white-space: nowrap;
-}
-.hero-cta-cycle .hero-cta.is-active {
-  opacity: 1; pointer-events: auto;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-cta-cycle .hero-cta { transition: opacity 0.3s ease; }
-}
-
-.hero-latest {
-  position: absolute; bottom: clamp(24px, 5vh, 48px); left: 0; right: 0;
-  display: flex; align-items: baseline; gap: 0.6rem;
-  text-decoration: none; justify-content: center;
+.hero-cta-primary {
   font-family: var(--font-mono); font-size: 13px;
-  color: var(--muted); opacity: 0.6;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--bg); background: var(--fg);
+  padding: 12px 24px; border-radius: 100px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
-.hero-latest:hover { opacity: 1; color: var(--fg); }
-.hero-latest-label {
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--muted); border: 1px solid var(--border);
-  padding: 2px 8px; border-radius: 99px; line-height: 1.5;
+.hero-cta-primary:hover { background: var(--fg-bright); color: var(--bg); transform: translateY(-1px); }
+.hero-cta-secondary {
+  font-family: var(--font-mono); font-size: 13px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); padding: 12px 8px;
+  transition: color 0.2s;
 }
-.hero-latest-title { font-family: var(--font-display); font-size: 14px; color: var(--fg); }
-.hero-latest-arrow { font-size: 13px; color: var(--muted); transition: transform 0.2s; }
-.hero-latest:hover .hero-latest-arrow { transform: translateX(4px); }
+.hero-cta-secondary:hover { color: var(--fg); }
+/* ─── closing tagline ──────────────────────────────────────────── */
+.closing-tagline {
+  display: flex; justify-content: center; text-align: center;
+  padding: var(--gap-lg) var(--gutter);
+}
+.hero-tagline {
+  margin: 0;
+  font-family: var(--font-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--faint);
+}
 /* ─── featured projects ────────────────────────────────────────── */
 .projects-head {
 display: flex; align-items: center; justify-content: space-between;
@@ -665,12 +661,9 @@ the container to honour the viewport on small screens. */
 .hero .container { width: 100%; max-width: 100%; padding-inline: var(--gutter); }
 .hero h1 { font-size: clamp(36px, 11vw, 52px); }
 .hero .lead { font-size: 15px; max-width: 90%; }
-.hero-cta { font-size: 14px; }
-.hero-latest {
-  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
-  left: var(--gutter);
-  right: var(--gutter);
-}
+.hero-ctas { flex-direction: column-reverse; align-items: center; gap: var(--gap-sm); }
+.hero-cta-primary { padding: 12px 28px; }
+.hero-tagline { font-size: 10px; }
 .projects-head { margin-bottom: var(--gap-md); }
 .projects-head .label { font-size: 10px; }
 .project-grid { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; overflow-y: hidden; }
@@ -723,7 +716,111 @@ background: oklch(12% 0.003 260 / 0.6);
 .footer-links { gap: 10px; }
 }
 /* Blog section */
-.blog-intro { margin: 0.75rem 0 0; max-width: 36rem; color: var(--muted); font-family: var(--font-display); font-size: var(--fs-lead); line-height: 1.6; font-weight: 300; letter-spacing: -0.005em; }
+/* ─── series: Jailbreak Your Laptop ───────────────────────────── */
+.series-section { min-height: 100vh; justify-content: center; padding-block: clamp(20px, 3.5vh, 36px); }
+.series-flow { max-height: calc(100vh - 2 * clamp(20px, 3.5vh, 36px)); }
+.series-title {
+  font-size: clamp(32px, 4.5vw, 52px);
+  margin-bottom: var(--gap-md);
+  color: var(--fg-bright);
+}
+.series-deck {
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: var(--fs-lead);
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: var(--gap-xl);
+}
+.series-path {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex; flex-direction: column;
+}
+.series-step { position: relative; }
+.series-step-link {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  align-items: baseline;
+  gap: var(--gap-sm);
+  padding: 0.55rem var(--gap-sm);
+  text-decoration: none; color: inherit;
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+.series-step-link:hover { background: var(--bg-card); padding-left: var(--gap-md); }
+.series-step-link:hover .series-step-desc { color: var(--fg); }
+.series-num {
+  font-size: 15px; color: var(--muted);
+  transition: color 0.25s ease;
+}
+.series-step-link:hover .series-num { color: var(--fg); }
+.series-step-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.series-step-title {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(18px, 2.1vw, 22px);
+  letter-spacing: -0.01em;
+  color: var(--fg-bright);
+}
+.series-step-desc {
+  color: var(--muted);
+  font-size: var(--fs-body);
+  line-height: 1.45;
+  font-weight: 400;
+  max-width: 52ch;
+}
+.series-step-arrow {
+  font-size: 19px; color: var(--fg);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.series-step-link:hover .series-step-arrow { transform: translateX(4px); color: var(--fg); }
+.series-flow {
+  display: grid;
+  grid-template-columns: minmax(280px, 400px) minmax(0, 1fr);
+  gap: var(--gap-md);
+  margin-bottom: 0;
+  max-height: 100%;
+}
+.series-flow .series-cover { overflow: hidden; }
+.series-flow .series-cover img { height: 100%; object-fit: cover; object-position: top; }
+.series-flow .series-path { grid-column: 2; grid-row: 1; margin: 0; align-self: center; }
+.series-flow .series-cover { grid-column: 1; grid-row: 1; align-self: center; }
+.series-cover {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.series-cover:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+.series-cover img { display: block; width: 100%; height: auto; }
+.series-step:first-child .series-num { color: var(--fg); }
+/* ─── series: fold-entry cascade ──────────────────────────────── */
+@keyframes series-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.series-reveal { opacity: 0; }
+.series-reveal.is-in {
+  animation: series-in 0.9s ease both;
+}
+.series-reveal.is-in .series-step:nth-child(1) { animation: series-in 0.7s ease 0.9s both; }
+.series-reveal.is-in .series-step:nth-child(2) { animation: series-in 0.7s ease 1.6s both; }
+.series-reveal.is-in .series-step:nth-child(3) { animation: series-in 0.7s ease 2.3s both; }
+.series-reveal.is-in .series-step:nth-child(4) { animation: series-in 0.7s ease 3.0s both; }
+.series-reveal.is-in .series-step:nth-child(5) { animation: series-in 0.7s ease 3.7s both; }
+@media (max-width: 760px) {
+  .series-flow { grid-template-columns: 1fr; gap: var(--gap-md); }
+  .series-cover { max-width: 300px; }
+  .series-section { min-height: auto; padding-block: clamp(32px, 6vh, 48px); }
+}
+@media (max-width: 640px) {
+  .series-step-link { grid-template-columns: 2.4rem 1fr auto; gap: var(--gap-sm); padding: var(--gap-sm) 4px; }
+  .series-num { font-size: 13px; }
+  .series-step-arrow { font-size: 17px; }
+  .series-step-desc { font-size: 14px; }
+}
+.blog-intro { margin: 0.75rem 0 var(--gap-lg); max-width: 36rem; color: var(--muted); font-family: var(--font-display); font-size: var(--fs-lead); line-height: 1.6; font-weight: 300; letter-spacing: -0.005em; }
 .blog-scroll { position: relative; margin-top: var(--gap-xl); }
 .blog-grid {
 	display: grid;

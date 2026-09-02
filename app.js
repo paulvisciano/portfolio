@@ -744,3 +744,24 @@ window.__userInteracted = false;
     if (document.hidden) stop(); else if (!running) start();
   });
 })();
+
+(function () {
+  var flow = document.querySelector('.series-reveal');
+  if (!flow) return;
+
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    flow.classList.add('is-in');
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        flow.classList.add('is-in');
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(flow);
+})();
