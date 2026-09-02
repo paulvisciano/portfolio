@@ -6,6 +6,8 @@
     { "source": "/apps/neuro-graph", "destination": "/apps/neuro-graph/", "permanent": false },
     { "source": "/apps/the-secret-family", "destination": "/apps/the-secret-family/", "permanent": false },
     { "source": "/apps/where-is-paul", "destination": "/apps/where-is-paul/", "permanent": false },
+    { "source": "/blog/jailbreak-your-laptop", "destination": "/blog/jailbreaking-your-laptop-1", "permanent": true },
+    { "source": "/blog/jailbreak-your-laptop/", "destination": "/blog/jailbreaking-your-laptop-1", "permanent": true },
     { "source": "/blog/what-are-spatial-web-apps", "destination": "/blog/what-are-spatial-apps", "permanent": true },
     { "source": "/blog/what-are-spatial-web-apps/", "destination": "/blog/what-are-spatial-apps", "permanent": true },
     { "source": "/blog/what-are-sci-fi-apps", "destination": "/blog/what-are-spatial-apps", "permanent": true },
