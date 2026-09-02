@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jailbreak Your Laptop — Own the OS. Own the apps. Own the stack. — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="The home of the five-part series: take over the machine, run your local AI, claim the domain, build your own apps, and bring your data home. Mac, PC, or Linux box — it all runs on 16 GB.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Jailbreak Your Laptop">
+  <meta property="og:description" content="Own the OS. Own the apps. Own the stack. A five-part series that takes a stock laptop to a machine you own end to end. Mac, PC, or Linux box — it all runs on 16 GB.">
+  <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jailbreak Your Laptop">
+  <meta name="twitter:description" content="Own the OS. Own the apps. Own the stack. The five-part path from a stock laptop to a machine that answers to you.">
+  <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
+  <link rel="canonical" href="https://paulvisciano.com/blog/jailbreak-your-laptop">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+  <style>
+    .hub-tagline{font-family:var(--font-mono);font-size:var(--fs-meta);letter-spacing:0.14em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:-0.4rem 0 2rem}
+    .hub-lede{font-size:var(--fs-lead);line-height:1.65;color:var(--muted);margin:0 0 1.4rem}
+
+    /* The five-part path — a vertical rail, not a list */
+    .path{list-style:none;counter-reset:stop;position:relative;margin:1.75rem 0 2rem;padding:0 0 0 3.4rem}
+    .path::before{content:"";position:absolute;left:1.15rem;top:0.6rem;bottom:0.6rem;width:1px;background:linear-gradient(to bottom,oklch(72% 0.08 230 / 0.55),oklch(72% 0.08 230 / 0.12))}
+    .stop{position:relative;padding:1.15rem 1.25rem;margin:0 0 0.9rem;border:1px solid var(--border);border-radius:12px;background:var(--surface);transition:border-color 0.15s ease,transform 0.15s ease;animation:stop-in 0.5s ease both}
+    .stop:nth-child(1){animation-delay:0.05s}
+    .stop:nth-child(2){animation-delay:0.13s}
+    .stop:nth-child(3){animation-delay:0.21s}
+    .stop:nth-child(4){animation-delay:0.29s}
+    .stop:nth-child(5){animation-delay:0.37s}
+    .stop:hover{border-color:oklch(72% 0.08 230 / 0.45);transform:translateX(3px)}
+    .stop::before{counter-increment:stop;content:counter(stop,decimal-leading-zero);position:absolute;left:-3.4rem;top:1.25rem;width:2.3rem;height:2.3rem;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.82rem;font-weight:600;color:oklch(72% 0.08 230);border:1px solid oklch(72% 0.08 230 / 0.4);border-radius:8px;background:var(--bg);box-shadow:0 0 0 5px var(--bg)}
+    .stop .part-tag{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:0 0 0.35rem}
+    .stop .part-title{font-family:var(--font-display);font-size:1.3rem;font-weight:500;letter-spacing:-0.01em;margin:0 0 0.45rem;color:var(--fg-bright)}
+    .stop .part-desc{margin:0 0 0.7rem;color:var(--fg);line-height:1.6;font-size:1rem}
+    .stop .part-link{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.12em;text-transform:uppercase;color:oklch(72% 0.08 230);text-decoration:none;border-bottom:1px solid oklch(72% 0.08 230 / 0.25);padding-bottom:0.15rem}
+    .stop .part-link:hover{color:var(--fg-bright);border-bottom-color:var(--border-hi)}
+    @keyframes stop-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+    /* Payoff — terminal readout */
+    .payoff{margin:1.75rem 0 2rem;padding:1.15rem 1.3rem;border:1px solid var(--border);border-radius:12px;background:var(--bg-card)}
+    .payoff-title{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.16em;text-transform:uppercase;color:oklch(72% 0.08 230);margin:0 0 1rem}
+    .payoff ul{list-style:none;margin:0;padding:0}
+    .payoff li{position:relative;padding:0 0 0 1.5rem;margin:0 0 0.6rem;line-height:1.6;color:var(--fg)}
+    .payoff li::before{content:"+";position:absolute;left:0;top:0;font-family:var(--font-mono);color:oklch(72% 0.08 230)}
+    .payoff .payoff-last{margin:0.9rem 0 0;padding-top:0.9rem;border-top:1px solid var(--border);color:var(--muted)}
+
+    /* CTA */
+    .hub-cta{display:flex;flex-wrap:wrap;gap:0.85rem;align-items:center;margin:2rem 0 1.25rem}
+    .hub-cta a{font-family:var(--font-mono);font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:0.9rem 1.6rem;border-radius:10px;transition:transform 0.15s ease,border-color 0.15s ease,box-shadow 0.15s ease}
+    .hub-cta .cta-primary{color:var(--fg-bright);background:var(--surface);border:1px solid var(--border-hi)}
+    .hub-cta .cta-primary:hover{transform:translateY(-2px);border-color:var(--fg-bright);box-shadow:0 4px 28px oklch(99% 0 0 / 0.08)}
+    .hub-cta .cta-secondary{color:oklch(72% 0.08 230);background:transparent;border:1px solid oklch(72% 0.08 230 / 0.35)}
+    .hub-cta .cta-secondary:hover{color:var(--fg-bright);border-color:oklch(72% 0.08 230 / 0.6)}
+    @media(max-width:720px){
+      .path{padding-left:2.9rem}
+      .stop::before{left:-2.9rem;width:2rem;height:2rem;font-size:0.75rem}
+      .hub-cta a{width:100%;text-align:center}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .stop{animation:none}
+      .stop:hover,.hub-cta .cta-primary:hover{transform:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Jailbreak Your Laptop · A five-part series</p>
+    <h1>Jailbreak Your Laptop</h1>
+    <p class="hub-tagline">Own the OS. Own the apps. Own the stack.</p>
+
+    <h2>The thesis</h2>
+    <p class="hub-lede">Before the iPhone was a status symbol, it was a locked box. In the summer of 2007, a seventeen-year-old named George Hotz — geohot — spent five hundred hours soldering and coding to unlock the original one. He posted the video from his parents' kitchen: "This is the world's first unlocked iPhone." He traded one of the phones for a Nissan 350Z. He was still a teenager. He didn't ask permission. He took ownership.</p>
+    <p>Back then the lock was physical — a phone sealed to one carrier by firmware, and the only way out was to crack the firmware itself. Today the lock isn't the phone. It's the operating system on the laptop you use every day: the vendor's assumptions baked into the software, deciding what runs, what phones home, what you can change. On a locked OS you can still inspect processes — the difference is what happens next. On a machine you own, something not working is a conversation. Describe it, and the local model rewrites the config. Every change visible and reversible.</p>
+    <p>This is the roadmap to sovereignty. Every layer already works.</p>
+
+    <div class="callout">The lock moved from the carrier to the operating system. This series cracks it — on whatever laptop you already own. Mac, PC, or a Linux box you already run. It all runs on 16 GB.</div>
+
+    <h2>The five-part path</h2>
+    <ol class="path">
+      <li class="stop">
+        <p class="part-tag">Part 1</p>
+        <h3 class="part-title">Take Over the Machine</h3>
+        <p class="part-desc">Install Omarchy, strip the vendor's defaults, list every process and know why it's there.</p>
+        <a class="part-link" href="jailbreaking-your-laptop-1.html">Read Part 1 →</a>
+      </li>
+      <li class="stop">
+        <p class="part-tag">Part 2</p>
+        <h3 class="part-title">Run Local AI</h3>
+        <p class="part-desc">llama.cpp + Bonsai on localhost, Open WebUI on top, the Knowledge Graph fork for memory.</p>
+        <a class="part-link" href="jailbreaking-your-laptop-2.html">Read Part 2 →</a>
+      </li>
+      <li class="stop">
+        <p class="part-tag">Part 3</p>
+        <h3 class="part-title">Create Your Own Site</h3>
+        <p class="part-desc">Claim a domain, push to GitHub, let Vercel deploy. The goal: your own site.</p>
+        <a class="part-link" href="jailbreaking-your-laptop-3.html">Read Part 3 →</a>
+      </li>
+      <li class="stop">
+        <p class="part-tag">Part 4</p>
+        <h3 class="part-title">Build Your Own Apps</h3>
+        <p class="part-desc">Fork or scaffold apps, point them at your local model, run them on the machine you jailbroke.</p>
+        <a class="part-link" href="jailbreaking-your-laptop-4.html">Read Part 4 →</a>
+      </li>
+      <li class="stop">
+        <p class="part-tag">Part 5</p>
+        <h3 class="part-title">Graduate to Creator</h3>
+        <p class="part-desc">Export from the platforms, import onto the machine, drop it into the graph. The archive comes home.</p>
+        <a class="part-link" href="jailbreaking-your-laptop-5.html">Read Part 5 →</a>
+      </li>
+    </ol>
+
+    <h2>What you end up with</h2>
+    <div class="payoff">
+      <p class="payoff-title">The finished dish</p>
+      <ul>
+        <li>An OS you chose</li>
+        <li>A local AI that answers to you</li>
+        <li>Your own domain</li>
+        <li>Apps you can fork</li>
+        <li>Your data archived at home</li>
+      </ul>
+      <p class="payoff-last">Every change visible and reversible. The machine you can talk to.</p>
+    </div>
+
+    <div class="hub-cta">
+      <a class="cta-secondary" href="own-your-hardware.html">New here? Start with the why</a>
+      <a class="cta-primary" href="jailbreaking-your-laptop-1.html">Start Part 1</a>
+    </div>
+
+    <p>Paul Visciano · Sci-Fi Labs · paulvisciano.com</p>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
