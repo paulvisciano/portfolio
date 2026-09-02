@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jailbreaking Your Laptop, Part 1: Take Over the Machine — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A step-by-step tutorial for installing Omarchy and taking ownership of your machine. From geohot's 2007 iPhone unlock to cracking the OS itself. Download the ISO, flash it, disable Secure Boot, install, and reboot into a tiled desktop you control.">
+  <meta name="description" content="A step-by-step tutorial for installing Omarchy and taking ownership of your machine. Download the ISO, flash it, disable Secure Boot, install, and reboot into a tiled desktop you control. Mac, Windows, or Linux.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Jailbreaking Your Laptop, Part 1: Take Over the Machine">
-  <meta property="og:description" content="A step-by-step tutorial for installing Omarchy and taking ownership of your machine. From geohot's 2007 iPhone unlock to cracking the OS itself.">
+  <meta property="og:description" content="A step-by-step tutorial for installing Omarchy and taking ownership of your machine. Download the ISO, flash it, disable Secure Boot, install, and reboot into a tiled desktop you control.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 1: Take Over the Machine">
@@ -107,11 +107,17 @@
       </li>
       <li>
         <p class="step-title">Reboot into your new desktop</p>
-        <p class="step-body">Pull the stick when the installer tells you. You are now in a tiled desktop with no dock and no icons. The first toast on login opens the keybindings list if you click it. That is the on-ramp. <code>Super + K</code> from anywhere shows every desktop binding, searchable. Super is the Windows key on a PC, or Command on a Mac. Your thumb already knows it.</p>
+        <p class="step-body">Pull the stick when the installer tells you. Type your encryption password at the prompt (the wired keyboard you plugged in earlier). Then you are in. You should see a dark, tiled desktop with no dock and no icons — just a window if one is open, and empty space around it. A small toast notification appears on first login. Click it and the keybindings list opens. That is the on-ramp. <code>Super + K</code> (Super is the Windows key on a PC, or Command on a Mac — your thumb already knows it) shows every desktop binding from anywhere, searchable.</p>
+      </li>
+      <li>
+        <p class="step-title">Verify it worked</p>
+        <p class="step-body">Three things confirm the install succeeded. <strong>One:</strong> the desktop is dark and tiled — no dock, no desktop icons, no taskbar. <strong>Two:</strong> <code>Super + Space</code> opens the Omarchy menu (apps, install, update, settings). <strong>Three:</strong> <code>Super + Return</code> opens a terminal. If all three work, the OS is yours. If any of them do not, something went wrong — check the troubleshooting note below.</p>
       </li>
     </ol>
 
-    <p>That is the install. Six steps. The lock is cracked. The rest of this chapter is the short tour of what you just installed.</p>
+    <div class="callout"><strong>If it did not boot:</strong> the three most common failures are simple to fix. <em>Black screen or "Secure Boot violation":</em> you did not turn off Secure Boot in step 2 — go back and disable it. <em>Keyboard does not type at the password prompt:</em> it is Bluetooth. You need a wired or 2.4 GHz keyboard for the encryption password. <em>Installed to the wrong drive or lost data:</em> you picked the wrong drive in step 5 — this is why the steps say back up first. Reinstall to the correct drive.</div>
+
+    <p>That is the install. Seven steps. The lock is cracked. The rest of this chapter is the short tour of what you just installed.</p>
 
     <h2>The keys that matter</h2>
     <p><code>Super + K</code> is the only binding you have to memorize. It shows every desktop mapping on one page, searchable. The rest you learn by living in it for a week. The table below is the starter set. The full reference, including the Tmux and Herdr chords, is on the <a class="ext" href="https://omarchy.org/manual/hotkeys/" target="_blank" rel="noopener">official hotkeys page</a>.</p>
@@ -140,12 +146,12 @@
     <p>Omarchy gives you a curated desktop out of the box. The omakase defaults are good. But Omarchy runs on <a href="omarchy.html">Hyprland</a>, and Hyprland is one of the most customizable window managers ever built. Once you know the keys, you can make the desktop look like almost anything. Theming, animations, blur, shaders, custom menus, custom bars — every pixel is editable. This is what the community does with it.</p>
 
     <figure class="fig">
-      <video src="https://dl.hypr.land/contest-videos/moon_ilyamiro.mp4" autoplay muted loop playsinline style="width:100%;border-radius:8px;border:1px solid var(--border)"></video>
+      <video src="https://dl.hypr.land/contest-videos/moon_ilyamiro.mp4" autoplay muted loop playsinline controls preload="none" style="width:100%;border-radius:8px;border:1px solid var(--border)"></video>
       <figcaption class="fig-cap">"Moon" by ilyamiro — a Hyprland rice from the <a class="ext" href="https://hypr.land/hall_of_fame/" target="_blank" rel="noopener">Hall of Fame</a>. Custom bar, custom launcher, custom theme. None of that is a separate app you install. It is config.</figcaption>
     </figure>
 
     <figure class="fig">
-      <video src="https://dl.hypr.land/contest-videos/fantasy_flafy.webm" autoplay muted loop playsinline style="width:100%;border-radius:8px;border:1px solid var(--border)"></video>
+      <video src="https://dl.hypr.land/contest-videos/fantasy_flafy.webm" autoplay muted loop playsinline controls preload="none" style="width:100%;border-radius:8px;border:1px solid var(--border)"></video>
       <figcaption class="fig-cap">"Fantasy" by flafy — another Hall of Fame entry. A completely different look, built on the same window manager. That is what "your rules, your keys, your processes" looks like in practice.</figcaption>
     </figure>
 
@@ -200,9 +206,15 @@
     spans.forEach(function(s){ s.classList.toggle('os-active', s.dataset.os === os); });
   }
   buttons.forEach(function(b){
-    b.addEventListener('click', function(){ select(b.dataset.os); });
+    b.addEventListener('click', function(){
+      var os = b.dataset.os;
+      select(os);
+      try { localStorage.setItem('jailbreak-os', os); } catch(e) {}
+    });
   });
-  select('mac');
+  var saved = 'mac';
+  try { saved = localStorage.getItem('jailbreak-os') || 'mac'; } catch(e) {}
+  select(saved);
 })();
 </script>
 </body>
