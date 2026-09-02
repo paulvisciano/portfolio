@@ -2,6 +2,11 @@
 .env*
 .vercel
 
+# Node
+node_modules/
+package-lock.json
+server.log
+
 # macOS
 .DS_Store
 
