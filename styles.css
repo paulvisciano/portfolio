@@ -666,6 +666,11 @@ the container to honour the viewport on small screens. */
 .hero h1 { font-size: clamp(36px, 11vw, 52px); }
 .hero .lead { font-size: 15px; max-width: 90%; }
 .hero-cta { font-size: 14px; }
+.hero-latest {
+  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  left: var(--gutter);
+  right: var(--gutter);
+}
 .projects-head { margin-bottom: var(--gap-md); }
 .projects-head .label { font-size: 10px; }
 .project-grid { scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; overflow-y: hidden; }
