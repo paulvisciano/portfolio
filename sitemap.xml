@@ -133,7 +133,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://paulvisciano.com/blog/running-local-ai-16gb</loc>
+    <loc>https://paulvisciano.com/blog/running-local-ai-rag-16gb</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://paulvisciano.com/blog/running-local-ai-on-16gb-mac</loc>
     <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
