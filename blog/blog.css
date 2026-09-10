@@ -129,9 +129,11 @@ aside.ref .ref-body{margin:0;color:var(--fg)}
 aside.ref .ref-body p{margin:0 0 0.5rem}
  aside.ref blockquote{margin:0 0 0.55rem;padding:0 0 0 0.85rem;border-left:2px solid oklch(72% 0.08 230 / 0.45);color:oklch(92% 0.002 260);font-style:italic}
  aside.ref blockquote p{margin:0;font-size:0.97rem;line-height:1.55}
- article > blockquote{margin:1.35rem 0 1.5rem;padding:0 0 0 1rem;border-left:2px solid oklch(72% 0.08 230 / 0.45);color:oklch(92% 0.002 260);font-style:italic}
- article > blockquote p{margin:0 0 0.65rem;font-size:1.02rem;line-height:1.6}
- article > blockquote p:last-child{margin:0}
+ .said{margin:1.75rem 0 2rem;padding:1.2rem 1.3rem 1.15rem;border:1px solid oklch(72% 0.08 230 / 0.4);border-radius:12px;background:oklch(72% 0.08 230 / 0.06)}
+ .said .said-who{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.16em;text-transform:uppercase;font-style:normal;color:oklch(72% 0.08 230);margin:0 0 0.7rem}
+ .said blockquote{margin:0;padding:0;border:0;color:var(--fg-bright);font-style:italic}
+ .said blockquote p{margin:0 0 0.65rem;font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);line-height:1.45;font-weight:400;letter-spacing:-0.015em}
+ .said blockquote p:last-child{margin:0}
 aside.ref .ref-meta{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.04em;color:var(--muted)}
 aside.ref .ref-meta a{color:oklch(72% 0.08 230);text-decoration:none;border-bottom:1px solid oklch(72% 0.08 230 / 0.25)}
 aside.ref .ref-meta a:hover{color:var(--fg-bright);border-bottom-color:var(--border-hi)}
