@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jailbreaking Your Laptop, Part 1: Take Over the Machine — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A step-by-step tutorial for installing Omarchy and taking ownership of your machine. Download the ISO, flash it, disable Secure Boot, install, and reboot into a tiled desktop you control. Mac, Windows, or Linux.">
+  <title>Jailbreaking Your Laptop, Part 1: Install Omarchy — Paul Visciano</title>
+  <meta name="description" content="Part 1 of 5. Own the entire stack. The first step is the biggest: the OS. Copy your files off, then install Omarchy.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Jailbreaking Your Laptop, Part 1: Take Over the Machine">
-  <meta property="og:description" content="A step-by-step tutorial for installing Omarchy and taking ownership of your machine. Download the ISO, flash it, disable Secure Boot, install, and reboot into a tiled desktop you control.">
+  <meta property="og:title" content="Jailbreaking Your Laptop, Part 1: Install Omarchy">
+  <meta property="og:description" content="Part 1 of 5. Own the entire stack. The first step is the biggest: the OS.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 1: Take Over the Machine">
-  <meta name="twitter:description" content="From geohot to Omarchy. The defiance is the same, the layer just moved.">
+  <meta name="twitter:title" content="Jailbreaking Your Laptop, Part 1: Install Omarchy">
+  <meta name="twitter:description" content="Part 1 of 5. Own the entire stack. The first step is the biggest: the OS.">
   <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/jailbreaking-your-laptop-1">
   <link rel="stylesheet" href="blog.css">
@@ -53,47 +53,47 @@
   <article>
     <p class="series">Jailbreaking Your Laptop · Part 1 of 5</p>
     <div class="series-banner">Part 1 of 5 in Jailbreak Your Laptop · <a href="../index.html#series">Series overview →</a></div>
-    <h1>Take Over the Machine</h1>
-    <p class="deck">The lock moved from the carrier to the operating system. Sealed system volumes, notarization, telemetry you can't refuse. You own the silicon. You rent the software. This is the install that flips that.</p>
+    <h1>Install Omarchy</h1>
+    <p class="deck">This is part 1 of 5. You're building toward something bigger: you own the entire stack. The first step is the biggest — owning the OS.</p>
 
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/omarchy-keyboard-desk.jpg" alt="Night desk with a mechanical keyboard and a laptop running a dark tiled desktop, terminal beside browser, no dock" width="1536" height="1024" loading="eager">
-      <figcaption class="fig-cap">No dock. No icons. A window you opened, and another one. That is the whole surface.</figcaption>
+      <figcaption class="fig-cap">No dock. No icons. A window you opened, and another one.</figcaption>
     </figure>
 
-    <p>The geohot story is in <a href="own-your-hardware.html">its own essay</a>. The short version: in 2007 a teenager cracked the iPhone's firmware and took ownership of the hardware. Jailbreaking your laptop is the same move aimed at a different layer — the OS itself. You are cracking the assumption that the vendor's operating system is the only one allowed on the machine you bought.</p>
+    <p>You're building toward owning the whole stack — the computer, the AI on it, the site, the apps. The first step is the biggest: owning the operating system. You can run your own AI, publish your own site, and build your own apps without swapping the OS. People do. Changing the OS is what gives you full control — what apps run, what connects to the internet, how it looks. That's why you start here.</p>
+    <p>Take over the OS and you decide what runs. Way less stuff snooping on you. Only the processes you need to get things done. All those extra processes eat memory — memory you could use to run AI on the laptop itself.</p>
+    <p>So you swap it. The new one is called <a href="omarchy.html">Omarchy</a>. Copy your files off. Write the installer to a USB stick. Install. Restart.</p>
 
-    <p>You replace it with <a href="omarchy.html">Omarchy</a> — David Heinemeier Hansson's <a class="ext" href="https://manuals.omamix.org/3/omacom/76/omakase-computing" target="_blank" rel="noopener">omakase</a> Linux. Omakase means the chef picks the menu: you get a curated desktop out of the box instead of spending a thousand hours configuring one from scratch. It runs on <a class="ext" href="https://archlinux.org/" target="_blank" rel="noopener">Arch</a> and <a class="ext" href="https://hyprland.org/" target="_blank" rel="noopener">Hyprland</a>. As of Quattro (v4.0.0, August 14, 2026), the bar, launcher, lock screen, menus, and password prompts all run inside one program called <a class="ext" href="https://github.com/omacom/omarchy/releases/tag/v4.0.0" target="_blank" rel="noopener">Quickshell</a> — instead of the old pile of background tools you could not name.</p>
-
-    <p>What leaves: update servers you never chose, identity checks that phone home, telemetry you cannot refuse, the sealed system that decides what runs before you do. What stays: a short list of things you picked. If you cannot name a process running on your machine, it should not be there.</p>
-
-    <div class="callout">Same defiance as geohot, different layer. He cracked a phone's firmware. You're cracking the assumption that the vendor's OS is the only one allowed on the machine you bought.</div>
+    <div class="callout">If you're on a desktop — or only have a Bluetooth keyboard — plug in one with a cable. Bluetooth won't work when the computer first turns on. It can't type your password yet. People skip this, then they get stuck.</div>
 
     <h2>What you need</h2>
-    <p>The hardware list is short. Backup first. Then the install.</p>
+    <p>Backup your existing files first. Then run the install off the USB stick.</p>
     <ul>
-      <li><strong>A laptop.</strong> 16 GB of RAM works. No GPU required. A Mac, a PC, or a Linux box you already run.</li>
-      <li><strong>A USB stick.</strong> 4 GB or larger. The ISO is under 6 GB.</li>
-      <li><strong>A wired or 2.4 GHz keyboard.</strong> This is a documented requirement, not a preference. Bluetooth cannot type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. Use a cable or a dongle.</li>
-      <li><strong>The Omarchy ISO.</strong> Download it from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. You'll flash it to the USB stick in step 1.</li>
-      <li><strong>A vault.</strong> An external drive. Desktop, Downloads, and Documents come off the machine first.</li>
+      <li><strong>A laptop.</strong> 16 GB of memory is enough. Mac, Windows, or Linux — whatever you have.</li>
+      <li><strong>A USB stick.</strong> 4 GB or bigger. The install file is under 6 GB.</li>
+      <li><strong>A keyboard that works at boot.</strong> Laptop keys are fine. Desktop — or Bluetooth-only — needs a cable or a 2.4 GHz dongle. Bluetooth can't type the disk password yet.</li>
+      <li><strong>The Omarchy install file.</strong> Download it from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. You'll put it on the USB stick in step 1.</li>
+      <li><strong>An external hard drive.</strong> Copy your personal files here first so the install doesn't eat them — Desktop, Downloads, Documents, plus photos, videos, music, wherever you actually keep them.</li>
     </ul>
 
     <div class="stat-strip">
-      <div class="stat"><div class="n">&lt; 6 GB</div><div class="l">ISO size</div></div>
+      <div class="stat"><div class="n">&lt; 6 GB</div><div class="l">Install file</div></div>
       <div class="stat"><div class="n">~1 min</div><div class="l">Install on a fast machine</div></div>
       <div class="stat"><div class="n">~5 min</div><div class="l">Ceiling on older hardware</div></div>
-      <div class="stat"><div class="n">Super + K</div><div class="l">The one hotkey to memorize</div></div>
+      <div class="stat"><div class="n">Super + K</div><div class="l">Hold Super (Windows / ⌘) and tap K — that's search</div></div>
     </div>
-    <p class="chart-cap" style="margin-top:-0.6rem;margin-bottom:1.6rem;">Numbers from the Quattro walkthrough and the official Getting Started page.</p>
+    <p class="chart-cap" style="margin-top:-0.6rem;margin-bottom:1.6rem;">Times from the official Getting Started page.</p>
 
     <h3 id="backup">Backup before you install</h3>
-    <p>Do this before you flash anything. Drag the folders yourself, or let the agent you already have cook — <a class="ext" href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a>, Claude Code, whichever is on the machine. I used OpenCode with GLM-5.3 Flash, running locally through Ollama.</p>
-    <p>Plug the vault in. This was the first prompt:</p>
+    <p>The install wipes the laptop. How long the copy takes depends on how much you have — photos, videos, music. Most people have a lot.</p>
+    <p>My machine had about 100 GB of that sitting on the disk. That's what I copied off.</p>
+    <p>For this step: copy the folders where your stuff actually lives. Desktop, Downloads, Documents — and Pictures, Movies, Music, or any other folder you dumped photos and videos into. Drag them yourself, or ask an AI on your machine to move them. Example below used <a class="ext" href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a>.</p>
+    <p>Plug the external drive in. Prompt:</p>
 
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/vault-backup-prompt.webp" alt="OpenCode session: the vault backup prompt and GLM-5.3 Flash planning the move into RAW/archive by creation date" width="1800" height="1134" loading="lazy">
-      <figcaption class="fig-cap">OpenCode + GLM-5.3 Flash, local. Same prompt works in Claude Code.</figcaption>
+      <figcaption class="fig-cap">The backup prompt on my machine.</figcaption>
     </figure>
 
     <div class="prompt-card">
@@ -113,18 +113,18 @@ The dated folder should be based on the date the file was created.
 - Skip installers</code></pre>
     </div>
 
-    <p>Additive only. Skip what's already on the vault. Skip installers and anything over 2 GB. Folders named by each file's creation date.</p>
-    <p>When it finishes you want a clean summary. Zero errors. Nothing overwritten. Mine looked like this:</p>
+    <p>It only adds files. Skips what's already on the drive, installers, and anything over 2 GB.</p>
+    <p>When it's done you want a clean summary. Nothing overwritten. Example run:</p>
 
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/vault-backup-done.webp" alt="OpenCode summary: 1,730 files moved to RAW/archive by creation date, five installers skipped, no overwrites" width="1514" height="950" loading="lazy">
-      <figcaption class="fig-cap">1,730 files. 3.44 GB. Five installers left in Downloads. Vault still had 1.6 TB free.</figcaption>
+      <figcaption class="fig-cap">One pass on those folders: 1,730 files, 3.44 GB. Yours will be a different number. Five installers left in Downloads. Drive still had 1.6 TB free.</figcaption>
     </figure>
 
     <h2>Install Omarchy</h2>
-    <p>This is the main event. The steps below come from the <a class="ext" href="https://omarchy.org/manual/getting-started/" target="_blank" rel="noopener">official Getting Started page</a>. Follow them in order. The OS install is still by hand. You want to feel the lock crack yourself. AI already did the backup. It comes back in Part 2, once the machine is yours.</p>
+    <p>Steps below are from the <a class="ext" href="https://omarchy.org/manual/getting-started/" target="_blank" rel="noopener">official Getting Started page</a>. Do this part by hand. Backup is already done.</p>
 
-    <div class="callout"><strong>Before you start:</strong> if Desktop, Downloads, and Documents are still on the machine, stop. That's above. Then plug in a wired or 2.4 GHz keyboard. Bluetooth will not type your encryption password at boot — the Bluetooth driver is not loaded that early. The same rule applies in your computer's firmware settings. This trips people up. Use a cable or a dongle.</div>
+    <div class="callout"><strong>Before you start:</strong> if your photos, videos, music, and documents are still on the machine, stop. Copy them off (that's above). Desktop users: plug in a keyboard with a cable.</div>
 
     <div class="os-switch" role="tablist" aria-label="Select your current OS">
       <span class="os-label">I'm on</span>
@@ -141,41 +141,41 @@ The dated folder should be based on the date the file was created.
 
     <ol class="steps">
       <li>
-        <p class="step-title">Download and flash the ISO</p>
-        <p class="step-body">Pull the image from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. It is under 6 GB. Flash it to a USB stick <span data-os="mac">with <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a></span><span data-os="win">with <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a></span><span data-os="linux">with <a class="ext" href="https://github.com/ifd3f/caligula" target="_blank" rel="noopener">caligula</a></span>. What you are making is a bootable installer stick, not a live USB you run forever. Once the install finishes, the stick comes out.</p>
+        <p class="step-title">Download the install file and put it on a USB stick</p>
+        <p class="step-body">Get it from <a class="ext" href="https://iso.omarchy.org" target="_blank" rel="noopener">iso.omarchy.org</a>. Under 6 GB. Write it to the stick <span data-os="mac">with <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a></span><span data-os="win">with <a class="ext" href="https://etcher.balena.io/" target="_blank" rel="noopener">balenaEtcher</a></span><span data-os="linux">with <a class="ext" href="https://github.com/ifd3f/caligula" target="_blank" rel="noopener">caligula</a></span>. That stick is only for installing. When you're done, take it out.</p>
       </li>
       <li>
         <p class="step-title">Turn off Secure Boot</p>
-        <p class="step-body"><span data-os="mac">On a Mac, there is no Secure Boot to disable — skip this step and go straight to booting the USB stick. Hold Option as you power on to get the boot menu.</span><span data-os="win">Reboot into your computer's firmware settings (usually F2, F12, or Del at startup). Find the Secure Boot setting and switch it off. If you also see a TPM setting, turn that off too.</span><span data-os="linux">Reboot into your computer's firmware settings (usually F2 or Del at startup). Find the Secure Boot setting and switch it off, if it is present.</span> <span data-os="win">Secure Boot is a Microsoft security scheme, designed for Windows and Microsoft-affiliated Linux distributions. Omarchy will not install while it is on. This is not a flaw in Omarchy — it is the point. You are telling the hardware to stop deferring to Microsoft's idea of what is allowed to boot.</span><span data-os="linux">Secure Boot is a Microsoft security scheme. If your machine shipped with Windows, it is likely on and Omarchy will not install until it is off. If your machine came with Linux, it may already be off.</span></p>
+        <p class="step-body"><span data-os="mac">On a Mac you can skip this. Hold Option when you power on to get the boot menu, then pick the USB stick.</span><span data-os="win">Restart and tap F2, F12, or Del to get into the computer's settings. Turn off Secure Boot. If you see TPM, turn that off too. Omarchy won't install while Secure Boot is on.</span><span data-os="linux">Restart and tap F2 or Del. If you see Secure Boot, turn it off. If the machine never had Windows, it may already be off.</span></p>
       </li>
       <li>
         <p class="step-title">Boot off the USB stick</p>
-        <p class="step-body">Plug the stick in, power on<span data-os="mac">, and hold Option until the boot menu appears</span><span data-os="win">, and pick the USB stick from the boot menu (F12 or the key your manufacturer assigned)</span><span data-os="linux">, and pick the USB stick from the boot menu</span>. You will land in the Omarchy installer. If it does not boot, you are still on Secure Boot or the stick was not flashed correctly. Check both before trying again.</p>
+        <p class="step-body">Plug the stick in and turn the computer on<span data-os="mac">. Hold Option until you see the boot menu, then pick the stick</span><span data-os="win">. Open the boot menu (often F12) and pick the stick</span><span data-os="linux">. Pick the stick from the boot menu</span>. You should land in the installer. If you don't, the stick didn't write right, or Secure Boot is still on.</p>
       </li>
       <li>
         <p class="step-title">Choose your install type</p>
-        <p class="step-body">Two paths. <em>Full-disk</em> wipes the entire drive and installs Omarchy as the only OS. <em>Free-space</em> puts Omarchy into unallocated space on the drive — that is how you dual boot. <span data-os="win">If you are keeping Windows, turn off BitLocker first; Omarchy cannot install into encrypted Windows space.</span><span data-os="mac">If you are keeping macOS, make sure you have a free partition ready in Disk Utility before you start.</span><span data-os="linux">If you are keeping your current Linux install, make sure you have unallocated free space on the drive.</span> The installation defaults to full encryption either way. If you are using an existing drive, back up first. Full-disk means what it says.</p>
+        <p class="step-body">Two paths. <em>Full-disk</em> wipes the whole drive and Omarchy is the only system. <em>Free-space</em> puts it next to what you already have (dual boot). <span data-os="win">Keeping Windows? Turn off BitLocker first.</span><span data-os="mac">Keeping macOS? Make empty space in Disk Utility first.</span><span data-os="linux">Keeping your current Linux? Leave empty space on the drive.</span> It encrypts the disk either way. Full-disk means the whole drive. That's why you copied files off first.</p>
       </li>
       <li>
         <p class="step-title">Answer the configuration questions</p>
-        <p class="step-body">The installer asks a short list: hostname, username, password, timezone — the basics. Confirm the answers, select a drive, and watch the install. On a fast machine it can finish in about a minute. On older hardware, still under five. There is no package selection screen. Omarchy is omakase — the menu is fixed.</p>
+        <p class="step-body">It asks for a computer name, your username, a password, and timezone. Pick a drive. On a fast machine it can finish in about a minute. Older hardware, still under five. You don't pick a bunch of extra software here. That's later, from the menu.</p>
       </li>
       <li>
         <p class="step-title">Reboot into your new desktop</p>
-        <p class="step-body">Pull the stick when the installer tells you. Type your encryption password at the prompt (the wired keyboard you plugged in earlier). Then you are in. You should see a dark, tiled desktop with no dock and no icons — just a window if one is open, and empty space around it. A small toast notification appears on first login. Click it and the keybindings list opens. That is the on-ramp. <code>Super + K</code> (Super is the Windows key on a PC, or Command on a Mac — your thumb already knows it) shows every desktop binding from anywhere, searchable.</p>
+        <p class="step-body">Take the stick out when it says to. Type the disk password (laptop keys, or the cable keyboard if you're on a desktop). You should see a dark desktop, no dock, no icons. First time in, a small message pops up — click it for the list of keyboard shortcuts. Super is the Windows key, or Command on a Mac. <code>Super + K</code> is search for those shortcuts.</p>
       </li>
       <li>
         <p class="step-title">Verify it worked</p>
-        <p class="step-body">Three things confirm the install succeeded. <strong>One:</strong> the desktop is dark and tiled — no dock, no desktop icons, no taskbar. <strong>Two:</strong> <code>Super + Space</code> opens the Omarchy menu (apps, install, update, settings). <strong>Three:</strong> <code>Super + Return</code> opens a terminal. If all three work, the OS is yours. If any of them do not, something went wrong — check the troubleshooting note below.</p>
+        <p class="step-body">Three checks. <strong>One:</strong> dark desktop, no dock, no icons. <strong>Two:</strong> <code>Super + Space</code> opens the menu. <strong>Three:</strong> <code>Super + Return</code> opens a terminal. If those work, you're in. If not, the note below.</p>
       </li>
     </ol>
 
-    <div class="callout"><strong>If it did not boot:</strong> the three most common failures are simple to fix. <em>Black screen or "Secure Boot violation":</em> you did not turn off Secure Boot in step 2 — go back and disable it. <em>Keyboard does not type at the password prompt:</em> it is Bluetooth. You need a wired or 2.4 GHz keyboard for the encryption password. <em>Installed to the wrong drive or lost data:</em> you picked the wrong drive in step 5 — this is why the steps say back up first. Reinstall to the correct drive.</div>
+    <div class="callout"><strong>If it did not boot:</strong> the three most common failures are simple to fix. <em>Black screen or "Secure Boot violation":</em> you did not turn off Secure Boot in step 2 — go back and disable it. <em>Keyboard does not type at the password prompt:</em> you're on a desktop with Bluetooth. Plug in a cable keyboard. <em>Installed to the wrong drive or lost data:</em> you picked the wrong drive in step 5 — this is why the steps say back up first. Reinstall to the correct drive.</div>
 
-    <p>That is the install. Seven steps. The lock is cracked. The rest of this chapter is the short tour of what you just installed.</p>
+    <p>That's the install. Seven steps. Here's what you do once you're in.</p>
 
     <h2>The keys that matter</h2>
-    <p><code>Super + K</code> is the only binding you have to memorize. It shows every desktop mapping on one page, searchable. The rest you learn by living in it for a week. The table below is the starter set. The full reference, including the Tmux and Herdr chords, is on the <a class="ext" href="https://omarchy.org/manual/hotkeys/" target="_blank" rel="noopener">official hotkeys page</a>.</p>
+    <p><code>Super + K</code> is the one shortcut to remember. It shows the rest, searchable. You pick up the others by using it. Starter set below. Full list: <a class="ext" href="https://omarchy.org/manual/hotkeys/" target="_blank" rel="noopener">hotkeys page</a>.</p>
 
     <table class="compare">
       <thead><tr><th>Keys</th><th>What it does</th></tr></thead>
@@ -186,7 +186,7 @@ The dated folder should be based on the date the file was created.
         <tr><td><code>Super + Return</code></td><td>Terminal</td></tr>
         <tr><td><code>Super + Shift + Return</code></td><td>Browser</td></tr>
         <tr><td><code>Super + C</code> / <code>Super + V</code></td><td>Copy and paste, including inside the terminal</td></tr>
-        <tr><td><code>Super + W</code> or <code>Super + Q</code></td><td>Close a window. In a tiling window manager, closing a window means the app exits. There is no dock to minimize to.</td></tr>
+        <tr><td><code>Super + W</code> or <code>Super + Q</code></td><td>Close a window. The app actually quits. There's no dock to hide it in.</td></tr>
       </tbody>
     </table>
 
@@ -197,59 +197,56 @@ The dated folder should be based on the date the file was created.
     <p>Workspaces are how you keep things separate. <code>Super + 1</code> through <code>Super + 4</code> (and beyond) jump to a workspace. The switch happens with a keybinding. No animation, no carousel, noExpose-style preview. You hit the number, you are there. <code>Super + Shift + 1</code> sends the current window to workspace 1. That is the whole model. Windows tile within a workspace, workspaces switch with a number.</p>
     <p>This is the part that feels strange for the first day and obvious by the third. You stop managing windows. You start naming what you want on screen and where.</p>
 
-    <h2>What you unlock</h2>
-    <p>Omarchy gives you a curated desktop out of the box. The omakase defaults are good. But Omarchy runs on <a href="omarchy.html">Hyprland</a>, and Hyprland is one of the most customizable window managers ever built. Once you know the keys, you can make the desktop look like almost anything. Theming, animations, blur, shaders, custom menus, custom bars — every pixel is editable. This is what the community does with it.</p>
+    <h2>What it looks like</h2>
+    <p>It boots to a simple desktop. No dock of icons. You open windows from the keyboard. That's the default, and it's fine.</p>
+    <p>Some people go way further. They take over the entire look — colors, the bar, how windows move, the whole screen. Above and beyond. Same install you just did. These two are examples, to get you excited about what's possible. You don't have to. When you want to play with it, you can.</p>
 
     <figure class="fig">
       <video src="https://dl.hypr.land/contest-videos/moon_ilyamiro.mp4" autoplay muted loop playsinline controls preload="none" style="width:100%;border-radius:8px;border:1px solid var(--border)"></video>
-      <figcaption class="fig-cap">"Moon" by ilyamiro — a Hyprland rice from the <a class="ext" href="https://hypr.land/hall_of_fame/" target="_blank" rel="noopener">Hall of Fame</a>. Custom bar, custom launcher, custom theme. None of that is a separate app you install. It is config.</figcaption>
+      <figcaption class="fig-cap">"Moon" by ilyamiro. Same system you just installed. Different look.</figcaption>
     </figure>
 
     <figure class="fig">
       <video src="https://dl.hypr.land/contest-videos/fantasy_flafy.webm" autoplay muted loop playsinline controls preload="none" style="width:100%;border-radius:8px;border:1px solid var(--border)"></video>
-      <figcaption class="fig-cap">"Fantasy" by flafy — another Hall of Fame entry. A completely different look, built on the same window manager. That is what "your rules, your keys, your processes" looks like in practice.</figcaption>
+      <figcaption class="fig-cap">"Fantasy" by flafy. Still the same system.</figcaption>
     </figure>
 
-    <p>Those are contest winners from the <a class="ext" href="https://hypr.land/hall_of_fame/" target="_blank" rel="noopener">Hyprland Hall of Fame</a>. Every desktop you see there started from the same base you just installed. The bar, the launcher, the animations, the colors — all of it is configuration you can read and change. On macOS or Windows, you pick from a handful of wallpapers and call it customization. On Omarchy, you pick from a gallery of full desktop environments, or you build your own. That is the difference between a lease and ownership.</p>
+    <p>Same system. They customized the look all the way.</p>
 
     <h2>Install and update software</h2>
-    <p>Software comes from Arch's package manager and the Arch User Repository — a community-maintained collection of packages that covers almost anything you would want. You do not run the package manager by hand unless you want to. The Omarchy menu handles it. <code>Super + Space</code> opens the menu. Install, update, and setup all live there. The full list of what is available and how to reach it is on the <a class="ext" href="https://omarchy.org/manual/other-packages/" target="_blank" rel="noopener">other-packages page</a>.</p>
-    <p>Updates go through one menu path: Update, then Omarchy. Not a command you type by hand, not a separate package tool, not a background process checking in. One menu item. Before every update, Omarchy takes a snapshot of your system automatically. You do not opt in. You do not remember to do it. It happens.</p>
-    <p>The <a class="ext" href="https://omarchy.org/manual/updates/" target="_blank" rel="noopener">updates page</a> covers the details, including how to handle the rare case where a package needs manual attention after an update.</p>
+    <p>Hold Super (the Windows key, or Command on a Mac keyboard) and tap Space. That's the menu. Install apps from there. Update from there. <a class="ext" href="https://omarchy.org/manual/other-packages/" target="_blank" rel="noopener">What you can install</a>.</p>
+    <p>To update: menu → Update → Omarchy. It saves a restore point first. <a class="ext" href="https://omarchy.org/manual/updates/" target="_blank" rel="noopener">If an update acts up</a>.</p>
 
-    <h2>Snapshots and rollback</h2>
-    <p>Snapshots are automatic before every update. You do not schedule them. You do not trigger them. Omarchy takes one, runs the update, and if the update is fine you never think about it again.</p>
-    <p>If the update breaks something, reboot. At the boot menu, you will see a list of your snapshots — pick the one from before the update, boot into it, and you are back. The <a class="ext" href="https://omarchy.org/manual/system-snapshots/" target="_blank" rel="noopener">system snapshots page</a> has the details. The catch: snapshots restore the <strong>system only</strong>, not your personal files. Your home directory — your documents, photos, configs, everything under your user folder — is not covered. This is by design. The system is reversible. Your data is yours to back up.</p>
-    <p>The workflow is short. Update breaks something. Reboot. Pick the snapshot from the boot menu. You are back. Fix the problem, run the update again, move on.</p>
+    <h2>If an update breaks it</h2>
+    <p>Restart. At the boot menu, pick the restore point from before the update. You're back. <a class="ext" href="https://omarchy.org/manual/system-snapshots/" target="_blank" rel="noopener">More on that</a>.</p>
+    <p>Those restore points bring back the system, not your photos and documents. That's why the files went to the external drive first.</p>
 
-    <h2>The payoff</h2>
-    <p>The machine is yours. No cloud middleman. No telemetry you cannot refuse. No sealed system deciding what runs before you do. You installed a curated, minimal set of services you chose. You can customize it. Your rules, your keys, your processes. Only the apps you asked for should be running. If you cannot name a process, it should not be there.</p>
-    <p>This is the foundation the rest of the series builds on. The OS is the lock you just replaced. From here, the apps you run, the AI you talk to, the domain you claim, and the things you publish all sit on a machine you can read end to end. None of that works on a leased OS. All of it works here.</p>
-
-    <p>That is part one. The lock is cracked. The machine is yours. Next, you give it a brain — local AI on localhost. Onward to <a href="jailbreaking-your-laptop-2.html">Part 2</a>.</p>
+    <h2>You did it</h2>
+    <p>You're on the new desktop. You're done with the hardest part. You own the OS. The first step was the biggest. The rest of the stack — AI on this laptop, your site, your apps — builds on this.</p>
+    <p>Now that you took control over your machine, let's make sure all your AI conversations stay private by running your own AI. <a href="jailbreaking-your-laptop-2.html">Part 2</a>.</p>
 
     <div class="series-nav">
-      <a href="jailbreaking-your-laptop-1.html" class="current"><span>Part 1</span>Take Over the Machine</a>
+      <a href="jailbreaking-your-laptop-1.html" class="current"><span>Part 1</span>Install Omarchy</a>
       <a href="jailbreaking-your-laptop-2.html"><span>Part 2</span>Run Local AI</a>
       <a href="jailbreaking-your-laptop-3.html"><span>Part 3</span>Create Your Own Site</a>
       <a href="jailbreaking-your-laptop-4.html"><span>Part 4</span>Build Your Own Apps</a>
       <a href="jailbreaking-your-laptop-5.html"><span>Part 5</span>Graduate to Creator</a>
     </div>
-    <p class="series-start">New to the series? Start with the why: <a href="own-your-hardware.html">You Bought the Hardware. You Never Owned It. →</a></p>
+    <p class="series-start">Why this series exists: <a href="own-the-stack.html">Own the stack →</a></p>
     <div class="links">
       <a href="omarchy.html">Omarchy essay</a>
       <a href="own-the-stack.html">Own the stack</a>
       <a href="../index.html#blog">All blogs</a>
     </div>
     <div class="more">
-      <h3>More from Sci-Fi Labs</h3>
+      <h3>More</h3>
       <a href="jailbreaking-your-laptop-2.html">Part 2: Local AI →</a>
-      <a href="omarchy.html">Omarchy — A glimpse into the future →</a>
+      <a href="omarchy.html">Omarchy →</a>
       <a href="own-the-stack.html">Own the stack →</a>
     </div>
   </article>
   <footer>
-    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+    <a href="../index.html" style="color:inherit">paulvisciano.com</a>
   </footer>
 <script src="analytics.js" defer></script>
 <script src="section-nav.js" defer></script>
