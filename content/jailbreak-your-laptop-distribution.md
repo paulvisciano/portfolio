@@ -14,7 +14,7 @@ Source files:
 
 - **HTML (print to PDF):** `content/jailbreak-your-laptop-recipe.html`
 - **Markdown twin:** `content/jailbreak-your-laptop-recipe.md`
-- **Image placeholder:** `content/jailbreak-your-laptop.png` (swap for real screenshots)
+- **Image placeholder:** `https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/content/jailbreak-your-laptop.png` (swap for real screenshots)
 
 ---
 
