@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Internet Presence — Paul Visciano</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: oklch(8% 0.002 260);
+      --bg-card: oklch(12% 0.003 260);
+      --surface: oklch(14.5% 0.004 260);
+      --fg: oklch(96% 0.002 260);
+      --fg-bright: oklch(99% 0 0);
+      --muted: oklch(62% 0.012 250);
+      --faint: oklch(48% 0.01 250);
+      --border: oklch(28% 0.01 250);
+      --accent: oklch(78% 0.12 195);
+      --accent-dim: oklch(62% 0.08 195);
+      --good: oklch(74% 0.14 150);
+      --warn: oklch(82% 0.14 85);
+      --bad: oklch(68% 0.18 25);
+      --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 40% at 50% -10%, oklch(28% 0.06 195 / 0.22), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--fg-bright); }
+    .wrap { position: relative; z-index: 1; max-width: 72rem; margin: 0 auto; padding: 0 1.35rem 5rem; }
+    .top {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: oklch(8% 0.002 260 / 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+    .top-inner {
+      max-width: 72rem; margin: 0 auto;
+      padding: 0.85rem 1.35rem;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem;
+      justify-content: space-between;
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--fg-bright);
+    }
+    .brand em { font-style: italic; color: var(--accent); font-weight: 400; }
+    .private {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--warn);
+      border: 1px solid oklch(82% 0.14 85 / 0.35);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+    }
+    nav { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    nav a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 0.65rem;
+      border-radius: 99px;
+      border: 1px solid transparent;
+    }
+    nav a:hover, nav a:focus-visible {
+      color: var(--fg-bright);
+      border-color: var(--border);
+      background: var(--surface);
+    }
+    .hero { padding: 1.4rem 0 0.4rem; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.7rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      margin: 0 0 1rem;
+    }
+    .deck { font-size: 1.15rem; color: var(--muted); max-width: 46rem; margin: 0 0 1.75rem; }
+    .line {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+      font-style: italic;
+      color: var(--fg-bright);
+      border-left: 2px solid var(--accent);
+      padding: 0.2rem 0 0.2rem 1.1rem;
+      margin: 0 0 2rem;
+      max-width: 40rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin: 0 0 1.5rem;
+    }
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem 0.95rem;
+    }
+    .stat b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--fg-bright);
+    }
+    .stat span {
+      display: block;
+      margin-top: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .platforms {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    .plat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.15rem 1.15rem;
+      min-height: 9.5rem;
+    }
+    .plat.empty { border-style: dashed; opacity: 0.72; }
+    .plat h3 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 0 0 0.45rem;
+      color: var(--fg-bright);
+    }
+    .pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.4rem;
+      border-radius: 99px;
+      margin-bottom: 0.55rem;
+    }
+    .live { color: var(--good); background: oklch(74% 0.14 150 / 0.12); }
+    .soon { color: var(--warn); background: oklch(82% 0.14 85 / 0.12); }
+    .hold { color: var(--faint); background: oklch(48% 0.01 250 / 0.18); }
+    .plat p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    section { padding: 2.75rem 0 0.5rem; border-top: 1px solid var(--border); margin-top: 2.5rem; }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.35rem;
+    }
+    .sec-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 1.4rem;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin: 1.75rem 0 0.7rem;
+    }
+    p { margin: 0 0 1rem; }
+    ul, ol { margin: 0 0 1.15rem; padding-left: 1.2rem; }
+    li { margin: 0 0 0.45rem; }
+    .verdict {
+      background: oklch(78% 0.12 195 / 0.07);
+      border: 1px solid oklch(78% 0.12 195 / 0.28);
+      border-radius: 12px;
+      padding: 1.05rem 1.2rem;
+      margin: 0 0 1.5rem;
+    }
+    .verdict strong { color: var(--fg-bright); }
+    .table-wrap { overflow-x: auto; margin: 0 0 1.5rem; border: 1px solid var(--border); border-radius: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 52rem; }
+    th, td { text-align: left; padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+    }
+    tr:last-child td { border-bottom: 0; }
+    tr:hover td { background: oklch(16% 0.004 260); }
+    .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+    .ok { color: var(--good); font-weight: 500; }
+    .warn { color: var(--warn); font-weight: 500; }
+    .bad { color: var(--bad); font-weight: 500; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0 0 1.25rem; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+    }
+    .card h3 { margin-top: 0; }
+    .kw { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; }
+    .kw span {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 0.28rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .kw .yes { border-color: oklch(74% 0.14 150 / 0.45); color: var(--good); }
+    .kw .no { border-color: oklch(68% 0.18 25 / 0.4); color: var(--bad); text-decoration: line-through; opacity: 0.85; }
+    .title {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.8rem;
+      margin: 0 0 0.45rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .title button {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid oklch(78% 0.12 195 / 0.35);
+      border-radius: 4px;
+      padding: 0.2rem 0.4rem;
+      cursor: pointer;
+    }
+    .title button:hover { background: oklch(78% 0.12 195 / 0.12); color: var(--fg-bright); }
+    .checks { list-style: none; padding: 0; }
+    .checks li {
+      display: flex; gap: 0.7rem; align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 0.9rem;
+      margin: 0 0 0.45rem;
+    }
+    .checks input { margin-top: 0.3rem; accent-color: var(--accent); }
+    .checks label { cursor: pointer; }
+    .done label { color: var(--muted); text-decoration: line-through; }
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--faint);
+    }
+
+    .top .tabs {
+      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      margin: 0;
+      padding: 0.2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .top .tabs a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.55rem 0.9rem;
+    }
+    .tabs button {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.55rem 1rem;
+      cursor: pointer;
+    }
+    .tabs button:hover { color: var(--fg-bright); }
+    .tabs button.is-on {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .pane { display: none; }
+    .pane.is-on { display: block; }
+    .social-jump {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin: 0 0 2rem;
+    }
+    .social-jump a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+    }
+    .social-jump a:hover { color: var(--fg-bright); border-color: var(--accent-dim); }
+    .grades {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.7rem;
+      margin: 0 0 1.75rem;
+    }
+    .grade {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.05rem 1.1rem;
+    }
+    .grade .mark {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      line-height: 1;
+      color: var(--fg-bright);
+    }
+    .grade .mark.warn { color: var(--warn); }
+    .grade .mark.bad { color: var(--bad); }
+    .grade .mark.good { color: var(--good); }
+    .grade .mark.void { color: var(--faint); }
+    .grade b { display: block; margin-top: 0.45rem; font-size: 0.92rem; }
+    .grade span { display: block; color: var(--muted); font-size: 0.82rem; margin-top: 0.2rem; }
+    .eval-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1rem;
+      margin: 0 0 1.75rem;
+    }
+    .fb-hero {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr;
+      gap: 1.4rem;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      margin: 0 0 1.5rem;
+    }
+    .fb-avatar {
+      width: 7.5rem; height: 7.5rem;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 25%, oklch(70% 0.1 195 / 0.35), transparent 50%),
+        oklch(18% 0.02 250);
+      border: 1px solid var(--border);
+      display: grid; place-items: center;
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      color: var(--accent);
+    }
+    .fb-hero h3 { margin: 0 0 0.25rem; font-size: 1.7rem; }
+    .fb-hero .meta { color: var(--muted); font-size: 0.92rem; margin: 0 0 0.6rem; }
+    .zeros {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.7rem;
+      margin: 0 0 1.5rem;
+    }
+    .zero {
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 0.5rem;
+    }
+    .zero b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--faint);
+    }
+    .zero span { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .empty-stage {
+      border: 1px dashed oklch(40% 0.02 250);
+      border-radius: 16px;
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      margin: 0 0 1.5rem;
+      background: oklch(10% 0.004 260);
+    }
+    .empty-stage strong { display: block; color: var(--fg-bright); font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.4rem; }
+    @media (max-width: 860px) {
+      .grades, .zeros { grid-template-columns: 1fr 1fr; }
+      .eval-grid, .fb-hero { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .stats, .platforms, .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .stats, .platforms, .grid-2 { grid-template-columns: 1fr; }
+      h1 { font-size: 2.2rem; }
+    }
+    @media print {
+      .top, .title button { display: none; }
+      body { background: white; color: black; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">Paul Visciano · <em>Presence</em> <span class="private">Private ops</span></div>
+      <nav class="tabs" id="tabs" aria-label="Presence sections">
+        <button type="button" data-pane="state" class="is-on">State</button>
+        <button type="button" data-pane="social">Social</button>
+        <button type="button" data-pane="site">Site</button>
+        <button type="button" data-pane="playbook">Playbook</button>
+        <a href="PLAYBOOK.md">Ops doc</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="pane is-on" id="state">
+    <div class="hero" id="overview">
+      <p class="eyebrow">Command center · pulled 5 Sep 2026 · Vercel last 30 days + last 24h</p>
+      <h1>Internet presence</h1>
+      <p class="deck">One file for every platform. The site is the scoreboard — every app under paulvisciano.com reports here. Reddit is loud. Almost none of it arrives. X is live and quiet. YouTube is the next ship.</p>
+      <p class="line">You already bought the laptop. Stop renting the OS, the model, and the site.</p>
+
+      <div class="stats">
+        <div class="stat"><b>11</b><span>Series starts · part 1 · 30d — now on the board</span></div>
+        <div class="stat"><b>—</b><span>Series finishes · part 5 · still not on the board</span></div>
+        <div class="stat"><b>9</b><span>golden-handcuffs · last 24h · from the Flock post</span></div>
+        <div class="stat"><b>18K</b><span>Reddit views · Reroute to Jail · 58↑ · 26 comments</span></div>
+      </div>
+
+      <div class="platforms">
+        <article class="plat">
+          <span class="pill live">Live</span>
+          <h3>Reddit</h3>
+          <p>Flock post: 18K views, 58 upvotes, 82%. Site got 9 visitors on golden-handcuffs in 24h. reddit.com still only 2 in 30d — in-app browser eats the referrer.</p>
+        </article>
+        <article class="plat">
+          <span class="pill live">Scoreboard</span>
+          <h3>Site</h3>
+          <p>283 visitors / 30d. Part 1 is 11. Homepage still 220. Last 24h the Flock essay led (9), not home.</p>
+        </article>
+        <article class="plat">
+          <span class="pill soon">Next</span>
+          <h3>YouTube</h3>
+          <p>Title for the tool. Playlist for the series. Omarchy window is open now.</p>
+        </article>
+        <article class="plat">
+          <span class="pill live">Live</span>
+          <h3>X</h3>
+          <p>@PaulVisciano · 3 followers · 6 original posts since Aug 17. t.co sent 2 visitors in 30 days.</p>
+        </article>
+      </div>
+    </div>
+
+
+      <p class="eyebrow">Evaluation · 5 Sep 2026</p>
+      <h2>Current state</h2>
+      <p class="sec-meta">Honest read of every surface we can see. Social detail lives in the Social tab.</p>
+
+      <div class="verdict">
+        <strong>Verdict.</strong> First real series-start number: <em>11</em> on part 1. First real same-day blog hit: <em>Reroute to Jail</em> on r/FlockSurveillance — 18K views, 58 upvotes (82%), 26 comments, 9 visitors on <a href="https://paulvisciano.com/blog/golden-handcuffs">golden-handcuffs</a> in 24h. Reddit still does not show as a referrer (2 in 30 days). The in-app browser ate the click. Homepage is 220 of 283 — still the dump. Part 5 is still zero. PDF still unmeasured.
+      </div>
+
+
+      <h3>Success — series funnel</h3>
+      <p class="sec-meta">North star: people who start. Then finish. PDF is a parallel takeaway, not a substitute for reading.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Metric</th><th>How to count (Vercel path)</th><th>30d</th></tr></thead>
+          <tbody>
+            <tr><td>Attention</td><td><a href="https://paulvisciano.com/">/</a></td><td class="num">220 visitors · 30d</td></tr>
+            <tr><td>Start</td><td><a href="https://paulvisciano.com/blog/jailbreaking-your-laptop-1">/blog/jailbreaking-your-laptop-1</a></td><td class="num ok">11 visitors · 30d</td></tr>
+            <tr><td>Part 2–4</td><td>/blog/jailbreaking-your-laptop-2 … 4</td><td class="num">not on the board</td></tr>
+            <tr><td>Finish</td><td><a href="https://paulvisciano.com/blog/jailbreaking-your-laptop-5">/blog/jailbreaking-your-laptop-5</a></td><td class="num warn">not on the board</td></tr>
+            <tr><td>Side door (24h)</td><td><a href="https://paulvisciano.com/blog/golden-handcuffs">/blog/golden-handcuffs</a> ← Flock post</td><td class="num ok">9 visitors · 24h</td></tr>
+            <tr><td>PDF</td><td>Need <code>/jailbreak.pdf</code> on this host. R2 is invisible.</td><td class="num">unmeasured</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <h3>What this means</h3>
+          <ul>
+            <li>Do not celebrate 265 visitors. Celebrate part 1.</li>
+            <li>Finish rate = part 5 visitors / part 1 visitors. Meaningless until starts exist.</li>
+            <li>own-your-hardware.html is a side door, not the start. Cover and step 01 already go to part 1. Keep it that way.</li>
+            <li>Homepage has no PDF link. If PDF is a goal, it has to sit on the series path, then hit a same-origin URL.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>To make PDF countable</h3>
+          <ul>
+            <li>Rewrite <code>/jailbreak.pdf</code> → the R2 file in vercel.json.</li>
+            <li>Point every “download the guide” at that path, not the raw R2 URL.</li>
+            <li>Then Vercel page views on <code>/jailbreak.pdf</code> are downloads.</li>
+            <li>Until that exists, do not pretend we have a PDF number.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="grades">
+        <article class="grade"><div class="mark warn">C+</div><b>Site</b><span>283 visitors / 30d. Part 1 is 11. Homepage still 220.</span></article>
+        <article class="grade"><div class="mark good">B</div><b>Reddit</b><span>Flock: 18K / 58↑ / 82%. First post that votes and comments. Referrer still broken.</span></article>
+        <article class="grade"><div class="mark bad">D</div><b>X</b><span>3 followers. Series tweet is live. Composer truncates threads.</span></article>
+        <article class="grade"><div class="mark void">—</div><b>YouTube</b><span>Not shipped. Omarchy window is open. This is the next real lever.</span></article>
+        <article class="grade"><div class="mark void">—</div><b>Facebook</b><span>Paul Vis · 2 friends · 0 posts · 0 photos. Not a channel.</span></article>
+      </div>
+
+      <div class="eval-grid">
+        <article class="card">
+          <h3>What is actually true</h3>
+          <ul>
+            <li><strong>Identity is fixed on the site.</strong> Title is Own the OS. OG is the series. “Digital Designer” is dead on the live page (X cache may still show it).</li>
+            <li><strong>The work is real.</strong> 16GB numbers, Omarchy keybindings, Where is Paul in a headset, Secret Family in the right room.</li>
+            <li><strong>The rooms are wrong or gated.</strong> r/LocalLLaMA AutoMod. r/LocalLLM was the wrong sub. r/sideprojects ignored the globe. WebXR forked it.</li>
+            <li><strong>Traffic does not follow views.</strong> 11K Reddit views → 2 reddit.com visitors. t.co → 2. Google is the only search referrer (16).</li>
+            <li><strong>Last 7 days are down 39%.</strong> 78 visitors. Nothing new is pulling.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Do not waste this week on</h3>
+          <ul>
+            <li>Facebook posts. There is no audience and no archive of your work there.</li>
+            <li>Another globe dump into an AI or Linux sub.</li>
+            <li>Jailbreak / sovereign AI / Bonsai as titles.</li>
+            <li>LinkedIn résumé energy in LocalLLaMA.</li>
+            <li>Grok Imagine fake Activity Monitors.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>What to do, in order</h3>
+      <ol>
+        <li>Earn 5 r/LocalLLaMA comment karma, then repost the lab note with real idle + conversation monitors.</li>
+        <li>Film the Omarchy install, titled for search. Two Shorts. Playlist named Jailbreak Your Laptop.</li>
+        <li>Keep X as replies + one receipt. Leave Facebook empty until there is a reason it is not empty.</li>
+      </ol>
+    </div>
+
+    <div class="pane" id="social">
+      <p class="eyebrow">Reddit · X · YouTube · Facebook</p>
+      <h2>Social</h2>
+      <p class="sec-meta">Existing platform notes live here. Facebook was read 3 Sep 2026 while logged in — public surface only, your profile, nobody else’s posts.</p>
+      <nav class="social-jump">
+        <a href="#reddit">Reddit</a>
+        <a href="#x">X</a>
+        <a href="#youtube">YouTube</a>
+        <a href="#facebook">Facebook</a>
+      </nav>
+    <section id="reddit">
+      <p class="eyebrow">u/paulvisciano-dev</p>
+      <h2>Reddit</h2>
+      <p class="sec-meta"><a href="https://www.reddit.com/user/paulvisciano-dev/">Profile</a> · Flock post 4 Sep · pulled 5 Sep · lab note still gated on r/LocalLLaMA</p>
+
+      <div class="verdict">
+        <strong>Verdict.</strong> <a href="https://www.reddit.com/r/FlockSurveillance/comments/1w7javj/reroute_to_jail/">Reroute to Jail</a> is the first post that both votes and comments: 18K views in 13h, 58 upvotes, 82%, 26 comments. Room fit (Flock) plus a specific Tesla/Sentry story. 9 people opened <a href="https://paulvisciano.com/blog/golden-handcuffs">golden-handcuffs</a> in 24h. Vercel still shows only 2 reddit.com referrers in 30 days — Reddit’s in-app browser strips the referrer. The 16GB lesson stands: views without votes was packaging. This one is the opposite.
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Now</h3>
+          <ul>
+            <li>Live: <a href="https://www.reddit.com/r/FlockSurveillance/comments/1w7javj/reroute_to_jail/">Reroute to Jail</a> · r/FlockSurveillance · 18K · 58↑ · 82% · 26 comments.</li>
+            <li>Bio is live: <em>Local models on 16GB. Apps on localhost. A site I own. I build things that don't need the cloud.</em></li>
+            <li>Lab note posted to r/LocalLLaMA, then removed. Need <strong>5 comment karma in that sub</strong> before a repost.</li>
+            <li>Draft: <a href="../content/reddit-localllama-16gb-lab-note.md">reddit-localllama-16gb-lab-note.md</a></li>
+            <li>Removed post: <a href="https://www.reddit.com/r/LocalLLaMA/comments/1w6n8wl/16gb_m2_pro_27b_at_q1_0_1473_gb_used_with_the/">1w6n8wl</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>When karma clears</h3>
+          <ul>
+            <li>Repost the lab note. No Bonsai. No manifesto. No blog link.</li>
+            <li>Attach real Activity Monitor shots from the blog (idle + conversation). Do not generate fake monitors.</li>
+            <li>github.io already redirects — those 15 Vercel visitors landed.</li>
+            <li>Leave the WebXR localhost comment. The fork exists.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Post</th>
+              <th>Sub</th>
+              <th>Age</th>
+              <th>Views</th>
+              <th>Hour 1</th>
+              <th>Upvotes</th>
+              <th>Ratio</th>
+              <th>Comments</th>
+              <th>Shares</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://www.reddit.com/r/FlockSurveillance/comments/1w7javj/reroute_to_jail/">Reroute to Jail</a><br><span class="sec-meta">Tesla Sentry + Flock · linked golden-handcuffs</span></td>
+              <td>r/FlockSurveillance</td>
+              <td>13h</td>
+              <td class="num ok">18K</td>
+              <td class="num">—</td>
+              <td class="num ok">58</td>
+              <td class="num ok">82%</td>
+              <td class="num ok">26</td>
+              <td class="num">—</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.reddit.com/r/PredictiveHistory/comments/1vyzk6b/the_secret_family/">The Secret Family</a><br><span class="sec-meta">#1 post of all time</span></td>
+              <td>r/PredictiveHistory</td>
+              <td>8d</td>
+              <td class="num">3.1K</td>
+              <td class="num">175</td>
+              <td class="num">13</td>
+              <td class="ok">93%</td>
+              <td class="num">8</td>
+              <td class="num">6</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.reddit.com/r/LocalLLM/comments/1w5tbi3/local_ai_on_a_16_gb_mac/">Local AI on a 16 GB Mac</a><br><span class="sec-meta">#89 on the sub today</span></td>
+              <td>r/LocalLLM</td>
+              <td>21h</td>
+              <td class="num">2.6K</td>
+              <td class="num">827</td>
+              <td class="num">0</td>
+              <td class="warn">40%</td>
+              <td class="num">0</td>
+              <td class="num">1</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.reddit.com/r/TheDannyJonesPodcast/comments/1vzjari/the_secret_family/">The Secret Family</a> <span class="sec-meta">crosspost</span></td>
+              <td>r/TheDannyJonesPodcast</td>
+              <td>8d</td>
+              <td class="num">2.2K</td>
+              <td class="num">9</td>
+              <td class="num">2</td>
+              <td class="ok">100%</td>
+              <td class="num">0</td>
+              <td class="num">1</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.reddit.com/r/slowtravel/comments/1w1rtr0/a_life_of_travel_captured_in_a_unique_way/">A life of travel captured in a unique way</a></td>
+              <td>r/slowtravel</td>
+              <td>5d</td>
+              <td class="num">1.5K</td>
+              <td class="num">—</td>
+              <td class="num">0</td>
+              <td class="bad">25%</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.reddit.com/r/WebXR/comments/1w0tg74/hijacked_a_vision_pro_store_demo_to_see_if_a/">Hijacked a Vision Pro store demo…</a><br><span class="sec-meta">#2 of all time · EggMan28 forked it</span></td>
+              <td>r/WebXR</td>
+              <td>6d</td>
+              <td class="num">1.3K</td>
+              <td class="num">106</td>
+              <td class="num">3</td>
+              <td class="ok">100%</td>
+              <td class="num">6</td>
+              <td class="num">1</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.reddit.com/r/sideprojects/comments/1w4lnju/a_life_of_travel_mapped_on_a_globe/">A life of travel mapped on a globe</a></td>
+              <td>r/sideprojects</td>
+              <td>2d</td>
+              <td class="num">182</td>
+              <td class="num">54</td>
+              <td class="num">1</td>
+              <td class="ok">100%</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>What worked</h3>
+          <ul>
+            <li><strong>Fit.</strong> Secret Family is something that sub already wanted: Jiang / Danny Jones with receipts.</li>
+            <li><strong>Stunt + door.</strong> Vision Pro title is a story. You left a fork path. Someone walked through it.</li>
+            <li><strong>Curiosity.</strong> 827 views in hour one on the 16GB post, from a one-week account. The hook is proven.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>What failed</h3>
+          <ul>
+            <li><strong>Wrong room, then the gate.</strong> First 16GB post went to r/LocalLLM. The rewrite went to r/LocalLLaMA and AutoMod removed it: 5 karma in that sub from comments, then repost.</li>
+            <li><strong>Ad shape.</strong> Bonsai-as-hero, blog cadence, new account. 40% and 25% ratios are “this is promo.”</li>
+            <li><strong>Comments were 1-view.</strong> That was the old LocalLLaMA replies. New ones went out 3 Sep on live threads, numbers only.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Comments posted 3 Sep</h3>
+      <p class="sec-meta">Blog-backed only. No links. Log: <a href="../content/reddit-comments-this-week.md">reddit-comments-this-week.md</a></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sub</th><th>Thread</th><th>Receipt</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>r/LocalLLaMA</td>
+              <td><a href="https://www.reddit.com/r/LocalLLaMA/comments/1w6lmmg/i_released_sanotts_smallest_complete_tts_stack_in/">sanoTTS</a></td>
+              <td>Piper vs XTTS (~5 GB + 2 GB VRAM) vs Kokoro JS 82M. 12.6 / 2.7 GB left.</td>
+            </tr>
+            <tr>
+              <td>r/LocalLLaMA</td>
+              <td><a href="https://www.reddit.com/r/LocalLLaMA/comments/1w6g47u/rate_a_potential_setup_for_qwen_3x_27b/">Qwen 3.x 27B hardware</a></td>
+              <td>16GB unified, 15.1 tok/s, 14.73 GB conversation. Coding still glm/grok.</td>
+            </tr>
+            <tr>
+              <td>r/LocalLLaMA</td>
+              <td><a href="https://www.reddit.com/r/LocalLLaMA/comments/1w6aec4/local_ai_cant_be_disabled/">local AI can't be disabled</a></td>
+              <td>llama.cpp still up on that box.</td>
+            </tr>
+            <tr>
+              <td>r/LocalLLaMA</td>
+              <td><a href="https://www.reddit.com/r/LocalLLaMA/comments/1w6c3ad/running_a_local_coding_agent_on_strix_halo_with/">Strix Halo coding agent</a></td>
+              <td>1-bit 27B is chat, not an agent loop.</td>
+            </tr>
+            <tr>
+              <td>r/omarchy</td>
+              <td><a href="https://www.reddit.com/r/omarchy/comments/1w6jr36/omarchy_web_try_it_without_a_vm/">Omarchy Web demo</a></td>
+              <td>Super+K / Super+Space / bindings.lua.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Skipped r/degoogle (FUTO vs Florisboard — no matching post). Skipped r/selfhosted new queue (Nextcloud / music).</p>
+
+      <h3>How to improve Reddit</h3>
+      <ol>
+        <li>Let the four r/LocalLLaMA comments collect <strong>5 karma in that sub</strong>. Then repost the lab note with idle + conversation Activity Monitor shots from the blog.</li>
+        <li>Keep commenting only where a blog has receipts. Link only if asked.</li>
+        <li>Keep globe / Vision Pro / Where Is Paul in WebXR and spatial rooms. Not in AI or Linux.</li>
+        <li>Crossposts harvest lurkers. Use them as pointers, not as community.</li>
+        <li>If a sub hates links, post without one. r/LocalLLaMA already proved that.</li>
+      </ol>
+    </section>
+
+    <section id="youtube">
+      <p class="eyebrow">Channel · Paul Visciano</p>
+      <h2>YouTube</h2>
+      <p class="sec-meta">Not shipped · Omarchy wave is live (NetworkChuck 430K+, DHH interview, Quattro)</p>
+
+      <div class="verdict">
+        <strong>Verdict.</strong> “Sovereign AI” and “local AI” are thesis language. YouTube search is tool-and-outcome language: Omarchy, Ollama, Open WebUI, private ChatGPT, 16GB, no GPU. Jailbreak is the playlist name, not the first five words of the title. One video per series part is right. Titling them Part 1–5 is not.
+      </div>
+
+      <h3>Keywords</h3>
+      <p>Put these in the title, first sentence of the description, and spoken intro:</p>
+      <div class="kw">
+        <span class="yes">Omarchy install</span>
+        <span class="yes">Ollama</span>
+        <span class="yes">Open WebUI</span>
+        <span class="yes">llama.cpp</span>
+        <span class="yes">private ChatGPT</span>
+        <span class="yes">16GB</span>
+        <span class="yes">no GPU</span>
+        <span class="yes">run ChatGPT locally</span>
+        <span class="yes">ChatGPT alternative</span>
+      </div>
+      <p>Never as the primary keyword:</p>
+      <div class="kw">
+        <span class="no">Sovereign AI</span>
+        <span class="no">Jailbreak Your Laptop</span>
+        <span class="no">Bonsai</span>
+        <span class="no">PWN the OS</span>
+        <span class="no">own the stack</span>
+        <span class="no">local AI</span>
+      </div>
+
+      <h3>Launch order — not series order</h3>
+      <p>Ship the search videos first. Parts 3–5 convert subscribers. They do not acquire them.</p>
+
+      <p class="sec-meta">Video 1 · Part 1 · this week</p>
+      <div class="title"><span>I Installed Omarchy on My Laptop (Full Walkthrough 2026)</span><button type="button" data-copy>Copy</button></div>
+      <div class="title"><span>Omarchy Linux Install: From USB to Desktop in One Sitting</span><button type="button" data-copy>Copy</button></div>
+
+      <p class="sec-meta">Video 2 · Part 2 · evergreen</p>
+      <div class="title"><span>Private ChatGPT on a 16GB Laptop (No GPU)</span><button type="button" data-copy>Copy</button></div>
+      <div class="title"><span>I Run a Local AI on 16GB RAM — Here’s the Exact Stack</span><button type="button" data-copy>Copy</button></div>
+
+      <p class="sec-meta">Video 3 · still Part 2 · unique proof</p>
+      <div class="title"><span>A 27B Model on 16GB: 1-bit Local AI That Actually Talks</span><button type="button" data-copy>Copy</button></div>
+
+      <p class="sec-meta">Later · Parts 3–5</p>
+      <div class="title"><span>I Built Apps That Talk to My Local AI (No Cloud API)</span><button type="button" data-copy>Copy</button></div>
+      <div class="title"><span>I Replaced LinkedIn and Medium With a Site I Own</span><button type="button" data-copy>Copy</button></div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Packaging</h3>
+          <ul>
+            <li>Channel name stays Paul Visciano.</li>
+            <li>Playlist is Jailbreak Your Laptop.</li>
+            <li>Spoken first line can name the series. The title cannot lead with it.</li>
+            <li>Thumbnail: face + the constraint in huge type (16GB / NO GPU / OMARCHY).</li>
+            <li>Two Shorts per long video. They are ads for the long video. They decay in ~30 days.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Your lane</h3>
+          <p>NetworkChuck sells the OS. Ollama channels sell a chat window on a 4090. Almost nobody sells the full loop on hardware you already own:</p>
+          <p>Omarchy → local model on 16GB → apps on localhost → a site no platform can kill.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="x">
+      <p class="eyebrow">@PaulVisciano · pulled 3 Sep 2026 while logged in</p>
+      <h2>X</h2>
+      <p class="sec-meta"><a href="https://x.com/PaulVisciano">x.com/PaulVisciano</a> · Joined Oct 2023 · 38 posts (mostly 2023) · 9 following · 3 followers · St Pete, Florida</p>
+
+      <div class="verdict">
+        <strong>Verdict.</strong> Same disease as Reddit, smaller room. Six original posts since Aug 17, all launch cards (site, globe, Secret Family, essays). Highest number on any of them is 14 on the pinned homepage tweet. Vercel saw <strong>2</strong> t.co visitors in 30 days. Bio still leads with the globe, not the 16GB constraint. Replies from 2023 are a different person (shrooms, meditation). Do not tweet the thesis. Reply with one measured fact.
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Now</h3>
+          <ul>
+            <li>Bio: <em>Spatial web apps. A life on a globe. Same URL on a phone, a desk, and Safari on Vision Pro.</em></li>
+            <li>Align it with Reddit: <em>Local models on 16GB. Apps on localhost. A site I own.</em></li>
+            <li>Pinned tweet sells the homepage and “AI courses coming soon.” That is not the 16GB lab note.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>How to run it</h3>
+          <ul>
+            <li>Replies first. One number: tok/s, GB used, install time.</li>
+            <li>One original post when there is a receipt (Activity Monitor, Omarchy install). Not a blog card.</li>
+            <li>Link the matching blog, not Jailbreak / sovereign AI.</li>
+            <li>Do not generate fake monitors. Real shots from the 16GB post only.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Original posts since the site relaunch</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Post</th><th>Count</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>17 Aug</td>
+              <td><a href="https://x.com/PaulVisciano/status/2089491776658653555">Pinned: launched paulvisciano.com</a> · Spatial Apps · local AI writing · courses coming soon</td>
+              <td class="num">14</td>
+            </tr>
+            <tr>
+              <td>25 Aug</td>
+              <td><a href="https://x.com/PaulVisciano/status/2092343824395665540">Secret Family visualized</a> · @xueqinjiang · Danny Jones</td>
+              <td class="num">6</td>
+            </tr>
+            <tr>
+              <td>23 Aug</td>
+              <td><a href="https://x.com/PaulVisciano/status/2091685156507484362">Where is Paul? is live</a> · globe + one-prompt post</td>
+              <td class="num">8</td>
+            </tr>
+            <tr>
+              <td>21 Aug</td>
+              <td><a href="https://x.com/PaulVisciano/status/2090662580440223887">Surveillance pricing</a> · blog card</td>
+              <td class="num">5</td>
+            </tr>
+            <tr>
+              <td>19 Aug</td>
+              <td><a href="https://x.com/PaulVisciano/status/2090076675362988086">Too dangerous for you</a> · Anthropic / Commerce letter</td>
+              <td class="num">4</td>
+            </tr>
+            <tr>
+              <td>18 Aug</td>
+              <td><a href="https://x.com/PaulVisciano/status/2089743111467524516">What are Sci-Fi Apps?</a> · blog card</td>
+              <td class="num">3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The counts above are the single public number on each post (likely views). No meaningful reply/repost loop. 2023 replies (mental health, meditation) are out of scope for Jailbreak — leave them, do not pin them, do not mix them into the 16GB voice.</p>
+    </section>
+
+
+      <section id="facebook">
+        <p class="eyebrow">facebook.com/profile.php?id=100085886427486</p>
+        <h2>Facebook</h2>
+        <p class="sec-meta"><a href="https://www.facebook.com/profile.php?id=100085886427486">Paul Vis</a> · logged in 3 Sep 2026 · public profile only</p>
+
+        <div class="fb-hero">
+          <div class="fb-avatar" aria-hidden="true">PV</div>
+          <div>
+            <h3>Paul Vis</h3>
+            <p class="meta">2 friends · no cover photo · no bio · no work · no hometown</p>
+            <p style="margin:0">Display name is not Paul Visciano. There is nothing public to download: no posts, no albums, no reels. About tabs exist and are blank.</p>
+          </div>
+        </div>
+
+        <div class="zeros">
+          <div class="zero"><b>0</b><span>Posts</span></div>
+          <div class="zero"><b>0</b><span>Photos</span></div>
+          <div class="zero"><b>0</b><span>Reels</span></div>
+          <div class="zero"><b>2</b><span>Friends</span></div>
+        </div>
+
+        <div class="empty-stage">
+          <strong>Empty on purpose, or empty by neglect.</strong>
+          Facebook is not part of Jailbreak distribution. A 2-friend wall is not a room. Do not paste the series here.
+        </div>
+
+        <div class="verdict">
+          <strong>Verdict.</strong> This is a ghost account. Useful as a login, not as a channel. If you ever want a full private archive, use Facebook’s own Download Your Information — scraping will not invent posts that are not there. We did not save anyone else’s photos from People You May Know.
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>What we opened</h3>
+            <ul>
+              <li>Profile, About, Photos, Reels</li>
+              <li>About: Intro, Work, Education, Travel, Links — all empty</li>
+              <li>Photos: “Add photos/video”</li>
+              <li>Reels: “You haven’t created any reels yet.”</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>How to treat it</h3>
+            <ul>
+              <li>Do not post Jailbreak, 16GB, or the globe here.</li>
+              <li>Optional later: a Page named Paul Visciano if family is actually on Facebook.</li>
+              <li>Until then, leave it. Empty is cleaner than one lonely manifesto.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <section id="site" class="pane">
+      <p class="eyebrow">paulvisciano.com · Vercel Web Analytics · Hobby · 30-day history cap</p>
+      <h2>Site</h2>
+      <p class="sec-meta"><a href="https://vercel.com/paul-viscianos-projects/portfolio/analytics">Vercel analytics</a> · hostname paulvisciano.com carries the apps via rewrites · pulled 5 Sep 2026</p>
+
+      <div class="verdict">
+        <strong>Verdict.</strong> 283 visitors / 30d. Part 1 is finally on the board at 11. Last 24h <em>golden-handcuffs</em> led with 9 — that is the Flock post, even though reddit.com still shows only 2 referrers in 30 days. Homepage is 220. Finish (part 5) is still zero. Google 18. github.io 17.
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Last 7 days</h3>
+          <p>Aug 29 – Sep 5 · vs prior week</p>
+          <ul>
+            <li>Visitors <strong>80</strong> (−20%)</li>
+            <li>Page views <strong>259</strong> (−6%)</li>
+            <li>Bounce <strong>54%</strong> (−10%)</li>
+            <li>Part 1 <strong>11</strong> · golden-handcuffs <strong>9</strong></li>
+            <li>US 85% · Android 31%</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Last 30 days</h3>
+          <p>Aug 6 – Sep 5</p>
+          <ul>
+            <li>Visitors <strong>283</strong></li>
+            <li>Page views <strong>802</strong></li>
+            <li>Bounce <strong>59%</strong></li>
+            <li>Homepage 220 · part 1 <strong>11</strong> · golden-handcuffs 9</li>
+            <li>US 75% · FR 5% · PL 3%</li>
+            <li>reddit.com referrer still <strong>2</strong> — in-app strips it</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Top pages · 30 days · by visitors</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Path</th><th>Visitors</th><th>Note</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="https://paulvisciano.com/">/</a></td><td class="num">220</td><td>Still dominates. Attention, not starts.</td></tr>
+            <tr><td>/blog/what-are-sci-fi-apps</td><td class="num">18</td><td>Old slug. Redirects to spatial-apps. Still ranking.</td></tr>
+            <tr><td><a href="https://paulvisciano.com/apps/the-secret-family/">/apps/the-secret-family</a></td><td class="num">17</td><td>PredictiveHistory loop.</td></tr>
+            <tr><td><a href="https://paulvisciano.com/blog/where-is-paul">/blog/where-is-paul</a></td><td class="num">14</td><td></td></tr>
+            <tr><td><a href="https://paulvisciano.com/blog/one-prompt-life-map">/blog/one-prompt-life-map</a></td><td class="num">12</td><td></td></tr>
+            <tr><td><a href="https://paulvisciano.com/blog/jailbreaking-your-laptop-1">/blog/jailbreaking-your-laptop-1</a></td><td class="num ok">11</td><td>First series-start number on the board.</td></tr>
+            <tr><td><a href="https://paulvisciano.com/blog/golden-handcuffs">/blog/golden-handcuffs</a></td><td class="num ok">9</td><td>Flock post, last 24h. Referrer hidden.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Top pages · last 7 days</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Path</th><th>Visitors</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>/</td><td class="num">53</td></tr>
+            <tr><td>/blog/jailbreaking-your-laptop-1</td><td class="num ok">11</td></tr>
+            <tr><td>/blog/golden-handcuffs</td><td class="num ok">9</td></tr>
+            <tr><td>/blog/own-your-hardware</td><td class="num">8</td></tr>
+            <tr><td>/blog/own-the-stack</td><td class="num">6</td></tr>
+            <tr><td>/blog/running-local-ai-on-16gb-mac</td><td class="num">6</td></tr>
+            <tr><td>/blog/where-is-paul</td><td class="num">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Referrers · 30 days</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Source</th><th>Visitors</th><th>Read</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>google.com</td><td class="num">18</td><td>Only real search channel. Weak.</td></tr>
+            <tr><td>paulvisciano.github.io</td><td class="num">17</td><td>Already redirects. These landed.</td></tr>
+            <tr><td>github.com</td><td class="num">3</td><td></td></tr>
+            <tr><td>t.co</td><td class="num">3</td><td>X trickle.</td></tr>
+            <tr><td>facebook.com + m.facebook.com</td><td class="num">4</td><td>Last 24h too.</td></tr>
+            <tr><td class="bad">reddit.com</td><td class="num">2</td><td>18K Flock views → referrer still 2. In-app browser.</td></tr>
+            <tr><td>bing.com</td><td class="num">1</td><td></td></tr>
+            <tr><td>vercel.com</td><td class="num">1</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Browsers · 30 days</h3>
+          <ul>
+            <li>Chrome 54%</li>
+            <li>Chrome Mobile 21%</li>
+            <li>Mobile Safari 11%</li>
+            <li>Chrome iOS 6%</li>
+            <li>Edge 5%</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>How to make analytics useful</h3>
+          <ul>
+            <li>UTM every outbound link: <code>?utm_source=reddit&amp;utm_medium=social&amp;utm_campaign=16gb</code></li>
+            <li>Hobby plan: no custom events, 30-day history. PDF clicks are invisible.</li>
+            <li>Apps under /apps/ already roll into this hostname. Do not split analytics.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Canonical assets</h3>
+      <ul>
+        <li>Site: <a href="https://paulvisciano.com">paulvisciano.com</a></li>
+        <li>PDF: <a href="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/jailbreak-your-laptop-v7.pdf">jailbreak-your-laptop-v7.pdf</a></li>
+        <li>16GB write-up: <a href="https://paulvisciano.com/blog/running-local-ai-on-16gb-mac">running-local-ai-on-16gb-mac</a></li>
+        <li>Series opener: <a href="https://paulvisciano.com/blog/own-your-hardware">own-your-hardware</a></li>
+        <li>Every YouTube description, in order: matching blog post → PDF → playlist.</li>
+        <li>Hacker News: written series and PDF only. Never a YouTube link.</li>
+      </ul>
+    </section>
+
+    <section id="playbook" class="pane">
+      <p class="eyebrow">Standing rules + this cycle</p>
+      <h2>Playbook</h2>
+      <p>Ongoing ops. Future sessions start at <a href="PLAYBOOK.md">PLAYBOOK.md</a> — identity, voice, posting gate, receipts, log. This page is the scoreboard. Nothing public goes out unless the gate in that file passes.</p>
+
+      <h3>Always</h3>
+      <ul>
+        <li>Title for the tool and the constraint. Brand lives in the playlist, the PDF, and the spoken intro.</li>
+        <li>16GB / no GPU / machine you have is the story. Bonsai and Jailbreak are inside the video, not the wrapper.</li>
+        <li>Do not mix Where Is Paul into AI or Linux rooms.</li>
+        <li>New-account promo is the default Reddit read until karma is earned in other people’s threads.</li>
+        <li>Reddit views are not traffic. If Vercel does not show the referrer, the post failed — no matter the view count.</li>
+        <li>r/LocalLLaMA posts need 5 comment karma in that sub first. Comments before posts.</li>
+        <li>Comment only with numbers that already exist in a blog. No Imagine fakes of Activity Monitor.</li>
+      </ul>
+
+      <h3>This cycle</h3>
+      <ul class="checks" id="checks"></ul>
+    </section>
+
+    <footer>
+      Local ops file · not linked from the public site · excluded from Vercel via <code>ops/</code>.
+      Last Reddit action 3 Sep 2026.
+      Duplicate a platform section when X, LinkedIn, or HN has numbers.
+      Checkboxes save in this browser.
+    </footer>
+  </main>
+
+  <script>
+    const CHECKS = [
+      ["yt-omarchy", "Film and publish the Omarchy install this week, titled for search.", false],
+      ["yt-shorts", "Cut two Shorts from that footage (install time, desktop first look).", false],
+      ["yt-playlist", "Create the Jailbreak Your Laptop playlist. Do not use that phrase as the video title.", false],
+      ["rd-comments", "Five blog-backed comments posted 3 Sep (4× LocalLLaMA, 1× omarchy).", true],
+      ["rd-karma", "Hit 5 r/LocalLLaMA comment karma, then repost the lab note with idle + conversation monitors.", false],
+      ["rd-noglobe", "Do not post the globe into AI or Linux subs.", false],
+      ["utm", "Add utm_source / utm_campaign to every outbound Reddit, GitHub, and X link.", false],
+      ["desc", "Point every description at blog → PDF → playlist.", false],
+      ["x-bio", "Align X bio with the Reddit constraint line (16GB / localhost / site you own).", false],
+      ["x-reply", "Reply on X with one measured fact (tok/s, GB, install time). No launch cards.", false],
+      ["x-16gb", "One original X post: 16GB Activity Monitor receipt. Not a blog-card screenshot.", false]
+    ];
+    const KEY = "presence-ops-checks-v2";
+    const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+    const ul = document.getElementById("checks");
+    CHECKS.forEach(([id, label, preset]) => {
+      const on = saved[id] === true || (saved[id] === undefined && preset);
+      const li = document.createElement("li");
+      if (on) li.classList.add("done");
+      li.innerHTML = `<input type="checkbox" id="${id}" ${on ? "checked" : ""}><label for="${id}">${label}</label>`;
+      ul.appendChild(li);
+    });
+    ul.addEventListener("change", (e) => {
+      if (e.target.type !== "checkbox") return;
+      saved[e.target.id] = e.target.checked;
+      localStorage.setItem(KEY, JSON.stringify(saved));
+      e.target.closest("li").classList.toggle("done", e.target.checked);
+    });
+
+    const PANES = ["state", "social", "site", "playbook"];
+    const SOCIAL = new Set(["reddit", "youtube", "x", "facebook"]);
+    function showPane(id) {
+      const pane = SOCIAL.has(id) ? "social" : (PANES.includes(id) ? id : "state");
+      document.querySelectorAll(".pane").forEach((el) => el.classList.toggle("is-on", el.id === pane));
+      document.querySelectorAll(".tabs button").forEach((btn) => btn.classList.toggle("is-on", btn.dataset.pane === pane));
+      if (SOCIAL.has(id)) {
+        const target = document.getElementById(id);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+    document.getElementById("tabs").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-pane]");
+      if (!btn) return;
+      history.replaceState(null, "", "#" + btn.dataset.pane);
+      showPane(btn.dataset.pane);
+    });
+    document.querySelectorAll(".social-jump a, header nav a").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const id = (a.getAttribute("href") || "").replace("#", "");
+        if (!id || id.endsWith(".md")) return;
+        if (![...PANES, ...SOCIAL].includes(id) && id !== "overview") return;
+        e.preventDefault();
+        const dest = id === "overview" ? "state" : id;
+        history.replaceState(null, "", "#" + dest);
+        showPane(dest);
+      });
+    });
+    const boot = (location.hash || "#state").slice(1);
+    showPane(boot || "state");
+
+    document.querySelectorAll("[data-copy]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const text = btn.previousElementSibling.textContent.trim();
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied";
+        setTimeout(() => { btn.textContent = "Copy"; }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>
