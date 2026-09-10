@@ -129,11 +129,13 @@ aside.ref .ref-body{margin:0;color:var(--fg)}
 aside.ref .ref-body p{margin:0 0 0.5rem}
  aside.ref blockquote{margin:0 0 0.55rem;padding:0 0 0 0.85rem;border-left:2px solid oklch(72% 0.08 230 / 0.45);color:oklch(92% 0.002 260);font-style:italic}
  aside.ref blockquote p{margin:0;font-size:0.97rem;line-height:1.55}
- .said{margin:1.75rem 0 2rem;padding:1.2rem 1.3rem 1.15rem;border:1px solid oklch(72% 0.08 230 / 0.4);border-radius:12px;background:oklch(72% 0.08 230 / 0.06)}
- .said .said-who{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.16em;text-transform:uppercase;font-style:normal;color:oklch(72% 0.08 230);margin:0 0 0.7rem}
+ .said{margin:2.85rem auto 3.1rem;padding:1.65rem 0 1.35rem;max-width:36.5rem;border:0;border-top:1px solid oklch(96% 0.002 260 / 0.16);border-bottom:1px solid oklch(96% 0.002 260 / 0.16);border-radius:0;background:transparent;position:relative}
+ .said::before{content:"“";display:block;font-family:var(--font-display);font-size:5.4rem;font-weight:300;line-height:0.5;letter-spacing:-0.08em;color:oklch(72% 0.08 230 / 0.55);margin:0.15rem 0 1.05rem}
  .said blockquote{margin:0;padding:0;border:0;color:var(--fg-bright);font-style:italic}
- .said blockquote p{margin:0 0 0.65rem;font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);line-height:1.45;font-weight:400;letter-spacing:-0.015em}
+ .said blockquote p{margin:0 0 0.7rem;font-family:var(--font-display);font-size:clamp(1.28rem,2.4vw,1.75rem);line-height:1.36;font-weight:400;letter-spacing:-0.022em;text-wrap:pretty}
  .said blockquote p:last-child{margin:0}
+ .said .said-who{display:block;margin:1.2rem 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-style:normal;color:oklch(72% 0.08 230)}
+ .said .said-who::before{content:"— ";letter-spacing:0.12em}
 aside.ref .ref-meta{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.04em;color:var(--muted)}
 aside.ref .ref-meta a{color:oklch(72% 0.08 230);text-decoration:none;border-bottom:1px solid oklch(72% 0.08 230 / 0.25)}
 aside.ref .ref-meta a:hover{color:var(--fg-bright);border-bottom-color:var(--border-hi)}
