@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Running Local AI on 16 GB Mac — Paul Visciano · Sci-Fi Labs</title>
-  <meta name="description" content="A 27B model, Whisper, a browser, and a coding session on one 16 GB M2 Pro. Conversation mode at 14.73 GB used, pressure green. Local AI and daily use on the same laptop.">
+  <title>Running Local AI on 16 GB Mac — Paul Visciano</title>
+  <meta name="description" content="A 27B model, Whisper, a browser, and a coding session on one 16 GB M2 Pro. Conversation mode at 14.73 GB used, pressure green.">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
@@ -13,12 +13,12 @@
   <meta property="og:site_name" content="Paul Visciano">
   <meta property="og:url" content="https://paulvisciano.com/blog/running-local-ai-on-16gb-mac">
   <meta property="og:title" content="Running Local AI on 16 GB Mac">
-  <meta property="og:description" content="Idle 8.19 GB. Conversation mode 14.73 GB used, pressure green. Browser and a coding session still in the list. 16 GB is enough for local AI and daily use.">
+  <meta property="og:description" content="Idle 8.19 GB. Conversation mode 14.73 GB used, pressure green. Browser and a coding session still in the list.">
   <meta property="og:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/running-local-ai-16gb-owui-hero.jpg">
   <meta property="article:published_time" content="2026-09-02T18:05:00-04:00">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Running Local AI on 16 GB Mac">
-  <meta name="twitter:description" content="Conversation mode at 14.73 GB used, pressure green. Browser and coding still running. 16 GB holds local AI and daily use.">
+  <meta name="twitter:description" content="Conversation mode at 14.73 GB used, pressure green. Browser and coding still running.">
   <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/running-local-ai-16gb-owui-hero.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/running-local-ai-on-16gb-mac">
   <link rel="stylesheet" href="blog.css">
@@ -28,7 +28,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Running Local AI on 16 GB Mac",
-    "description": "A 27B model, Whisper, a browser, and a coding session on one 16 GB M2 Pro. Conversation mode at 14.73 GB used, pressure green. Local AI and daily use on the same laptop.",
+    "description": "A 27B model, Whisper, a browser, and a coding session on one 16 GB M2 Pro. Conversation mode at 14.73 GB used, pressure green.",
     "image": "https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/running-local-ai-16gb-owui-hero.jpg",
     "datePublished": "2026-09-02T18:05:00-04:00",
     "author": {
@@ -55,39 +55,39 @@
     <div class="progress"><div class="progress-bar"></div></div>
   </nav>
   <article>
-    <p class="series">Sci-Fi Labs · Field notes</p>
     <h1>Running Local&nbsp;AI on 16&nbsp;GB Mac</h1>
-    <p class="deck">A 27B model, Whisper, Brave, and a coding session on one 16 GB M2 Pro. Conversation mode: 14.73 GB used, pressure green. Local AI does not mean you stop using the laptop.</p>
+    <p class="deck">16 GB M2 Pro. A 27B model. Whisper in. Browser still open. Conversation mode: 14.73 GB used, pressure green.</p>
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/running-local-ai-16gb-owui-hero.jpg" alt="Close-up of a 14-inch MacBook Pro running Open WebUI with Bonsai-27B-Q1_0, hardware stats on a side panel: M2 Pro, 16 GB unified" width="1792" height="1008" loading="eager" fetchpriority="high" decoding="async">
-      <figcaption class="fig-cap">Open WebUI on the glass. M2 Pro, 16 GB unified, 10-core CPU, 16-core GPU. This is the machine.</figcaption>
+      <figcaption class="fig-cap">Open WebUI. M2 Pro, 16 GB unified, 10-core CPU, 16-core GPU. This is the machine.</figcaption>
     </figure>
 
     <div class="goal">
       <p class="goal-tag">The goal</p>
-      <p><strong>Talk to a local AI on my 16 GB Mac while still being able to use it.</strong> Not a benchmark rig, not a lab machine — the laptop I browse and code on every day. Everything in this post is measured against that one bar: can I hold a conversation with a 27B model and keep the laptop a laptop?</p>
+      <p><strong>Talk to a local AI on my 16 GB Mac while still using it.</strong> Not a benchmark rig. The laptop I browse and code on.</p>
     </div>
-    <p>Same laptop as the last write-up, new question. Before, I asked how much RAM the RAG stack needs. This time: what is the machine actually doing while you use it? These screenshots are the answer — the laptop, live, with local AI running on it.</p>
-    <p>Worth saying plainly: 16 GB is not a corner case. It is the laptop most people own. The base M-series MacBook, the default ThinkPad and XPS configs, the mid-range machine on a student’s desk — 16 GB of unified or shared memory is what shipped, and what people are still using to do real work. When someone says local AI “needs 32 GB minimum,” they are telling the majority of laptop owners to buy a new machine before they try anything. This post is the counterexample: the machine you already have can run a 27B model and still be a laptop.</p>
+    <p>You can run local AI on a 16 GB laptop. I did. 27B model, speech in, speech out, browser still open.</p>
+    <p>Idle, before any of that: 8.19 GB used. 565 processes. Most of them I didn't install. Extra processes eat memory the model could use. That's why I'd swap for an OS that only runs what I named — not a bunch of background stuff I've never heard of. That's for another time. <a href="jailbreaking-your-laptop-1">Part 1</a>.</p>
+    <p>Back to this laptop. Simpler setup than the last write-up — no RAG. I captured four states so we have a baseline: what local AI actually uses on this laptop, and how the memory is allocated:</p>
     <ol>
-      <li>Idle. No models. 565 processes before a token is asked.</li>
-      <li>Loaded, no inference. The resident cost.</li>
-      <li>Text chat. The generate cost.</li>
-      <li>Conversation mode. Whisper in, model generating, daily use still running.</li>
+      <li>Idle. No models. 565 processes.</li>
+      <li>Loaded. Model in memory, not talking yet.</li>
+      <li>Text chat. Generating.</li>
+      <li>Conversation mode. Whisper in, generating, still using the laptop.</li>
     </ol>
-    <p>Those four states ran on one stack: Open WebUI in the browser, <code>llama.cpp</code> serving Bonsai, Whisper in, Kokoro out. No Knowledge Graph. No LightRAG. No Docker, no embeddings server, no second llama slot. If you read the <a href="running-local-ai-rag-16gb#budget">previous 16 GB budget</a>, forget its process list — that was the older setup: Postgres, LightRAG, two model slots, Whisper as its own server. Different stack, different swap. Do not mix the two.</p>
-    <p>One more thing before the numbers: do not trust the model card. Hugging Face leads with a <a class="ext" href="https://huggingface.co/prism-ml/Bonsai-27B-gguf" target="_blank" rel="noopener">3.9 GB deployed footprint</a>. That is the GGUF file, and only the file — not KV cache, not activations, not macOS, not the browser you keep open while you work. Every number from here on came off this machine, live.</p>
+    <p>Those four states ran on one stack: Open WebUI in the browser, <code>llama.cpp</code> serving Bonsai, Whisper in, Kokoro out. No Knowledge Graph. No LightRAG. No Docker, no embeddings server, no second llama slot. If you read the <a href="running-local-ai-rag-16gb#budget">previous 16 GB budget</a>, forget its process list — that was the older setup: Postgres, LightRAG, two model slots, Whisper as its own server. Different stack, different swap. Don't mix the two.</p>
+    <p>Hugging Face lists a <a class="ext" href="https://huggingface.co/prism-ml/Bonsai-27B-gguf" target="_blank" rel="noopener">3.9 GB deployed footprint</a>. That's the model file on disk. It doesn't count what else you have running, or the full memory once you talk to it — the conversation cache (KV cache) included. Every number from here on came off this machine, live.</p>
 
     <h2 id="conversation-mode">Conversation mode</h2>
-    <p>The audio never leaves the machine. Whisper, running in Open WebUI’s Python process, turns speech into a transcript. That transcript is not sent as-is: the UI prepends the system prompt — persona, rules, whatever you set — then <code>llama-server</code> runs Bonsai-27B on it. The reply text comes back into the browser. Kokoro, running on the server, turns it into audio and the browser plays it. Five hops, all local. Text chat skips Whisper and Kokoro.</p>
-    <p>What each hop costs. Whisper is the reason <code>python3.12</code> reads 1.12 GB real in the capture: the faster-whisper model is loaded into Open WebUI’s Python process and stays resident between turns, so you pay it once per session, not once per sentence. Kokoro runs on the server alongside it, so its cost lands in the Python process column, not the browser’s. The generation hop is the same Bonsai inference as text chat — the only addition is the audio path, which is why conversation mode (14.73 GB) sits within 100 MB of text chat (14.66 GB). Voice does not double the bill; it rides the same model.</p>
+    <p>You talk into the laptop. Whisper is the speech-to-text model — it writes down what you said. It runs inside Open WebUI's Python process on this machine. The 27B model reads those words plus whatever rules you set, and writes a reply. Kokoro is the text-to-speech model — it reads that reply out loud in the browser. Five hops. None of it leaves the machine. Type instead of talk and you skip Whisper and Kokoro.</p>
+    <p>Whisper is why <code>python3.12</code> reads 1.12 GB real in the capture. You don't load that when you type. It stays loaded between turns, so you pay it once per session, not once per sentence. Kokoro sits in that same Python process. Neither one is a second 27B on the GPU. The expensive part is still the 27B generating — talking or typing.</p>
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/running-local-ai-open-webui-conversation-pipeline.jpg" alt="Conversation mode pipeline: speak, Whisper transcribe, Bonsai-27B infer with system prompt, message, Kokoro TTS" width="1792" height="1008" loading="lazy" decoding="async">
       <figcaption class="fig-cap">Listening state in Open WebUI. Audio in at the mic, audio out from Kokoro, Bonsai in the middle with the system prompt attached.</figcaption>
     </figure>
 
     <h2 id="side-by-side">The comparison</h2>
-    <p>Same laptop, four states. First, the shape of it — where Memory Used lands in the 16 GB pool, state by state.</p>
+    <p>Same laptop, four states. Where Memory Used lands in the 16 GB pool, state by state.</p>
     <div class="chart-bars">
       <p class="chart-title">Memory used by state · 16 GB total</p>
       <div class="bar-row">
@@ -111,12 +111,12 @@
         <span class="bar-track"><span class="bar-fill green" style="width:92%">14.73</span></span>
       </div>
     </div>
-    <p>Two jumps, one plateau. Loading Bonsai costs about 3 GB of Memory Used. The first generation costs another 3.4 — mostly wired, the memory that actually does the work. Conversation mode adds almost nothing on top. The machine never crosses into the red.</p>
+    <p>Loading Bonsai costs about 3 GB of Memory Used. The first generation costs another 3.4 — mostly wired. Conversation mode adds almost nothing on top. Pressure never went red.</p>
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/running-local-ai-16gb-stats-mac.jpg" alt="The same MacBook close-up with the four live memory states on screen: idle 8.19 GB, loaded 11.27 GB, text chat 14.66 GB, conversation 14.73 GB" width="1728" height="1152" loading="lazy" decoding="async">
-      <figcaption class="fig-cap">Idle 8.19 · Loaded 11.27 · Text 14.66 · Conversation 14.73. Hugging Face’s 3.9 GB is the GGUF, not this desk.</figcaption>
+      <figcaption class="fig-cap">Idle 8.19 · Loaded 11.27 · Text 14.66 · Conversation 14.73. Hugging Face's 3.9 GB is the GGUF, not this desk.</figcaption>
     </figure>
-    <p>The chart is the summary; these are the receipts. Each card is a full Activity Monitor capture from that state — swap, wired, compressed, pressure, and the process on top. Scroll through, then read what the numbers are doing below.</p>
+    <p>Each card is a full Activity Monitor capture from that state — swap, wired, compressed, pressure, and the process on top.</p>
     <p>The original Activity Monitor captures:</p>
           <div class="compare-gallery">
             <div class="compare-grid">
@@ -178,17 +178,19 @@
               </a>
             </div>
           </div>
-          <p>Loading the model does not wire it. Compressed goes 85.5 MB → 3.82 GB, swap appears (2.68 GB), Memory Used 8.19 → 11.27 GB, pressure still green. Generating is the jump: wired 1.71 → 9.43 GB. That jump is not the model getting bigger — it is the memory that only exists once tokens flow: the KV cache (every token of context the model has to remember) and the Metal command buffers and scratch memory the GPU driver pins for compute. Loaded but idle, Bonsai is a file mapped into memory. First generation, the working set gets wired down and stays resident as long as the slot is warm.</p>
-    <p>Two readings that look like typos and are not. One: swap exists at all — 2.68 GB with pressure green. macOS compresses and swaps proactively, long before the machine is in trouble; it treats SSD as a pressure valve, not a last resort. Swap on this box means “the OS is making room,” not “the OS is failing.” Two: swap drops from 3.11 GB (text chat) to 2.76 GB (conversation). The states are not cumulative screenshots — each was captured in its own moment, and the OS reclaims and re-pages between them. Conversation mode came later in the session, with slightly more of the working set back in physical memory. Read the trend, not the delta.</p>
-    <p>Conversation mode barely moves the footer (14.66 → 14.73). Whisper shows up as <code>python3.12</code> real memory, not another 8 GB of GPU. Brave and a coding session stay in the list the whole time.</p>
-    <h2 id="five-hundred-sixty-five">The true story of a Mac</h2>
+    <p>Loading the model is not the expensive part. Memory Used goes 8.19 → 11.27 GB. Compressed jumps 85.5 MB → 3.82 GB. Swap shows up: 2.68 GB. Pressure still green.</p>
+    <p>Talking to it is the jump. Wired goes 1.71 → 9.43 GB. The model file didn't get bigger. The laptop now has to remember every token of the conversation — that's the cache — and the GPU pins memory to actually compute. Loaded and idle, the model is a file sitting in memory. First reply, that working set gets locked down and stays as long as the model is warm.</p>
+    <p>Two readings that look like typos and are not. One: swap exists at all — 2.68 GB with pressure green. macOS compresses and swaps before the machine is in trouble. Swap on this box means the OS is making room, not failing. Two: swap drops from 3.11 GB (text chat) to 2.76 GB (conversation). These are not cumulative screenshots. Each was captured in its own moment. Conversation mode came later in the session, with slightly more of the working set back in physical memory. Read the trend, not the delta.</p>
+    <p>Whisper shows up as <code>python3.12</code> real memory — 1.12 GB — not another 8 GB of GPU. Brave and a coding session stay in the list the whole time.</p>
+
+    <h2 id="five-hundred-sixty-five">565 processes</h2>
     <p>MacBook Pro 14" (Mac14,9). Apple M2 Pro. 10-core CPU, 6 performance plus 4 efficiency. 16-core GPU, Metal 4. 16 GB unified memory. There is no separate VRAM. CPU, GPU, OS, and models share one pool. Every byte a model takes is a byte the browser is not using.</p>
-    <p>Idle, no models, this laptop is already running <strong>565 processes</strong>. Most people can name Finder, Safari, maybe Activity Monitor. They cannot name <code>mds_stores</code>, <code>sharingd</code>, <code>duetexpertd</code>, <code>siriinferenced</code>, <code>homed</code>. Almost all of them shipped in <code>/System</code>. You did not install them. You cannot uninstall most of them. That is the machine Apple does not put on the box.</p>
-    <p>The pie is Memory Used at idle, 8.19 GB. Cached files (6.37 GB) sit outside it. Apps you opened are 9%. The rest is the OS.</p>
+    <p>Idle, no models, this laptop is already running <strong>565 processes</strong>. Finder, Safari, Activity Monitor — you can name those. <code>mds_stores</code>, <code>sharingd</code>, <code>duetexpertd</code>, <code>siriinferenced</code>, <code>homed</code> — I didn't install those. Almost all of them shipped in <code>/System</code>. You cannot uninstall most of them.</p>
+    <p>The pie is Memory Used at idle, 8.19 GB. Cached files (6.37 GB) sit outside it. Apps I opened are 9%. The rest is the OS.</p>
     <div class="pie-card">
       <p class="chart-title">Memory used at idle · 8.19 GB</p>
       <div class="pie-layout">
-        <div class="pie" role="img" aria-label="Donut chart of 8.19 GB memory used: search 1.56 GB, you opened 0.71 GB, desktop 0.47 GB, Apple daemons 1.11 GB, wired and compressed 1.53 GB, other processes 2.81 GB"></div>
+        <div class="pie" role="img" aria-label="Donut chart of 8.19 GB memory used: search 1.56 GB, apps 0.71 GB, desktop 0.47 GB, Apple daemons 1.11 GB, wired and compressed 1.53 GB, other processes 2.81 GB"></div>
         <ul class="pie-legend">
           <li><span class="swatch" style="background:oklch(72% 0.08 230 / 0.85)"></span><span>Search / Spotlight family<span class="sub">mds, mds_stores, Spotlight, corespotlightd, mediaanalysisd</span></span><span class="gb">1.56 GB · 19%</span></li>
           <li><span class="swatch" style="background:oklch(72% 0.12 50 / 0.85)"></span><span>Apps<span class="sub">Terminal, Activity Monitor, Ollama, VPN, a local webview</span></span><span class="gb">0.71 GB · 9%</span></li>
@@ -216,7 +218,7 @@
       </div>
       <div class="bk-panel panel-you" role="tabpanel" aria-labelledby="bucket-you">
     <h3 id="bucket-you">Apps</h3>
-    <p>The 9% slice. Terminal, Activity Monitor, a leftover Ollama daemon, a VPN. Not the tax.</p>
+    <p>The 9% slice. Terminal, Activity Monitor, a leftover Ollama daemon, a VPN. I opened these.</p>
     <table>
       <thead><tr><th>Process</th><th>Mem</th><th>What it is</th></tr></thead>
       <tbody>
@@ -244,8 +246,8 @@
     </table>
       </div>
       <div class="bk-panel panel-search" role="tabpanel" aria-labelledby="bucket-search">
-    <h3 id="bucket-search">Search — Apple indexes everything</h3>
-    <p>Spotlight is not one process. It is a small company living on the disk.</p>
+    <h3 id="bucket-search">Search</h3>
+    <p>Spotlight is not one process.</p>
     <table>
       <thead><tr><th>Process</th><th>Mem</th><th>What it is</th></tr></thead>
       <tbody>
@@ -270,7 +272,7 @@
       </div>
       <div class="bk-panel panel-policy" role="tabpanel" aria-labelledby="bucket-policy">
     <h3 id="bucket-policy">Policy, drivers, keep-alive</h3>
-    <p>The OS watching the OS.</p>
+    <p>Gatekeeper, updates, Wi-Fi, HomeKit. Things that stay on.</p>
     <table>
       <thead><tr><th>Process</th><th>Mem</th><th>What it is</th></tr></thead>
       <tbody>
@@ -296,46 +298,33 @@
       </div>
     </div>
 
-    <div class="callout">Most of these live in /System. You cannot uninstall WindowServer. You can hide Siri and <code>siriinferenced</code> still runs. That is not a bug. That is the product.</div>
-    <p>Load average 16.6 on a 10-core machine reads like a laptop on fire. It is not. The consumers are <code>mds</code> and five <code>mdworker_shared</code> processes — Spotlight, reindexing after boot. The load will drop. The process count will not. Spotlight will finish. <code>siriinferenced</code> will not leave. That is a Mac at rest.</p>
-    <p>That is also the case for <a href="omarchy">Omarchy</a>: a machine that runs what you named, not hundreds of LaunchAgents you have never heard of. Fewer processes. Less RAM gone before you open anything. I have not measured Omarchy on this desk. 565 names at idle is why the bet exists.</p>
+    <div class="callout">Most of these live in /System. You cannot uninstall WindowServer. Hide Siri and <code>siriinferenced</code> still runs.</div>
+    <p>Load average 16.6 on a 10-core machine looks like a laptop on fire. It isn't. The consumers are <code>mds</code> and five <code>mdworker_shared</code> processes — Spotlight, reindexing after boot. The load will drop. The process count will not. Spotlight will finish. <code>siriinferenced</code> will not leave. That is a Mac at rest.</p>
+    <p>Those 565 names eat memory the model could use. I have not measured <a href="omarchy">Omarchy</a> on this desk.</p>
+    <p>Look at the four photos. Brave is open. A coding session is in the list. Spotlight never left. Conversation mode at 14.73 GB used of 16, pressure green. VS Code was not in these photos. I will not invent it. The headroom is there.</p>
 
-    <p>Look at the four photos. Brave is open. A coding session is in the list. Spotlight never left. Conversation mode at 14.73 GB used of 16, pressure green. You can run local AI on a 16 GB laptop and still use it for daily browsing and coding. VS Code was not in these photos. I will not invent it. The headroom is there.</p>
-    <p>Measure before you trust. Own the numbers, not the model card.</p>
-
-    <h2 id="the-case-against-the-os">The case against the OS</h2>
-    <p>Read the whole capture again with one question in mind: who decided what runs on your machine?</p>
-    <ul>
-      <li><strong>565 processes</strong> before you open a single app.</li>
-      <li><strong>Spotlight</strong> indexing whether you asked or not.</li>
-      <li><strong><code>siriinferenced</code></strong> holding an on-device model in memory, waiting for a phrase you are not saying.</li>
-      <li><strong><code>mediaanalysisd</code></strong> scanning your photos for faces you did not ask it to find.</li>
-      <li><strong>None of it uninstallable.</strong> Hide Siri and the daemon still runs.</li>
-    </ul>
-    <p>That is not a bug — Apple told you so in the settings panel. It is the product.</p>
-    <p>Local AI still delivered, despite all of that. A 27B model, speech in, speech out, running alongside the browser and an editor — on a machine that had already given up half its RAM before you opened anything. On 16 GB, that tax is not a rounding error. It is the difference between a model that fits and one that does not.</p>
-    <div class="callout">8.19 GB gone at idle. Half the machine taxed before a single useful byte. Every <code>mdworker_shared</code> reindexing your disk is memory your model is not using — compressed, swapped, competing for the same pool.</div>
-    <p>macOS is beautiful hardware wrapped in an OS that assumes it owns the machine. You bought the laptop; the software treats you as a guest on it. The alternative is not “switch and lose everything” — the <a href="jailbreaking-your-laptop-1">Jailbreaking Your Laptop</a> series is the walkthrough. 565 processes at idle is the evidence. How many does a machine run that only starts what you need? <a href="omarchy">Omarchy</a> on the same laptop — coming soon.</p>
-    <p>Start where the series starts. This is why you should <a href="jailbreaking-your-laptop-1"><strong>Take Over the Machine</strong></a>.</p>
+    <h2 id="the-case-against-the-os">You can do this without swapping the OS</h2>
+    <p>You can run your own AI without swapping the OS. I did.</p>
+    <p>Changing the OS is what gives you full control — what apps run, what connects to the internet, how it looks. Start with <a href="jailbreaking-your-laptop-1">Part 1</a>.</p>
 
     <div class="links">
-      <a href="jailbreaking-your-laptop-1">Jailbreaking Your Laptop, Part 1: Take Over the Machine</a>
-      <a href="running-local-ai-rag-16gb">Local AI + RAG: the Full Stack in 16 GB</a>
+      <a href="jailbreaking-your-laptop-1">Jailbreaking Your Laptop, Part 1: Install Omarchy</a>
+      <a href="running-local-ai-rag-16gb">Local AI + RAG in 16 GB</a>
       <a href="omarchy">Omarchy</a>
-      <a href="bonsai">Bonsai: the 27B Model That Fits in 16 GB</a>
+      <a href="bonsai">Bonsai</a>
       <a href="local-tts-on-16gb">Local TTS on 16 GB</a>
       <a href="/#blog">All blogs</a>
     </div>
     <div class="more">
-      <h3>More from Sci-Fi Labs</h3>
-      <a href="jailbreaking-your-laptop-1">Jailbreaking Your Laptop, Part 1: Take Over the Machine →</a>
-      <a href="omarchy">Omarchy — A glimpse into the future →</a>
-      <a href="running-local-ai-rag-16gb">Local AI + RAG: the Full Stack in 16 GB →</a>
+      <h3>More</h3>
+      <a href="jailbreaking-your-laptop-1">Jailbreaking Your Laptop, Part 1: Install Omarchy →</a>
+      <a href="omarchy">Omarchy →</a>
+      <a href="running-local-ai-rag-16gb">Local AI + RAG in 16 GB →</a>
       <a href="local-tts-on-16gb">Local TTS on 16 GB →</a>
     </div>
   </article>
   <footer>
-    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="/" style="color:inherit">paulvisciano.com</a>
+    <a href="/" style="color:inherit">paulvisciano.com</a>
   </footer>
   <dialog id="lightbox" aria-label="Full screen image"><img alt=""><p class="lb-hint">Click or Esc to close</p></dialog>
 <script src="analytics.js" defer></script>
