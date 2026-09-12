@@ -18,8 +18,64 @@
   <meta name="twitter:description" content="Not having a wheel means letting go of control. Now with AI we're learning to let go of a lot of things as well.">
   <meta name="twitter:image" content="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/thoughts-on-skill-erosion-rebels.jpg">
   <link rel="canonical" href="https://paulvisciano.com/blog/thoughts-on-skill-erosion">
-  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="blog.css?v=era">
   <link rel="stylesheet" href="section-nav.css">
+  <style>
+    ol.era{display:flex;list-style:none;margin:2rem 0 2.6rem;padding:0}
+    ol.era > li{flex:1 1 0;display:flex;flex-direction:column;list-style:none;margin:0;padding:0;min-width:0}
+    ol.era > li::marker{content:none}
+    .era-year{font-family:var(--font-display);font-size:clamp(1.5rem,2.8vw,2rem);line-height:1;letter-spacing:-0.03em;color:var(--fg-bright)}
+    .era-rail{display:flex;align-items:center;width:100%;height:22px;margin:0.55rem 0 0.6rem}
+    .era-dot{width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--border);flex:0 0 auto;position:relative;z-index:1;box-sizing:border-box}
+    .era-line{height:2px;flex:1;background:var(--border);position:relative;margin-right:-1px}
+    .era-line::after{content:"";position:absolute;inset:0;background:oklch(72% 0.08 230);transform:scaleX(0);transform-origin:left}
+    ol.era > li:last-child .era-line{visibility:hidden}
+    .era-lab{font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);line-height:1.4;max-width:12.5rem}
+    .era-play:not(.is-on) .era-year,
+    .era-play:not(.is-on) .era-lab{opacity:0;transform:translateY(6px)}
+    .era.is-on .era-year,
+    .era.is-on .era-lab{animation:era-copy 0.4s ease forwards}
+    .era.is-on .era-dot{animation:era-dot 0.35s ease forwards}
+    .era.is-on .era-line::after{animation:era-draw 0.42s linear forwards}
+    .era.is-on li:nth-child(1) .era-year,
+    .era.is-on li:nth-child(1) .era-lab,
+    .era.is-on li:nth-child(1) .era-dot{animation-delay:0s}
+    .era.is-on li:nth-child(1) .era-line::after{animation-delay:0.12s}
+    .era.is-on li:nth-child(2) .era-year,
+    .era.is-on li:nth-child(2) .era-lab,
+    .era.is-on li:nth-child(2) .era-dot{animation-delay:0.5s}
+    .era.is-on li:nth-child(2) .era-line::after{animation-delay:0.62s}
+    .era.is-on li:nth-child(3) .era-year,
+    .era.is-on li:nth-child(3) .era-lab,
+    .era.is-on li:nth-child(3) .era-dot{animation-delay:1s}
+    .era.is-on li:nth-child(3) .era-line::after{animation-delay:1.12s}
+    .era.is-on li:nth-child(4) .era-year,
+    .era.is-on li:nth-child(4) .era-lab,
+    .era.is-on li:nth-child(4) .era-dot{animation-delay:1.5s}
+    @keyframes era-copy{to{opacity:1;transform:none}}
+    @keyframes era-dot{to{background:oklch(72% 0.08 230);border-color:oklch(72% 0.08 230);box-shadow:0 0 0 5px oklch(72% 0.08 230 / 0.16)}}
+    @keyframes era-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    @media(prefers-reduced-motion:reduce){
+      .era-play:not(.is-on) .era-year,.era-play:not(.is-on) .era-lab{opacity:1;transform:none}
+      .era-line::after{transform:none}
+      .era.is-on .era-year,.era.is-on .era-lab,.era.is-on .era-dot,.era.is-on .era-line::after{animation:none}
+      .era-dot{background:oklch(72% 0.08 230);border-color:oklch(72% 0.08 230)}
+    }
+    @media(max-width:640px){
+      ol.era{flex-direction:column}
+      ol.era > li{display:grid;grid-template-columns:18px 1fr;grid-template-rows:auto auto;column-gap:0.95rem;row-gap:0.15rem;padding-bottom:1.35rem}
+      ol.era > li:last-child{padding-bottom:0}
+      .era-year{grid-column:2;grid-row:1}
+      .era-lab{grid-column:2;grid-row:2;max-width:none}
+      .era-rail{grid-column:1;grid-row:1/-1;flex-direction:column;width:18px;height:auto;margin:0;align-self:stretch}
+      .era-dot{margin-top:0.45rem}
+      .era-line{width:2px;flex:1;height:auto;min-height:1.1rem;margin:0.35rem 0 0}
+      .era-line::after{transform:scaleY(0);transform-origin:top}
+      ol.era > li:last-child .era-line{display:none}
+      .era.is-on .era-line::after{animation-name:era-stem}
+      @keyframes era-stem{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+    }
+  </style>
 </head>
 <body>
   <header class="top">
@@ -43,35 +99,59 @@
     <p>There will always be rebels. Mustang drivers. People in old-school cars who refuse the Cybercab and keep both hands on a wheel.</p>
 
     <h2 id="no-pedals-or-a-steering-wheel">No pedals or a steering wheel</h2>
+    <figure class="said">
+      <blockquote>
+        <p>Self-driving took a long time for society to accept, even though the technology was already there. Google already had it maybe 15 years ago, but society was not ready. Not having a wheel means letting go of control — no pedals, no steering wheel. That's been the big challenge. Waymo already did that in 2014. Tesla is now taking the same concept to scale.</p>
+      </blockquote>
+      <figcaption class="said-who">Paul Visciano</figcaption>
+    </figure>
+    <p>Google started in 2009 under Sebastian Thrun, a Stanford professor whose driverless car had already won DARPA's desert race. By October 2010 he had 140,000 miles on public roads — Mountain View to Santa Monica, Lombard, the Golden Gate, Tahoe — with a person still in the seat.<sup><a class="ext" href="https://googleblog.blogspot.com/2010/10/what-were-driving-at.html" target="_blank" rel="noopener">1</a></sup> Nevada licensed it in 2012.<sup><a class="ext" href="https://www.bbc.com/news/technology-17989553" target="_blank" rel="noopener">2</a></sup> That was about 15 years ago to this day.</p>
+    <div class="fig-wrap">
+      <figure class="fig wrap">
+        <img src="thoughts-on-skill-erosion-firefly.jpg" alt="Google Firefly, 2014. Two-seat pod with no steering wheel and no pedals" width="960" height="640" loading="lazy">
+        <figcaption class="fig-cap">Firefly, 2014. No wheel, no pedals. Photo: Grendelkhan / Wikimedia</figcaption>
+      </figure>
+      <p>They even built the no-wheel car. Firefly, 2014. Google designed it from scratch as a two-seater with no steering wheel, no pedals, and a button to start. You sat. About a hundred of them, capped at 25 miles an hour.<sup><a class="ext" href="https://blog.google/alphabet/just-press-go-designing-self-driving/" target="_blank" rel="noopener">3</a></sup> On October 20, 2015, Steve Mahan — legally blind — rode one through an Austin neighborhood on public roads.<sup><a class="ext" href="https://medium.com/waymo/from-post-it-note-to-prototype-the-journey-of-our-firefly-30569ac8fd5e" target="_blank" rel="noopener">4</a></sup></p>
+      <p>Ten years later Waymo came back to Austin. On March 4, 2025, they opened to the public: Jaguar I-PACEs on Uber, 37 square miles, still with a steering wheel.<sup><a class="ext" href="https://www.theverge.com/news/623302/waymo-uber-austin-robotaxi-app-launch" target="_blank" rel="noopener">5</a></sup> People wanted in. You couldn't order a Waymo on purpose — only tick a box in Uber and hope. Watching one arrive is a kind of magic. No driver. It pulls up and you get in the back. Then it takes off and the wheel turns by itself — fear, excitement, the future is here.<sup><a class="ext" href="https://www.axios.com/local/austin/2025/03/04/waymo-uber-self-driving-car-austin" target="_blank" rel="noopener">6</a></sup> On September 3, 2026, Tesla Cybercabs were unleashed on Austin. Same streets. No driver, and no wheel to watch.<sup><a class="ext" href="https://apnews.com/article/tesla-cybercab-austin-elon-musk-driverless-8791add840f4debbc41bcaa9d1e64561" target="_blank" rel="noopener">7</a></sup></p>
+    </div>
     <figure class="fig">
       <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/thoughts-on-skill-erosion-hero.jpg" alt="Empty robotaxi cabin at night with no steering wheel and no pedals, city lights on the windshield" width="1792" height="1008" loading="lazy">
       <figcaption class="fig-cap">Nothing to grasp for. We are grasping for control.</figcaption>
     </figure>
-    <figure class="said">
-      <blockquote>
-        <p>Self-driving took a long time even though the technology was there for society to accept it. Tesla, now with the cabs, is going to be one of the largest ones to not have wheels, and that's been a big challenge. Not having a wheel means letting go of control — no pedals or a steering wheel. Waymo already did that. Before that, maybe 15 years ago, Google already had the technology, but society was not ready for it.</p>
-      </blockquote>
-      <figcaption class="said-who">Paul Visciano</figcaption>
-    </figure>
-    <p>Google started in 2009. October 2010, Sebastian Thrun: Mountain View to Santa Monica, Lombard, the Golden Gate, Tahoe. 140,000 miles. A person still in the seat.<sup><a class="ext" href="https://googleblog.blogspot.com/2010/10/what-were-driving-at.html" target="_blank" rel="noopener">1</a></sup> Nevada licensed it in 2012.<sup><a class="ext" href="https://www.bbc.com/news/technology-17989553" target="_blank" rel="noopener">2</a></sup> Fifteen years ago from this week is about right.</p>
-    <p>They even built the no-wheel car. Firefly, 2014. No steering wheel, no pedals.<sup><a class="ext" href="https://blog.google/alphabet/just-press-go-designing-self-driving/" target="_blank" rel="noopener">3</a></sup> A blind passenger rode one on public roads in 2015 with nothing to grab.<sup><a class="ext" href="https://medium.com/waymo/from-post-it-note-to-prototype-the-journey-of-our-firefly-30569ac8fd5e" target="_blank" rel="noopener">4</a></sup></p>
-    <p>Waymo's paid Jaguars still have a wheel. Zoox does not.<sup><a class="ext" href="https://www.theverge.com/transportation/973099/zoox-amazon-nhtsa-robotaxi-approval" target="_blank" rel="noopener">5</a></sup> Tesla Cybercab, Austin, September 3. Small geofence.<sup><a class="ext" href="https://apnews.com/article/tesla-cybercab-austin-elon-musk-driverless-8791add840f4debbc41bcaa9d1e64561" target="_blank" rel="noopener">6</a></sup></p>
 
-    <div class="stat-strip">
-      <div class="stat"><div class="n">2009</div><div class="l">Google project starts</div></div>
-      <div class="stat"><div class="n">2010</div><div class="l">140k miles, public roads</div></div>
-      <div class="stat"><div class="n">2014</div><div class="l">Firefly: no wheel, no pedals</div></div>
-      <div class="stat"><div class="n">Sept 3</div><div class="l">Cybercab paid rides, Austin</div></div>
-    </div>
+    <ol class="era" aria-label="Self-driving from Google to Cybercab">
+      <li>
+        <div class="era-year">2009</div>
+        <div class="era-rail"><span class="era-dot" aria-hidden="true"></span><span class="era-line" aria-hidden="true"></span></div>
+        <div class="era-lab">Google project starts</div>
+      </li>
+      <li>
+        <div class="era-year">2010</div>
+        <div class="era-rail"><span class="era-dot" aria-hidden="true"></span><span class="era-line" aria-hidden="true"></span></div>
+        <div class="era-lab">140k miles, public roads</div>
+      </li>
+      <li>
+        <div class="era-year">2014</div>
+        <div class="era-rail"><span class="era-dot" aria-hidden="true"></span><span class="era-line" aria-hidden="true"></span></div>
+        <div class="era-lab">Firefly: no wheel, no pedals</div>
+      </li>
+      <li>
+        <div class="era-year">2026</div>
+        <div class="era-rail"><span class="era-dot" aria-hidden="true"></span><span class="era-line" aria-hidden="true"></span></div>
+        <div class="era-lab">Cybercab paid rides, Austin · Sept 3</div>
+      </li>
+    </ol>
 
     <h2>You need to trust it in order to let go</h2>
     <figure class="said">
       <blockquote>
-        <p>It took all that time for them to get people comfortable with letting go, and now that the technology is reliable. Obviously that's a trusting as well, right? You need to trust it in order to let go. Those are all deep human things in psychology. Popular top psychologists and economists and technologists, they know this. It took decades to convince people to let go of the wheel. But now that's happening.</p>
+        <p>It took all that time for them to get people comfortable with letting go, and now the technology is reliable. Obviously that's trust as well, right? You need to trust it in order to let go. Those are all deep human things in psychology. Top psychologists, economists, and technologists know this. It took decades to convince people to let go of the wheel. But now that's happening.</p>
       </blockquote>
       <figcaption class="said-who">Paul Visciano</figcaption>
     </figure>
-    <p>Lisanne Bainbridge was a cognitive psychologist at University College London. Factories, process plants, cockpits. In 1983 she published a short paper, <em>Ironies of Automation</em>. Operators who only watch.</p>
+    <p>This is a social experiment at city scale. Not a lab. Phoenix, San Francisco, Los Angeles, Austin. Get a population comfortable enough to let go of the wheel, then take the wheel out. The technology was ready years ago. Trust was not.</p>
+    <p>The companies know. Waymo's pitch is trust — they call the software the world's most trusted driver. They hire human-factors engineers, UX researchers, ethnographers. The job is to make the empty seat feel normal. Tesla has a Human Factors team. The video that tells you not to touch the wheel, the Uber toggle, the early-rider waitlist — that's not the car. That's getting people to surrender control.<sup><a class="ext" href="https://www.pcmag.com/news/waymo-wants-you-to-stop-worrying-and-learn-to-love-the-robotaxi" target="_blank" rel="noopener">10</a></sup></p>
+    <p>Lisanne Bainbridge was a cognitive psychologist at University College London. She studied operators in factories, process plants, and cockpits. In 1983 she published a short paper, <em>Ironies of Automation</em>. Human factors is the engineering name for how people actually behave around machines. She was watching operators whose only job was to monitor a process they no longer ran, and to take over when the automation failed. What she found: the more you automate, the more that leftover person matters — and the worse they get at taking over.</p>
     <aside class="ref">
       <div class="ref-tag">Lisanne Bainbridge · Ironies of Automation · 1983</div>
       <div class="ref-body">
@@ -83,33 +163,20 @@
         <p class="ref-meta"><a class="ext" href="https://doi.org/10.1016/0005-1098(83)90046-8" target="_blank" rel="noopener">Automatica 19(6), 775–779</a></p>
       </div>
     </aside>
-    <p>Skill dies when you stop using it. The next kid never had it to lose.</p>
-    <p>A 2022 study showed this. Give people a car they can't take over, and they call it less safe than one that still has a wheel — even after you show them the numbers. They weren't missing data. They were missing control, and that made them anxious.<sup><a class="ext" href="https://doi.org/10.53728/2765-6500.1579" target="_blank" rel="noopener">7</a></sup></p>
+    <p>The irony: you build a system to get rid of the human, and the leftover human — now the only backup — can no longer do the job. Watching is not practice. Gain and timing — how hard to push, when — go first. The operator who used to be good is a beginner the day they have to take over. The plants in 1983 still had people who had done it by hand. The machines were borrowing those old skills. Later operators never had them. Skill dies when you stop using it.</p>
+    <p>In a car, taking the wheel out is that last step. There is no take-over. A 2022 study gave people that car. They called it less safe than one that still had a wheel — even after they saw the numbers. They weren't missing data. They were missing control, and that made them anxious.<sup><a class="ext" href="https://doi.org/10.53728/2765-6500.1579" target="_blank" rel="noopener">8</a></sup></p>
+    <p>That's the price. You let go because the cabin feels safe. You stop practicing. The next kid never learns, and you can't buy the skill back. Then one day we wake up and people can't drive.</p>
 
     <h2>A basic human skill</h2>
     <figure class="said">
       <blockquote>
-        <p>The next few generations could be the first generation to not know how to drive, which is a basic human skill, but that will disappear in the future because all cars will be self-driving.</p>
+        <p>The next few generations could be the first not to know how to drive. Driving is a basic human skill, but it will disappear because all cars will be self-driving.</p>
       </blockquote>
       <figcaption class="said-who">Paul Visciano</figcaption>
     </figure>
-    <p>In 1983 about half of U.S. 16-year-olds had a license. By 2022 it was about a quarter.<sup><a class="ext" href="https://fortune.com/article/why-does-gen-z-not-want-to-drive-uber-ceo/" target="_blank" rel="noopener">8</a></sup> Uber, cost, cities, phones. A Cybercab with no wheel makes not-driving the product, not a delay.</p>
+    <p>In 1983 about half of U.S. 16-year-olds had a license. By 2022 it was about a quarter.<sup><a class="ext" href="https://fortune.com/article/why-does-gen-z-not-want-to-drive-uber-ceo/" target="_blank" rel="noopener">9</a></sup> Uber, cost, cities, phones. A Cybercab with no wheel makes not-driving the product, not a delay.</p>
     <p>If the Cybercabs work, driving becomes optional, then rare, then a hobby. Except the rebels in the Mustangs.</p>
-
-    <h2>Now with AI</h2>
-    <figure class="said">
-      <blockquote>
-        <p>It took decades to convince people to let go of the wheel, but now that's happening. And now with AI we're learning to let go of a lot of things as well. There's a balance. The more that the machines have autonomy, the less that we have autonomy. In a way it's also we're giving away our freedom.</p>
-      </blockquote>
-      <figcaption class="said-who">Paul Visciano</figcaption>
-    </figure>
-    <p>The map. The phone number. Now the sentence.</p>
-    <figure class="fig">
-      <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/blog/thoughts-on-skill-erosion-gps.jpg" alt="A glowing phone showing turn-by-turn arrows while a paper street map fades on the passenger seat" width="1792" height="1008" loading="lazy">
-      <figcaption class="fig-cap">The map left before the wheel did.</figcaption>
-    </figure>
-    <p>The wheel was the visible one. You can photograph its absence. AI is quieter. Trust, then let go, then forget you used to do it. Months, not decades.</p>
-    <p>I take tools. I write with them. Keep a skill because you might need it.</p>
+    <p>What do you do if the car takes you to jail and there's no wheel to turn? What do you do if you're about to crash and you can't swerve? If your kids never learn to drive, can they ever leave without asking a machine? If a city forgets how to drive, who is still free to leave?</p>
 
     <h2>Sources</h2>
     <ol class="sources">
@@ -117,10 +184,12 @@
       <li><a class="ext" href="https://www.bbc.com/news/technology-17989553" target="_blank" rel="noopener">BBC — Google gets Nevada driving licence for self-drive car</a> (8 May 2012)</li>
       <li><a class="ext" href="https://blog.google/alphabet/just-press-go-designing-self-driving/" target="_blank" rel="noopener">Google — Just press go: designing a self-driving vehicle</a> (Chris Urmson, 27 May 2014)</li>
       <li><a class="ext" href="https://medium.com/waymo/from-post-it-note-to-prototype-the-journey-of-our-firefly-30569ac8fd5e" target="_blank" rel="noopener">Waymo — The journey of our Firefly</a> (Mahan ride 20 Oct 2015)</li>
-      <li><a class="ext" href="https://www.theverge.com/transportation/973099/zoox-amazon-nhtsa-robotaxi-approval" target="_blank" rel="noopener">The Verge — Zoox can charge for rides in steering-wheel-free robotaxis</a> (30 Jul 2026)</li>
+      <li><a class="ext" href="https://www.theverge.com/news/623302/waymo-uber-austin-robotaxi-app-launch" target="_blank" rel="noopener">The Verge — Waymo is now available exclusively on Uber in Austin</a> (4 Mar 2025)</li>
+      <li><a class="ext" href="https://www.axios.com/local/austin/2025/03/04/waymo-uber-self-driving-car-austin" target="_blank" rel="noopener">Axios Austin — What it's like to ride in a self-driving car in Austin</a> (4 Mar 2025)</li>
       <li><a class="ext" href="https://apnews.com/article/tesla-cybercab-austin-elon-musk-driverless-8791add840f4debbc41bcaa9d1e64561" target="_blank" rel="noopener">AP — Tesla launches steering-wheel-free Cybercabs in Austin</a> (3 Sep 2026)</li>
       <li><a class="ext" href="https://doi.org/10.53728/2765-6500.1579" target="_blank" rel="noopener">Lee, Y. J. & Park, J. — The Safety Paradox of Self-Driving Cars</a>, 2022</li>
       <li><a class="ext" href="https://fortune.com/article/why-does-gen-z-not-want-to-drive-uber-ceo/" target="_blank" rel="noopener">Fortune — Gen Z is ditching driver’s licenses for Uber</a> (FHWA: 16-year-olds ~50% licensed in 1983, ~25% in 2022)</li>
+      <li><a class="ext" href="https://www.pcmag.com/news/waymo-wants-you-to-stop-worrying-and-learn-to-love-the-robotaxi" target="_blank" rel="noopener">PCMag — Waymo Wants You to Stop Worrying and Learn to Love the Robotaxi</a> (22 Mar 2024)</li>
       <li><a class="ext" href="https://doi.org/10.1016/0005-1098(83)90046-8" target="_blank" rel="noopener">Bainbridge, L. — Ironies of Automation</a>, <em>Automatica</em> 19(6), 1983</li>
     </ol>
     <div class="links">
@@ -140,5 +209,22 @@
   </footer>
 <script src="analytics.js" defer></script>
 <script src="section-nav.js" defer></script>
+<script>
+(() => {
+  const el = document.querySelector("ol.era");
+  if (!el) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.classList.add("is-on");
+    return;
+  }
+  el.classList.add("era-play");
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    el.classList.add("is-on");
+    io.disconnect();
+  }, { threshold: 0.35 });
+  io.observe(el);
+})();
+</script>
 </body>
 </html>
