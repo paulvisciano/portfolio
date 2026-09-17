@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitcoin is an immutable Git repo — Paul Visciano · Sci-Fi Labs</title>
+  <meta name="description" content="Think of Bitcoin as a Git repository where every commit is signed, the history is immutable, and rewriting the past costs more than the repo is worth.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Bitcoin is an immutable Git repo">
+  <meta property="og:description" content="Signed commits, chained hashes, and a ledger no one can quietly rewrite.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bitcoin is an immutable Git repo">
+  <meta name="twitter:description" content="Signed commits, chained hashes, and a ledger no one can quietly rewrite.">
+  <link rel="canonical" href="https://paulvisciano.com/blog/bitcoin-git-analogy">
+  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="section-nav.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="../index.html">Paul Visciano</a>
+      <a href="../index.html#blog">Blogs</a>
+    </div>
+  </header>
+  <nav class="section-nav" aria-label="Sections">
+    <div class="progress"><div class="progress-bar"></div></div>
+  </nav>
+  <article>
+    <p class="series">Essay · Bitcoin</p>
+    <h1>Bitcoin is an immutable Git repo</h1>
+    <p class="deck">Every transaction is a signed commit. The history is chained. And rewriting the past costs more than the whole repo is worth.</p>
+
+    <div class="callout">In Git, you sign commits to prove who wrote them. In Bitcoin, you sign transactions to prove who owns the coins. Same idea, different thing being proven.</div>
+
+    <h2>The commit message is the transaction</h2>
+    <p>In a normal Git repo, a commit message can say anything — "fix typo," "add tests," "wip." In Bitcoin, the commit message is the transaction itself: who sent what to whom, and how much. The signature attached to it proves you authorized the spend. Anyone can read the ledger and verify the math without trusting you.</p>
+
+    <h2>The hash chains it all together</h2>
+    <p>Each Git commit points back to its parent through a hash — a fingerprint of the snapshot. Change one line of code and every hash downstream changes. Bitcoin does the same thing with blocks. Each block is a hash of the previous one, so the whole ledger is one long chain of fingerprints. Edit history and the chain breaks.</p>
+
+    <h2>Where the analogy gets interesting</h2>
+    <p>In Git, whoever owns the repository can rewrite history — force-push, amend, squash. There is a boss. In Bitcoin, there is no boss. Thousands of miners worldwide race to add the next block, and the network accepts whichever chain has the most work behind it. Nobody can quietly rewrite the past because rewriting it would mean out-mining everyone else, which is astronomically expensive.</p>
+
+    <div class="callout">An immutable Git repo where rewriting history costs more than the entire repo is worth. That is the cleanest way to put it. The cost of rewriting is the lock, and the lock is what makes it trustworthy without a boss.</div>
+
+    <h2>The master password</h2>
+    <p>When you set up a Bitcoin wallet, it generates a list of twelve or twenty-four random words — your master password. You never type it into a website. You write it down. Lose the physical device and you type those words into a new one; it rebuilds your entire wallet — all your addresses, all your balances. The coins were never stored on the device. They live on the blockchain. The wallet is just the key that unlocks them.</p>
+
+    <h2>Why this matters for your money</h2>
+    <p>If you keep Bitcoin on an exchange, the exchange holds the keys — and they can freeze, restrict, or hand over your holdings if a regulator or court orders it. That is the difference between having a Bitcoin balance on someone else's server and holding the master password yourself. The analogy holds: a Git repo you don't control is just a copy someone else can delete.</p>
+
+    <div class="links">
+      <a href="own-your-hardware.html">Own your hardware</a>
+      <a href="reclaim-your-data.html">Reclaim your data</a>
+      <a href="they-can-pull-the-plug.html">They can pull the plug</a>
+      <a href="../index.html#blog">All blogs</a>
+    </div>
+    <div class="more">
+      <h3>More from Sci-Fi Labs</h3>
+      <a href="own-your-hardware.html">Own your hardware →</a>
+      <a href="reclaim-your-data.html">Reclaim your data →</a>
+      <a href="they-can-pull-the-plug.html">They can pull the plug →</a>
+      <a href="beyond-the-chatbot.html">Local AI still looks like a chatbot →</a>
+    </div>
+  </article>
+  <footer>
+    Sci-Fi Labs · Spatial apps for web, mobile, and XR · <a href="../index.html" style="color:inherit">paulvisciano.com</a>
+  </footer>
+<script src="analytics.js" defer></script>
+<script src="section-nav.js" defer></script>
+</body>
+</html>
