@@ -1,0 +1,90 @@
+name: Blog Review Checks
+
+on:
+  pull_request:
+    paths:
+      - 'blog/**/*.html'
+      - '.github/skills/portfolio-blog.md'
+
+jobs:
+  review-checklist:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find changed blog HTML files
+        id: files
+        run: |
+          set -e
+          files=$(git diff --name-only --diff-filter=ACMR origin/main...HEAD -- 'blog/*.html' || true)
+          echo "Changed blog files:"
+          echo "$files"
+          {
+            echo 'files<<EOF'
+            echo "$files"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run structural checks
+        if: steps.files.outputs.files != ''
+        run: |
+          set -e
+          fail=0
+          for f in ${{ steps.files.outputs.files }}; do
+            echo "Checking $f"
+            if ! grep -q '<title>' "$f"; then echo "FAIL: missing <title> in $f"; fail=1; fi
+            if ! grep -q 'meta name="description"' "$f"; then echo "FAIL: missing meta description in $f"; fail=1; fi
+            if ! grep -q 'rel="canonical"' "$f"; then echo "FAIL: missing canonical in $f"; fail=1; fi
+            if ! grep -q 'blog.css' "$f"; then echo "FAIL: missing blog.css in $f"; fail=1; fi
+            if ! grep -q 'section-nav.css' "$f"; then echo "FAIL: missing section-nav.css in $f"; fail=1; fi
+            if ! grep -q 'class="callout"' "$f"; then echo "WARN: no .callout in $f (recommended)"; fi
+            if ! grep -q 'analytics.js' "$f"; then echo "WARN: analytics.js not referenced in $f"; fi
+            if grep -qiE 'lorem ipsum|TODO|TBD|placeholder|xxx' "$f"; then echo "FAIL: placeholder text found in $f"; fail=1; fi
+            # basic balance check for a few tags
+            for tag in article h1 p; do
+              open=$(grep -c "<$tag" "$f" || true)
+              close=$(grep -c "</$tag>" "$f" || true)
+              if [ "$open" -ne "$close" ]; then echo "FAIL: unbalanced <$tag> in $f ($open open, $close close)"; fail=1; fi
+            done
+          done
+          if [ "$fail" -ne 0 ]; then
+            echo "Structural checks failed."
+            exit 1
+          fi
+          echo "Structural checks passed."
+
+      - name: Comment review checklist on PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const files = (process.env.FILES || '').trim().split('\n').filter(Boolean);
+            const body = [
+              '## Blog review checklist',
+              '',
+              'Automated structural checks ran on the changed blog HTML.',
+              '',
+              '### Required (human)',
+              '- [ ] **Fact-check**: claims, numbers, dates, and named sources are accurate. Link primary sources where possible.',
+              '- [ ] **Voice match**: tone matches existing posts (short paragraphs, plain language first, one idea per paragraph, a single `.callout` for the thesis).',
+              '- [ ] **Live preview**: open the preview link and confirm layout, links, and images render correctly.',
+              '',
+              '### Automated',
+              files.length ? files.map(f => `- ✅ structure OK: \`${f}\``).join('\n') : '- No blog HTML changes detected.',
+              '',
+              '_Fill the human boxes before merging._'
+            ].join('\n');
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+        env:
+          FILES: ${{ steps.files.outputs.files }}
