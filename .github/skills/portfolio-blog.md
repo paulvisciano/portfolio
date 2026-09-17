@@ -7,10 +7,11 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
 
 ## Hard rules (learned from mistakes)
 1. **Never** write a placeholder or temporary version of `index.html`.
-2. **Never** overwrite `index.html` to "fix" a card. If a homepage card is needed, do a single targeted edit on `main` (or a tiny branch) — insert one `<a class="blog-card">...</a>` block in the right spot, then stop.
+2. **Never** overwrite `index.html` to "fix" a card. If a homepage card is needed, do a single targeted edit on a branch — insert one `<a class="blog-card">...</a>` block in the right spot, then stop.
 3. Prefer **one** `create_or_update_file` (or `push_files`) call for the blog HTML. Do not chain create-branch → update-file → create-PR → merge when a direct file write on `main` is enough and the user didn't ask for review.
-4. If the user explicitly asks for a PR, create the branch, push the file, open the PR — but still keep it to those three calls. No extra reads or rewrites.
-5. Do not re-derive or re-apply homepage changes after a restore. One edit, done.
+4. **Always go through the PR process.** Even if the user says "just publish it," create a branch, push the file(s), open a PR against `main`, and stop. Do **not** merge unless the user explicitly says to merge. This gives them a chance to review the diff.
+5. If the user explicitly asks for a PR, create the branch, push the file, open the PR — but still keep it to those three calls. No extra reads or rewrites.
+6. Do not re-derive or re-apply homepage changes after a restore. One edit, done.
 
 ## Workflow
 1. **Read the template once** (cache it for the session):
@@ -22,11 +23,13 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
    - `<nav class="section-nav">` progress bar.
    - `<article>` with `.series`, `h1`, `.deck`, content, `.callout` for key lines, `.links`, `.more`, footer.
    - Scripts: `analytics.js` + `section-nav.js` at the bottom.
-3. **Decide delivery**:
-   - Default: write `blog/<slug>.html` directly to `main`.
-   - If user asks for review: branch `blog/<slug>`, push file, open PR against `main`.
-4. **Homepage card** (only if asked or clearly expected): one insertion of a `.blog-card` in the `#blog .blog-grid`, placed near the top. No other homepage edits.
-5. **Stop.** Report the URL. Do not offer follow-ups unless useful.
+3. **Delivery (PR required):**
+   - Create branch `blog/<slug>` from `main`.
+   - Push `blog/<slug>.html` to that branch.
+   - Open PR: title = post title, body = one-line summary + link to rendered URL, base = `main`, head = `blog/<slug>`.
+   - Report the PR URL. Stop. Do not merge.
+4. **Homepage card** (only if asked or clearly expected): one insertion of a `.blog-card` in the `#blog .blog-grid`, placed near the top, on the same branch. No other homepage edits.
+5. **Stop.** Report the PR URL. Do not offer follow-ups unless useful.
 
 ## Template skeleton (fill in, don't reinvent)
 ```html
@@ -101,3 +104,4 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
 - Creating branches/PRs the user didn't ask for.
 - Copying CSS or JS into the post.
 - Leaving placeholder text or broken image paths.
+- Merging the PR without an explicit user request.
