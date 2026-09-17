@@ -12,6 +12,7 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
 4. **Always go through the PR process.** Even if the user says "just publish it," create a branch, push the file(s), open a PR against `main`, and stop. Do **not** merge unless the user explicitly says to merge. This gives them a chance to review the diff.
 5. If the user explicitly asks for a PR, create the branch, push the file, open the PR — but still keep it to those three calls. No extra reads or rewrites.
 6. Do not re-derive or re-apply homepage changes after a restore. One edit, done.
+7. **Always include a live preview link** in the PR body so the post can be reviewed in a browser before merge.
 
 ## Workflow
 1. **Read the template once** (cache it for the session):
@@ -26,10 +27,21 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
 3. **Delivery (PR required):**
    - Create branch `blog/<slug>` from `main`.
    - Push `blog/<slug>.html` to that branch.
-   - Open PR: title = post title, body = one-line summary + link to rendered URL, base = `main`, head = `blog/<slug>`.
+   - Open PR: title = post title, body = one-line summary + **live preview link** (see below), base = `main`, head = `blog/<slug>`.
    - Report the PR URL. Stop. Do not merge.
 4. **Homepage card** (only if asked or clearly expected): one insertion of a `.blog-card` in the `#blog .blog-grid`, placed near the top, on the same branch. No other homepage edits.
 5. **Stop.** Report the PR URL. Do not offer follow-ups unless useful.
+
+## Live preview link (required in every PR)
+Because the site is static HTML, a branch push does not automatically produce a public URL. Generate one of these and paste it into the PR body under a "Preview" heading:
+
+- **Preferred:** Deploy the branch to a Vercel preview and use that deployment URL. Command shape:
+  `vercel deploy --prebuilt` is not available here; instead use the Vercel MCP `deploy_to_vercel` tool with `target: "preview"`, project name `portfolio`, and the single blog HTML file (plus any shared assets the page needs, e.g. `blog.css`, `section-nav.css`, `analytics.js`, `section-nav.js` if referenced). Use the returned preview URL.
+- **Fallback:** If Vercel deploy is unavailable, use the raw GitHub URL for the file on the branch:
+  `https://raw.githubusercontent.com/paulvisciano/portfolio/blog/<slug>/<slug>.html`
+  Note: raw HTML may render without styles; prefer the Vercel preview when possible.
+
+Always include the link, even if it is the raw fallback. Label it clearly so the reviewer can open it in a browser.
 
 ## Template skeleton (fill in, don't reinvent)
 ```html
@@ -105,3 +117,4 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
 - Copying CSS or JS into the post.
 - Leaving placeholder text or broken image paths.
 - Merging the PR without an explicit user request.
+- Opening a PR without a live preview link.
