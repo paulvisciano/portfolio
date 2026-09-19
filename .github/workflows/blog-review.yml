@@ -1,0 +1,139 @@
+name: Blog Review
+
+on:
+  pull_request:
+    paths:
+      - 'blog/**/*.html'
+      - '.github/skills/portfolio-blog.md'
+      - '.github/workflows/blog-review.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find changed blog posts
+        id: files
+        run: |
+          set -e
+          files=$(git diff --name-only --diff-filter=ACMR origin/main...HEAD -- 'blog/*.html' || true)
+          echo "Changed blog files:"
+          echo "$files"
+          {
+            echo "files<<EOF"
+            echo "$files"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Structure and link checks
+        if: steps.files.outputs.files != ''
+        run: |
+          set -e
+          fail=0
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            echo "Checking $f"
+            if ! grep -q '<article' "$f"; then
+              echo "::error::$f missing <article>"
+              fail=1
+            fi
+            if ! grep -q 'class="callout"' "$f"; then
+              echo "::warning::$f has no .callout (thesis line)"
+            fi
+            if ! grep -q 'analytics.js' "$f"; then
+              echo "::error::$f missing analytics.js"
+              fail=1
+            fi
+            if ! grep -q 'section-nav.js' "$f"; then
+              echo "::error::$f missing section-nav.js"
+              fail=1
+            fi
+            if ! grep -q 'blog.css' "$f"; then
+              echo "::error::$f missing blog.css"
+              fail=1
+            fi
+            # relative links should point at existing files
+            while IFS= read -r link; do
+              target=$(echo "$link" | sed -E 's/.*href="([^"]+)".*/\1/')
+              case "$target" in
+                http*|mailto*|\#*) continue ;;
+              esac
+              dir=$(dirname "$f")
+              if [ ! -f "$dir/$target" ] && [ ! -f "$target" ]; then
+                echo "::error::$f links to missing file: $target"
+                fail=1
+              fi
+            done < <(grep -oE 'href="[^"]+\.html[^"]*"' "$f" || true)
+          done <<< "${{ steps.files.outputs.files }}"
+          if [ "$fail" -ne 0 ]; then
+            echo "Structure checks failed"
+            exit 1
+          fi
+
+      - name: Fact-check and voice review (AI)
+        if: steps.files.outputs.files != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -e
+          # Collect changed content
+          content=""
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            content+="===== $f =====\n"
+            content+="$(cat "$f")\n\n"
+          done <<< "${{ steps.files.outputs.files }}"
+
+          # Lightweight deterministic checks first
+          issues=""
+          if echo "$content" | grep -qiE 'as an ai|i am an ai|language model|openai|chatgpt'; then
+            issues+="- Avoids mentioning AI/LLM origins or vendor names in body.\n"
+          fi
+          if echo "$content" | grep -qiE 'lorem ipsum|TODO|TBD|placeholder|xxx'; then
+            issues+="- No placeholder text allowed.\n"
+          fi
+
+          # Ask the assistant (Grok) for a fact + voice pass via the xAI API if a key exists.
+          # Falls back to a structured checklist comment if no key is configured.
+          if [ -n "${{ secrets.XAI_API_KEY }}" ]; then
+            prompt=$(cat <<'PROMPT'
+You are reviewing a blog post for paulvisciano.com. Check two things:
+1. FACTS: any specific claims (numbers, dates, names, technical assertions) that look wrong or unverifiable. List them.
+2. VOICE: does it sound like a thoughtful indie builder writing plainly — short paragraphs, analogies first, no hype, no corporate tone, no filler? Flag anything off.
+Return a short markdown review. If clean, say so.
+PROMPT
+)
+            review=$(curl -sS https://api.x.ai/v1/chat/completions \
+              -H "Authorization: Bearer ${{ secrets.XAI_API_KEY }}" \
+              -H "Content-Type: application/json" \
+              -d "$(jq -n --arg sys "$prompt" --arg user "$content" '{model:"grok-4-fast",messages:[{role:"system",content:$sys},{role:"user",content:$user}],temperature:0.2}')" \
+              | jq -r '.choices[0].message.content // "(no review returned)"')
+          else
+            review="## Blog review (no XAI_API_KEY configured)\n\nAutomated checks passed. Please manually confirm:\n- [ ] Facts are accurate and sourced where needed\n- [ ] Voice matches paulvisciano.com (plain, analogy-first, no hype)\n- [ ] No placeholder text\n- [ ] Live preview link is in the PR body and renders correctly\n"
+          fi
+
+          body="## 🤖 Blog review\n\n$issues\n$review\n\n---\n_This comment is auto-generated by the Blog Review workflow. Re-run the check after edits._"
+          gh pr comment "$PR_NUMBER" --body "$body"
+
+      - name: Require live preview link in PR body
+        if: steps.files.outputs.files != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -e
+          body=$(gh pr view "$PR_NUMBER" --json body -q .body)
+          if ! echo "$body" | grep -qiE 'preview|https?://'; then
+            echo "::error::PR body must include a live preview link (see portfolio-blog skill)."
+            exit 1
+          fi
+          echo "Preview link present."

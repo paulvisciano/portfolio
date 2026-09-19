@@ -13,6 +13,7 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
 5. If the user explicitly asks for a PR, create the branch, push the file, open the PR — but still keep it to those three calls. No extra reads or rewrites.
 6. Do not re-derive or re-apply homepage changes after a restore. One edit, done.
 7. **Always include a live preview link** in the PR body so the post can be reviewed in a browser before merge.
+8. **The Blog Review workflow runs automatically** on every PR that touches `blog/*.html`. It posts a fact-check + voice review comment and fails the check if the PR body lacks a preview link or the HTML is structurally broken. Do not bypass it.
 
 ## Workflow
 1. **Read the template once** (cache it for the session):
@@ -29,6 +30,7 @@ Ship a clean, fast blog post with minimal tool calls. No placeholder files, no o
    - Push `blog/<slug>.html` to that branch.
    - Open PR: title = post title, body = one-line summary + **live preview link** (see below), base = `main`, head = `blog/<slug>`.
    - Report the PR URL. Stop. Do not merge.
+   - The Blog Review check will comment on the PR within a minute or two. Read it before merging.
 4. **Homepage card** (only if asked or clearly expected): one insertion of a `.blog-card` in the `#blog .blog-grid`, placed near the top, on the same branch. No other homepage edits.
 5. **Stop.** Report the PR URL. Do not offer follow-ups unless useful.
 
@@ -118,3 +120,4 @@ Always include the link, even if it is the raw fallback. Label it clearly so the
 - Leaving placeholder text or broken image paths.
 - Merging the PR without an explicit user request.
 - Opening a PR without a live preview link.
+- Skipping the Blog Review check or merging while it is red.
