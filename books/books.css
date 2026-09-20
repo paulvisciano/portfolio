@@ -146,50 +146,35 @@ body.reader .read-progress { display: block; }
 .library-page {
   max-width: var(--library);
   margin: 0 auto;
-  padding: 2.75rem var(--gutter) 4.5rem;
-}
-.kicker {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.55rem;
+  padding: 2.25rem var(--gutter) 5rem;
 }
 .library h1 {
   font-family: var(--font-display);
-  font-size: var(--fs-h1);
+  font-size: clamp(32px, 4.5vw, 48px);
   line-height: 1;
   letter-spacing: -0.03em;
   font-weight: 400;
-  margin: 0 0 1.15rem;
-}
-.deck {
-  font-size: var(--fs-lead);
-  line-height: 1.65;
-  color: var(--muted);
-  margin: 0 0 2rem;
+  margin: 0;
 }
 
 .shelf {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 22rem));
-  gap: var(--gap-lg);
-  margin-top: var(--gap-xl);
-  padding-bottom: var(--gap-md);
-  border-bottom: 2px solid var(--border);
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+  margin-top: 1.75rem;
+  align-items: stretch;
 }
 .volume {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-left-width: 3px;
-  border-left-color: var(--border-hi);
   padding: 0;
   overflow: hidden;
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
   transition: border-color 0.15s, background 0.15s;
+  height: 100%;
 }
 .volume:hover {
   border-color: var(--border-hi);
@@ -207,14 +192,19 @@ body.reader .read-progress { display: block; }
   object-fit: cover;
   display: block;
 }
-.volume-body { padding: var(--gap-lg); }
+.volume-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.15rem 1.2rem 1.2rem;
+}
 .volume-meta {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 var(--gap-sm);
+  margin: 0 0 0.55rem;
 }
 .volume h2 {
   font-family: var(--font-display);
@@ -223,13 +213,13 @@ body.reader .read-progress { display: block; }
   letter-spacing: -0.02em;
   font-weight: 400;
   color: var(--fg-bright);
-  margin: 0 0 var(--gap-xs);
+  margin: 0 0 0.4rem;
 }
 .volume-sub {
-  font-size: var(--fs-small);
+  font-size: 0.95rem;
   line-height: 1.5;
   color: var(--muted);
-  margin: 0 0 var(--gap-md);
+  margin: 0;
 }
 .volume-open {
   font-family: var(--font-mono);
@@ -237,6 +227,8 @@ body.reader .read-progress { display: block; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
+  margin-top: auto;
+  padding-top: 1.1rem;
 }
 .volume:hover .volume-open { color: var(--fg-bright); }
 
