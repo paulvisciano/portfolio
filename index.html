@@ -200,41 +200,53 @@
       </div>
     </section>
     <hr class="hr">
-    <section class="section" id="about" data-od-id="about">
+    <section class="section" data-od-id="about" id="about">
       <div class="container">
         <div class="about-grid">
-          <div class="about-text">
-            <h2 data-i18n="about_title">About</h2>
-            <p data-i18n="about_p1">I'm Paul Visciano. I build spatial web apps — the same URL on a phone, a desktop, and Vision Pro. A life on a globe.</p>
-            <p data-i18n="about_p2">I run Sci-Fi Labs. The bet is simple: own the OS, own the apps, own the stack. No app store, no subscription, software that answers to you.</p>
+          <div>
+            <p class="about-label" data-i18n="about_label">About</p>
+            <div class="about-portrait" data-od-id="portrait">
+              <picture><source type="image/webp" srcset="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/narration-poster.webp"><img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/narration-poster.jpg" alt="Paul Visciano" width="784" height="1168" loading="lazy" decoding="async"></picture>
+              <video class="portrait-video" src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/narration.mp4" muted playsinline preload="metadata" aria-hidden="true"></video>
+              <button class="portrait-unmute" data-od-id="portrait-unmute" type="button" aria-label="Unmute narration" aria-pressed="false"><span class="um-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></span><span class="um-label">Unmute</span></button>
+              <div class="portrait-controls" data-od-id="portrait-controls"><button class="pc-replay" type="button" aria-label="Replay narration"><span class="pc-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></span><span>Replay</span></button></div>
+            </div>
           </div>
+          <div class="about-text" id="about-text" data-od-id="about-text"><div class="about-scroll" id="about-scroll">
+            <p data-i18n="about_p1">Now I design and build the full stack myself — web, mobile, and XR — using AI as a collaborator. Through Sci-Fi Labs the goal is the same: turn science-fiction ideas into real products, and push web technologies past their usual limits.</p>
+            <p data-i18n="about_p2">Underneath it all is a longer bet. Sovereignty. Memory you own. Models you run. Tools that answer to you — not rented, not watched, public only when you choose.</p>
+            <p data-i18n="about_p3">Before going independent, I was a Principal Engineer at OutSystems — the AI-powered low-code platform used by more than a thousand enterprises worldwide. I moved there specifically to work closer with the Ionic team after the acquisition, and did: design systems, shared UI, and the patterns teams reuse so enterprise software doesn't reinvent itself on every project. That work crossed into Stencil.js. I partnered with Apple to implement features for their internal design system built on Stencil, and contributed to the open-source project directly.</p>
+            <p data-i18n="about_p4">Before that, more than a decade at Paylocity on Core Mobile — the app employees open to clock in, request time off, and check a paycheck. Paylocity is a leading cloud HCM platform serving roughly 44,400 companies and millions of people. We rebuilt the mobile stack more than once on Ionic and Xamarin so other teams could ship without fighting the platform.</p>
+          </div></div>
         </div>
       </div>
     </section>
     <hr class="hr">
-    <section class="section" id="contact" data-od-id="contact">
+    <section class="section" data-od-id="contact" id="contact">
       <div class="container">
-        <div class="contact-grid">
-          <div>
-            <h2 data-i18n="contact_title">Connect</h2>
-            <p data-i18n="contact_p">For collaborations, questions, or just to say hi.</p>
-            <div class="contact-links">
-              <a href="https://x.com/paulvisciano" target="_blank" rel="noopener">X / Twitter</a>
-              <a href="https://github.com/paulvisciano" target="_blank" rel="noopener">GitHub</a>
-              <a href="mailto:hello@paulvisciano.com">Email</a>
-            </div>
-          </div>
+        <div class="contact-inner">
+          <p class="greeting" style="font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--gap-md);" data-i18n="contact_label">Contact</p>
+          <h2 style="margin-bottom: var(--gap-md);" data-i18n="contact_h2">A note is welcome.</h2>
+          <p class="lead" data-i18n="contact_lead">If you want to reach me, write.</p>
+          <form class="contact-form" id="contact-form">
+            <div class="field"><label for="cf-name" data-i18n="label_name">Name</label><input class="input" id="cf-name" type="text" placeholder="Your name" required=""></div>
+            <div class="field"><label for="cf-email" data-i18n="label_email">Email</label><input class="input" id="cf-email" type="email" placeholder="you@domain.com" required=""></div>
+            <div class="field"><label for="cf-msg" data-i18n="label_msg">Message</label><textarea class="textarea" id="cf-msg" placeholder="Your note." required=""></textarea></div>
+            <button class="submit-btn" type="submit" data-i18n="submit">Send the note</button>
+          </form>
         </div>
       </div>
     </section>
   </main>
+  <div class="closing-tagline">
+    <p class="hero-tagline" data-i18n="hero_tagline">Own the OS. Own the apps. Own the stack.</p>
+  </div>
   <footer class="footer" data-od-id="footer">
     <div class="container">
       <p>© Paul Visciano · Sci-Fi Labs</p>
     </div>
   </footer>
-  <script src="app.js"></script>
-  <script src="i18n-core.js"></script>
-  <script src="lang-switch.js"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
