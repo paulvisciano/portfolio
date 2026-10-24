@@ -14,6 +14,8 @@ Underneath it: **your life is your data.** Conversations, photos, documents, mom
 
 ## Sections
 
+- **Courses** — Jailbreak Your Laptop (five published parts) and Detox from Technology (private validation preview). Existing `#series` links continue to reach the catalog.
+
 - **Work** — featured Sci-Fi apps with video previews
 - **Blogs** — field notes on each project
 - **About** — background, timeline, expertise
@@ -60,3 +62,11 @@ Push to `main`. With the repo linked to Vercel, production updates automatically
 
 *Sci-Fi is reality.*  
 *Let's build the future together.*
+
+## Course review workflow
+
+The `codex/courses-and-detox` branch has automatic Vercel deployments disabled in `vercel.json`. The live portfolio is unchanged until this PR is reviewed and merged. This branch setting does not disable deployments for `main` or other branches.
+
+The Detox course card links to the existing owner-only ChatGPT Sites validation page. Its working interest form, private analytics dashboard, and database remain hosted there. This PR does not provision a new database, move backend data, or expose the Detox preview publicly. The catalog clearly labels the private destination and required ChatGPT sign-in.
+
+Moving the Detox page and backend into this Vercel project is a separate deployment step. The current Vercel connection needs access to the `paul-viscianos-projects` team before its preview protection, database resources, and environment configuration can be inspected. Do not remove the private-preview label or publish the course without approval.

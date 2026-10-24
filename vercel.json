@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "git": { "deploymentEnabled": { "codex/courses-and-detox": false } },
   "alias": ["paulvisciano.vercel.app"],
   "cleanUrls": true,
   "redirects": [
