@@ -1,9 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "git": { "deploymentEnabled": { "codex/courses-and-detox": false } },
+  "git": { "deploymentEnabled": { "codex/courses-and-detox": false, "codex/course-routes": false } },
   "alias": ["paulvisciano.vercel.app"],
   "cleanUrls": true,
   "redirects": [
+    { "source": "/courses", "destination": "/courses/", "permanent": false },
+    { "source": "/courses/detox-from-technology", "destination": "/courses/detox-from-technology/", "permanent": false },
     { "source": "/apps/neuro-graph", "destination": "/apps/neuro-graph/", "permanent": false },
     { "source": "/apps/the-secret-family", "destination": "/apps/the-secret-family/", "permanent": false },
     { "source": "/apps/where-is-paul", "destination": "/apps/where-is-paul/", "permanent": false },

@@ -70,3 +70,13 @@ The `codex/courses-and-detox` branch has automatic Vercel deployments disabled i
 The Detox course card links to the existing owner-only ChatGPT Sites validation page. Its working interest form, private analytics dashboard, and database remain hosted there. This PR does not provision a new database, move backend data, or expose the Detox preview publicly. The catalog clearly labels the private destination and required ChatGPT sign-in.
 
 Moving the Detox page and backend into this Vercel project is a separate deployment step. The current Vercel connection needs access to the `paul-viscianos-projects` team before its preview protection, database resources, and environment configuration can be inspected. Do not remove the private-preview label or publish the course without approval.
+
+## Course detail route migration (in progress)
+
+The actual course frontend now lives in `courses/detox-from-technology/` (HTML, CSS, and JavaScript), with a catalog at `courses/index.html`. Both pages use local portfolio routes and assets. The main catalog is proposed to link directly to `/courses/detox-from-technology/`.
+
+This migration is not ready for production. The same-origin collection endpoints `/api/detox/status`, `/api/detox/interest`, and `/api/detox/events` still need a provisioned backend and deployment verification. The form remains disabled unless the status endpoint confirms real collection is available; it never displays a false save confirmation. No database SDK or mock backend is substituted.
+
+The connected Vercel app currently lacks authorization for `paul-viscianos-projects` (`team_YlmryILsKB2WTaWYb7ew8Vkf`). Team authorization is required to inspect existing storage, provision the integration if needed, configure its server-only environment, and verify deployment. Private access requirements must be preserved until public release is approved.
+
+The `codex/course-routes` branch has automatic deployments disabled. Complete and verify the backend and private access before merging its draft PR. The original owner-private Sites deployment remains available during migration.
