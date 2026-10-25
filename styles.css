@@ -952,8 +952,13 @@ background: oklch(12% 0.003 260 / 0.6);
 .course-access-note { margin-top: 8px; padding-top: 10px; }
 .course-outline-open { align-self: flex-start; color: var(--muted); background: none; border: 0; padding: 10px 0; font: 11px/1.5 var(--font-mono); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
 .course-controls { display: flex; align-items: center; justify-content: flex-end; gap: 20px; margin-top: 16px; }
-.course-controls button { width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 50%; background: none; color: var(--fg); font-size: 20px; cursor: pointer; }
-.course-controls button:hover { background: var(--bg-card); border-color: var(--muted); }
+.course-controls button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 4px; background: none; color: var(--muted); font-size: 16px; cursor: pointer; transition: color .15s ease, background-color .15s ease; }
+.course-controls button:hover { color: var(--fg); background: var(--bg-card); }
+.course-controls [data-course-prev], .course-controls [data-course-next] { font-size: 0; }
+.course-controls [data-course-prev]::before, .course-controls [data-course-next]::before { content: ""; display: block; width: 8px; height: 8px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; }
+.course-controls [data-course-prev]::before { transform: translateX(2px) rotate(-135deg); }
+.course-controls [data-course-next]::before { transform: translateX(-2px) rotate(45deg); }
+@media (prefers-reduced-motion: reduce) { .course-controls button { transition: none; } }
 .course-position { font: 11px var(--font-mono); color: var(--muted); letter-spacing: .12em; }
 .course-controls button:focus-visible, .courses-grid:focus-visible, .course-outline-open:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 .course-outline-dialog { margin: auto; width: min(90vw, 640px); max-height: 80svh; overflow: auto; padding: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); color: var(--fg); }
