@@ -437,7 +437,11 @@
 <p class="signup-disclosure">This is an interest list for a proposed course. There is no payment, enrollment, or confirmed launch date.</p>
 </div>
 <div class="signup-card">
-<form method="post" action="/api/detox/interest" novalidate>
+<form method="post" action="https://api.web3forms.com/submit" novalidate>
+<input type="hidden" name="access_key" value="a33725d0-dfc9-45e8-8e4b-22b79f1bcebf"/>
+<input type="hidden" name="subject" value="Detox from Technology — course interest"/>
+<input type="hidden" name="from_name" value="Detox course interest"/>
+<input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off" aria-hidden="true"/>
 <p class="label">JOIN THE INTEREST LIST</p>
 <h3>Be here for the beginning.</h3>
 <label for="email">Your email</label>
@@ -456,17 +460,17 @@
 <input id="website" type="text" tabindex="-1" autoComplete="off" name="website"/>
 </div>
 <label class="consent">
-<input type="checkbox" required=""/>
+<input type="checkbox" name="consent" required=""/>
 <span>I’d like to receive email updates about this course. I can ask to be removed at any time.</span>
 </label>
-<button class="pill submit" type="submit" disabled>Keep me in the loop<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
+<button class="pill submit" type="submit">Keep me in the loop<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right" aria-hidden="true">
 <path d="M7 7h10v10">
 </path>
 <path d="M7 17 17 7">
 </path>
 </svg>
 </button>
-<p id="email-note" class="fineprint">Your email is used for this course only. <button type="button" class="inline-button">How we respect your privacy ↗</button>
+<p id="email-note" class="fineprint">Your email and optional goal are sent to Paul through <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms</a> for this course only. <button type="button" class="inline-button">How we respect your privacy ↗</button>
 </p>
 </form>
 </div>
@@ -526,7 +530,7 @@
 </path>
 </svg>
 </summary>
-<p>Your email and optional goal are saved securely for course updates and planning. No automated email sequence is running yet. You can request removal through the contact link in our privacy details.</p>
+<p>Your email, optional goal, and consent details are sent through Web3Forms to Paul’s inbox for course updates and planning. No automated email sequence or confirmation email is running yet. You can request removal through the contact link in our privacy details.</p>
 </details>
 </div>
 </section>
@@ -571,18 +575,14 @@
 </button>
 <p class="eyebrow">YOUR ATTENTION. YOUR CHOICE.</p>
 <h2>Simple, respectful measurement.</h2>
-<p>We save your email, optional goal, consent version, and signup time only when you submit the form. Email addresses are stored separately from anonymous page events. They are not sent to an analytics or advertising service.</p>
-<p>To understand interest, we count visits, curriculum opens, exercise choices, form engagement, and newly saved signups. A random ID lasts for this browser tab. Reports cover 90 days; older events are deleted when new events arrive. We group referral traffic into broad channels and do not save full URLs or campaign text.</p>
-<p>The application stores no IP addresses, browser fingerprints, or ad identifiers. There are no tracking cookies or third-party analytics scripts. Hosting providers may process technical logs to operate the site.</p>
+<p>When you join, your email, optional goal, and consent text, version, and time are sent through <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms</a> to Paul’s inbox. They are used for course updates and planning. Joining is free and does not enroll you in a course.</p>
+<p>Course funnel measurement is not enabled on this page yet. We do not send your email or form contents to an analytics or advertising service.</p>
+<p>This form uses Web3Forms to process and deliver your submission. Web3Forms, the email provider, and the hosting provider may process technical logs to operate their services.</p>
 <label class="metrics-setting">
-<span>
-<strong>Anonymous page measurement</strong>
-<small>Optional. The form works either way.</small>
-</span>
-<input type="checkbox" checked=""/>
+<span><strong>Anonymous page measurement</strong><small>Not enabled. Joining the list does not enable tracking.</small></span>
+<input type="checkbox" disabled aria-label="Anonymous page measurement is not enabled"/>
 </label>
-<p class="fineprint">Global Privacy Control and Do Not Track automatically turn measurement off. This browser remembers your choice using local storage. Turning measurement off stops future events; existing anonymous counts cannot be linked back to you.</p>
-<p>Course interest records are retained until you request removal or the project closes. For access or deletion, <a href="/#contact" target="_blank" rel="noreferrer">contact Paul</a> using the email you signed up with. Future course emails will include an unsubscribe option.</p>
+<p>Course interest emails are retained until you request removal or the project closes. To request access or removal, <a href="/#contact">contact Paul</a> using the email you signed up with. No automated confirmation or email sequence is sent. Future course updates will explain how to stop receiving them.</p>
 <button class="pill">Done <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check" aria-hidden="true">
 <path d="M20 6 9 17l-5-5">
 </path>
@@ -594,3 +594,4 @@
 </noscript>
 </body>
 </html>
+
