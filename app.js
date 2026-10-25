@@ -463,17 +463,64 @@ window.__userInteracted = false;
 (function () {
   var form = document.getElementById('contact-form');
   if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = document.getElementById('cf-name').value.trim();
-    var email = document.getElementById('cf-email').value.trim();
-    var msg = document.getElementById('cf-msg').value.trim();
-    var subject = 'Portfolio contact — ' + (name || 'New message');
-    var body = 'From: ' + name + ' <' + email + '>\n\n' + msg;
-    window.location.href = 'mailto:paulvisciano.dev@gmail.com?subject=' +
-      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    form.querySelector('.form-confirm').hidden = false;
-    form.querySelector('button').disabled = true;
+  var button = form.querySelector('button[type="submit"]');
+  var status = document.getElementById('contact-status');
+  var fields = ['cf-name', 'cf-email', 'cf-msg'].map(function (id) { return document.getElementById(id); });
+  var busy = false;
+  var fallback = {
+    submit: 'Send the note',
+    contact_sending: 'Sending…',
+    contact_success: 'Message sent. Thanks for reaching out.',
+    contact_error: 'Your message could not be sent. Please try again.',
+    contact_timeout: 'The request timed out. Your message may have been sent; please check before retrying.',
+    contact_invalid: 'Please enter your name and a message.'
+  };
+  function text(key) { return (window.PV_I18N && window.PV_I18N.t(key)) || fallback[key]; }
+  function show(key) {
+    status.setAttribute('data-i18n', key);
+    status.textContent = text(key);
+    status.hidden = false;
+  }
+  function setBusy(value) {
+    busy = value;
+    button.disabled = value;
+    button.setAttribute('data-i18n', value ? 'contact_sending' : 'submit');
+    button.textContent = text(value ? 'contact_sending' : 'submit');
+    form.setAttribute('aria-busy', String(value));
+    fields.forEach(function (field) { field.readOnly = value; });
+  }
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (busy || !form.reportValidity()) return;
+    if (!fields[0].value.trim() || !fields[2].value.trim()) { show('contact_invalid'); return; }
+    if (form.querySelector('[name="botcheck"]').checked) return;
+    var payload = Object.fromEntries(new FormData(form));
+    payload.name = fields[0].value.trim();
+    payload.email = fields[1].value.trim();
+    payload.message = fields[2].value.trim();
+    var controller = new AbortController();
+    var timeout = setTimeout(function () { controller.abort(); }, 20000);
+    setBusy(true);
+    show('contact_sending');
+    try {
+      var response = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+        credentials: 'omit',
+        referrerPolicy: 'strict-origin-when-cross-origin'
+      });
+      var result = await response.json();
+      if (!response.ok || result.success !== true) throw new Error('Submission rejected');
+      form.reset();
+      show('contact_success');
+    } catch (error) {
+      show(error.name === 'AbortError' ? 'contact_timeout' : 'contact_error');
+    } finally {
+      clearTimeout(timeout);
+      setBusy(false);
+    }
   });
 })();
 
@@ -765,3 +812,4 @@ window.__userInteracted = false;
 
   observer.observe(flow);
 })();
+
