@@ -91,7 +91,7 @@
     var goal = form.querySelector('[name="goal"]'); goal.disabled = true;
     var controller = new AbortController();
     var timeout = setTimeout(function () { controller.abort(); }, 20000);
-    submit.textContent = 'Saving your interest…';
+    submit.textContent = 'Joining the waitlist…';
     try {
       var data = {
         access_key: form.querySelector('[name="access_key"]').value,
@@ -100,8 +100,8 @@
         email: value,
         goal: goal.value,
         course: 'Detox from Technology',
-        consent: 'Yes — I’d like to receive email updates about this course. I can ask to be removed at any time.',
-        consent_version: 'detox-interest-v1',
+        consent: 'Yes — I’d like to join the course waitlist and receive enrollment updates. I can ask to be removed at any time.',
+        consent_version: 'detox-waitlist-v2',
         consent_at: new Date().toISOString(),
         source: '/courses/detox-from-technology/'
       };
@@ -114,9 +114,9 @@
       if (!response.ok || result.success !== true) throw new Error('Submission rejected');
       form.hidden = true;
       var success = document.createElement('div'); success.className = 'success-state'; success.setAttribute('role', 'status'); success.tabIndex = -1;
-      var heading = document.createElement('h3'); heading.textContent = 'Thanks for being here.';
-      var copy = document.createElement('p'); copy.textContent = 'Your course interest has been sent to Paul. We’ll be in touch as the course takes shape.';
-      var note = document.createElement('p'); note.className = 'fineprint'; note.textContent = 'No confirmation email is sent yet. Thanks for helping shape what comes next.';
+      var heading = document.createElement('h3'); heading.textContent = 'You’re on the waitlist.';
+      var copy = document.createElement('p'); copy.textContent = 'Your waitlist request has been sent to Paul. We’ll email you when enrollment opens, with the details you need to decide whether to join.';
+      var note = document.createElement('p'); note.className = 'fineprint'; note.textContent = 'No payment is required. You won’t receive an automated confirmation email.';
       var reset = document.createElement('button'); reset.className = 'text-link'; reset.textContent = 'Use another email →';
       reset.addEventListener('click', function () { success.remove(); form.hidden = false; form.reset(); consent.checked = false; email.focus(); });
       success.append(heading, copy, note, reset); form.after(success); email.value = ''; success.focus();
@@ -124,7 +124,8 @@
       error(e.name === 'AbortError' ? 'The request timed out. Your interest may have been sent; please check before retrying.' : 'We couldn’t send your interest. Please try again.', false);
     } finally {
       clearTimeout(timeout); submit.disabled = false; email.readOnly = false; consent.disabled = false; goal.disabled = false;
-      submit.textContent = 'Keep me in the loop ↗';
+      submit.textContent = 'Join the waitlist ↗';
     }
   });
 })();
+
