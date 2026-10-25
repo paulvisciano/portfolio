@@ -127,5 +127,7 @@
       submit.textContent = 'Join the waitlist ↗';
     }
   });
+  // Enable signup only after the consent-checking handler is installed.
+  submit.disabled = false;
 })();
 
