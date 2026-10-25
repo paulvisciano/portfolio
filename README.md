@@ -71,12 +71,10 @@ The Detox course card links to the existing owner-only ChatGPT Sites validation 
 
 Moving the Detox page and backend into this Vercel project is a separate deployment step. The current Vercel connection needs access to the `paul-viscianos-projects` team before its preview protection, database resources, and environment configuration can be inspected. Do not remove the private-preview label or publish the course without approval.
 
-## Course detail route migration (in progress)
+## Course routes
 
-The actual course frontend now lives in `courses/detox-from-technology/` (HTML, CSS, and JavaScript), with a catalog at `courses/index.html`. Both pages use local portfolio routes and assets. The main catalog is proposed to link directly to `/courses/detox-from-technology/`.
+The catalog is available at `/courses/` and the Detox frontend at `/courses/detox-from-technology/`. The main page and catalog show one course promotion at a time, with manual previous/next controls, keyboard navigation, touch gestures, and a modal Jailbreak curriculum. Desktop promotions fit in one viewport.
 
-This migration is not ready for production. The same-origin collection endpoints `/api/detox/status`, `/api/detox/interest`, and `/api/detox/events` still need a provisioned backend and deployment verification. The form remains disabled unless the status endpoint confirms real collection is available; it never displays a false save confirmation. No database SDK or mock backend is substituted.
+The user approved merging the frontend routes to trigger the existing Vercel Git deployment. The same-origin collection endpoints `/api/detox/status`, `/api/detox/interest`, and `/api/detox/events` are not implemented yet. The form remains disabled unless a real status endpoint confirms collection readiness. Signup and funnel analytics are not live on this Vercel deployment. The original owner-private Sites prototype remains separate.
 
-The connected Vercel app currently lacks authorization for `paul-viscianos-projects` (`team_YlmryILsKB2WTaWYb7ew8Vkf`). Team authorization is required to inspect existing storage, provision the integration if needed, configure its server-only environment, and verify deployment. Private access requirements must be preserved until public release is approved.
-
-The `codex/course-routes` branch has automatic deployments disabled. Complete and verify the backend and private access before merging its draft PR. The original owner-private Sites deployment remains available during migration.
+The review branches have automatic deployments disabled; main retains its normal deployment behavior. Backend provisioning and deployment inspection through the connected Vercel app currently require team authorization.

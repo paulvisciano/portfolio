@@ -27,7 +27,7 @@
           <h2 id="courses-title" data-i18n="courses_title">Own your tools. Own your attention.</h2>
           <p class="lead" data-i18n="courses_intro">Practical paths toward a more intentional digital life. Choose where you want to begin.</p>
         </header>
-        <div class="courses-grid">
+        <div class="courses-grid" role="region" aria-roledescription="carousel" aria-label="Course promotions" tabindex="0">
           <article class="course-card" aria-labelledby="jailbreak-course-title">
             <a class="course-media course-media-jailbreak" href="/blog/jailbreaking-your-laptop-1.html" aria-labelledby="jailbreak-course-title">
               <img src="https://pub-9466bb5132e74aeba333004ad0c21f21.r2.dev/cover.jpg" alt="Jailbreak Your Laptop cover — Own the OS. Own the apps. Own the stack." width="1152" height="1712" loading="lazy" decoding="async">
@@ -42,12 +42,8 @@
 <span data-i18n="course_jailbreak_cta">Start the course</span>
 <span aria-hidden="true">→</span>
 </a>
-              <details class="course-outline">
-                <summary>
-<span data-i18n="course_jailbreak_outline">Explore the five-part outline</span>
-<span class="outline-toggle" aria-hidden="true">+</span>
-</summary>
-                <ol class="series-path">
+              <button class="course-outline-open" type="button" data-i18n="course_jailbreak_outline">Explore the five-part outline</button>
+ <dialog class="course-outline-dialog" aria-label="Jailbreak Your Laptop curriculum"><button type="button" class="course-outline-close" aria-label="Close course outline">×</button><ol class="series-path">
           <li class="series-step">
             <a class="series-step-link" href="/blog/jailbreaking-your-laptop-1.html">
               <span class="series-num num">01</span>
@@ -98,14 +94,13 @@
               <span class="series-step-arrow" aria-hidden="true">→</span>
             </a>
           </li>
-        </ol>
-              </details>
+        </ol></dialog>
             </div>
           </article>
-          <article class="course-card course-card-detox" aria-labelledby="detox-course-title">
+          <article hidden class="course-card course-card-detox" aria-labelledby="detox-course-title">
             <a class="course-media course-media-detox" href="/courses/detox-from-technology/" rel="noreferrer" aria-labelledby="detox-course-title" aria-describedby="detox-access-note">
               <img src="/courses/assets/detox-forest.webp" alt="Soft sunlight through a quiet green forest" width="960" height="640" loading="lazy" decoding="async">
-              <span class="course-preview-badge" data-i18n="course_detox_badge">Private preview</span>
+              <span class="course-preview-badge" data-i18n="course_detox_badge">In development</span>
             </a>
             <div class="course-body">
               <p class="eyebrow" data-i18n="course_detox_meta">Eight proposed parts · In development</p>
@@ -114,13 +109,14 @@
 </h3>
               <p class="course-description" data-i18n="course_detox_desc">Reclaim your attention. Reconnect with the present. Small changes to notifications, scrolling, and everyday habits, with more space for life offline.</p>
               <a class="course-link" href="/courses/detox-from-technology/" rel="noreferrer" aria-describedby="detox-access-note">
-<span data-i18n="course_detox_cta">Explore the private course preview</span>
+<span data-i18n="course_detox_cta">Explore the course</span>
 <span aria-hidden="true">↗</span>
 </a>
-              <p class="course-access-note" id="detox-access-note" data-i18n="course_detox_access">Owner-only preview. ChatGPT sign-in required. The proposed course is not open for enrollment.</p>
+              <p class="course-access-note" id="detox-access-note" data-i18n="course_detox_access">The proposed course is not open for enrollment yet.</p>
             </div>
           </article>
         </div>
+        <div class="course-controls"><button type="button" data-course-prev aria-label="Previous course">←</button><span class="course-position" aria-live="polite" aria-atomic="true">01 / 02</span><button type="button" data-course-next aria-label="Next course">→</button></div>
       </div>
     </section>
 </main>
@@ -131,5 +127,6 @@
 </footer>
 <script src="/i18n.js">
 </script>
+<script src="/course-carousel.js"></script>
 </body>
 </html>
