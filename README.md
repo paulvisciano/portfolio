@@ -70,3 +70,11 @@ The `codex/courses-and-detox` branch has automatic Vercel deployments disabled i
 The Detox course card links to the existing owner-only ChatGPT Sites validation page. Its working interest form, private analytics dashboard, and database remain hosted there. This PR does not provision a new database, move backend data, or expose the Detox preview publicly. The catalog clearly labels the private destination and required ChatGPT sign-in.
 
 Moving the Detox page and backend into this Vercel project is a separate deployment step. The current Vercel connection needs access to the `paul-viscianos-projects` team before its preview protection, database resources, and environment configuration can be inspected. Do not remove the private-preview label or publish the course without approval.
+
+## Course routes
+
+The catalog is available at `/courses/` and the Detox frontend at `/courses/detox-from-technology/`. The main page and catalog show one course promotion at a time, with manual previous/next controls, keyboard navigation, touch gestures, and a modal Jailbreak curriculum. Desktop promotions fit in one viewport.
+
+The user approved merging the frontend routes to trigger the existing Vercel Git deployment. The same-origin collection endpoints `/api/detox/status`, `/api/detox/interest`, and `/api/detox/events` are not implemented yet. The form remains disabled unless a real status endpoint confirms collection readiness. Signup and funnel analytics are not live on this Vercel deployment. The original owner-private Sites prototype remains separate.
+
+The review branches have automatic deployments disabled; main retains its normal deployment behavior. Backend provisioning and deployment inspection through the connected Vercel app currently require team authorization.
